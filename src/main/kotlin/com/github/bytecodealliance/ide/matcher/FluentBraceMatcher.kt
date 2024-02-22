@@ -1,6 +1,5 @@
 package com.github.bytecodealliance.ide.matcher
 
-import com.github.bytecodealliance.WitLanguage
 import com.github.bytecodealliance.language.file.WitFileType
 
 import com.intellij.codeInsight.highlighting.PairedBraceMatcherAdapter

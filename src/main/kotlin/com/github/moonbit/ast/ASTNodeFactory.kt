@@ -1,6 +1,5 @@
 package com.github.moonbit.ast
 
-import com.github.bytecodealliance.WitLanguage
 import com.github.bytecodealliance.language.file.WitFile
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFileFactory

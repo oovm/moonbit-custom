@@ -26,7 +26,7 @@ class BaseBraceMatcher : PairedBraceMatcher {
         )
 
         private val InsertPairBraceBefore = TokenSet.orSet(
-            _root_ide_package_.com.github.moonbit.psi.WitParserDefinition().commentTokens,
+            _root_ide_package_.com.github.moonbit.psi.MoonParserDefinition().commentTokens,
             TokenSet.create(
                 TokenType.WHITE_SPACE,
                 COMMA,

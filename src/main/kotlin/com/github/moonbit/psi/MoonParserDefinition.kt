@@ -1,7 +1,6 @@
 package com.github.moonbit.psi
 
 
-import com.github.bytecodealliance.WitLanguage
 import com.github.bytecodealliance.language.file.WitFile
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
@@ -16,7 +15,7 @@ import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 
-class WitParserDefinition : ParserDefinition {
+class MoonParserDefinition : ParserDefinition {
     fun createLexer(): Lexer = FlexAdapter(_root_ide_package_.com.github.moonbit._WitLexer(null))
     override fun createLexer(project: Project): Lexer = FlexAdapter(
         _root_ide_package_.com.github.moonbit._WitLexer(

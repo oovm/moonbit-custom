@@ -1,22 +1,23 @@
 package com.github.moonbit.file
 
 import com.github.bytecodealliance.MessageBundle
-import com.github.bytecodealliance.WionLanguage
+import com.github.bytecodealliance.MoonLanguage
 import com.intellij.openapi.fileTypes.LanguageFileType
 import javax.swing.Icon
 
-class WionFileType private constructor() : LanguageFileType(WionLanguage) {
+class MoonFileType : LanguageFileType {
+    private constructor() : super(MoonLanguage)
 
-    override fun getName(): String = WionLanguage.id
+    override fun getName(): String = MoonLanguage.id
 
     override fun getDescription(): String = MessageBundle.message("filetype.x.description")
 
-    override fun getDefaultExtension(): String = "wion;"
+    override fun getDefaultExtension(): String = "mbt;"
 
-    override fun getIcon(): Icon = MoonIconProvider.Wion
+    override fun getIcon(): Icon = MoonIconProvider.Moon
 
     companion object {
         @JvmStatic
-        val INSTANCE = WionFileType()
+        val INSTANCE = MoonFileType()
     }
 }
