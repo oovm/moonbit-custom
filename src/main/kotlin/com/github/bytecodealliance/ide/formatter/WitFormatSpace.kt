@@ -1,7 +1,7 @@
 package com.github.bytecodealliance.ide.formatter
 
 import com.github.bytecodealliance.WitLanguage
-import com.github.bytecodealliance.language.psi.WitTypes.*
+import com.github.moonbit.psi.WitTypes.*
 import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings

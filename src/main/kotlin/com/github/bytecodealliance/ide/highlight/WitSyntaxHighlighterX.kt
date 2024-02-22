@@ -1,8 +1,7 @@
 package com.github.bytecodealliance.ide.highlight
 
 import com.github.bytecodealliance.language.psi.WitParserDefinitionX
-import com.github.bytecodealliance.language.psi.WitTypes
-import com.github.bytecodealliance.language.psi.WitxTypes.*
+import com.github.moonbit.psi.WitxTypes.*
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
@@ -23,21 +22,21 @@ class WitSyntaxHighlighterX : SyntaxHighlighterBase() {
             KW_TYPE, KW_ENUM, KW_RECORD,
                 -> WitColor.KEYWORD
 
-            WitTypes.PARENTHESIS_L, WitTypes.PARENTHESIS_R -> WitColor.PARENTHESES
-            WitTypes.BRACKET_L, WitTypes.BRACKET_R -> WitColor.BRACKETS
-            WitTypes.BRACE_L, WitTypes.BRACE_R -> WitColor.BRACES
-            WitTypes.COLON, WitTypes.EQ -> WitColor.OPERATION
-            WitTypes.AT, WitTypes.STAR -> WitColor.OPERATION
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.PARENTHESIS_L, _root_ide_package_.com.github.moonbit.psi.WitTypes.PARENTHESIS_R -> WitColor.PARENTHESES
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.BRACKET_L, _root_ide_package_.com.github.moonbit.psi.WitTypes.BRACKET_R -> WitColor.BRACKETS
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.BRACE_L, _root_ide_package_.com.github.moonbit.psi.WitTypes.BRACE_R -> WitColor.BRACES
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.COLON, _root_ide_package_.com.github.moonbit.psi.WitTypes.EQ -> WitColor.OPERATION
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.AT, _root_ide_package_.com.github.moonbit.psi.WitTypes.STAR -> WitColor.OPERATION
 
-            WitTypes.COMMA -> WitColor.COMMA
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.COMMA -> WitColor.COMMA
             // atom
-            WitTypes.VERSION -> WitColor.NUMBER
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.VERSION -> WitColor.NUMBER
 
-            WitTypes.SELECTION_LINE -> WitColor.TEXT
-            WitTypes.STRING_QUOTE, WitTypes.STRING_CHAR -> WitColor.STRING
-            WitTypes.STRING_ESCAPE -> WitColor.STRING_ESCAPED
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.SELECTION_LINE -> WitColor.TEXT
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.STRING_QUOTE, _root_ide_package_.com.github.moonbit.psi.WitTypes.STRING_CHAR -> WitColor.STRING
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.STRING_ESCAPE -> WitColor.STRING_ESCAPED
 //            STRING -> AwslColor.STRING
-            WitTypes.SYMBOL -> WitColor.IDENTIFIER
+            _root_ide_package_.com.github.moonbit.psi.WitTypes.SYMBOL -> WitColor.IDENTIFIER
             // 注释
             COMMENT_LINE -> WitColor.LINE_COMMENT
             COMMENT_BLOCK -> WitColor.BLOCK_COMMENT

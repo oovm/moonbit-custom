@@ -1,7 +1,6 @@
 package com.github.bytecodealliance.ide.matcher
 
-import com.github.bytecodealliance.language.psi.WitParserDefinition
-import com.github.bytecodealliance.language.psi.WitTypes.*
+import com.github.moonbit.psi.WitTypes.*
 import com.intellij.lang.BracePair
 import com.intellij.lang.PairedBraceMatcher
 import com.intellij.psi.PsiFile
@@ -27,7 +26,7 @@ class BaseBraceMatcher : PairedBraceMatcher {
         )
 
         private val InsertPairBraceBefore = TokenSet.orSet(
-            WitParserDefinition().commentTokens,
+            _root_ide_package_.com.github.moonbit.psi.WitParserDefinition().commentTokens,
             TokenSet.create(
                 TokenType.WHITE_SPACE,
                 COMMA,

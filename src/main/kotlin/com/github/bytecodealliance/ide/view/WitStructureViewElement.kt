@@ -1,26 +1,6 @@
 package com.github.bytecodealliance.ide.view
 
 import com.github.bytecodealliance.language.file.WitFile
-import com.github.bytecodealliance.language.psi.WitDefineInterface
-import com.github.bytecodealliance.language.psi.WitEnum
-import com.github.bytecodealliance.language.psi.WitFlags
-import com.github.bytecodealliance.language.psi.WitRecord
-import com.github.bytecodealliance.language.psi.WitResource
-import com.github.bytecodealliance.language.psi.WitVariant
-import com.github.bytecodealliance.language.psi.WitWorld
-import com.github.bytecodealliance.language.psi_node.WitDefineInterfaceNode
-import com.github.bytecodealliance.language.psi_node.WitEnumNode
-import com.github.bytecodealliance.language.psi_node.WitExportNode
-import com.github.bytecodealliance.language.psi_node.WitFlagsNode
-import com.github.bytecodealliance.language.psi_node.WitFunctionNode
-import com.github.bytecodealliance.language.psi_node.WitMethodNode
-import com.github.bytecodealliance.language.psi_node.WitRecordFieldNode
-import com.github.bytecodealliance.language.psi_node.WitRecordNode
-import com.github.bytecodealliance.language.psi_node.WitResourceNode
-import com.github.bytecodealliance.language.psi_node.WitSemanticNumberNode
-import com.github.bytecodealliance.language.psi_node.WitVariantItemNode
-import com.github.bytecodealliance.language.psi_node.WitVariantNode
-import com.github.bytecodealliance.language.psi_node.WitWorldNode
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.ide.structureView.StructureViewTreeElement
 import com.intellij.ide.util.treeView.smartTree.SortableTreeElement
@@ -60,37 +40,37 @@ class WitStructureViewElement(private val node: NavigatablePsiElement) :
 
     override fun getChildren(): Array<out TreeElement> = when (node) {
         is WitFile -> getChildOfType(
-            WitWorldNode::class.java,
-            WitDefineInterfaceNode::class.java,
+            _root_ide_package_.com.github.moonbit.psi_node.WitWorldNode::class.java,
+            _root_ide_package_.com.github.moonbit.psi_node.WitDefineInterfaceNode::class.java,
         )
 
-        is WitWorld -> getChildOfType(
-            WitExportNode::class.java,
+        is _root_ide_package_.com.github.moonbit.psi.WitWorld -> getChildOfType(
+            _root_ide_package_.com.github.moonbit.psi_node.WitExportNode::class.java,
         )
 
-        is WitDefineInterface -> getChildOfType(
-            WitResourceNode::class.java,
-            WitRecordNode::class.java,
-            WitVariantNode::class.java,
-            WitEnumNode::class.java,
-            WitFlagsNode::class.java,
-            WitFunctionNode::class.java,
+        is _root_ide_package_.com.github.moonbit.psi.WitDefineInterface -> getChildOfType(
+            _root_ide_package_.com.github.moonbit.psi_node.WitResourceNode::class.java,
+            _root_ide_package_.com.github.moonbit.psi_node.WitRecordNode::class.java,
+            _root_ide_package_.com.github.moonbit.psi_node.WitVariantNode::class.java,
+            _root_ide_package_.com.github.moonbit.psi_node.WitEnumNode::class.java,
+            _root_ide_package_.com.github.moonbit.psi_node.WitFlagsNode::class.java,
+            _root_ide_package_.com.github.moonbit.psi_node.WitFunctionNode::class.java,
         )
 
-        is WitResource -> getChildOfType(
-            WitMethodNode::class.java
+        is _root_ide_package_.com.github.moonbit.psi.WitResource -> getChildOfType(
+            _root_ide_package_.com.github.moonbit.psi_node.WitMethodNode::class.java
         )
 
-        is WitRecord -> getChildOfType(
-            WitRecordFieldNode::class.java
+        is _root_ide_package_.com.github.moonbit.psi.WitRecord -> getChildOfType(
+            _root_ide_package_.com.github.moonbit.psi_node.WitRecordFieldNode::class.java
         )
 
-        is WitEnum, is WitFlags -> getChildOfType(
-            WitSemanticNumberNode::class.java
+        is _root_ide_package_.com.github.moonbit.psi.WitEnum, is _root_ide_package_.com.github.moonbit.psi.WitFlags -> getChildOfType(
+            _root_ide_package_.com.github.moonbit.psi_node.WitSemanticNumberNode::class.java
         )
 
-        is WitVariant -> getChildOfType(
-            WitVariantItemNode::class.java
+        is _root_ide_package_.com.github.moonbit.psi.WitVariant -> getChildOfType(
+            _root_ide_package_.com.github.moonbit.psi_node.WitVariantItemNode::class.java
         )
 
         else -> getChildOfType(

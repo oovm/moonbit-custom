@@ -1,13 +1,12 @@
 package com.github.bytecodealliance.ide.annotator
 
-import com.github.bytecodealliance.language.psi.WitVisitor
 import com.intellij.lang.annotation.AnnotationBuilder
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.psi.PsiElement
 import com.intellij.psi.tree.IElementType
 
-open class WitAnnotator : WitVisitor {
+open class WitAnnotator : _root_ide_package_.com.github.moonbit.psi.WitVisitor {
     protected val holder: AnnotationHolder
 
     constructor(holder: AnnotationHolder) : super() {

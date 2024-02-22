@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement
 
 class WitFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : WitRecursiveVisitor() {
 
-    override fun visitInterfaceBody(o: WitInterfaceBody) {
+    override fun visitInterfaceBody(o: _root_ide_package_.com.github.moonbit.psi.WitInterfaceBody) {
         descriptors += FoldingDescriptor(o.node, TextRange(o.firstChild.endOffset, o.lastChild.startOffset))
 
     }

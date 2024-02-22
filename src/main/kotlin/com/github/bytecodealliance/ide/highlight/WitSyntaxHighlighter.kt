@@ -1,8 +1,7 @@
 package com.github.bytecodealliance.ide.highlight
 
 
-import com.github.bytecodealliance.language.psi.WitParserDefinition
-import com.github.bytecodealliance.language.psi.WitTypes.*
+import com.github.moonbit.psi.WitTypes.*
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
@@ -11,7 +10,7 @@ import com.intellij.psi.tree.IElementType
 
 class WitSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer {
-        return WitParserDefinition().createLexer()
+        return _root_ide_package_.com.github.moonbit.psi.WitParserDefinition().createLexer()
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {

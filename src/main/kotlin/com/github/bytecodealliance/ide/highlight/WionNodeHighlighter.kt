@@ -9,22 +9,22 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 
-class WionNodeHighlighter : WionVisitor(), HighlightVisitor {
+class WionNodeHighlighter : _root_ide_package_.com.github.moonbit.psi.WionVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
 
-    override fun visitDictKey(o: WionDictKey) {
+    override fun visitDictKey(o: _root_ide_package_.com.github.moonbit.psi.WionDictKey) {
         highlight(o, WionColor.KEY)
     }
 
-    override fun visitVariantName(o: WionVariantName) {
+    override fun visitVariantName(o: _root_ide_package_.com.github.moonbit.psi.WionVariantName) {
         highlight(o, WionColor.VARIANT)
     }
 
-    override fun visitDictLiteral(o: WionDictLiteral) {
+    override fun visitDictLiteral(o: _root_ide_package_.com.github.moonbit.psi.WionDictLiteral) {
         highlight(o.identifier, WionColor.RECORD)
     }
 
-    override fun visitFlagItem(o: WionFlagItem) {
+    override fun visitFlagItem(o: _root_ide_package_.com.github.moonbit.psi.WionFlagItem) {
         highlight(o.identifier, WionColor.FLAGS)
     }
 

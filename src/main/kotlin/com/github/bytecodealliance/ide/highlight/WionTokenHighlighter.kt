@@ -1,7 +1,7 @@
 package com.github.bytecodealliance.ide.highlight
 
 import com.github.bytecodealliance.language.psi.WionParserDefinition
-import com.github.bytecodealliance.language.psi.WionTypes.*
+import com.github.moonbit.psi.WionTypes.*
 import com.intellij.json.JsonElementTypes
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.colors.TextAttributesKey

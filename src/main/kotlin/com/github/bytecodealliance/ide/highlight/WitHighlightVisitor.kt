@@ -11,75 +11,75 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 
-class WitHighlightVisitor : WitVisitor(), HighlightVisitor {
+class WitHighlightVisitor : _root_ide_package_.com.github.moonbit.psi.WitVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
 
 
-    override fun visitUseAlias(o: WitUseAlias) {
+    override fun visitUseAlias(o: _root_ide_package_.com.github.moonbit.psi.WitUseAlias) {
         highlight(o.identifier, SYM_TYPE)
         o.aliasName?.let { highlight(it, SYM_TYPE) }
     }
 
 
-    override fun visitImport(o: WitImport) {
+    override fun visitImport(o: _root_ide_package_.com.github.moonbit.psi.WitImport) {
         super.visitImport(o)
     }
 
-    override fun visitResource(o: WitResource) {
+    override fun visitResource(o: _root_ide_package_.com.github.moonbit.psi.WitResource) {
         o.identifier?.let { highlight(it, SYM_TYPE) }
     }
 
 
-    override fun visitRecord(o: WitRecord) {
+    override fun visitRecord(o: _root_ide_package_.com.github.moonbit.psi.WitRecord) {
         o.identifier?.let { highlight(it, SYM_TYPE) }
     }
 
-    override fun visitRecordField(o: WitRecordField) {
+    override fun visitRecordField(o: _root_ide_package_.com.github.moonbit.psi.WitRecordField) {
         highlight(o.identifier, SYM_FIELD)
     }
 
-    override fun visitEnum(o: WitEnum) {
+    override fun visitEnum(o: _root_ide_package_.com.github.moonbit.psi.WitEnum) {
         o.identifier?.let { highlight(it, NUMBER) }
     }
 
-    override fun visitFlags(o: WitFlags) {
+    override fun visitFlags(o: _root_ide_package_.com.github.moonbit.psi.WitFlags) {
         o.identifier?.let { highlight(it, NUMBER) }
     }
 
-    override fun visitSemanticNumber(o: WitSemanticNumber) {
+    override fun visitSemanticNumber(o: _root_ide_package_.com.github.moonbit.psi.WitSemanticNumber) {
         highlight(o, SYM_FIELD)
     }
 
-    override fun visitVariant(o: WitVariant) {
+    override fun visitVariant(o: _root_ide_package_.com.github.moonbit.psi.WitVariant) {
         o.identifier?.let { highlight(it, SYM_TYPE) }
     }
 
-    override fun visitVariantItem(o: WitVariantItem) {
+    override fun visitVariantItem(o: _root_ide_package_.com.github.moonbit.psi.WitVariantItem) {
         highlight(o.identifier, SYM_FIELD)
     }
 
-    override fun visitFunction(o: WitFunction) {
+    override fun visitFunction(o: _root_ide_package_.com.github.moonbit.psi.WitFunction) {
         highlight(o.identifier, SYM_FUNCTION)
     }
 
-    override fun visitMethod(o: WitMethod) {
+    override fun visitMethod(o: _root_ide_package_.com.github.moonbit.psi.WitMethod) {
         highlight(o.identifier, SYM_FUNCTION)
     }
 
-    override fun visitModifier(o: WitModifier) {
+    override fun visitModifier(o: _root_ide_package_.com.github.moonbit.psi.WitModifier) {
         highlight(o, KEYWORD)
     }
 
-    override fun visitParameter(o: WitParameter) {
+    override fun visitParameter(o: _root_ide_package_.com.github.moonbit.psi.WitParameter) {
         highlight(o.identifier, SYM_FIELD)
     }
 
 
-    override fun visitDefineType(o: WitDefineType) {
+    override fun visitDefineType(o: _root_ide_package_.com.github.moonbit.psi.WitDefineType) {
         o.identifier?.let { highlight(it, SYM_TYPE) }
     }
 
-    override fun visitTypeGeneric(o: WitTypeGeneric) {
+    override fun visitTypeGeneric(o: _root_ide_package_.com.github.moonbit.psi.WitTypeGeneric) {
         when (o.identifier.text) {
             "_", "bool", "char",
             "u8", "u16", "u32", "u64",
@@ -103,7 +103,7 @@ class WitHighlightVisitor : WitVisitor(), HighlightVisitor {
         }
     }
 
-    override fun visitInterfaceName(o: WitInterfaceName) {
+    override fun visitInterfaceName(o: _root_ide_package_.com.github.moonbit.psi.WitInterfaceName) {
         highlight(o, SYM_INTERFACE)
     }
 
