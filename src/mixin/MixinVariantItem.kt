@@ -1,17 +1,17 @@
 package com.github.moonbit.mixin
 
 import com.github.bytecodealliance.ide.view.WitItemPresentation
-
 import com.github.bytecodealliance.language.psi.WitElement
+import com.github.moonbit.psi.MoonElement
 import com.intellij.icons.AllIcons
 import com.intellij.lang.ASTNode
 import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 
-abstract class MixinRecord(node: ASTNode) : WitElement(node),
+abstract class MixinVariantItem(node: ASTNode) : MoonElement(node),
     PsiNameIdentifierOwner,
-    _root_ide_package_.com.github.moonbit.psi.WitRecord {
+    _root_ide_package_.com.github.moonbit.psi.WitVariantItem {
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
@@ -20,7 +20,8 @@ abstract class MixinRecord(node: ASTNode) : WitElement(node),
         return this.identifier
     }
 
+
     override fun getPresentation(): ItemPresentation? {
-        return WitItemPresentation(AllIcons.Nodes.Record, nameIdentifier?.text ?: "missing record")
+        return WitItemPresentation(AllIcons.Nodes.Enum, nameIdentifier?.text ?: "missing interface")
     }
 }

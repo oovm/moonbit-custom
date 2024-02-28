@@ -2,6 +2,8 @@ package com.github.bytecodealliance.ide.formatter
 
 import com.github.bytecodealliance.language.ast.computeSpacing
 import com.github.bytecodealliance.language.ast.isWhitespaceOrEmpty
+import com.github.moonbit.ast.computeSpacing
+import com.github.moonbit.ast.isWhitespaceOrEmpty
 import com.intellij.formatting.*
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange

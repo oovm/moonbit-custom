@@ -4,6 +4,10 @@ import com.github.bytecodealliance.language.psi.endOffset
 import com.github.bytecodealliance.language.psi.getNextNonCommentSibling
 import com.github.bytecodealliance.language.psi.getPrevNonCommentSibling
 import com.github.bytecodealliance.language.psi.getPrevNonWhitespaceSibling
+import com.github.moonbit.psi.endOffset
+import com.github.moonbit.psi.getNextNonCommentSibling
+import com.github.moonbit.psi.getPrevNonCommentSibling
+import com.github.moonbit.psi.getPrevNonWhitespaceSibling
 import com.intellij.lang.SmartEnterProcessorWithFixers
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement

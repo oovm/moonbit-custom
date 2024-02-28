@@ -41,13 +41,5 @@ class LiteralChecker : Annotator {
 }
 
 private class CheckVisitor(holder: AnnotationHolder) : WitAnnotator(holder) {
-    override fun visitPackageName(o: _root_ide_package_.com.github.moonbit.psi.WitPackageName) {
-        println(o.text)
-        for (name in o.moduleNameList) {
-            holder.newAnnotation(HighlightSeverity.ERROR, "Nested namespace dost not support yet")
-                .range(name.textRange)
 
-                .create()
-        }
-    }
 }
