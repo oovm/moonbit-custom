@@ -11,7 +11,7 @@ import com.intellij.psi.PsiNameIdentifierOwner
 
 abstract class MixinVariantItem(node: ASTNode) : MoonElement(node),
     PsiNameIdentifierOwner,
-    _root_ide_package_.com.github.moonbit.psi.WitVariantItem {
+    WitVariantItem {
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }

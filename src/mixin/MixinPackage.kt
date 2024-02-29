@@ -13,7 +13,7 @@ import com.intellij.psi.PsiNameIdentifierOwner
 abstract class MixinPackage(node: ASTNode) : WitElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    _root_ide_package_.com.github.moonbit.psi.WitPackage {
+    WitPackage {
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }

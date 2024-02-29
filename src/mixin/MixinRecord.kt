@@ -12,7 +12,7 @@ import com.intellij.psi.PsiNameIdentifierOwner
 
 abstract class MixinRecord(node: ASTNode) : MoonElement(node),
     PsiNameIdentifierOwner,
-    _root_ide_package_.com.github.moonbit.psi.WitRecord {
+    WitRecord {
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }

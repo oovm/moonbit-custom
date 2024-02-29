@@ -14,71 +14,71 @@ class WitHighlightVisitor : MoonVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
 //
 //
-//    override fun visitUseAlias(o: _root_ide_package_.com.github.moonbit.psi.WitUseAlias) {
+//    override fun visitUseAlias(o: WitUseAlias) {
 //        highlight(o.identifier, SYM_TYPE)
 //        o.aliasName?.let { highlight(it, SYM_TYPE) }
 //    }
 //
 //
-//    override fun visitImport(o: _root_ide_package_.com.github.moonbit.psi.WitImport) {
+//    override fun visitImport(o: WitImport) {
 //        super.visitImport(o)
 //    }
 //
-//    override fun visitResource(o: _root_ide_package_.com.github.moonbit.psi.WitResource) {
+//    override fun visitResource(o: WitResource) {
 //        o.identifier?.let { highlight(it, SYM_TYPE) }
 //    }
 //
 //
-//    override fun visitRecord(o: _root_ide_package_.com.github.moonbit.psi.WitRecord) {
+//    override fun visitRecord(o: WitRecord) {
 //        o.identifier?.let { highlight(it, SYM_TYPE) }
 //    }
 //
-//    override fun visitRecordField(o: _root_ide_package_.com.github.moonbit.psi.WitRecordField) {
+//    override fun visitRecordField(o: WitRecordField) {
 //        highlight(o.identifier, SYM_FIELD)
 //    }
 //
-//    override fun visitEnum(o: _root_ide_package_.com.github.moonbit.psi.WitEnum) {
+//    override fun visitEnum(o: WitEnum) {
 //        o.identifier?.let { highlight(it, NUMBER) }
 //    }
 //
-//    override fun visitFlags(o: _root_ide_package_.com.github.moonbit.psi.WitFlags) {
+//    override fun visitFlags(o: WitFlags) {
 //        o.identifier?.let { highlight(it, NUMBER) }
 //    }
 //
-//    override fun visitSemanticNumber(o: _root_ide_package_.com.github.moonbit.psi.WitSemanticNumber) {
+//    override fun visitSemanticNumber(o: WitSemanticNumber) {
 //        highlight(o, SYM_FIELD)
 //    }
 //
-//    override fun visitVariant(o: _root_ide_package_.com.github.moonbit.psi.WitVariant) {
+//    override fun visitVariant(o: WitVariant) {
 //        o.identifier?.let { highlight(it, SYM_TYPE) }
 //    }
 //
-//    override fun visitVariantItem(o: _root_ide_package_.com.github.moonbit.psi.WitVariantItem) {
+//    override fun visitVariantItem(o: WitVariantItem) {
 //        highlight(o.identifier, SYM_FIELD)
 //    }
 //
-//    override fun visitFunction(o: _root_ide_package_.com.github.moonbit.psi.WitFunction) {
+//    override fun visitFunction(o: WitFunction) {
 //        highlight(o.identifier, SYM_FUNCTION)
 //    }
 //
-//    override fun visitMethod(o: _root_ide_package_.com.github.moonbit.psi.WitMethod) {
+//    override fun visitMethod(o: WitMethod) {
 //        highlight(o.identifier, SYM_FUNCTION)
 //    }
 //
-//    override fun visitModifier(o: _root_ide_package_.com.github.moonbit.psi.WitModifier) {
+//    override fun visitModifier(o: WitModifier) {
 //        highlight(o, KEYWORD)
 //    }
 //
-//    override fun visitParameter(o: _root_ide_package_.com.github.moonbit.psi.WitParameter) {
+//    override fun visitParameter(o: WitParameter) {
 //        highlight(o.identifier, SYM_FIELD)
 //    }
 //
 //
-//    override fun visitDefineType(o: _root_ide_package_.com.github.moonbit.psi.WitDefineType) {
+//    override fun visitDefineType(o: WitDefineType) {
 //        o.identifier?.let { highlight(it, SYM_TYPE) }
 //    }
 //
-//    override fun visitTypeGeneric(o: _root_ide_package_.com.github.moonbit.psi.WitTypeGeneric) {
+//    override fun visitTypeGeneric(o: WitTypeGeneric) {
 //        when (o.identifier.text) {
 //            "_", "bool", "char",
 //            "u8", "u16", "u32", "u64",
@@ -102,7 +102,7 @@ class WitHighlightVisitor : MoonVisitor(), HighlightVisitor {
 //        }
 //    }
 //
-//    override fun visitInterfaceName(o: _root_ide_package_.com.github.moonbit.psi.WitInterfaceName) {
+//    override fun visitInterfaceName(o: WitInterfaceName) {
 //        highlight(o, SYM_INTERFACE)
 //    }
 

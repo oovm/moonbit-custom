@@ -1,5 +1,6 @@
 package com.github.bytecodealliance.ide.matcher
 
+import com.github.moonbit.psi.MoonParserDefinition
 import com.github.moonbit.psi.MoonTypes.*
 import com.intellij.lang.BracePair
 import com.intellij.lang.PairedBraceMatcher
@@ -26,7 +27,7 @@ class BaseBraceMatcher : PairedBraceMatcher {
         )
 
         private val InsertPairBraceBefore = TokenSet.orSet(
-            _root_ide_package_.com.github.moonbit.psi.MoonParserDefinition().commentTokens,
+            MoonParserDefinition().commentTokens,
             TokenSet.create(
                 TokenType.WHITE_SPACE,
                 COMMA,

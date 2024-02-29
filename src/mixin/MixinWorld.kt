@@ -14,7 +14,7 @@ import com.intellij.psi.PsiNameIdentifierOwner
 abstract class MixinWorld(node: ASTNode) : MoonElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    _root_ide_package_.com.github.moonbit.psi.WitWorld {
+    WitWorld {
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }

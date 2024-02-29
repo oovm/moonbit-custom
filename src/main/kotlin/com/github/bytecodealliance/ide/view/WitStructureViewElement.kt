@@ -44,11 +44,11 @@ class WitStructureViewElement(private val node: NavigatablePsiElement) :
 //            _root_ide_package_.com.github.moonbit.psi_node.WitDefineInterfaceNode::class.java,
         )
 
-//        is _root_ide_package_.com.github.moonbit.psi.WitWorld -> getChildOfType(
+//        is WitWorld -> getChildOfType(
 //            _root_ide_package_.com.github.moonbit.psi_node.WitExportNode::class.java,
 //        )
 //
-//        is _root_ide_package_.com.github.moonbit.psi.WitDefineInterface -> getChildOfType(
+//        is WitDefineInterface -> getChildOfType(
 //            _root_ide_package_.com.github.moonbit.psi_node.WitResourceNode::class.java,
 //            _root_ide_package_.com.github.moonbit.psi_node.WitRecordNode::class.java,
 //            _root_ide_package_.com.github.moonbit.psi_node.WitVariantNode::class.java,
@@ -57,19 +57,19 @@ class WitStructureViewElement(private val node: NavigatablePsiElement) :
 //            _root_ide_package_.com.github.moonbit.psi_node.WitFunctionNode::class.java,
 //        )
 //
-//        is _root_ide_package_.com.github.moonbit.psi.WitResource -> getChildOfType(
+//        is WitResource -> getChildOfType(
 //            _root_ide_package_.com.github.moonbit.psi_node.WitMethodNode::class.java
 //        )
 //
-//        is _root_ide_package_.com.github.moonbit.psi.WitRecord -> getChildOfType(
+//        is WitRecord -> getChildOfType(
 //            _root_ide_package_.com.github.moonbit.psi_node.WitRecordFieldNode::class.java
 //        )
 //
-//        is _root_ide_package_.com.github.moonbit.psi.WitEnum, is _root_ide_package_.com.github.moonbit.psi.WitFlags -> getChildOfType(
+//        is WitEnum, is WitFlags -> getChildOfType(
 //            _root_ide_package_.com.github.moonbit.psi_node.WitSemanticNumberNode::class.java
 //        )
 //
-//        is _root_ide_package_.com.github.moonbit.psi.WitVariant -> getChildOfType(
+//        is WitVariant -> getChildOfType(
 //            _root_ide_package_.com.github.moonbit.psi_node.WitVariantItemNode::class.java
 //        )
 

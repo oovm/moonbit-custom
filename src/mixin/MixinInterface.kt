@@ -11,7 +11,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 
 abstract class MixinInterface(node: ASTNode) : WitElement(node), PsiNameIdentifierOwner,
-    _root_ide_package_.com.github.moonbit.psi.WitDefineInterface {
+    WitDefineInterface {
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }

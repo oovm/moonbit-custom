@@ -6,9 +6,9 @@ package com.github.moonbit;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 
+import static com.github.moonbit.psi.MoonTypes.*;
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
-import static com.github.moonbit.psi.MoonTypes.*;
 
 
 public class _MoonLexer implements FlexLexer {
@@ -352,56 +352,36 @@ public class _MoonLexer implements FlexLexer {
         return j;
     }
 
-    /**
-     * the input device
-     */
+    /** the input device */
     private java.io.Reader zzReader;
 
-    /**
-     * the current state of the DFA
-     */
+    /** the current state of the DFA */
     private int zzState;
 
-    /**
-     * the current lexical state
-     */
+    /** the current lexical state */
     private int zzLexicalState = YYINITIAL;
 
-    /**
-     * this buffer contains the current text to be matched and is
-     * the source of the yytext() string
-     */
+    /** this buffer contains the current text to be matched and is
+     the source of the yytext() string */
     private CharSequence zzBuffer = "";
 
-    /**
-     * the textposition at the last accepting state
-     */
+    /** the textposition at the last accepting state */
     private int zzMarkedPos;
 
-    /**
-     * the current text position in the buffer
-     */
+    /** the current text position in the buffer */
     private int zzCurrentPos;
 
-    /**
-     * startRead marks the beginning of the yytext() string in the buffer
-     */
+    /** startRead marks the beginning of the yytext() string in the buffer */
     private int zzStartRead;
 
-    /**
-     * endRead marks the last character in the buffer, that has been read
-     * from input
-     */
+    /** endRead marks the last character in the buffer, that has been read
+     from input */
     private int zzEndRead;
 
-    /**
-     * zzAtEOF == true <=> the scanner is at the EOF
-     */
+    /** zzAtEOF == true <=> the scanner is at the EOF */
     private boolean zzAtEOF;
 
-    /**
-     * Number of newlines encountered up to the start of the matched text.
-     */
+    /** Number of newlines encountered up to the start of the matched text. */
     @SuppressWarnings("unused")
     private int yyline;
 
@@ -411,21 +391,15 @@ public class _MoonLexer implements FlexLexer {
     @SuppressWarnings("unused")
     protected int yycolumn;
 
-    /**
-     * Number of characters up to the start of the matched text.
-     */
+    /** Number of characters up to the start of the matched text. */
     @SuppressWarnings("unused")
     private long yychar;
 
-    /**
-     * Whether the scanner is currently at the beginning of a line.
-     */
+    /** Whether the scanner is currently at the beginning of a line. */
     @SuppressWarnings("unused")
     private boolean zzAtBOL = true;
 
-    /**
-     * Whether the user-EOF-code has already been executed.
-     */
+    /** Whether the user-EOF-code has already been executed. */
     @SuppressWarnings("unused")
     private boolean zzEOFDone;
 
@@ -440,16 +414,12 @@ public class _MoonLexer implements FlexLexer {
     }
 
 
-    /**
-     * Returns the maximum size of the scanner buffer, which limits the size of tokens.
-     */
+    /** Returns the maximum size of the scanner buffer, which limits the size of tokens. */
     private int zzMaxBufferLen() {
         return Integer.MAX_VALUE;
     }
 
-    /**
-     * Whether the scanner buffer can grow to accommodate a larger token.
-     */
+    /**  Whether the scanner buffer can grow to accommodate a larger token. */
     private boolean zzCanGrow() {
         return true;
     }
@@ -567,11 +537,11 @@ public class _MoonLexer implements FlexLexer {
 
     /**
      * Pushes the specified amount of characters back into the input stream.
-     * <p>
+     *
      * They will be read again by then next call of the scanning method
      *
-     * @param number the number of characters to be read again.
-     *               This number must not be greater than yylength()!
+     * @param number  the number of characters to be read again.
+     *                This number must not be greater than yylength()!
      */
     public void yypushback(int number) {
         if (number > yylength())
@@ -586,7 +556,7 @@ public class _MoonLexer implements FlexLexer {
      * the end of input is encountered or an I/O-Error occurs.
      *
      * @return the next token
-     * @throws java.io.IOException if any I/O-Error occurs
+     * @exception java.io.IOException  if any I/O-Error occurs
      */
     public IElementType advance() throws java.io.IOException {
         int zzInput;
@@ -918,14 +888,13 @@ public class _MoonLexer implements FlexLexer {
                         return KW_CONSTRUCTOR;
                     }
                     // fall through
-                    case 84:
-                        break;
-                    default:
-                        zzScanError(ZZ_NO_MATCH);
-                }
-            }
-        }
+          case 84: break;
+          default:
+            zzScanError(ZZ_NO_MATCH);
+          }
+      }
     }
+  }
 
 
 }

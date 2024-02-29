@@ -1,22 +1,16 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import java.util.List;
-
-import org.jetbrains.annotations.*;
+import com.github.moonbit.psi.MoonElement;
+import com.github.moonbit.psi.MoonModifier;
+import com.github.moonbit.psi.MoonVisitor;
 import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.util.PsiTreeUtil;
+import org.jetbrains.annotations.NotNull;
 
-import static com.github.moonbit.psi.MoonTypes.*;
+public class MoonModifierNode extends MoonElement implements MoonModifier {
 
-import com.github.moonbit.psi.WitElement;
-import com.github.moonbit.psi.*;
-
-public class MoonModifierNode extends WitElement implements MoonModifier {
-
-    public MoonModifierNode(ASTNode node) {
+    public MoonModifierNode(@NotNull ASTNode node) {
         super(node);
     }
 

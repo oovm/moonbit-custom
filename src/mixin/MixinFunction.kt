@@ -10,7 +10,7 @@ import com.intellij.psi.PsiNameIdentifierOwner
 
 abstract class MixinFunction(node: ASTNode) : WitElement(node),
     PsiNameIdentifierOwner,
-    _root_ide_package_.com.github.moonbit.psi.WitFunction {
+    WitFunction {
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }

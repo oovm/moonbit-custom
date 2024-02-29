@@ -11,7 +11,7 @@ import com.intellij.psi.tree.IElementType
 
 class WitSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer {
-        return MoonParserDefinition().createLexer()
+        return MoonParserDefinition.MoonLexer
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {

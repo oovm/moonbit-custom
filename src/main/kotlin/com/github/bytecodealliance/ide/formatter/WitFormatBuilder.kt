@@ -30,16 +30,16 @@ class WitFormatBuilder : FormattingModelBuilder {
         fun computeIndent(parent: ASTNode, child: ASTNode): Indent? {
             return when (parent.psi) {
                 is MoonWorld -> parent.indentInRange(child, 1, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitInterfaceBody -> parent.indentInRange(child, 1, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitUseItems -> parent.indentInRange(child, 2, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitResource -> parent.indentInRange(child, 1, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitRecord -> parent.indentInRange(child, 1, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitFlags -> parent.indentInRange(child, 1, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitEnum -> parent.indentInRange(child, 1, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitVariant -> parent.indentInRange(child, 1, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitFunctionSignature -> parent.indentInRange(child, 1, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitTuple -> parent.indentInRange(child, 1, 1)
-//                is _root_ide_package_.com.github.moonbit.psi.WitGeneric -> parent.indentInRange(child, 1, 1)
+//                is WitInterfaceBody -> parent.indentInRange(child, 1, 1)
+//                is WitUseItems -> parent.indentInRange(child, 2, 1)
+//                is WitResource -> parent.indentInRange(child, 1, 1)
+//                is WitRecord -> parent.indentInRange(child, 1, 1)
+//                is WitFlags -> parent.indentInRange(child, 1, 1)
+//                is WitEnum -> parent.indentInRange(child, 1, 1)
+//                is WitVariant -> parent.indentInRange(child, 1, 1)
+//                is WitFunctionSignature -> parent.indentInRange(child, 1, 1)
+//                is WitTuple -> parent.indentInRange(child, 1, 1)
+//                is WitGeneric -> parent.indentInRange(child, 1, 1)
 
                 else -> Indent.getNoneIndent()
             }
