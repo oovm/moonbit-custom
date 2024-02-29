@@ -1,6 +1,7 @@
 package com.github.bytecodealliance.ide.view
 
 
+import com.github.moonbit.psi.MoonPackage
 import com.intellij.ide.structureView.StructureViewModel
 import com.intellij.ide.structureView.StructureViewModelBase
 import com.intellij.ide.structureView.StructureViewTreeElement
@@ -19,7 +20,7 @@ class WitStructureViewModel(psiFile: PsiFile?) :
     }
 
     override fun isAlwaysLeaf(element: StructureViewTreeElement): Boolean {
-        return element.value is _root_ide_package_.com.github.moonbit.psi.WitPackage
+        return element.value is MoonPackage
     }
 }
 

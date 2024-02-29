@@ -1,9 +1,6 @@
 package com.github.bytecodealliance.ide.formatter
 
-import com.github.bytecodealliance.language.psi.endOffset
-import com.github.bytecodealliance.language.psi.getNextNonCommentSibling
-import com.github.bytecodealliance.language.psi.getPrevNonCommentSibling
-import com.github.bytecodealliance.language.psi.getPrevNonWhitespaceSibling
+
 import com.github.moonbit.psi.endOffset
 import com.github.moonbit.psi.getNextNonCommentSibling
 import com.github.moonbit.psi.getPrevNonCommentSibling

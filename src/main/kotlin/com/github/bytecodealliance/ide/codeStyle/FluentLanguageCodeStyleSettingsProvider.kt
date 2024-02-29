@@ -1,12 +1,12 @@
 package com.github.bytecodealliance.ide.codeStyle
 
-import com.github.bytecodealliance.WitLanguage
+import com.github.bytecodealliance.MoonLanguage
 import com.intellij.application.options.SmartIndentOptionsEditor
 import com.intellij.application.options.codeStyle.OtherFileTypesCodeStyleConfigurable
 import com.intellij.psi.codeStyle.*
 
 class FluentLanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() {
-    override fun getLanguage() = WitLanguage
+    override fun getLanguage() = MoonLanguage
 
     override fun getIndentOptionsEditor() = SmartIndentOptionsEditor()
 

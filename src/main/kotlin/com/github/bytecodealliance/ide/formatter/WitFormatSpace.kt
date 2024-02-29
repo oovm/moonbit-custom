@@ -1,6 +1,7 @@
 package com.github.bytecodealliance.ide.formatter
 
-import com.github.moonbit.psi.WitTypes.*
+import com.github.bytecodealliance.MoonLanguage
+import com.github.moonbit.psi.MoonTypes.*
 import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
@@ -12,7 +13,7 @@ data class WitFormatSpace(
 ) {
     companion object {
         fun create(settings: CodeStyleSettings): WitFormatSpace {
-            val commonSettings = settings.getCommonSettings(WitLanguage)
+            val commonSettings = settings.getCommonSettings(MoonLanguage)
             return WitFormatSpace(commonSettings, createSpacingBuilder(commonSettings))
         }
 

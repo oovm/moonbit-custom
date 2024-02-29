@@ -1,6 +1,7 @@
 package com.github.bytecodealliance.ide.formatter
 
-import com.github.bytecodealliance.language.psi.*
+
+import com.github.moonbit.psi.MoonWorld
 import com.intellij.formatting.*
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange
@@ -28,17 +29,17 @@ class WitFormatBuilder : FormattingModelBuilder {
 
         fun computeIndent(parent: ASTNode, child: ASTNode): Indent? {
             return when (parent.psi) {
-                is _root_ide_package_.com.github.moonbit.psi.WitWorld -> parent.indentInRange(child, 1, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitInterfaceBody -> parent.indentInRange(child, 1, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitUseItems -> parent.indentInRange(child, 2, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitResource -> parent.indentInRange(child, 1, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitRecord -> parent.indentInRange(child, 1, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitFlags -> parent.indentInRange(child, 1, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitEnum -> parent.indentInRange(child, 1, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitVariant -> parent.indentInRange(child, 1, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitFunctionSignature -> parent.indentInRange(child, 1, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitTuple -> parent.indentInRange(child, 1, 1)
-                is _root_ide_package_.com.github.moonbit.psi.WitGeneric -> parent.indentInRange(child, 1, 1)
+                is MoonWorld -> parent.indentInRange(child, 1, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitInterfaceBody -> parent.indentInRange(child, 1, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitUseItems -> parent.indentInRange(child, 2, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitResource -> parent.indentInRange(child, 1, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitRecord -> parent.indentInRange(child, 1, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitFlags -> parent.indentInRange(child, 1, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitEnum -> parent.indentInRange(child, 1, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitVariant -> parent.indentInRange(child, 1, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitFunctionSignature -> parent.indentInRange(child, 1, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitTuple -> parent.indentInRange(child, 1, 1)
+//                is _root_ide_package_.com.github.moonbit.psi.WitGeneric -> parent.indentInRange(child, 1, 1)
 
                 else -> Indent.getNoneIndent()
             }

@@ -1,7 +1,7 @@
 package com.github.bytecodealliance.lsp
 
-import com.github.bytecodealliance.language.file.WasmIconProvider
-import com.github.bytecodealliance.language.file.WitFileType
+import com.github.moonbit.file.MoonFileType
+import com.github.moonbit.file.MoonIconProvider
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.platform.lsp.api.LspServer
@@ -12,7 +12,7 @@ import com.intellij.platform.lsp.api.lsWidget.LspServerWidgetItem
 
 class WitLanguageProtocol : LspServerSupportProvider {
     override fun fileOpened(project: Project, file: VirtualFile, serverStarter: LspServerStarter) {
-        if (file.fileType is WitFileType) {
+        if (file.fileType is MoonFileType) {
             serverStarter.ensureServerStarted(WitLanguageServerDescriptor(project))
         }
     }
@@ -21,7 +21,7 @@ class WitLanguageProtocol : LspServerSupportProvider {
         return LspServerWidgetItem(
             lspServer,
             currentFile,
-            WasmIconProvider.Wit,
+            MoonIconProvider.Moon,
             null
         )
     }

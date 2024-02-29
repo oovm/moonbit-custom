@@ -1,6 +1,6 @@
 package com.github.bytecodealliance.ide.matcher
 
-import com.github.moonbit.psi.WitTypes.*
+import com.github.moonbit.psi.MoonTypes.*
 import com.intellij.lang.BracePair
 import com.intellij.lang.PairedBraceMatcher
 import com.intellij.psi.PsiFile

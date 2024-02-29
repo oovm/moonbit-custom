@@ -2,8 +2,8 @@ package com.github.bytecodealliance
 
 import com.intellij.lang.Language
 
-object WitLanguage : Language("moonbit") {
-    private fun readResolve(): Any = WitLanguage
+object MoonLanguage : Language("moonbit") {
+    private fun readResolve(): Any = MoonLanguage
     override fun getDisplayName(): String {
         return "Moonbit"
     }

@@ -1,17 +1,15 @@
 package com.github.bytecodealliance.ide.matcher
 
 
-import com.github.bytecodealliance.language.psi.*
+import com.github.moonbit.psi.MoonRecursiveVisitor
 import com.intellij.lang.folding.FoldingDescriptor
-import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 
-class WitFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : WitRecursiveVisitor() {
+class WitFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : MoonRecursiveVisitor() {
 
-    override fun visitInterfaceBody(o: _root_ide_package_.com.github.moonbit.psi.WitInterfaceBody) {
-        descriptors += FoldingDescriptor(o.node, TextRange(o.firstChild.endOffset, o.lastChild.startOffset))
-
-    }
+//    override fun visitInterfaceBody(o: MoonInterfaceBody) {
+//        descriptors += FoldingDescriptor(o.node, TextRange(o.firstChild.endOffset, o.lastChild.startOffset))
+//    }
 
 
     private fun fold(element: PsiElement) {

@@ -1,6 +1,6 @@
 package com.github.bytecodealliance.ide.highlight
 
-import com.github.bytecodealliance.language.file.WasmIconProvider
+import com.github.moonbit.file.MoonIconProvider
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
 
@@ -14,9 +14,9 @@ class WitHighlightSetting : ColorSettingsPage {
 
     override fun getColorDescriptors(): Array<ColorDescriptor> = ColorDescriptor.EMPTY_ARRAY
 
-    override fun getDisplayName() = "Wit"
+    override fun getDisplayName() = "Moonbit"
 
-    override fun getIcon() = WasmIconProvider.Wit
+    override fun getIcon() = MoonIconProvider.Moon
 
     override fun getHighlighter() = WitSyntaxHighlighter()
 
