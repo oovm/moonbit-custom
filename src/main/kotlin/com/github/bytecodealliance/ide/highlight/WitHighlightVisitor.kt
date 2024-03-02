@@ -118,7 +118,7 @@ class WitHighlightVisitor : MoonVisitor(), HighlightVisitor {
 //    }
 
 
-    private fun highlight(element: PsiElement, color: WitColor) {
+    private fun highlight(element: PsiElement, color: MoonColor) {
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
         builder.textAttributes(color.textAttributesKey)
         builder.range(element)

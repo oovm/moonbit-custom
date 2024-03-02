@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class MoonInterfaceBodyNode extends MoonElement implements MoonInterfaceBody {
+public class MoonInterfaceBodyNode extends AnyMoonNode implements MoonInterfaceBody {
 
     public MoonInterfaceBodyNode(@NotNull ASTNode node) {
         super(node);

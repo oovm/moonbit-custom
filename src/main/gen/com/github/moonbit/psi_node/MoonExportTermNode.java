@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MoonExportTermNode extends MoonElement implements MoonExportTerm {
+public class MoonExportTermNode extends AnyMoonNode implements MoonExportTerm {
 
     public MoonExportTermNode(@NotNull ASTNode node) {
         super(node);

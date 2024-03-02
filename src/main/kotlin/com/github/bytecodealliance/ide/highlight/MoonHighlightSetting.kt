@@ -4,11 +4,11 @@ import com.github.moonbit.file.MoonIconProvider
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
 
-class WitHighlightSetting : ColorSettingsPage {
-    private val annotatorTags = WitColor.entries
+class MoonHighlightSetting : ColorSettingsPage {
+    private val annotatorTags = MoonColor.entries
         .associateBy({ it.name }, { it.textAttributesKey })
 
-    override fun getAttributeDescriptors() = WitColor.entries
+    override fun getAttributeDescriptors() = MoonColor.entries
         .map { it.attributesDescriptor }
         .toTypedArray()
 
@@ -18,10 +18,10 @@ class WitHighlightSetting : ColorSettingsPage {
 
     override fun getIcon() = MoonIconProvider.Moon
 
-    override fun getHighlighter() = WitSyntaxHighlighter()
+    override fun getHighlighter() = MoonSyntaxHighlighter()
 
     override fun getAdditionalHighlightingTagToDescriptorMap() = annotatorTags
 
-    override fun getDemoText() = javaClass.getResource("/colors/wit.ftl")!!.readText()
+    override fun getDemoText() = javaClass.getResource("/colors/moon.ftl")!!.readText()
 }
 

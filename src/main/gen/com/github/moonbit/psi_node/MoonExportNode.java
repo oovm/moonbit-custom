@@ -1,7 +1,7 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.MoonElement;
+import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.MoonExport;
 import com.github.moonbit.psi.MoonExportTerm;
 import com.github.moonbit.psi.MoonVisitor;
@@ -10,7 +10,7 @@ import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MoonExportNode extends MoonElement implements MoonExport {
+public class MoonExportNode extends AnyMoonNode implements MoonExport {
 
     public MoonExportNode(@NotNull ASTNode node) {
         super(node);

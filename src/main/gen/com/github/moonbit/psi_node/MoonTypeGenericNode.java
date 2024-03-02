@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MoonTypeGenericNode extends MoonElement implements MoonTypeGeneric {
+public class MoonTypeGenericNode extends AnyMoonNode implements MoonTypeGeneric {
 
     public MoonTypeGenericNode(@NotNull ASTNode node) {
         super(node);

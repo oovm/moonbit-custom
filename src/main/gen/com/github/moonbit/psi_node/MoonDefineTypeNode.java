@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MoonDefineTypeNode extends MoonElement implements MoonDefineType {
+public class MoonDefineTypeNode extends AnyMoonNode implements MoonDefineType {
 
     public MoonDefineTypeNode(@NotNull ASTNode node) {
         super(node);

@@ -1,6 +1,6 @@
 package com.github.bytecodealliance.ide.doc
 
-import com.github.moonbit.psi.MoonElement
+import com.github.moonbit.psi.AnyMoonNode
 import com.intellij.lang.documentation.DocumentationProvider
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiComment
@@ -37,7 +37,7 @@ class WitDocumentationProvider : DocumentationProvider {
 
 }
 
-private class DocumentWrapper(psi: PsiComment) : MoonElement(psi.node), PsiDocCommentBase {
+private class DocumentWrapper(psi: PsiComment) : AnyMoonNode(psi.node), PsiDocCommentBase {
     override fun getTokenType(): IElementType {
         return node.elementType
     }

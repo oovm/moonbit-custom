@@ -7,7 +7,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 
-class WitSmartEnter : SmartEnterProcessorWithFixers() {
+class MoonSmartEnter : SmartEnterProcessorWithFixers() {
     init {
         addFixers(
             WitCommaFixer()
@@ -27,9 +27,12 @@ class WitSmartEnter : SmartEnterProcessorWithFixers() {
 
     private class PlainEnterProcessor : FixEnterProcessor() {
         override fun doEnter(atCaret: PsiElement, file: PsiFile, editor: Editor, modified: Boolean): Boolean {
-            if (file !is MoonFile) return false
-            plainEnter(editor)
-            return true
+            if (file is MoonFile) {
+                plainEnter(editor)
+                return true
+            } else {
+                return false
+            }
         }
     }
 }

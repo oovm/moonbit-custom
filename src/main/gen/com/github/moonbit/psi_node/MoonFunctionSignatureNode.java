@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MoonFunctionSignatureNode extends MoonElement implements MoonFunctionSignature {
+public class MoonFunctionSignatureNode extends AnyMoonNode implements MoonFunctionSignature {
 
     public MoonFunctionSignatureNode(@NotNull ASTNode node) {
         super(node);

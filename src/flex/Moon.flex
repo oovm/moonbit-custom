@@ -8,13 +8,6 @@ import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static com.github.moonbit.psi.MoonTypes.*;
 
 %%
-
-//%{
-//public WitLexer() {
-//	this((java.io.Reader)null);
-//}
-//%}
-
 %public
 %class _MoonLexer
 %implements FlexLexer
@@ -22,7 +15,7 @@ import static com.github.moonbit.psi.MoonTypes.*;
 %type IElementType
 %unicode
 
-//%state TextContextIndent
+%state StringInterpolation
 
 WHITE_SPACE      = [\s\t]
 COMMENT_LINE     = [/]{2}[^\r\n]*
@@ -36,7 +29,6 @@ WORD = [a-zA-Z][a-zA-Z0-9]*
 INTEGER=(0|[1-9][0-9_]*)
 DECIMAL=([0-9]+\.[0-9]*([Ee][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)
 
-CRLF      = \r\n | \n | \r
 HEX = [0-9a-fA-F]
 
 KW_PACKAGE     = "package"
@@ -53,7 +45,7 @@ KW_RECORD      = "record"
 KW_ENUM        = "enum"
 KW_FLAGS       = "flags"
 KW_VARIANT     = "variant"
-KW_FUNCTION    = "func"
+KW_FUNCTION    = "fn"
 KW_CONSTRUCTOR = "constructor"
 
 %%

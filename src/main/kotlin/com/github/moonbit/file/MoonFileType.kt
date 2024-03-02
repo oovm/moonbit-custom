@@ -5,7 +5,9 @@ import com.github.bytecodealliance.MoonLanguage
 import com.intellij.openapi.fileTypes.LanguageFileType
 import javax.swing.Icon
 
-class MoonFileType : LanguageFileType(MoonLanguage) {
+class MoonFileType : LanguageFileType {
+    /// use `INSTANCE`
+    private constructor() : super(MoonLanguage)
 
     override fun getName(): String = MoonLanguage.id
 
@@ -15,8 +17,9 @@ class MoonFileType : LanguageFileType(MoonLanguage) {
 
     override fun getIcon(): Icon = MoonIconProvider.Moon
 
-//    companion object {
-//        @JvmStatic
-//        val INSTANCE = MoonFileType()
-//    }
+    @Suppress("CompanionObjectInExtension")
+    companion object {
+        @JvmStatic
+        val INSTANCE = MoonFileType()
+    }
 }

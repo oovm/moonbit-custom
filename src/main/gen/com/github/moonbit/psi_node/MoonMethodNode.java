@@ -6,7 +6,7 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 
-public class MoonMethodNode extends MoonElement implements MoonMethod {
+public class MoonMethodNode extends AnyMoonNode implements MoonMethod {
 
     public MoonMethodNode(@NotNull ASTNode node) {
         super(node);

@@ -9,44 +9,44 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 
-class WitSyntaxHighlighter : SyntaxHighlighterBase() {
+class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer {
-        return MoonParserDefinition.MoonLexer
+        return MoonParserDefinition().createLexer(null)
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
         return pack(getTokenColor(tokenType)?.textAttributesKey)
     }
 
-    private fun getTokenColor(tokenType: IElementType): WitColor? {
+    private fun getTokenColor(tokenType: IElementType): MoonColor? {
         return when (tokenType) {
             KW_PACKAGE, KW_WORLD, KW_INTERFACE,
             KW_INCLUDE, KW_USE, KW_IMPORT, KW_EXPORT, KW_AS,
             KW_TYPE, KW_RESOURCE, KW_RECORD, KW_VARIANT, KW_FLAGS, KW_ENUM,
             KW_FUNCTION, KW_CONSTRUCTOR,
-                -> WitColor.KEYWORD
+            -> MoonColor.KEYWORD
 
-            PARENTHESIS_L, PARENTHESIS_R -> WitColor.PARENTHESES
-            BRACKET_L, BRACKET_R -> WitColor.BRACKETS
-            BRACE_L, BRACE_R -> WitColor.BRACES
-            COLON, EQ -> WitColor.OPERATION
-            AT, STAR -> WitColor.OPERATION
+            PARENTHESIS_L, PARENTHESIS_R -> MoonColor.PARENTHESES
+            BRACKET_L, BRACKET_R -> MoonColor.BRACKETS
+            BRACE_L, BRACE_R -> MoonColor.BRACES
+            COLON, EQ -> MoonColor.OPERATION
+            AT, STAR -> MoonColor.OPERATION
 
-            COMMA -> WitColor.COMMA
+            COMMA -> MoonColor.COMMA
             // atom
-            VERSION -> WitColor.NUMBER
+            VERSION -> MoonColor.NUMBER
 
-            SELECTION_LINE -> WitColor.TEXT
-            STRING_QUOTE, STRING_CHAR -> WitColor.STRING
-            STRING_ESCAPE -> WitColor.STRING_ESCAPED
+            SELECTION_LINE -> MoonColor.TEXT
+            STRING_QUOTE, STRING_CHAR -> MoonColor.STRING
+            STRING_ESCAPE -> MoonColor.STRING_ESCAPED
 //            STRING -> AwslColor.STRING
-            SYMBOL -> WitColor.IDENTIFIER
+            SYMBOL -> MoonColor.IDENTIFIER
             // 注释
-            COMMENT_LINE -> WitColor.LINE_COMMENT
-            COMMENT_BLOCK -> WitColor.BLOCK_COMMENT
-            COMMENT_DOCUMENT -> WitColor.DOC_COMMENT
+            COMMENT_LINE -> MoonColor.LINE_COMMENT
+            COMMENT_BLOCK -> MoonColor.BLOCK_COMMENT
+            COMMENT_DOCUMENT -> MoonColor.DOC_COMMENT
             // 错误
-            TokenType.BAD_CHARACTER -> WitColor.BAD_CHARACTER
+            TokenType.BAD_CHARACTER -> MoonColor.BAD_CHARACTER
             else -> null
         }
     }

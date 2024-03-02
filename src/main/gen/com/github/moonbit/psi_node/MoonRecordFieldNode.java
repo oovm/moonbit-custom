@@ -6,7 +6,7 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 
-public class MoonRecordFieldNode extends MoonElement implements MoonRecordField {
+public class MoonRecordFieldNode extends AnyMoonNode implements MoonRecordField {
 
     public MoonRecordFieldNode(@NotNull ASTNode node) {
         super(node);

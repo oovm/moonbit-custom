@@ -12,8 +12,8 @@ import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 
-class WitCommaFixer : SmartEnterProcessorWithFixers.Fixer<WitSmartEnter>() {
-    override fun apply(editor: Editor, processor: WitSmartEnter, element: PsiElement) {
+class WitCommaFixer : SmartEnterProcessorWithFixers.Fixer<MoonSmartEnter>() {
+    override fun apply(editor: Editor, processor: MoonSmartEnter, element: PsiElement) {
         element.isValid
         val current = if (element is LeafPsiElement && element.parent !is PsiFile) {
             element.parent

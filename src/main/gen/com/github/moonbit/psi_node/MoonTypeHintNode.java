@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MoonTypeHintNode extends MoonElement implements MoonTypeHint {
+public class MoonTypeHintNode extends AnyMoonNode implements MoonTypeHint {
 
     public MoonTypeHintNode(@NotNull ASTNode node) {
         super(node);

@@ -2,7 +2,7 @@
     parserClass = "com.github.moonbit.parser.MoonParser"
     parserUtilClass = "com.github.moonbit.psi.MoonParserExtension"
 
-    extends = "com.github.moonbit.psi.MoonElement"
+    extends = "com.github.moonbit.psi.AnyMoonNode"
 
     psiClassPrefix = "Moon"
     psiImplClassSuffix = "Node"

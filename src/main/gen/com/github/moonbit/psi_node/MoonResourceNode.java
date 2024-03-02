@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MoonResourceNode extends MoonElement implements MoonResource {
+public class MoonResourceNode extends AnyMoonNode implements MoonResource {
 
     public MoonResourceNode(@NotNull ASTNode node) {
         super(node);

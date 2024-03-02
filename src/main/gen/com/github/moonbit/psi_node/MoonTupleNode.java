@@ -1,7 +1,7 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.MoonElement;
+import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.MoonParameter;
 import com.github.moonbit.psi.MoonTuple;
 import com.github.moonbit.psi.MoonVisitor;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class MoonTupleNode extends MoonElement implements MoonTuple {
+public class MoonTupleNode extends AnyMoonNode implements MoonTuple {
 
     public MoonTupleNode(@NotNull ASTNode node) {
         super(node);

@@ -21,7 +21,7 @@
 		/>
 		<lang.syntaxHighlighter
 				language="moonbit"
-				implementationClass="com.github.bytecodealliance.ide.highlight.WitSyntaxHighlighter"
+				implementationClass="com.github.bytecodealliance.ide.highlight.MoonSyntaxHighlighter"
 		/>
 		<!-- StructureView -->
 		<lang.psiStructureViewFactory language="moonbit"
@@ -31,7 +31,7 @@
 		<additionalTextAttributes scheme="Default" file="colors/FluentDefault.xml"/>
 		<additionalTextAttributes scheme="Darcula" file="colors/FluentDarcula.xml"/>
 
-		<colorSettingsPage implementation="com.github.bytecodealliance.ide.highlight.WitHighlightSetting"/>
+		<colorSettingsPage implementation="com.github.bytecodealliance.ide.highlight.MoonHighlightSetting"/>
 		<highlightVisitor implementation="com.github.bytecodealliance.ide.highlight.WitHighlightVisitor"/>
 
 		<!-- Formatter -->
@@ -45,7 +45,7 @@
 		/>
 		<lang.smartEnterProcessor
 				language="moonbit"
-				implementationClass="com.github.bytecodealliance.ide.formatter.WitSmartEnter"
+				implementationClass="com.github.bytecodealliance.ide.formatter.MoonSmartEnter"
 		/>
 		<!-- Document -->
 

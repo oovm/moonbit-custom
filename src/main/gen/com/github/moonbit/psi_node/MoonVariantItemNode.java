@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MoonVariantItemNode extends MoonElement implements MoonVariantItem {
+public class MoonVariantItemNode extends AnyMoonNode implements MoonVariantItem {
 
     public MoonVariantItemNode(@NotNull ASTNode node) {
         super(node);
