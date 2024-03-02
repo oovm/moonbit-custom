@@ -6,10 +6,10 @@
 	<!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
 	<depends>com.intellij.modules.platform</depends>
 	<depends optional="true" config-file="plugin-with-ultimate.xml">com.intellij.modules.ultimate</depends>
-	<resource-bundle>messages.WitBundle</resource-bundle>
+	<resource-bundle>messages.MoonBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
-				name="Moonbit"
+				name="moonbit"
 				language="moonbit"
 				extensions="mbt;"
 				implementationClass="com.github.moonbit.file.MoonFileType"
@@ -26,17 +26,13 @@
 		<!-- StructureView -->
 		<lang.psiStructureViewFactory language="moonbit"
 		                              implementationClass="com.github.bytecodealliance.ide.view.WitStructureViewFactory"/>
-		<projectViewNestingRulesProvider implementation="com.github.bytecodealliance.language.file.FluentFileGroup"/>
+		<projectViewNestingRulesProvider implementation="com.github.moonbit.file.MoonFileGroup"/>
 		<!-- Highlight -->
 		<additionalTextAttributes scheme="Default" file="colors/FluentDefault.xml"/>
 		<additionalTextAttributes scheme="Darcula" file="colors/FluentDarcula.xml"/>
 
 		<colorSettingsPage implementation="com.github.bytecodealliance.ide.highlight.WitHighlightSetting"/>
 		<highlightVisitor implementation="com.github.bytecodealliance.ide.highlight.WitHighlightVisitor"/>
-
-		<colorSettingsPage implementation="com.github.bytecodealliance.ide.highlight.WionHighlightSetting"/>
-		<highlightVisitor implementation="com.github.bytecodealliance.ide.highlight.WionNodeHighlighter"/>
-
 
 		<!-- Formatter -->
 		<lang.formatter

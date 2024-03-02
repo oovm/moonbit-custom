@@ -4,7 +4,7 @@ import com.intellij.DynamicBundle
 import org.jetbrains.annotations.PropertyKey
 import java.util.function.Supplier
 
-private const val BUNDLE = "messages.WitBundle"
+private const val BUNDLE = "messages.MoonBundle"
 
 object MessageBundle : DynamicBundle(BUNDLE) {
 

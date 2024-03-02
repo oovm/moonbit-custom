@@ -21,7 +21,7 @@ class FluentBraceMatcher : PairedBraceMatcherAdapter(BaseBraceMatcher(), MoonLan
         fileType: FileType,
         left: Boolean,
     ): Boolean {
-        if (fileType != MoonFileType.INSTANCE) return false
+        if (fileType !is MoonFileType) return false
         val pair = findPair(left, iterator, fileText, fileType)
         return pair != null
     }
