@@ -575,6 +575,49 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // modifier? KW_LET identifier (COLON identifier)? EQ identifier
+  public static boolean let_statement(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "let_statement")) return false;
+    if (!nextTokenIs(b, "<let statement>", KW_LET, SYMBOL)) return false;
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, LET_STATEMENT, "<let statement>");
+    r = let_statement_0(b, l + 1);
+    r = r && consumeToken(b, KW_LET);
+    p = r; // pin = 2
+    r = r && report_error_(b, identifier(b, l + 1));
+    r = p && report_error_(b, let_statement_3(b, l + 1)) && r;
+    r = p && report_error_(b, consumeToken(b, EQ)) && r;
+    r = p && identifier(b, l + 1) && r;
+    exit_section_(b, l, m, r, p, null);
+    return r || p;
+  }
+
+  // modifier?
+  private static boolean let_statement_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "let_statement_0")) return false;
+    modifier(b, l + 1);
+    return true;
+  }
+
+  // (COLON identifier)?
+  private static boolean let_statement_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "let_statement_3")) return false;
+    let_statement_3_0(b, l + 1);
+    return true;
+  }
+
+  // COLON identifier
+  private static boolean let_statement_3_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "let_statement_3_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, COLON);
+    r = r && identifier(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // identifier COLON function-signature {
   // //	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
   // }
@@ -862,7 +905,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // package
-  //   | world
+  //   | let-statement
   //   | include
   //   | define-interface
   //   | SEMICOLON
@@ -870,7 +913,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(b, l, "statements")) return false;
     boolean r;
     r = package_$(b, l + 1);
-    if (!r) r = world(b, l + 1);
+    if (!r) r = let_statement(b, l + 1);
     if (!r) r = include(b, l + 1);
     if (!r) r = define_interface(b, l + 1);
     if (!r) r = consumeToken(b, SEMICOLON);
@@ -1199,42 +1242,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
   // //    mixin = "com.github.bytecodealliance.language.mixin.MixinVariantItem"
   // }
   private static boolean variant_item_2(PsiBuilder b, int l) {
-    return true;
-  }
-
-  /* ********************************************************** */
-  // modifier? KW_WORLD identifier BRACE_L world-element* BRACE_R
-  public static boolean world(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "world")) return false;
-    if (!nextTokenIs(b, "<world>", KW_WORLD, SYMBOL)) return false;
-    boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, WORLD, "<world>");
-    r = world_0(b, l + 1);
-    r = r && consumeToken(b, KW_WORLD);
-    p = r; // pin = 2
-    r = r && report_error_(b, identifier(b, l + 1));
-    r = p && report_error_(b, consumeToken(b, BRACE_L)) && r;
-    r = p && report_error_(b, world_4(b, l + 1)) && r;
-    r = p && consumeToken(b, BRACE_R) && r;
-    exit_section_(b, l, m, r, p, null);
-    return r || p;
-  }
-
-  // modifier?
-  private static boolean world_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "world_0")) return false;
-    modifier(b, l + 1);
-    return true;
-  }
-
-  // world-element*
-  private static boolean world_4(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "world_4")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!world_element(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "world_4", c)) break;
-    }
     return true;
   }
 

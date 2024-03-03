@@ -79,6 +79,10 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitLetStatement(@NotNull MoonLetStatement o) {
+        visitPsiElement(o);
+    }
+
     public void visitMethod(@NotNull MoonMethod o) {
         visitPsiElement(o);
     }
@@ -152,10 +156,6 @@ public class MoonVisitor extends PsiElementVisitor {
     }
 
     public void visitVariantItem(@NotNull MoonVariantItem o) {
-        visitPsiElement(o);
-    }
-
-    public void visitWorld(@NotNull MoonWorld o) {
         visitPsiElement(o);
     }
 

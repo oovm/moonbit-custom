@@ -79,7 +79,7 @@
 moon ::= statements*
 private statements ::=
     package
-  | world
+  | let-statement
   | include
   | define-interface
   | SEMICOLON
@@ -93,7 +93,7 @@ package ::= KW_PACKAGE package-name {
 package-name ::= module-name (COLON module-name)* package-version?;
 package-version ::= AT VERSION;
 // world name { }
-world ::= modifier? KW_WORLD identifier BRACE_L world-element* BRACE_R {
+let-statement ::= modifier? KW_LET identifier (COLON identifier)? EQ identifier {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }

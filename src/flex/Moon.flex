@@ -23,7 +23,7 @@ COMMENT_BLOCK    = [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 //SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
 VERSION = ([0-9]+)(\.[0-9]+)(\.[0-9]+)(-[a-zA-Z0-9\-]+)?
 ESCAPED = %[a-zA-Z0-9\-]+
-SYMBOL = _|{WORD}([-]{WORD})*
+SYMBOL = [_\p{XID_START}][\p{XID_CONTINUE}]+
 WORD = [a-zA-Z][a-zA-Z0-9]*
 //STRING=\"([^\"\\]|\\.)*\"
 INTEGER=(0|[1-9][0-9_]*)
@@ -45,6 +45,7 @@ KW_RECORD      = "record"
 KW_ENUM        = "enum"
 KW_FLAGS       = "flags"
 KW_VARIANT     = "variant"
+KW_LET         = "let"
 KW_FUNCTION    = "fn"
 KW_CONSTRUCTOR = "constructor"
 
@@ -95,6 +96,7 @@ KW_CONSTRUCTOR = "constructor"
 	{KW_FLAGS}    { return KW_FLAGS; }
 	{KW_VARIANT}  { return KW_VARIANT; }
 
+	{KW_LET}       { return KW_LET; }
 	{KW_FUNCTION}    { return KW_FUNCTION; }
     {KW_CONSTRUCTOR} { return KW_CONSTRUCTOR; }
 

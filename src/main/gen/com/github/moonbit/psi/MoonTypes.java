@@ -26,6 +26,7 @@ public interface MoonTypes {
     IElementType INLINE_INTERFACE = new MoonElementType("INLINE_INTERFACE");
     IElementType INTERFACE_BODY = new MoonElementType("INTERFACE_BODY");
     IElementType INTERFACE_NAME = new MoonElementType("INTERFACE_NAME");
+    IElementType LET_STATEMENT = new MoonElementType("LET_STATEMENT");
     IElementType METHOD = new MoonElementType("METHOD");
     IElementType MODIFIER = new MoonElementType("MODIFIER");
     IElementType MODULE_NAME = new MoonElementType("MODULE_NAME");
@@ -45,7 +46,6 @@ public interface MoonTypes {
     IElementType USE_ITEMS = new MoonElementType("USE_ITEMS");
     IElementType VARIANT = new MoonElementType("VARIANT");
     IElementType VARIANT_ITEM = new MoonElementType("VARIANT_ITEM");
-    IElementType WORLD = new MoonElementType("WORLD");
 
     IElementType ACCENT = new MoonTokenType("^");
     IElementType ANGLE_L = new MoonTokenType("<");
@@ -75,6 +75,7 @@ public interface MoonTypes {
     IElementType KW_IMPORT = new MoonTokenType("import");
     IElementType KW_INCLUDE = new MoonTokenType("include");
     IElementType KW_INTERFACE = new MoonTokenType("interface");
+    IElementType KW_LET = new MoonTokenType("KW_LET");
     IElementType KW_PACKAGE = new MoonTokenType("package");
     IElementType KW_RECORD = new MoonTokenType("record");
     IElementType KW_RESOURCE = new MoonTokenType("resource");
@@ -137,6 +138,8 @@ public interface MoonTypes {
                 return new MoonInterfaceBodyNode(node);
             } else if (type == INTERFACE_NAME) {
                 return new MoonInterfaceNameNode(node);
+            } else if (type == LET_STATEMENT) {
+                return new MoonLetStatementNode(node);
             } else if (type == METHOD) {
                 return new MoonMethodNode(node);
             } else if (type == MODIFIER) {
@@ -175,8 +178,6 @@ public interface MoonTypes {
                 return new MoonVariantNode(node);
             } else if (type == VARIANT_ITEM) {
                 return new MoonVariantItemNode(node);
-            } else if (type == WORLD) {
-                return new MoonWorldNode(node);
             }
             throw new AssertionError("Unknown element type: " + type);
         }
