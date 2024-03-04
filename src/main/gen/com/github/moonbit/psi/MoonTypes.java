@@ -11,7 +11,6 @@ public interface MoonTypes {
     IElementType ALIAS_NAME = new MoonElementType("ALIAS_NAME");
     IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
     IElementType DEFINE_TYPE = new MoonElementType("DEFINE_TYPE");
-    IElementType DEF_MODIFIER = new MoonElementType("DEF_MODIFIER");
     IElementType DEF_STATEMENT = new MoonElementType("DEF_STATEMENT");
     IElementType ENUM = new MoonElementType("ENUM");
     IElementType EXPORT = new MoonElementType("EXPORT");
@@ -79,6 +78,7 @@ public interface MoonTypes {
     IElementType KW_INTERFACE = new MoonTokenType("interface");
     IElementType KW_LET = new MoonTokenType("KW_LET");
     IElementType KW_PACKAGE = new MoonTokenType("package");
+    IElementType KW_PRIVATE = new MoonTokenType("KW_PRIVATE");
     IElementType KW_PUBLIC = new MoonTokenType("KW_PUBLIC");
     IElementType KW_RECORD = new MoonTokenType("record");
     IElementType KW_RESOURCE = new MoonTokenType("resource");
@@ -112,8 +112,6 @@ public interface MoonTypes {
                 return new MoonConstructorNode(node);
             } else if (type == DEFINE_TYPE) {
                 return new MoonDefineTypeNode(node);
-            } else if (type == DEF_MODIFIER) {
-                return new MoonDefModifierNode(node);
             } else if (type == DEF_STATEMENT) {
                 return new MoonDefStatementNode(node);
             } else if (type == ENUM) {

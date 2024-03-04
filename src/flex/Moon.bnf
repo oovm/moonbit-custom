@@ -80,8 +80,8 @@ moon ::= statements*
 private statements ::=
     package
   | let-statement
-  | include
   | def-statement
+  | while-statement
   | SEMICOLON
 
 // package wasi:blobstore@0.2.0-draft;
@@ -142,11 +142,11 @@ use-alias ::= identifier (KW_AS alias-name)? {
 }
 
 // interface name { }
-def-statement ::= def-modifier* KW_FN identifier PARENTHESIS_L PARENTHESIS_R {
+def-statement ::= modifier* KW_FN identifier PARENTHESIS_L PARENTHESIS_R {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
-def-modifier ::= KW_PUBLIC;
+modifier ::= KW_PUBLIC | KW_PRIVATE;
 
 // exports: interface
 inline-interface ::= interface-name COLON KW_INTERFACE interface-body {
@@ -233,7 +233,6 @@ variant-item 	 ::= identifier (PARENTHESIS_L type-hint PARENTHESIS_R)? {
 /* Literals */
 
 /* Identifier */
-modifier            ::= SYMBOL;
 module-name         ::= SYMBOL | ESCAPED;
 interface-name      ::= SYMBOL | ESCAPED;
 alias-name          ::= SYMBOL | ESCAPED;

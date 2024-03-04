@@ -82,22 +82,9 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KW_PUBLIC
-  public static boolean def_modifier(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "def_modifier")) return false;
-    if (!nextTokenIs(b, KW_PUBLIC)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, KW_PUBLIC);
-    exit_section_(b, m, DEF_MODIFIER, r);
-    return r;
-  }
-
-  /* ********************************************************** */
-  // def-modifier* KW_FN identifier PARENTHESIS_L PARENTHESIS_R
+  // modifier* KW_FN identifier PARENTHESIS_L PARENTHESIS_R
   public static boolean def_statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "def_statement")) return false;
-    if (!nextTokenIs(b, "<def statement>", KW_FN, KW_PUBLIC)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, DEF_STATEMENT, "<def statement>");
     r = def_statement_0(b, l + 1);
@@ -109,12 +96,12 @@ public class MoonParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  // def-modifier*
+  // modifier*
   private static boolean def_statement_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "def_statement_0")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!def_modifier(b, l + 1)) break;
+      if (!modifier(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "def_statement_0", c)) break;
     }
     return true;
@@ -324,7 +311,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
   // modifier? KW_FUNCTION tuple (TO type-hint)?
   public static boolean function_signature(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "function_signature")) return false;
-    if (!nextTokenIs(b, "<function signature>", KW_FUNCTION, SYMBOL)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, FUNCTION_SIGNATURE, "<function signature>");
     r = function_signature_0(b, l + 1);
@@ -602,7 +588,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
   // modifier? KW_LET identifier (COLON identifier)? EQ identifier
   public static boolean let_statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "let_statement")) return false;
-    if (!nextTokenIs(b, "<let statement>", KW_LET, SYMBOL)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, LET_STATEMENT, "<let statement>");
     r = let_statement_0(b, l + 1);
@@ -666,14 +651,15 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SYMBOL
+  // KW_PUBLIC | KW_PRIVATE
   public static boolean modifier(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "modifier")) return false;
-    if (!nextTokenIs(b, SYMBOL)) return false;
+    if (!nextTokenIs(b, "<modifier>", KW_PRIVATE, KW_PUBLIC)) return false;
     boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, SYMBOL);
-    exit_section_(b, m, MODIFIER, r);
+    Marker m = enter_section_(b, l, _NONE_, MODIFIER, "<modifier>");
+    r = consumeToken(b, KW_PUBLIC);
+    if (!r) r = consumeToken(b, KW_PRIVATE);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -930,16 +916,16 @@ public class MoonParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // package
   //   | let-statement
-  //   | include
   //   | def-statement
+  //   | while-statement
   //   | SEMICOLON
   static boolean statements(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "statements")) return false;
     boolean r;
     r = package_$(b, l + 1);
     if (!r) r = let_statement(b, l + 1);
-    if (!r) r = include(b, l + 1);
     if (!r) r = def_statement(b, l + 1);
+    if (!r) r = while_statement(b, l + 1);
     if (!r) r = consumeToken(b, SEMICOLON);
     return r;
   }
