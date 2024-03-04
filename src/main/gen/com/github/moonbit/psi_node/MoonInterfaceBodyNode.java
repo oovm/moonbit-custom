@@ -63,14 +63,14 @@ public class MoonInterfaceBodyNode extends AnyMoonNode implements MoonInterfaceB
 
     @Override
     @NotNull
-    public List<MoonUse> getUseList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonUse.class);
+    public List<MoonVariant> getVariantList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonVariant.class);
     }
 
     @Override
     @NotNull
-    public List<MoonVariant> getVariantList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonVariant.class);
+    public List<MoonWhileStatement> getWhileStatementList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonWhileStatement.class);
     }
 
 }

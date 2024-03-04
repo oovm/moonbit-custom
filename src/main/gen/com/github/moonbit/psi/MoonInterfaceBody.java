@@ -27,9 +27,9 @@ public interface MoonInterfaceBody extends PsiElement {
     List<MoonResource> getResourceList();
 
     @NotNull
-    List<MoonUse> getUseList();
+    List<MoonVariant> getVariantList();
 
     @NotNull
-    List<MoonVariant> getVariantList();
+    List<MoonWhileStatement> getWhileStatementList();
 
 }

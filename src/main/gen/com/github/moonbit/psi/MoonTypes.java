@@ -10,8 +10,9 @@ public interface MoonTypes {
 
     IElementType ALIAS_NAME = new MoonElementType("ALIAS_NAME");
     IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
-    IElementType DEFINE_INTERFACE = new MoonElementType("DEFINE_INTERFACE");
     IElementType DEFINE_TYPE = new MoonElementType("DEFINE_TYPE");
+    IElementType DEF_MODIFIER = new MoonElementType("DEF_MODIFIER");
+    IElementType DEF_STATEMENT = new MoonElementType("DEF_STATEMENT");
     IElementType ENUM = new MoonElementType("ENUM");
     IElementType EXPORT = new MoonElementType("EXPORT");
     IElementType EXPORT_TERM = new MoonElementType("EXPORT_TERM");
@@ -41,11 +42,11 @@ public interface MoonTypes {
     IElementType TUPLE = new MoonElementType("TUPLE");
     IElementType TYPE_GENERIC = new MoonElementType("TYPE_GENERIC");
     IElementType TYPE_HINT = new MoonElementType("TYPE_HINT");
-    IElementType USE = new MoonElementType("USE");
     IElementType USE_ALIAS = new MoonElementType("USE_ALIAS");
-    IElementType USE_ITEMS = new MoonElementType("USE_ITEMS");
     IElementType VARIANT = new MoonElementType("VARIANT");
     IElementType VARIANT_ITEM = new MoonElementType("VARIANT_ITEM");
+    IElementType WHILE_ELEMENTS = new MoonElementType("WHILE_ELEMENTS");
+    IElementType WHILE_STATEMENT = new MoonElementType("WHILE_STATEMENT");
 
     IElementType ACCENT = new MoonTokenType("^");
     IElementType ANGLE_L = new MoonTokenType("<");
@@ -71,17 +72,20 @@ public interface MoonTypes {
     IElementType KW_ENUM = new MoonTokenType("enum");
     IElementType KW_EXPORT = new MoonTokenType("export");
     IElementType KW_FLAGS = new MoonTokenType("flags");
+    IElementType KW_FN = new MoonTokenType("KW_FN");
     IElementType KW_FUNCTION = new MoonTokenType("func");
     IElementType KW_IMPORT = new MoonTokenType("import");
     IElementType KW_INCLUDE = new MoonTokenType("include");
     IElementType KW_INTERFACE = new MoonTokenType("interface");
     IElementType KW_LET = new MoonTokenType("KW_LET");
     IElementType KW_PACKAGE = new MoonTokenType("package");
+    IElementType KW_PUBLIC = new MoonTokenType("KW_PUBLIC");
     IElementType KW_RECORD = new MoonTokenType("record");
     IElementType KW_RESOURCE = new MoonTokenType("resource");
     IElementType KW_TYPE = new MoonTokenType("type");
     IElementType KW_USE = new MoonTokenType("use");
     IElementType KW_VARIANT = new MoonTokenType("variant");
+    IElementType KW_WHILE = new MoonTokenType("KW_WHILE");
     IElementType KW_WORLD = new MoonTokenType("world");
     IElementType PARENTHESIS_L = new MoonTokenType("(");
     IElementType PARENTHESIS_R = new MoonTokenType(")");
@@ -106,10 +110,12 @@ public interface MoonTypes {
                 return new MoonAliasNameNode(node);
             } else if (type == CONSTRUCTOR) {
                 return new MoonConstructorNode(node);
-            } else if (type == DEFINE_INTERFACE) {
-                return new MoonDefineInterfaceNode(node);
             } else if (type == DEFINE_TYPE) {
                 return new MoonDefineTypeNode(node);
+            } else if (type == DEF_MODIFIER) {
+                return new MoonDefModifierNode(node);
+            } else if (type == DEF_STATEMENT) {
+                return new MoonDefStatementNode(node);
             } else if (type == ENUM) {
                 return new MoonEnumNode(node);
             } else if (type == EXPORT) {
@@ -168,16 +174,16 @@ public interface MoonTypes {
                 return new MoonTypeGenericNode(node);
             } else if (type == TYPE_HINT) {
                 return new MoonTypeHintNode(node);
-            } else if (type == USE) {
-                return new MoonUseNode(node);
             } else if (type == USE_ALIAS) {
                 return new MoonUseAliasNode(node);
-            } else if (type == USE_ITEMS) {
-                return new MoonUseItemsNode(node);
             } else if (type == VARIANT) {
                 return new MoonVariantNode(node);
             } else if (type == VARIANT_ITEM) {
                 return new MoonVariantItemNode(node);
+            } else if (type == WHILE_ELEMENTS) {
+                return new MoonWhileElementsNode(node);
+            } else if (type == WHILE_STATEMENT) {
+                return new MoonWhileStatementNode(node);
             }
             throw new AssertionError("Unknown element type: " + type);
         }

@@ -45,9 +45,14 @@ KW_RECORD      = "record"
 KW_ENUM        = "enum"
 KW_FLAGS       = "flags"
 KW_VARIANT     = "variant"
-KW_LET         = "let"
-KW_FUNCTION    = "fn"
 KW_CONSTRUCTOR = "constructor"
+
+KW_PUBLIC  = "pub"
+KW_LET     = "let"
+KW_FN      = "fn"
+
+
+KW_WHILE      = "while"
 
 %%
 
@@ -97,8 +102,11 @@ KW_CONSTRUCTOR = "constructor"
 	{KW_VARIANT}  { return KW_VARIANT; }
 
 	{KW_LET}       { return KW_LET; }
-	{KW_FUNCTION}    { return KW_FUNCTION; }
+	{KW_FN}        { return KW_FN; }
+	{KW_PUBLIC}    { return KW_PUBLIC; }
     {KW_CONSTRUCTOR} { return KW_CONSTRUCTOR; }
+
+      {KW_WHILE} { return KW_WHILE; }
 
 	{VERSION} { return VERSION; }
     {ESCAPED} { return ESCAPED; }

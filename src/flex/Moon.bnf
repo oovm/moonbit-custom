@@ -81,7 +81,7 @@ private statements ::=
     package
   | let-statement
   | include
-  | define-interface
+  | def-statement
   | SEMICOLON
 
 // package wasi:blobstore@0.2.0-draft;
@@ -101,7 +101,7 @@ private world-element ::= SEMICOLON
 	| include
 	| import
 	| export
-	| use
+	| while-statement
 	| define-type
 	| enum
 	| variant
@@ -131,10 +131,10 @@ export-term ::= function
 	| include-name
 //  use wasi:poll/poll.{pollable};
 //  use wasi:io/streams@0.2.0.{input-stream, output-stream};
-use      ::= KW_USE include-name use-items? {
+while-statement ::= KW_WHILE identifier BRACE_L while-elements* BRACE_R {
 	pin = 1
 }
-use-items ::= DOT BRACE_L (use-alias (COMMA use-alias)* COMMA?)? BRACE_R {
+while-elements ::= identifier {
 	pin = 1
 }
 use-alias ::= identifier (KW_AS alias-name)? {
@@ -142,10 +142,12 @@ use-alias ::= identifier (KW_AS alias-name)? {
 }
 
 // interface name { }
-define-interface ::= KW_INTERFACE interface-name interface-body {
-	pin = 1
+def-statement ::= def-modifier* KW_FN identifier PARENTHESIS_L PARENTHESIS_R {
+	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
+def-modifier ::= KW_PUBLIC;
+
 // exports: interface
 inline-interface ::= interface-name COLON KW_INTERFACE interface-body {
 	pin = 3
@@ -154,7 +156,7 @@ inline-interface ::= interface-name COLON KW_INTERFACE interface-body {
 }
 interface-body ::= BRACE_L interface-element* BRACE_R;
 private interface-element ::= SEMICOLON
-	| use
+	| while-statement
 	| define-type
 	| resource
 	| record
