@@ -13,6 +13,6 @@ public interface MoonExportTerm extends PsiElement {
     MoonIncludeName getIncludeName();
 
     @Nullable
-    MoonInlineInterface getInlineInterface();
+    MoonTestStatement getTestStatement();
 
 }

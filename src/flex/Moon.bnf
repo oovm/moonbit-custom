@@ -80,7 +80,7 @@ moon ::= statements*
 private statements ::=
     package
   | let-statement
-  | def-statement
+  | define-statement
   | while-statement
   | SEMICOLON
 
@@ -127,7 +127,7 @@ export    ::= KW_EXPORT export-term {
 	pin = 1
 }
 export-term ::= function
-	| inline-interface
+	| test-statement
 	| include-name
 //  use wasi:poll/poll.{pollable};
 //  use wasi:io/streams@0.2.0.{input-stream, output-stream};
@@ -142,18 +142,24 @@ use-alias ::= identifier (KW_AS alias-name)? {
 }
 
 // interface name { }
-def-statement ::= modifier* KW_FN identifier PARENTHESIS_L PARENTHESIS_R {
+define-statement ::= modifier* KW_FN identifier PARENTHESIS_L PARENTHESIS_R function-body {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
+function-body  ::= BRACE_L BRACE_R;
+
 modifier ::= KW_PUBLIC | KW_PRIVATE;
 
 // exports: interface
-inline-interface ::= interface-name COLON KW_INTERFACE interface-body {
-	pin = 3
+test-statement ::= KW_TEST string-literal function-body {
+	pin = 1
 //	extends = interface
 //	mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
+
+
+string-literal ::= identifier;
+
 interface-body ::= BRACE_L interface-element* BRACE_R;
 private interface-element ::= SEMICOLON
 	| while-statement

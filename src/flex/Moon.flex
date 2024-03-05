@@ -112,6 +112,9 @@ KW_WHILE      = "while"
 
       {KW_WHILE} { return KW_WHILE; }
 
+
+      {KW_TEST} { return KW_TEST; }
+
 	{VERSION} { return VERSION; }
     {ESCAPED} { return ESCAPED; }
 	{SYMBOL}  { return SYMBOL; }

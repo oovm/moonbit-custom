@@ -37,8 +37,8 @@ public class MoonExportTermNode extends AnyMoonNode implements MoonExportTerm {
 
     @Override
     @Nullable
-    public MoonInlineInterface getInlineInterface() {
-        return findChildByClass(MoonInlineInterface.class);
+    public MoonTestStatement getTestStatement() {
+        return findChildByClass(MoonTestStatement.class);
     }
 
 }
