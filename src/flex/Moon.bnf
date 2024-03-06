@@ -80,7 +80,8 @@ moon ::= statements*
 private statements ::=
     package
   | let-statement
-  | define-statement
+  | declare-function
+  | test-statement
   | while-statement
   | SEMICOLON
 
@@ -142,11 +143,18 @@ use-alias ::= identifier (KW_AS alias-name)? {
 }
 
 // interface name { }
-define-statement ::= modifier* KW_FN identifier PARENTHESIS_L PARENTHESIS_R function-body {
+declare-function ::= modifier* KW_FN identifier declare-generic? declare-parameter function-body {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
 function-body  ::= BRACE_L BRACE_R;
+
+
+declare-parameter ::= PARENTHESIS_L identifier COLON identifier PARENTHESIS_R
+
+
+declare-generic ::= BRACKET_L identifier BRACKET_R;
+
 
 modifier ::= KW_PUBLIC | KW_PRIVATE;
 

@@ -3,6 +3,6 @@ package com.github.moonbit.psi;
 
 import com.intellij.psi.PsiElement;
 
-public interface MoonDefModifier extends PsiElement {
+public interface MoonFunctionBody extends PsiElement {
 
 }

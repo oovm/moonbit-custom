@@ -82,30 +82,68 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // modifier* KW_FN identifier PARENTHESIS_L PARENTHESIS_R function-body
-  public static boolean define_statement(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "define_statement")) return false;
+  // modifier* KW_FN identifier declare-generic? declare-parameter function-body
+  public static boolean declare_function(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declare_function")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, DEFINE_STATEMENT, "<define statement>");
-    r = define_statement_0(b, l + 1);
+    Marker m = enter_section_(b, l, _NONE_, DECLARE_FUNCTION, "<declare function>");
+    r = declare_function_0(b, l + 1);
     r = r && consumeToken(b, KW_FN);
     p = r; // pin = 2
     r = r && report_error_(b, identifier(b, l + 1));
-    r = p && report_error_(b, consumeTokens(b, -1, PARENTHESIS_L, PARENTHESIS_R)) && r;
+    r = p && report_error_(b, declare_function_3(b, l + 1)) && r;
+    r = p && report_error_(b, declare_parameter(b, l + 1)) && r;
     r = p && function_body(b, l + 1) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
   // modifier*
-  private static boolean define_statement_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "define_statement_0")) return false;
+  private static boolean declare_function_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declare_function_0")) return false;
     while (true) {
       int c = current_position_(b);
       if (!modifier(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "define_statement_0", c)) break;
+      if (!empty_element_parsed_guard_(b, "declare_function_0", c)) break;
     }
     return true;
+  }
+
+  // declare-generic?
+  private static boolean declare_function_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declare_function_3")) return false;
+    declare_generic(b, l + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // BRACKET_L identifier BRACKET_R
+  public static boolean declare_generic(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declare_generic")) return false;
+    if (!nextTokenIs(b, BRACKET_L)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, BRACKET_L);
+    r = r && identifier(b, l + 1);
+    r = r && consumeToken(b, BRACKET_R);
+    exit_section_(b, m, DECLARE_GENERIC, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // PARENTHESIS_L identifier COLON identifier PARENTHESIS_R
+  public static boolean declare_parameter(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declare_parameter")) return false;
+    if (!nextTokenIs(b, PARENTHESIS_L)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, PARENTHESIS_L);
+    r = r && identifier(b, l + 1);
+    r = r && consumeToken(b, COLON);
+    r = r && identifier(b, l + 1);
+    r = r && consumeToken(b, PARENTHESIS_R);
+    exit_section_(b, m, DECLARE_PARAMETER, r);
+    return r;
   }
 
   /* ********************************************************** */
@@ -913,7 +951,8 @@ public class MoonParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // package
   //   | let-statement
-  //   | define-statement
+  //   | declare-function
+  //   | test-statement
   //   | while-statement
   //   | SEMICOLON
   static boolean statements(PsiBuilder b, int l) {
@@ -921,7 +960,8 @@ public class MoonParser implements PsiParser, LightPsiParser {
     boolean r;
     r = package_$(b, l + 1);
     if (!r) r = let_statement(b, l + 1);
-    if (!r) r = define_statement(b, l + 1);
+    if (!r) r = declare_function(b, l + 1);
+    if (!r) r = test_statement(b, l + 1);
     if (!r) r = while_statement(b, l + 1);
     if (!r) r = consumeToken(b, SEMICOLON);
     return r;

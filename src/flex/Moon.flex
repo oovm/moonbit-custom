@@ -53,6 +53,8 @@ KW_LET     = "let"
 KW_FN      = "fn"
 
 
+KW_TEST = "test"
+
 KW_WHILE      = "while"
 
 %%

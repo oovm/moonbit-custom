@@ -4,12 +4,12 @@ package com.github.moonbit.psi;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.Nullable;
 
-public interface MoonUse extends PsiElement {
+public interface MoonTestStatement extends PsiElement {
 
     @Nullable
-    MoonIncludeName getIncludeName();
+    MoonFunctionBody getFunctionBody();
 
     @Nullable
-    MoonUseItems getUseItems();
+    MoonStringLiteral getStringLiteral();
 
 }

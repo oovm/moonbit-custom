@@ -15,7 +15,15 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
-    public void visitDefineStatement(@NotNull MoonDefineStatement o) {
+    public void visitDeclareFunction(@NotNull MoonDeclareFunction o) {
+        visitPsiElement(o);
+    }
+
+    public void visitDeclareGeneric(@NotNull MoonDeclareGeneric o) {
+        visitPsiElement(o);
+    }
+
+    public void visitDeclareParameter(@NotNull MoonDeclareParameter o) {
         visitPsiElement(o);
     }
 

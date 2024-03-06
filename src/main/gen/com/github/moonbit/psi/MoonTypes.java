@@ -10,7 +10,9 @@ public interface MoonTypes {
 
     IElementType ALIAS_NAME = new MoonElementType("ALIAS_NAME");
     IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
-    IElementType DEFINE_STATEMENT = new MoonElementType("DEFINE_STATEMENT");
+    IElementType DECLARE_FUNCTION = new MoonElementType("DECLARE_FUNCTION");
+    IElementType DECLARE_GENERIC = new MoonElementType("DECLARE_GENERIC");
+    IElementType DECLARE_PARAMETER = new MoonElementType("DECLARE_PARAMETER");
     IElementType DEFINE_TYPE = new MoonElementType("DEFINE_TYPE");
     IElementType ENUM = new MoonElementType("ENUM");
     IElementType EXPORT = new MoonElementType("EXPORT");
@@ -113,8 +115,12 @@ public interface MoonTypes {
                 return new MoonAliasNameNode(node);
             } else if (type == CONSTRUCTOR) {
                 return new MoonConstructorNode(node);
-            } else if (type == DEFINE_STATEMENT) {
-                return new MoonDefineStatementNode(node);
+            } else if (type == DECLARE_FUNCTION) {
+                return new MoonDeclareFunctionNode(node);
+            } else if (type == DECLARE_GENERIC) {
+                return new MoonDeclareGenericNode(node);
+            } else if (type == DECLARE_PARAMETER) {
+                return new MoonDeclareParameterNode(node);
             } else if (type == DEFINE_TYPE) {
                 return new MoonDefineTypeNode(node);
             } else if (type == ENUM) {

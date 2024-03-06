@@ -7,7 +7,16 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public interface MoonDefStatement extends PsiElement {
+public interface MoonDeclareFunction extends PsiElement {
+
+    @Nullable
+    MoonDeclareGeneric getDeclareGeneric();
+
+    @Nullable
+    MoonDeclareParameter getDeclareParameter();
+
+    @Nullable
+    MoonFunctionBody getFunctionBody();
 
     @Nullable
     MoonIdentifier getIdentifier();
