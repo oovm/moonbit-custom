@@ -7,14 +7,14 @@ import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
 import com.intellij.psi.tree.TokenSet
 
-data class WitFormatSpace(
+data class MoonFormatSpace(
     val commonSettings: CommonCodeStyleSettings,
     val spacingBuilder: SpacingBuilder,
 ) {
     companion object {
-        fun create(settings: CodeStyleSettings): WitFormatSpace {
+        fun create(settings: CodeStyleSettings): MoonFormatSpace {
             val commonSettings = settings.getCommonSettings(MoonLanguage)
-            return WitFormatSpace(commonSettings, createSpacingBuilder(commonSettings))
+            return MoonFormatSpace(commonSettings, createSpacingBuilder(commonSettings))
         }
 
         private val space_around = TokenSet.create(

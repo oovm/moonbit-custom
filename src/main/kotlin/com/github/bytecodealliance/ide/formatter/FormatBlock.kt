@@ -14,7 +14,7 @@ class FormatBlock(
     private val alignment: Alignment?,
     private val indent: Indent?,
     private val wrap: Wrap?,
-    private val space: WitFormatSpace,
+    private val space: MoonFormatSpace,
 ) : ASTBlock {
     private val myIsIncomplete: Boolean by lazy {
         node.getChildren(null).any { it.elementType is PsiErrorElement } || FormatterUtil.isIncomplete(node)
@@ -29,7 +29,7 @@ class FormatBlock(
                 FormatBlock(
                     node = childNode,
                     alignment = null,
-                    indent = WitFormatBuilder.computeIndent(node, childNode),
+                    indent = MoonFormatBuilder.computeIndent(node, childNode),
                     wrap = null,
                     space
                 )

@@ -12,7 +12,7 @@ import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 
-class WitCommaFixer : SmartEnterProcessorWithFixers.Fixer<MoonSmartEnter>() {
+class MoonCommaFixer : SmartEnterProcessorWithFixers.Fixer<MoonSmartEnter>() {
     override fun apply(editor: Editor, processor: MoonSmartEnter, element: PsiElement) {
         element.isValid
         val current = if (element is LeafPsiElement && element.parent !is PsiFile) {
@@ -24,7 +24,7 @@ class WitCommaFixer : SmartEnterProcessorWithFixers.Fixer<MoonSmartEnter>() {
         if (errorElement != null) {
             val description = errorElement.errorDescription
             val expectedId = description.indexOf("expected")
-            val commaExpectationId = description.indexOf("WitTokenType.,")
+            val commaExpectationId = description.indexOf("MoonTokenType.,")
             val commaIsExpected = expectedId >= 0 && commaExpectationId in 0 until expectedId
 
             val siblingOnLeft = errorElement.getPrevNonCommentSibling()

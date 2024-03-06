@@ -10,7 +10,7 @@ import com.intellij.psi.PsiFile
 class MoonSmartEnter : SmartEnterProcessorWithFixers() {
     init {
         addFixers(
-            WitCommaFixer()
+            MoonCommaFixer()
         )
         addEnterProcessors(
             PlainEnterProcessor()

@@ -1,11 +1,10 @@
 package com.github.bytecodealliance.ide.formatter
 
 import com.intellij.lang.CodeDocumentationAwareCommenter
-import com.intellij.lang.Commenter
 import com.intellij.psi.PsiComment
 import com.intellij.psi.tree.IElementType
 
-class WitCommenter : CodeDocumentationAwareCommenter {
+class MoonCommenter : CodeDocumentationAwareCommenter {
     override fun getLineCommentPrefix(): String = "//"
 
     override fun getBlockCommentPrefix(): String = "/*"

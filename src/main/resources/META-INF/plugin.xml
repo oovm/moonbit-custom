@@ -37,11 +37,11 @@
 		<!-- Formatter -->
 		<lang.formatter
 				language="moonbit"
-				implementationClass="com.github.bytecodealliance.ide.formatter.WitFormatBuilder"
+				implementationClass="com.github.bytecodealliance.ide.formatter.MoonFormatBuilder"
 		/>
 		<lang.commenter
 				language="moonbit"
-				implementationClass="com.github.bytecodealliance.ide.formatter.WitCommenter"
+				implementationClass="com.github.bytecodealliance.ide.formatter.MoonCommenter"
 		/>
 		<lang.smartEnterProcessor
 				language="moonbit"
