@@ -6,18 +6,17 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MoonLetStatementNode extends AnyMoonNode implements MoonLetStatement {
+public class MoonTermExpressionNode extends AnyMoonNode implements MoonTermExpression {
 
-    public MoonLetStatementNode(@NotNull ASTNode node) {
+    public MoonTermExpressionNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitLetStatement(this);
+        visitor.visitTermExpression(this);
     }
 
     @Override
@@ -28,20 +27,14 @@ public class MoonLetStatementNode extends AnyMoonNode implements MoonLetStatemen
 
     @Override
     @NotNull
-    public List<MoonIdentifier> getIdentifierList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonIdentifier.class);
+    public List<MoonTermExpressionItem> getTermExpressionItemList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTermExpressionItem.class);
     }
 
     @Override
-    @Nullable
-    public MoonModifier getModifier() {
-        return findChildByClass(MoonModifier.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonTermExpression getTermExpression() {
-        return findChildByClass(MoonTermExpression.class);
+    @NotNull
+    public MoonTermInfix getTermInfix() {
+        return findNotNullChildByClass(MoonTermInfix.class);
     }
 
 }

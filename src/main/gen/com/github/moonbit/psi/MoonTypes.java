@@ -26,7 +26,6 @@ public interface MoonTypes {
     IElementType IMPORT = new MoonElementType("IMPORT");
     IElementType INCLUDE = new MoonElementType("INCLUDE");
     IElementType INCLUDE_NAME = new MoonElementType("INCLUDE_NAME");
-    IElementType INTERFACE_BODY = new MoonElementType("INTERFACE_BODY");
     IElementType INTERFACE_NAME = new MoonElementType("INTERFACE_NAME");
     IElementType LET_STATEMENT = new MoonElementType("LET_STATEMENT");
     IElementType METHOD = new MoonElementType("METHOD");
@@ -41,6 +40,12 @@ public interface MoonTypes {
     IElementType RESOURCE = new MoonElementType("RESOURCE");
     IElementType SEMANTIC_NUMBER = new MoonElementType("SEMANTIC_NUMBER");
     IElementType STRING_LITERAL = new MoonElementType("STRING_LITERAL");
+    IElementType TERM_EXPRESSION = new MoonElementType("TERM_EXPRESSION");
+    IElementType TERM_EXPRESSION_ATOM = new MoonElementType("TERM_EXPRESSION_ATOM");
+    IElementType TERM_EXPRESSION_ITEM = new MoonElementType("TERM_EXPRESSION_ITEM");
+    IElementType TERM_INFIX = new MoonElementType("TERM_INFIX");
+    IElementType TERM_PREFIX = new MoonElementType("TERM_PREFIX");
+    IElementType TERM_SUFFIX = new MoonElementType("TERM_SUFFIX");
     IElementType TEST_STATEMENT = new MoonElementType("TEST_STATEMENT");
     IElementType TUPLE = new MoonElementType("TUPLE");
     IElementType TYPE_GENERIC = new MoonElementType("TYPE_GENERIC");
@@ -147,8 +152,6 @@ public interface MoonTypes {
                 return new MoonIncludeNode(node);
             } else if (type == INCLUDE_NAME) {
                 return new MoonIncludeNameNode(node);
-            } else if (type == INTERFACE_BODY) {
-                return new MoonInterfaceBodyNode(node);
             } else if (type == INTERFACE_NAME) {
                 return new MoonInterfaceNameNode(node);
             } else if (type == LET_STATEMENT) {
@@ -177,6 +180,18 @@ public interface MoonTypes {
                 return new MoonSemanticNumberNode(node);
             } else if (type == STRING_LITERAL) {
                 return new MoonStringLiteralNode(node);
+            } else if (type == TERM_EXPRESSION) {
+                return new MoonTermExpressionNode(node);
+            } else if (type == TERM_EXPRESSION_ATOM) {
+                return new MoonTermExpressionAtomNode(node);
+            } else if (type == TERM_EXPRESSION_ITEM) {
+                return new MoonTermExpressionItemNode(node);
+            } else if (type == TERM_INFIX) {
+                return new MoonTermInfixNode(node);
+            } else if (type == TERM_PREFIX) {
+                return new MoonTermPrefixNode(node);
+            } else if (type == TERM_SUFFIX) {
+                return new MoonTermSuffixNode(node);
             } else if (type == TEST_STATEMENT) {
                 return new MoonTestStatementNode(node);
             } else if (type == TUPLE) {

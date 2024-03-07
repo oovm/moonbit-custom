@@ -34,7 +34,7 @@ enum class MoonColor(humanName: Supplier<@AttributeDescriptor String>, default: 
 
     //    SYM_ATTRIBUTE(WitBundle.messagePointer("color.token.symbol.attribute"), Default.STATIC_METHOD),
 //    SYM_VARIABLE(WitBundle.messagePointer("color.token.symbol.variable"), Default.REASSIGNED_PARAMETER),
-    SYM_FUNCTION(MessageBundle.messagePointer("color.token.symbol.function"), Default.FUNCTION_DECLARATION),
+    SYMBOL_FUNCTION(MessageBundle.messagePointer("color.token.symbol.function"), Default.FUNCTION_DECLARATION),
     SYM_BUILTIN(MessageBundle.messagePointer("color.token.symbol.builtin"), Default.PREDEFINED_SYMBOL),
 
     // 标点符号

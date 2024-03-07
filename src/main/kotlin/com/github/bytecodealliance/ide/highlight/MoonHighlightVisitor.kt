@@ -1,7 +1,10 @@
 package com.github.bytecodealliance.ide.highlight
 
 
+import com.github.bytecodealliance.ide.highlight.MoonColor.SYMBOL_FUNCTION
 import com.github.moonbit.file.MoonFile
+import com.github.moonbit.psi.MoonFunction
+import com.github.moonbit.psi.MoonLetStatement
 import com.github.moonbit.psi.MoonVisitor
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType
@@ -10,7 +13,7 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 
-class WitHighlightVisitor : MoonVisitor(), HighlightVisitor {
+class MoonHighlightVisitor : MoonVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
 //
 //
@@ -56,6 +59,15 @@ class WitHighlightVisitor : MoonVisitor(), HighlightVisitor {
 //    override fun visitVariantItem(o: WitVariantItem) {
 //        highlight(o.identifier, SYM_FIELD)
 //    }
+
+    override fun visitFunction(o: MoonFunction) {
+        highlight(o, SYMBOL_FUNCTION)
+    }
+
+    override fun visitLetStatement(o: MoonLetStatement) {
+//        highlight(o, SYMBOL_FUNCTION)
+    }
+
 //
 //    override fun visitFunction(o: WitFunction) {
 //        highlight(o.identifier, SYM_FUNCTION)
@@ -138,7 +150,7 @@ class WitHighlightVisitor : MoonVisitor(), HighlightVisitor {
         return true
     }
 
-    override fun clone(): HighlightVisitor = WitHighlightVisitor()
+    override fun clone(): HighlightVisitor = MoonHighlightVisitor()
 
     override fun suitableForFile(file: PsiFile): Boolean = file is MoonFile
 

@@ -79,10 +79,6 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
-    public void visitInterfaceBody(@NotNull MoonInterfaceBody o) {
-        visitPsiElement(o);
-    }
-
     public void visitInterfaceName(@NotNull MoonInterfaceName o) {
         visitPsiElement(o);
     }
@@ -136,6 +132,30 @@ public class MoonVisitor extends PsiElementVisitor {
     }
 
     public void visitStringLiteral(@NotNull MoonStringLiteral o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTermExpression(@NotNull MoonTermExpression o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTermExpressionAtom(@NotNull MoonTermExpressionAtom o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTermExpressionItem(@NotNull MoonTermExpressionItem o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTermInfix(@NotNull MoonTermInfix o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTermPrefix(@NotNull MoonTermPrefix o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTermSuffix(@NotNull MoonTermSuffix o) {
         visitPsiElement(o);
     }
 

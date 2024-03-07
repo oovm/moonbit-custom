@@ -94,7 +94,7 @@ package ::= KW_PACKAGE package-name {
 package-name ::= module-name (COLON module-name)* package-version?;
 package-version ::= AT VERSION;
 // world name { }
-let-statement ::= modifier? KW_LET identifier (COLON identifier)? EQ identifier {
+let-statement ::= modifier? KW_LET identifier (COLON identifier)? EQ term-expression {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }
@@ -166,9 +166,25 @@ test-statement ::= KW_TEST string-literal function-body {
 }
 
 
-string-literal ::= identifier;
+// exports: interface
 
-interface-body ::= BRACE_L interface-element* BRACE_R;
+
+
+term-expression ::= term-expression-item (term-infix term-expression-item);
+term-expression-item ::= term-prefix* term-expression-atom term-suffix*;
+term-expression-atom ::= identifier
+
+term-prefix ::= "+"
+term-infix ::= "+"
+term-suffix ::= "?"
+
+
+
+string-literal ::= BRACE_L interface-element* BRACE_R;
+
+
+
+
 private interface-element ::= SEMICOLON
 	| while-statement
 	| define-type
