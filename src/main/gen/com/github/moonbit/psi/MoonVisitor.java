@@ -11,6 +11,10 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitDeclareField(@NotNull MoonDeclareField o) {
+        visitPsiElement(o);
+    }
+
     public void visitDeclareFunction(@NotNull MoonDeclareFunction o) {
         visitPsiElement(o);
     }
@@ -19,7 +23,19 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitDeclareMethod(@NotNull MoonDeclareMethod o) {
+        visitPsiElement(o);
+    }
+
     public void visitDeclareParameter(@NotNull MoonDeclareParameter o) {
+        visitPsiElement(o);
+    }
+
+    public void visitDeclareStruct(@NotNull MoonDeclareStruct o) {
+        visitPsiElement(o);
+    }
+
+    public void visitDeclareTrait(@NotNull MoonDeclareTrait o) {
         visitPsiElement(o);
     }
 
@@ -91,10 +107,6 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
-    public void visitMethod(@NotNull MoonMethod o) {
-        visitPsiElement(o);
-    }
-
     public void visitModifier(@NotNull MoonModifier o) {
         visitPsiElement(o);
     }
@@ -123,23 +135,11 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
-    public void visitRecord(@NotNull MoonRecord o) {
-        visitPsiElement(o);
-    }
-
-    public void visitRecordField(@NotNull MoonRecordField o) {
-        visitPsiElement(o);
-    }
-
     public void visitSemanticNumber(@NotNull MoonSemanticNumber o) {
         visitPsiElement(o);
     }
 
     public void visitStringLiteral(@NotNull MoonStringLiteral o) {
-        visitPsiElement(o);
-    }
-
-    public void visitStructStatement(@NotNull MoonStructStatement o) {
         visitPsiElement(o);
     }
 
@@ -168,6 +168,10 @@ public class MoonVisitor extends PsiElementVisitor {
     }
 
     public void visitTestStatement(@NotNull MoonTestStatement o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTraitBody(@NotNull MoonTraitBody o) {
         visitPsiElement(o);
     }
 

@@ -4,12 +4,12 @@ package com.github.moonbit.psi;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 
-public interface MoonRecordField extends PsiElement {
+public interface MoonDeclareMethod extends PsiElement {
+
+    @NotNull
+    MoonFunctionSignature getFunctionSignature();
 
     @NotNull
     MoonIdentifier getIdentifier();
-
-    @NotNull
-    MoonTypeHint getTypeHint();
 
 }

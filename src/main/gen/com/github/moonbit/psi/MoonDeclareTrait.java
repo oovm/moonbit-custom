@@ -2,14 +2,14 @@
 package com.github.moonbit.psi;
 
 import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public interface MoonMethod extends PsiElement {
+public interface MoonDeclareTrait extends PsiElement {
 
-    @NotNull
-    MoonFunctionSignature getFunctionSignature();
-
-    @NotNull
+    @Nullable
     MoonIdentifier getIdentifier();
+
+    @Nullable
+    MoonTraitBody getTraitBody();
 
 }

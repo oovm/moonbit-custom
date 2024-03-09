@@ -7,12 +7,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public interface MoonRecord extends PsiElement {
+public interface MoonDeclareStruct extends PsiElement {
+
+    @NotNull
+    List<MoonDeclareField> getDeclareFieldList();
+
+    @NotNull
+    List<MoonDeclareMethod> getDeclareMethodList();
 
     @Nullable
     MoonIdentifier getIdentifier();
-
-    @NotNull
-    List<MoonRecordField> getRecordFieldList();
 
 }

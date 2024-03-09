@@ -47,6 +47,10 @@ KW_FLAGS       = "flags"
 KW_VARIANT     = "variant"
 KW_CONSTRUCTOR = "constructor"
 
+
+KW_TRAIT    = "trait"
+KW_STRUCT  = "struct"
+
 KW_PUBLIC  = "pub"
 KW_PRIVATE = "priv"
 KW_LET     = "let"
@@ -95,6 +99,10 @@ KW_WHILE = "while"
 	{KW_PACKAGE}   { return KW_PACKAGE; }
 	{KW_WORLD}     { return KW_WORLD; }
 	{KW_INTERFACE} { return KW_INTERFACE; }
+
+	{KW_TRAIT} { return KW_TRAIT; }
+	{KW_STRUCT} { return KW_STRUCT; }
+
 
 	{KW_INCLUDE} { return KW_INCLUDE; }
 	{KW_USE}     { return KW_USE; }

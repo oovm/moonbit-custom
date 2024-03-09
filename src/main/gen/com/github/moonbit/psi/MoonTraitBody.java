@@ -3,14 +3,12 @@ package com.github.moonbit.psi;
 
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public interface MoonUseAlias extends PsiElement {
+import java.util.List;
 
-    @Nullable
-    MoonAliasName getAliasName();
+public interface MoonTraitBody extends PsiElement {
 
     @NotNull
-    MoonIdentifier getIdentifier();
+    List<MoonDeclareFunction> getDeclareFunctionList();
 
 }

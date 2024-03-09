@@ -9,6 +9,12 @@ import java.util.List;
 public interface MoonStringLiteral extends PsiElement {
 
     @NotNull
+    List<MoonDeclareStruct> getDeclareStructList();
+
+    @NotNull
+    List<MoonDeclareTrait> getDeclareTraitList();
+
+    @NotNull
     List<MoonDefineType> getDefineTypeList();
 
     @NotNull
@@ -19,12 +25,6 @@ public interface MoonStringLiteral extends PsiElement {
 
     @NotNull
     List<MoonFunction> getFunctionList();
-
-    @NotNull
-    List<MoonRecord> getRecordList();
-
-    @NotNull
-    List<MoonStructStatement> getStructStatementList();
 
     @NotNull
     List<MoonVariant> getVariantList();

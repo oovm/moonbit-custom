@@ -6,14 +6,14 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 
-public class MoonRecordFieldNode extends AnyMoonNode implements MoonRecordField {
+public class MoonDeclareMethodNode extends AnyMoonNode implements MoonDeclareMethod {
 
-    public MoonRecordFieldNode(@NotNull ASTNode node) {
+    public MoonDeclareMethodNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitRecordField(this);
+        visitor.visitDeclareMethod(this);
     }
 
     @Override
@@ -24,14 +24,14 @@ public class MoonRecordFieldNode extends AnyMoonNode implements MoonRecordField 
 
     @Override
     @NotNull
-    public MoonIdentifier getIdentifier() {
-        return findNotNullChildByClass(MoonIdentifier.class);
+    public MoonFunctionSignature getFunctionSignature() {
+        return findNotNullChildByClass(MoonFunctionSignature.class);
     }
 
     @Override
     @NotNull
-    public MoonTypeHint getTypeHint() {
-        return findNotNullChildByClass(MoonTypeHint.class);
+    public MoonIdentifier getIdentifier() {
+        return findNotNullChildByClass(MoonIdentifier.class);
     }
 
 }

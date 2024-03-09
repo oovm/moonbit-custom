@@ -27,6 +27,18 @@ public class MoonStringLiteralNode extends AnyMoonNode implements MoonStringLite
 
     @Override
     @NotNull
+    public List<MoonDeclareStruct> getDeclareStructList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonDeclareStruct.class);
+    }
+
+    @Override
+    @NotNull
+    public List<MoonDeclareTrait> getDeclareTraitList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonDeclareTrait.class);
+    }
+
+    @Override
+    @NotNull
     public List<MoonDefineType> getDefineTypeList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonDefineType.class);
     }
@@ -47,18 +59,6 @@ public class MoonStringLiteralNode extends AnyMoonNode implements MoonStringLite
     @NotNull
     public List<MoonFunction> getFunctionList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonFunction.class);
-    }
-
-    @Override
-    @NotNull
-    public List<MoonRecord> getRecordList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonRecord.class);
-    }
-
-    @Override
-    @NotNull
-    public List<MoonStructStatement> getStructStatementList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonStructStatement.class);
     }
 
     @Override

@@ -3,19 +3,13 @@ package com.github.moonbit.psi;
 
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
-public interface MoonResource extends PsiElement {
+public interface MoonDeclareField extends PsiElement {
 
     @NotNull
-    List<MoonConstructor> getConstructorList();
-
-    @Nullable
     MoonIdentifier getIdentifier();
 
     @NotNull
-    List<MoonMethod> getMethodList();
+    MoonTypeHint getTypeHint();
 
 }

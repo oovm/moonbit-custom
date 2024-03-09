@@ -77,14 +77,15 @@
 
 // https://github.com/bytecodealliance/fluent/blob/master/spec/fluent.ebnf
 moon ::= statements*
-private statements ::=
-    package
-  | let-statement
-  | declare-function
-  | test-statement
-  | while-statement
-  | if-statement
-  | SEMICOLON
+private statements ::= SEMICOLON
+    | package
+	| declare-struct
+	| declare-trait
+	| let-statement
+	| declare-function
+	| test-statement
+	| while-statement
+	| if-statement
 
 // package wasi:blobstore@0.2.0-draft;
 package ::= KW_PACKAGE package-name {
@@ -107,8 +108,6 @@ private world-element ::= SEMICOLON
 	| define-type
 	| enum
 	| variant
-	| record
-	| struct-statement
 	| COMMENT_LINE
 // include wasi:keyvalue/imports@0.2.0-draft;
 include ::= KW_INCLUDE include-name {
@@ -195,8 +194,7 @@ type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
 type-prefix ::= OP_ADD;
 type-infix  ::= OP_ADD | OP_ADD_ASSIGN;
 type-suffix ::= "?"
-
-
+// =====================================================================================================================
 string-literal ::= BRACE_L interface-element* BRACE_R;
 
 number-literal ::= INTEGER;
@@ -205,16 +203,13 @@ number-literal ::= INTEGER;
 private interface-element ::= SEMICOLON
 	| while-statement
 	| define-type
-	| struct-statement
-	| record
+	| declare-trait
+	| declare-struct
 	| flags
 	| enum
 	| variant
 	| function
-// get-insecure-random-bytes: func(len: u64) -> list<u8>;
-method ::= identifier COLON function-signature {
-//	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
-}
+
 constructor ::= KW_CONSTRUCTOR tuple (TO type-hint)? {
 	pin = 1
 }
@@ -237,26 +232,41 @@ parameter ::= identifier COLON type-hint {
 }
 generic   ::= ANGLE_L (type-hint (COMMA type-hint)* COMMA?)? ANGLE_R;
 // resource type-name { method: func() };
-struct-statement  ::= KW_RESOURCE identifier (BRACE_L resource-element* BRACE_R)? {
+declare-trait  ::= KW_RESOURCE identifier trait-body {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinResource"
 }
-private resource-element ::=
-    method
-  | constructor
-  | SEMICOLON
+trait-body ::= BRACE_L trait-element* BRACE_R;
+private trait-element ::=
+	declare-function
+
+
 // record type-name { field: type-hint, key: value };
-record   ::= KW_RECORD identifier BRACE_L record-element* BRACE_R {
+declare-struct   ::= KW_RECORD identifier BRACE_L struct-element* BRACE_R {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
 }
-private record-element ::=
-    record-field
-  | COMMA
-
-record-field    ::= identifier COLON type-hint {
+private struct-element ::= COMMA
+	| declare-field
+	| declare-method
+declare-field    ::= identifier COLON type-hint {
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
 }
+declare-method ::= identifier COLON function-signature {
+//	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
+}
+
+
+
+
+
+
+private resource-element ::=
+    declare-method
+  | constructor
+  | SEMICOLON
+
+
 
 
 flags       ::= KW_FLAGS identifier BRACE_L (semantic-number (COMMA semantic-number)* COMMA?)? BRACE_R {

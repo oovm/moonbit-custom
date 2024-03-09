@@ -9,9 +9,13 @@ import com.intellij.psi.tree.IElementType;
 public interface MoonTypes {
 
     IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
+    IElementType DECLARE_FIELD = new MoonElementType("DECLARE_FIELD");
     IElementType DECLARE_FUNCTION = new MoonElementType("DECLARE_FUNCTION");
     IElementType DECLARE_GENERIC = new MoonElementType("DECLARE_GENERIC");
+    IElementType DECLARE_METHOD = new MoonElementType("DECLARE_METHOD");
     IElementType DECLARE_PARAMETER = new MoonElementType("DECLARE_PARAMETER");
+    IElementType DECLARE_STRUCT = new MoonElementType("DECLARE_STRUCT");
+    IElementType DECLARE_TRAIT = new MoonElementType("DECLARE_TRAIT");
     IElementType DEFINE_TYPE = new MoonElementType("DEFINE_TYPE");
     IElementType ELSE_STATEMENT = new MoonElementType("ELSE_STATEMENT");
     IElementType ENUM = new MoonElementType("ENUM");
@@ -29,7 +33,6 @@ public interface MoonTypes {
     IElementType INCLUDE = new MoonElementType("INCLUDE");
     IElementType INCLUDE_NAME = new MoonElementType("INCLUDE_NAME");
     IElementType LET_STATEMENT = new MoonElementType("LET_STATEMENT");
-    IElementType METHOD = new MoonElementType("METHOD");
     IElementType MODIFIER = new MoonElementType("MODIFIER");
     IElementType MODULE_NAME = new MoonElementType("MODULE_NAME");
     IElementType NUMBER_LITERAL = new MoonElementType("NUMBER_LITERAL");
@@ -37,11 +40,8 @@ public interface MoonTypes {
     IElementType PACKAGE_NAME = new MoonElementType("PACKAGE_NAME");
     IElementType PACKAGE_VERSION = new MoonElementType("PACKAGE_VERSION");
     IElementType PARAMETER = new MoonElementType("PARAMETER");
-    IElementType RECORD = new MoonElementType("RECORD");
-    IElementType RECORD_FIELD = new MoonElementType("RECORD_FIELD");
     IElementType SEMANTIC_NUMBER = new MoonElementType("SEMANTIC_NUMBER");
     IElementType STRING_LITERAL = new MoonElementType("STRING_LITERAL");
-    IElementType STRUCT_STATEMENT = new MoonElementType("STRUCT_STATEMENT");
     IElementType TERM_EXPRESSION = new MoonElementType("TERM_EXPRESSION");
     IElementType TERM_EXPRESSION_ATOM = new MoonElementType("TERM_EXPRESSION_ATOM");
     IElementType TERM_EXPRESSION_ITEM = new MoonElementType("TERM_EXPRESSION_ITEM");
@@ -49,6 +49,7 @@ public interface MoonTypes {
     IElementType TERM_PREFIX = new MoonElementType("TERM_PREFIX");
     IElementType TERM_SUFFIX = new MoonElementType("TERM_SUFFIX");
     IElementType TEST_STATEMENT = new MoonElementType("TEST_STATEMENT");
+    IElementType TRAIT_BODY = new MoonElementType("TRAIT_BODY");
     IElementType TUPLE = new MoonElementType("TUPLE");
     IElementType TYPE_EXPRESSION = new MoonElementType("TYPE_EXPRESSION");
     IElementType TYPE_EXPRESSION_ATOM = new MoonElementType("TYPE_EXPRESSION_ATOM");
@@ -130,12 +131,20 @@ public interface MoonTypes {
             IElementType type = node.getElementType();
             if (type == CONSTRUCTOR) {
                 return new MoonConstructorNode(node);
+            } else if (type == DECLARE_FIELD) {
+                return new MoonDeclareFieldNode(node);
             } else if (type == DECLARE_FUNCTION) {
                 return new MoonDeclareFunctionNode(node);
             } else if (type == DECLARE_GENERIC) {
                 return new MoonDeclareGenericNode(node);
+            } else if (type == DECLARE_METHOD) {
+                return new MoonDeclareMethodNode(node);
             } else if (type == DECLARE_PARAMETER) {
                 return new MoonDeclareParameterNode(node);
+            } else if (type == DECLARE_STRUCT) {
+                return new MoonDeclareStructNode(node);
+            } else if (type == DECLARE_TRAIT) {
+                return new MoonDeclareTraitNode(node);
             } else if (type == DEFINE_TYPE) {
                 return new MoonDefineTypeNode(node);
             } else if (type == ELSE_STATEMENT) {
@@ -170,8 +179,6 @@ public interface MoonTypes {
                 return new MoonIncludeNameNode(node);
             } else if (type == LET_STATEMENT) {
                 return new MoonLetStatementNode(node);
-            } else if (type == METHOD) {
-                return new MoonMethodNode(node);
             } else if (type == MODIFIER) {
                 return new MoonModifierNode(node);
             } else if (type == MODULE_NAME) {
@@ -186,16 +193,10 @@ public interface MoonTypes {
                 return new MoonPackageVersionNode(node);
             } else if (type == PARAMETER) {
                 return new MoonParameterNode(node);
-            } else if (type == RECORD) {
-                return new MoonRecordNode(node);
-            } else if (type == RECORD_FIELD) {
-                return new MoonRecordFieldNode(node);
             } else if (type == SEMANTIC_NUMBER) {
                 return new MoonSemanticNumberNode(node);
             } else if (type == STRING_LITERAL) {
                 return new MoonStringLiteralNode(node);
-            } else if (type == STRUCT_STATEMENT) {
-                return new MoonStructStatementNode(node);
             } else if (type == TERM_EXPRESSION) {
                 return new MoonTermExpressionNode(node);
             } else if (type == TERM_EXPRESSION_ATOM) {
@@ -210,6 +211,8 @@ public interface MoonTypes {
                 return new MoonTermSuffixNode(node);
             } else if (type == TEST_STATEMENT) {
                 return new MoonTestStatementNode(node);
+            } else if (type == TRAIT_BODY) {
+                return new MoonTraitBodyNode(node);
             } else if (type == TUPLE) {
                 return new MoonTupleNode(node);
             } else if (type == TYPE_EXPRESSION) {
