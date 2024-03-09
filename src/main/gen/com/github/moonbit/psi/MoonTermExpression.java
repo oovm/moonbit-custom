@@ -12,6 +12,6 @@ public interface MoonTermExpression extends PsiElement {
     List<MoonTermExpressionItem> getTermExpressionItemList();
 
     @NotNull
-    MoonTermInfix getTermInfix();
+    List<MoonTermInfix> getTermInfixList();
 
 }

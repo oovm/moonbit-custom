@@ -26,7 +26,7 @@ ESCAPED = %[a-zA-Z0-9\-]+
 SYMBOL = [_\p{XID_START}][\p{XID_CONTINUE}]+
 WORD = [a-zA-Z][a-zA-Z0-9]*
 //STRING=\"([^\"\\]|\\.)*\"
-INTEGER=(0|[1-9][0-9_]*)
+INTEGER=(0|[1-9][0-9_]*)[L]?
 DECIMAL=([0-9]+\.[0-9]*([Ee][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)
 
 HEX = [0-9a-fA-F]
@@ -121,5 +121,11 @@ KW_WHILE      = "while"
     {ESCAPED} { return ESCAPED; }
 	{SYMBOL}  { return SYMBOL; }
 }
+<YYINITIAL> {
+	{INTEGER}  { return INTEGER; }
+}
+
+
+
 // =====================================================================================================================
 [^] { return BAD_CHARACTER; }

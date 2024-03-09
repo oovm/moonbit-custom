@@ -31,6 +31,7 @@ public interface MoonTypes {
     IElementType METHOD = new MoonElementType("METHOD");
     IElementType MODIFIER = new MoonElementType("MODIFIER");
     IElementType MODULE_NAME = new MoonElementType("MODULE_NAME");
+    IElementType NUMBER_LITERAL = new MoonElementType("NUMBER_LITERAL");
     IElementType PACKAGE = new MoonElementType("PACKAGE");
     IElementType PACKAGE_NAME = new MoonElementType("PACKAGE_NAME");
     IElementType PACKAGE_VERSION = new MoonElementType("PACKAGE_VERSION");
@@ -75,6 +76,7 @@ public interface MoonTypes {
     IElementType EQ = new MoonTokenType("=");
     IElementType ESCAPED = new MoonTokenType("ESCAPED");
     IElementType HYPHEN = new MoonTokenType("-");
+    IElementType INTEGER = new MoonTokenType("INTEGER");
     IElementType KW_AS = new MoonTokenType("as");
     IElementType KW_CONSTRUCTOR = new MoonTokenType("constructor");
     IElementType KW_ENUM = new MoonTokenType("enum");
@@ -162,6 +164,8 @@ public interface MoonTypes {
                 return new MoonModifierNode(node);
             } else if (type == MODULE_NAME) {
                 return new MoonModuleNameNode(node);
+            } else if (type == NUMBER_LITERAL) {
+                return new MoonNumberLiteralNode(node);
             } else if (type == PACKAGE) {
                 return new MoonPackageNode(node);
             } else if (type == PACKAGE_NAME) {

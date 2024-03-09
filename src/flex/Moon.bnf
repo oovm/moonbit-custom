@@ -170,9 +170,12 @@ test-statement ::= KW_TEST string-literal function-body {
 
 
 
-term-expression ::= term-expression-item (term-infix term-expression-item);
+term-expression ::= term-expression-item (term-infix term-expression-item)*;
 term-expression-item ::= term-prefix* term-expression-atom term-suffix*;
-term-expression-atom ::= identifier
+term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
+	| identifier
+	| string-literal
+	| number-literal
 
 term-prefix ::= "+"
 term-infix ::= "+"
@@ -182,7 +185,7 @@ term-suffix ::= "?"
 
 string-literal ::= BRACE_L interface-element* BRACE_R;
 
-
+number-literal ::= INTEGER;
 
 
 private interface-element ::= SEMICOLON

@@ -2,11 +2,20 @@
 package com.github.moonbit.psi;
 
 import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface MoonTermExpressionAtom extends PsiElement {
 
-    @NotNull
+    @Nullable
     MoonIdentifier getIdentifier();
+
+    @Nullable
+    MoonNumberLiteral getNumberLiteral();
+
+    @Nullable
+    MoonStringLiteral getStringLiteral();
+
+    @Nullable
+    MoonTermExpression getTermExpression();
 
 }

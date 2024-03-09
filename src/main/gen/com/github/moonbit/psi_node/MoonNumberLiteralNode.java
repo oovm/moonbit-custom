@@ -2,33 +2,26 @@
 package com.github.moonbit.psi_node;
 
 import com.github.moonbit.psi.AnyMoonNode;
-import com.github.moonbit.psi.MoonIdentifier;
-import com.github.moonbit.psi.MoonRootExpression;
+import com.github.moonbit.psi.MoonNumberLiteral;
 import com.github.moonbit.psi.MoonVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 
-public class MoonRootExpressionNode extends AnyMoonNode implements MoonRootExpression {
+public class MoonNumberLiteralNode extends AnyMoonNode implements MoonNumberLiteral {
 
-    public MoonRootExpressionNode(@NotNull ASTNode node) {
+    public MoonNumberLiteralNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitRootExpression(this);
+        visitor.visitNumberLiteral(this);
     }
 
     @Override
     public void accept(@NotNull PsiElementVisitor visitor) {
         if (visitor instanceof MoonVisitor) accept((MoonVisitor) visitor);
         else super.accept(visitor);
-    }
-
-    @Override
-    @NotNull
-    public MoonIdentifier getIdentifier() {
-        return findNotNullChildByClass(MoonIdentifier.class);
     }
 
 }

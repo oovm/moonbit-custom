@@ -33,8 +33,8 @@ public class MoonTermExpressionNode extends AnyMoonNode implements MoonTermExpre
 
     @Override
     @NotNull
-    public MoonTermInfix getTermInfix() {
-        return findNotNullChildByClass(MoonTermInfix.class);
+    public List<MoonTermInfix> getTermInfixList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTermInfix.class);
     }
 
 }

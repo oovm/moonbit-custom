@@ -99,6 +99,10 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitNumberLiteral(@NotNull MoonNumberLiteral o) {
+        visitPsiElement(o);
+    }
+
     public void visitPackage(@NotNull MoonPackage o) {
         visitPsiElement(o);
     }
