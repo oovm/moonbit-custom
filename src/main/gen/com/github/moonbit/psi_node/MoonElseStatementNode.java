@@ -2,24 +2,22 @@
 package com.github.moonbit.psi_node;
 
 import com.github.moonbit.psi.AnyMoonNode;
+import com.github.moonbit.psi.MoonElseStatement;
 import com.github.moonbit.psi.MoonFunctionBody;
-import com.github.moonbit.psi.MoonFunctionElement;
 import com.github.moonbit.psi.MoonVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+public class MoonElseStatementNode extends AnyMoonNode implements MoonElseStatement {
 
-public class MoonFunctionBodyNode extends AnyMoonNode implements MoonFunctionBody {
-
-    public MoonFunctionBodyNode(@NotNull ASTNode node) {
+    public MoonElseStatementNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitFunctionBody(this);
+        visitor.visitElseStatement(this);
     }
 
     @Override
@@ -29,9 +27,9 @@ public class MoonFunctionBodyNode extends AnyMoonNode implements MoonFunctionBod
     }
 
     @Override
-    @NotNull
-    public List<MoonFunctionElement> getFunctionElementList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonFunctionElement.class);
+    @Nullable
+    public MoonFunctionBody getFunctionBody() {
+        return findChildByClass(MoonFunctionBody.class);
     }
 
 }

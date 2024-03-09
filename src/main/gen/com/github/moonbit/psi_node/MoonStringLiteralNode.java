@@ -57,8 +57,8 @@ public class MoonStringLiteralNode extends AnyMoonNode implements MoonStringLite
 
     @Override
     @NotNull
-    public List<MoonResource> getResourceList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonResource.class);
+    public List<MoonStructStatement> getStructStatementList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonStructStatement.class);
     }
 
     @Override

@@ -6,9 +6,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public interface MoonFunctionBody extends PsiElement {
+public interface MoonTypeExpression extends PsiElement {
 
     @NotNull
-    List<MoonFunctionElement> getFunctionElementList();
+    List<MoonTypeExpressionItem> getTypeExpressionItemList();
+
+    @NotNull
+    List<MoonTypeInfix> getTypeInfixList();
 
 }

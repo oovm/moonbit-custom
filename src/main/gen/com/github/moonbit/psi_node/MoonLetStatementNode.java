@@ -4,11 +4,8 @@ package com.github.moonbit.psi_node;
 import com.github.moonbit.psi.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class MoonLetStatementNode extends AnyMoonNode implements MoonLetStatement {
 
@@ -27,9 +24,9 @@ public class MoonLetStatementNode extends AnyMoonNode implements MoonLetStatemen
     }
 
     @Override
-    @NotNull
-    public List<MoonIdentifier> getIdentifierList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonIdentifier.class);
+    @Nullable
+    public MoonIdentifier getIdentifier() {
+        return findChildByClass(MoonIdentifier.class);
     }
 
     @Override
@@ -42,6 +39,12 @@ public class MoonLetStatementNode extends AnyMoonNode implements MoonLetStatemen
     @Nullable
     public MoonTermExpression getTermExpression() {
         return findChildByClass(MoonTermExpression.class);
+    }
+
+    @Override
+    @Nullable
+    public MoonTypeExpression getTypeExpression() {
+        return findChildByClass(MoonTypeExpression.class);
     }
 
 }

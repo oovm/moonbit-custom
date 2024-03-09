@@ -10,14 +10,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MoonIncludeNameNode extends AnyMoonNode implements MoonIncludeName {
+public class MoonStructStatementNode extends AnyMoonNode implements MoonStructStatement {
 
-    public MoonIncludeNameNode(@NotNull ASTNode node) {
+    public MoonStructStatementNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitIncludeName(this);
+        visitor.visitStructStatement(this);
     }
 
     @Override
@@ -28,14 +28,20 @@ public class MoonIncludeNameNode extends AnyMoonNode implements MoonIncludeName 
 
     @Override
     @NotNull
-    public List<MoonIdentifier> getIdentifierList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonIdentifier.class);
+    public List<MoonConstructor> getConstructorList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonConstructor.class);
     }
 
     @Override
     @Nullable
-    public MoonPackageVersion getPackageVersion() {
-        return findChildByClass(MoonPackageVersion.class);
+    public MoonIdentifier getIdentifier() {
+        return findChildByClass(MoonIdentifier.class);
+    }
+
+    @Override
+    @NotNull
+    public List<MoonMethod> getMethodList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonMethod.class);
     }
 
 }

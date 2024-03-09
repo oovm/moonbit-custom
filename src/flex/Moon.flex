@@ -55,7 +55,10 @@ KW_FN      = "fn"
 
 KW_TEST = "test"
 
-KW_WHILE      = "while"
+
+KW_IF    = "if"
+KW_ELSE  = "else"
+KW_WHILE = "while"
 
 %%
 
@@ -83,6 +86,8 @@ KW_WHILE      = "while"
 	"/" { return SLASH; }
 	"." { return DOT; }
 	"," { return COMMA; }
+	"+=" { return OP_ADD_ASSIGN;}
+	"+" { return OP_ADD;}
 	"-" { return HYPHEN; }
 	"=" { return EQ; }
 }
@@ -107,15 +112,18 @@ KW_WHILE      = "while"
 	{KW_LET}       { return KW_LET; }
 	{KW_FN}        { return KW_FN; }
 	{KW_PUBLIC}    { return KW_PUBLIC; }
-      {KW_PRIVATE} { return KW_PRIVATE; }
+	{KW_PRIVATE} { return KW_PRIVATE; }
 
 
     {KW_CONSTRUCTOR} { return KW_CONSTRUCTOR; }
 
-      {KW_WHILE} { return KW_WHILE; }
+
+	{KW_IF}    { return KW_WHILE; }
+	{KW_ELSE}  { return KW_WHILE; }
+	{KW_WHILE} { return KW_WHILE; }
 
 
-      {KW_TEST} { return KW_TEST; }
+	{KW_TEST} { return KW_TEST; }
 
 	{VERSION} { return VERSION; }
     {ESCAPED} { return ESCAPED; }

@@ -24,7 +24,7 @@ public interface MoonStringLiteral extends PsiElement {
     List<MoonRecord> getRecordList();
 
     @NotNull
-    List<MoonResource> getResourceList();
+    List<MoonStructStatement> getStructStatementList();
 
     @NotNull
     List<MoonVariant> getVariantList();

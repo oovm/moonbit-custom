@@ -83,6 +83,7 @@ private statements ::=
   | declare-function
   | test-statement
   | while-statement
+  | if-statement
   | SEMICOLON
 
 // package wasi:blobstore@0.2.0-draft;
@@ -94,7 +95,7 @@ package ::= KW_PACKAGE package-name {
 package-name ::= module-name (COLON module-name)* package-version?;
 package-version ::= AT VERSION;
 // world name { }
-let-statement ::= modifier? KW_LET identifier (COLON identifier)? EQ term-expression {
+let-statement ::= modifier? KW_LET identifier (COLON type-expression)? EQ term-expression {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }
@@ -107,7 +108,7 @@ private world-element ::= SEMICOLON
 	| enum
 	| variant
 	| record
-	| resource
+	| struct-statement
 	| COMMENT_LINE
 // include wasi:keyvalue/imports@0.2.0-draft;
 include ::= KW_INCLUDE include-name {
@@ -132,23 +133,27 @@ export-term ::= function
 	| include-name
 //  use wasi:poll/poll.{pollable};
 //  use wasi:io/streams@0.2.0.{input-stream, output-stream};
-while-statement ::= KW_WHILE identifier BRACE_L while-elements* BRACE_R {
+while-statement ::= KW_WHILE term-expression function-body {
 	pin = 1
 }
-while-elements ::= identifier {
+if-statement ::= KW_IF term-expression function-body else-statement? {
 	pin = 1
 }
-use-alias ::= identifier (KW_AS alias-name)? {
-
+else-statement ::= KW_ELSE function-body {
+	pin = 1
 }
-
 // interface name { }
 declare-function ::= modifier* KW_FN identifier declare-generic? declare-parameter function-body {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
-function-body  ::= BRACE_L BRACE_R;
-
+function-body  ::= BRACE_L function-element* BRACE_R;
+function-element ::= SEMICOLON
+	| let-statement
+	| declare-function
+	| test-statement
+	| while-statement
+	| if-statement
 
 declare-parameter ::= PARENTHESIS_L identifier COLON identifier PARENTHESIS_R
 
@@ -169,7 +174,7 @@ test-statement ::= KW_TEST string-literal function-body {
 // exports: interface
 
 
-
+// =====================================================================================================================
 term-expression ::= term-expression-item (term-infix term-expression-item)*;
 term-expression-item ::= term-prefix* term-expression-atom term-suffix*;
 term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
@@ -177,10 +182,19 @@ term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
 	| string-literal
 	| number-literal
 
-term-prefix ::= "+"
-term-infix ::= "+"
+term-prefix ::= OP_ADD;
+term-infix  ::= OP_ADD | OP_ADD_ASSIGN;
 term-suffix ::= "?"
-
+// =====================================================================================================================
+type-expression ::= type-expression-item (type-infix type-expression-item)*;
+type-expression-item ::= type-prefix* type-expression-atom type-suffix*;
+type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
+	| identifier
+//	| string-literal
+//	| number-literal
+type-prefix ::= OP_ADD;
+type-infix  ::= OP_ADD | OP_ADD_ASSIGN;
+type-suffix ::= "?"
 
 
 string-literal ::= BRACE_L interface-element* BRACE_R;
@@ -191,7 +205,7 @@ number-literal ::= INTEGER;
 private interface-element ::= SEMICOLON
 	| while-statement
 	| define-type
-	| resource
+	| struct-statement
 	| record
 	| flags
 	| enum
@@ -223,7 +237,7 @@ parameter ::= identifier COLON type-hint {
 }
 generic   ::= ANGLE_L (type-hint (COMMA type-hint)* COMMA?)? ANGLE_R;
 // resource type-name { method: func() };
-resource  ::= KW_RESOURCE identifier (BRACE_L resource-element* BRACE_R)? {
+struct-statement  ::= KW_RESOURCE identifier (BRACE_L resource-element* BRACE_R)? {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinResource"
 }
@@ -267,7 +281,5 @@ variant-item 	 ::= identifier (PARENTHESIS_L type-hint PARENTHESIS_R)? {
 
 /* Identifier */
 module-name         ::= SYMBOL | ESCAPED;
-interface-name      ::= SYMBOL | ESCAPED;
-alias-name          ::= SYMBOL | ESCAPED;
 semantic-number     ::= SYMBOL | ESCAPED;
 identifier          ::= SYMBOL | ESCAPED;

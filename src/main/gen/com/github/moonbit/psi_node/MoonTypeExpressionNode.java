@@ -1,10 +1,7 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.AnyMoonNode;
-import com.github.moonbit.psi.MoonFunctionBody;
-import com.github.moonbit.psi.MoonFunctionElement;
-import com.github.moonbit.psi.MoonVisitor;
+import com.github.moonbit.psi.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
@@ -12,14 +9,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class MoonFunctionBodyNode extends AnyMoonNode implements MoonFunctionBody {
+public class MoonTypeExpressionNode extends AnyMoonNode implements MoonTypeExpression {
 
-    public MoonFunctionBodyNode(@NotNull ASTNode node) {
+    public MoonTypeExpressionNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitFunctionBody(this);
+        visitor.visitTypeExpression(this);
     }
 
     @Override
@@ -30,8 +27,14 @@ public class MoonFunctionBodyNode extends AnyMoonNode implements MoonFunctionBod
 
     @Override
     @NotNull
-    public List<MoonFunctionElement> getFunctionElementList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonFunctionElement.class);
+    public List<MoonTypeExpressionItem> getTypeExpressionItemList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTypeExpressionItem.class);
+    }
+
+    @Override
+    @NotNull
+    public List<MoonTypeInfix> getTypeInfixList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTypeInfix.class);
     }
 
 }
