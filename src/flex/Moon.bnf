@@ -232,7 +232,7 @@ parameter ::= identifier COLON type-hint {
 }
 generic   ::= ANGLE_L (type-hint (COMMA type-hint)* COMMA?)? ANGLE_R;
 // resource type-name { method: func() };
-declare-trait  ::= KW_RESOURCE identifier trait-body {
+declare-trait  ::= KW_TRAIT identifier trait-body {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinResource"
 }
@@ -242,7 +242,7 @@ private trait-element ::=
 
 
 // record type-name { field: type-hint, key: value };
-declare-struct   ::= KW_RECORD identifier BRACE_L struct-element* BRACE_R {
+declare-struct   ::= KW_STRUCT identifier BRACE_L struct-element* BRACE_R {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
 }

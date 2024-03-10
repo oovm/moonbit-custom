@@ -102,7 +102,9 @@ public interface MoonTypes {
     IElementType KW_PUBLIC = new MoonTokenType("KW_PUBLIC");
     IElementType KW_RECORD = new MoonTokenType("record");
     IElementType KW_RESOURCE = new MoonTokenType("resource");
+    IElementType KW_STRUCT = new MoonTokenType("KW_STRUCT");
     IElementType KW_TEST = new MoonTokenType("KW_TEST");
+    IElementType KW_TRAIT = new MoonTokenType("KW_TRAIT");
     IElementType KW_TYPE = new MoonTokenType("type");
     IElementType KW_USE = new MoonTokenType("use");
     IElementType KW_VARIANT = new MoonTokenType("variant");

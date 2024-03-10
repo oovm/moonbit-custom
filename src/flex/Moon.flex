@@ -23,7 +23,7 @@ COMMENT_BLOCK    = [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 //SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
 VERSION = ([0-9]+)(\.[0-9]+)(\.[0-9]+)(-[a-zA-Z0-9\-]+)?
 ESCAPED = %[a-zA-Z0-9\-]+
-SYMBOL = [_\p{XID_START}][\p{XID_CONTINUE}]+
+SYMBOL = [_\p{XID_START}][\p{XID_CONTINUE}]*
 WORD = [a-zA-Z][a-zA-Z0-9]*
 //STRING=\"([^\"\\]|\\.)*\"
 INTEGER=(0|[1-9][0-9_]*)[L]?
@@ -96,46 +96,20 @@ KW_WHILE = "while"
 	"=" { return EQ; }
 }
 <YYINITIAL> {
-	{KW_PACKAGE}   { return KW_PACKAGE; }
-	{KW_WORLD}     { return KW_WORLD; }
-	{KW_INTERFACE} { return KW_INTERFACE; }
-
+	{KW_TYPE}     { return KW_TYPE; }
 	{KW_TRAIT} { return KW_TRAIT; }
 	{KW_STRUCT} { return KW_STRUCT; }
 
-
-	{KW_INCLUDE} { return KW_INCLUDE; }
-	{KW_USE}     { return KW_USE; }
-	{KW_AS}      { return KW_AS; }
-	{KW_IMPORT}  { return KW_IMPORT; }
-	{KW_EXPORT}  { return KW_EXPORT; }
-
-	{KW_TYPE}     { return KW_TYPE; }
-	{KW_RESOURCE} { return KW_RESOURCE; }
-	{KW_RECORD}   { return KW_RECORD; }
-	{KW_ENUM}     { return KW_ENUM; }
-	{KW_FLAGS}    { return KW_FLAGS; }
-	{KW_VARIANT}  { return KW_VARIANT; }
-
-	{KW_LET}       { return KW_LET; }
-	{KW_FN}        { return KW_FN; }
 	{KW_PUBLIC}    { return KW_PUBLIC; }
 	{KW_PRIVATE} { return KW_PRIVATE; }
 
-
-    {KW_CONSTRUCTOR} { return KW_CONSTRUCTOR; }
-
+	{KW_LET}       { return KW_LET; }
+	{KW_FN}        { return KW_FN; }
+	{KW_TEST} { return KW_TEST; }
 
 	{KW_IF}    { return KW_WHILE; }
 	{KW_ELSE}  { return KW_WHILE; }
 	{KW_WHILE} { return KW_WHILE; }
-
-
-	{KW_TEST} { return KW_TEST; }
-
-	{VERSION} { return VERSION; }
-    {ESCAPED} { return ESCAPED; }
-	{SYMBOL}  { return SYMBOL; }
 }
 <YYINITIAL> {
 	{INTEGER}  { return INTEGER; }
