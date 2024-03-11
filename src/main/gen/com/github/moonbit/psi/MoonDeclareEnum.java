@@ -4,15 +4,15 @@ package com.github.moonbit.psi;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.Nullable;
 
-public interface MoonDeclareStruct extends PsiElement {
+public interface MoonDeclareEnum extends PsiElement {
 
     @Nullable
     MoonDeriveStatement getDeriveStatement();
 
     @Nullable
-    MoonIdentifier getIdentifier();
+    MoonEnumBody getEnumBody();
 
     @Nullable
-    MoonStructBody getStructBody();
+    MoonIdentifier getIdentifier();
 
 }

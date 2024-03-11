@@ -1,14 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi;
 
-import com.github.moonbit.psi_node.*;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.PsiElement;
+import com.intellij.lang.ASTNode;
+import com.github.moonbit.psi_node.*;
 
 public interface MoonTypes {
 
     IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
+    IElementType DECLARE_ENUM = new MoonElementType("DECLARE_ENUM");
     IElementType DECLARE_FIELD = new MoonElementType("DECLARE_FIELD");
     IElementType DECLARE_FUNCTION = new MoonElementType("DECLARE_FUNCTION");
     IElementType DECLARE_GENERIC = new MoonElementType("DECLARE_GENERIC");
@@ -17,8 +18,9 @@ public interface MoonTypes {
     IElementType DECLARE_STRUCT = new MoonElementType("DECLARE_STRUCT");
     IElementType DECLARE_TRAIT = new MoonElementType("DECLARE_TRAIT");
     IElementType DEFINE_TYPE = new MoonElementType("DEFINE_TYPE");
+    IElementType DERIVE_STATEMENT = new MoonElementType("DERIVE_STATEMENT");
     IElementType ELSE_STATEMENT = new MoonElementType("ELSE_STATEMENT");
-    IElementType ENUM = new MoonElementType("ENUM");
+    IElementType ENUM_BODY = new MoonElementType("ENUM_BODY");
     IElementType EXPORT = new MoonElementType("EXPORT");
     IElementType EXPORT_TERM = new MoonElementType("EXPORT_TERM");
     IElementType FLAGS = new MoonElementType("FLAGS");
@@ -42,6 +44,7 @@ public interface MoonTypes {
     IElementType PARAMETER = new MoonElementType("PARAMETER");
     IElementType SEMANTIC_NUMBER = new MoonElementType("SEMANTIC_NUMBER");
     IElementType STRING_LITERAL = new MoonElementType("STRING_LITERAL");
+    IElementType STRUCT_BODY = new MoonElementType("STRUCT_BODY");
     IElementType TERM_EXPRESSION = new MoonElementType("TERM_EXPRESSION");
     IElementType TERM_EXPRESSION_ATOM = new MoonElementType("TERM_EXPRESSION_ATOM");
     IElementType TERM_EXPRESSION_ITEM = new MoonElementType("TERM_EXPRESSION_ITEM");
@@ -77,8 +80,11 @@ public interface MoonTypes {
     IElementType COMMENT_BLOCK = new MoonTokenType("Comment Block");
     IElementType COMMENT_DOCUMENT = new MoonTokenType("Comment Document");
     IElementType COMMENT_LINE = new MoonTokenType("COMMENT_LINE");
+    IElementType DECLARE_VARIANT = new MoonTokenType("declare-variant");
     IElementType DOLLAR = new MoonTokenType("$");
     IElementType DOT = new MoonTokenType(".");
+    IElementType DOUBLE_QUOTE_L = new MoonTokenType("DOUBLE_QUOTE_L");
+    IElementType DOUBLE_QUOTE_R = new MoonTokenType("DOUBLE_QUOTE_R");
     IElementType EQ = new MoonTokenType("=");
     IElementType ESCAPED = new MoonTokenType("ESCAPED");
     IElementType HYPHEN = new MoonTokenType("-");
@@ -86,6 +92,7 @@ public interface MoonTypes {
     IElementType INTERFACE_NAME = new MoonTokenType("interface-name");
     IElementType KW_AS = new MoonTokenType("as");
     IElementType KW_CONSTRUCTOR = new MoonTokenType("constructor");
+    IElementType KW_DERIVE = new MoonTokenType("KW_DERIVE");
     IElementType KW_ELSE = new MoonTokenType("KW_ELSE");
     IElementType KW_ENUM = new MoonTokenType("enum");
     IElementType KW_EXPORT = new MoonTokenType("export");
@@ -123,6 +130,7 @@ public interface MoonTypes {
     IElementType STRING_CHAR = new MoonTokenType("String Character");
     IElementType STRING_ESCAPE = new MoonTokenType("String Escaped");
     IElementType STRING_QUOTE = new MoonTokenType("String Quote");
+    IElementType STRING_TEXT = new MoonTokenType("STRING_TEXT");
     IElementType SYMBOL = new MoonTokenType("Symbol");
     IElementType TO = new MoonTokenType("->");
     IElementType URL = new MoonTokenType("Url");
@@ -133,6 +141,8 @@ public interface MoonTypes {
             IElementType type = node.getElementType();
             if (type == CONSTRUCTOR) {
                 return new MoonConstructorNode(node);
+            } else if (type == DECLARE_ENUM) {
+                return new MoonDeclareEnumNode(node);
             } else if (type == DECLARE_FIELD) {
                 return new MoonDeclareFieldNode(node);
             } else if (type == DECLARE_FUNCTION) {
@@ -149,10 +159,12 @@ public interface MoonTypes {
                 return new MoonDeclareTraitNode(node);
             } else if (type == DEFINE_TYPE) {
                 return new MoonDefineTypeNode(node);
+            } else if (type == DERIVE_STATEMENT) {
+                return new MoonDeriveStatementNode(node);
             } else if (type == ELSE_STATEMENT) {
                 return new MoonElseStatementNode(node);
-            } else if (type == ENUM) {
-                return new MoonEnumNode(node);
+            } else if (type == ENUM_BODY) {
+                return new MoonEnumBodyNode(node);
             } else if (type == EXPORT) {
                 return new MoonExportNode(node);
             } else if (type == EXPORT_TERM) {
@@ -199,6 +211,8 @@ public interface MoonTypes {
                 return new MoonSemanticNumberNode(node);
             } else if (type == STRING_LITERAL) {
                 return new MoonStringLiteralNode(node);
+            } else if (type == STRUCT_BODY) {
+                return new MoonStructBodyNode(node);
             } else if (type == TERM_EXPRESSION) {
                 return new MoonTermExpressionNode(node);
             } else if (type == TERM_EXPRESSION_ATOM) {

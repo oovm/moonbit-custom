@@ -112,10 +112,8 @@ KW_WHILE = "while"
 	{KW_WHILE} { return KW_WHILE; }
 }
 <YYINITIAL> {
-	{INTEGER}  { return INTEGER; }
+	{SYMBOL}  { return SYMBOL; }
+	{INTEGER} { return INTEGER; }
 }
-
-
-
 // =====================================================================================================================
 [^] { return BAD_CHARACTER; }

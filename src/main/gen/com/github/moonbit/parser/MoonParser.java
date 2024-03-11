@@ -69,6 +69,29 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // KW_ENUM identifier enum-body derive-statement?
+    public static boolean declare_enum(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_enum")) return false;
+        if (!nextTokenIs(b, KW_ENUM)) return false;
+        boolean r, p;
+        Marker m = enter_section_(b, l, _NONE_, DECLARE_ENUM, null);
+        r = consumeToken(b, KW_ENUM);
+        p = r; // pin = 1
+        r = r && report_error_(b, identifier(b, l + 1));
+        r = p && report_error_(b, enum_body(b, l + 1)) && r;
+        r = p && declare_enum_3(b, l + 1) && r;
+        exit_section_(b, l, m, r, p, null);
+        return r || p;
+    }
+
+    // derive-statement?
+    private static boolean declare_enum_3(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_enum_3")) return false;
+        derive_statement(b, l + 1);
+        return true;
+    }
+
+    /* ********************************************************** */
     // identifier COLON type-hint {
     // //    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
     // }
@@ -182,7 +205,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // KW_STRUCT identifier BRACE_L struct-element* BRACE_R
+    // KW_STRUCT identifier struct-body derive-statement?
     public static boolean declare_struct(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_struct")) return false;
         if (!nextTokenIs(b, KW_STRUCT)) return false;
@@ -191,21 +214,16 @@ public class MoonParser implements PsiParser, LightPsiParser {
         r = consumeToken(b, KW_STRUCT);
         p = r; // pin = 1
         r = r && report_error_(b, identifier(b, l + 1));
-        r = p && report_error_(b, consumeToken(b, BRACE_L)) && r;
-        r = p && report_error_(b, declare_struct_3(b, l + 1)) && r;
-        r = p && consumeToken(b, BRACE_R) && r;
+        r = p && report_error_(b, struct_body(b, l + 1)) && r;
+        r = p && declare_struct_3(b, l + 1) && r;
         exit_section_(b, l, m, r, p, null);
         return r || p;
     }
 
-    // struct-element*
+    // derive-statement?
     private static boolean declare_struct_3(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_struct_3")) return false;
-        while (true) {
-            int c = current_position_(b);
-            if (!struct_element(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "declare_struct_3", c)) break;
-        }
+        derive_statement(b, l + 1);
         return true;
     }
 
@@ -241,6 +259,70 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
+    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
+    // }
+    public static boolean derive_statement(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "derive_statement")) return false;
+        if (!nextTokenIs(b, KW_DERIVE)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeTokens(b, 0, KW_DERIVE, PARENTHESIS_L);
+        r = r && derive_statement_2(b, l + 1);
+        r = r && consumeToken(b, PARENTHESIS_R);
+        r = r && derive_statement_4(b, l + 1);
+        exit_section_(b, m, DERIVE_STATEMENT, r);
+        return r;
+    }
+
+    // (identifier (COMMA identifier)*)?
+    private static boolean derive_statement_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "derive_statement_2")) return false;
+        derive_statement_2_0(b, l + 1);
+        return true;
+    }
+
+    // identifier (COMMA identifier)*
+    private static boolean derive_statement_2_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "derive_statement_2_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = identifier(b, l + 1);
+        r = r && derive_statement_2_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (COMMA identifier)*
+    private static boolean derive_statement_2_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "derive_statement_2_0_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!derive_statement_2_0_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "derive_statement_2_0_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA identifier
+    private static boolean derive_statement_2_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "derive_statement_2_0_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && identifier(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // {
+    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
+    // }
+    private static boolean derive_statement_4(PsiBuilder b, int l) {
+        return true;
+    }
+
+    /* ********************************************************** */
     // KW_ELSE function-body
     public static boolean else_statement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "else_statement")) return false;
@@ -255,68 +337,43 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // KW_ENUM identifier BRACE_L (semantic-number (COMMA semantic-number)* COMMA?)? BRACE_R
-    public static boolean enum_$(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "enum_$")) return false;
-        if (!nextTokenIs(b, KW_ENUM)) return false;
-        boolean r, p;
-        Marker m = enter_section_(b, l, _NONE_, ENUM, null);
-        r = consumeToken(b, KW_ENUM);
-        p = r; // pin = 1
-        r = r && report_error_(b, identifier(b, l + 1));
-        r = p && report_error_(b, consumeToken(b, BRACE_L)) && r;
-        r = p && report_error_(b, enum_3(b, l + 1)) && r;
-        r = p && consumeToken(b, BRACE_R) && r;
-        exit_section_(b, l, m, r, p, null);
-        return r || p;
-    }
-
-    // (semantic-number (COMMA semantic-number)* COMMA?)?
-    private static boolean enum_3(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "enum_3")) return false;
-        enum_3_0(b, l + 1);
-        return true;
-    }
-
-    // semantic-number (COMMA semantic-number)* COMMA?
-    private static boolean enum_3_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "enum_3_0")) return false;
+    // BRACE_L enum-element* BRACE_R
+    public static boolean enum_body(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "enum_body")) return false;
+        if (!nextTokenIs(b, BRACE_L)) return false;
         boolean r;
         Marker m = enter_section_(b);
-        r = semantic_number(b, l + 1);
-        r = r && enum_3_0_1(b, l + 1);
-        r = r && enum_3_0_2(b, l + 1);
-        exit_section_(b, m, null, r);
+        r = consumeToken(b, BRACE_L);
+        r = r && enum_body_1(b, l + 1);
+        r = r && consumeToken(b, BRACE_R);
+        exit_section_(b, m, ENUM_BODY, r);
         return r;
     }
 
-    // (COMMA semantic-number)*
-    private static boolean enum_3_0_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "enum_3_0_1")) return false;
+    // enum-element*
+    private static boolean enum_body_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "enum_body_1")) return false;
         while (true) {
             int c = current_position_(b);
-            if (!enum_3_0_1_0(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "enum_3_0_1", c)) break;
+            if (!enum_element(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "enum_body_1", c)) break;
         }
         return true;
     }
 
-    // COMMA semantic-number
-    private static boolean enum_3_0_1_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "enum_3_0_1_0")) return false;
+    /* ********************************************************** */
+    // SEMICOLON
+    // 	| declare-variant
+    // 	| declare-field
+    // 	| declare-method
+    static boolean enum_element(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "enum_element")) return false;
         boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, COMMA);
-        r = r && semantic_number(b, l + 1);
-        exit_section_(b, m, null, r);
+        r = consumeToken(b, SEMICOLON);
+        if (!r) r = consumeToken(b, DECLARE_VARIANT);
+        if (!r) r = declare_field(b, l + 1);
+        if (!r) r = declare_method(b, l + 1);
         return r;
-    }
-
-    // COMMA?
-    private static boolean enum_3_0_2(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "enum_3_0_2")) return false;
-        consumeToken(b, COMMA);
-        return true;
     }
 
     /* ********************************************************** */
@@ -722,7 +779,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!r) r = declare_trait(b, l + 1);
         if (!r) r = declare_struct(b, l + 1);
         if (!r) r = flags(b, l + 1);
-        if (!r) r = enum_$(b, l + 1);
+        if (!r) r = consumeToken(b, ENUM);
         if (!r) r = variant(b, l + 1);
         if (!r) r = function(b, l + 1);
         return r;
@@ -941,6 +998,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     // SEMICOLON
     //     | package
     // 	| declare-struct
+    // 	| declare-enum
     // 	| declare-trait
     // 	| let-statement
     // 	| declare-function
@@ -953,6 +1011,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         r = consumeToken(b, SEMICOLON);
         if (!r) r = package_$(b, l + 1);
         if (!r) r = declare_struct(b, l + 1);
+        if (!r) r = declare_enum(b, l + 1);
         if (!r) r = declare_trait(b, l + 1);
         if (!r) r = let_statement(b, l + 1);
         if (!r) r = declare_function(b, l + 1);
@@ -963,26 +1022,38 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // BRACE_L interface-element* BRACE_R
+    // DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R
     public static boolean string_literal(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "string_literal")) return false;
-        if (!nextTokenIs(b, BRACE_L)) return false;
+        if (!nextTokenIs(b, DOUBLE_QUOTE_L)) return false;
         boolean r;
         Marker m = enter_section_(b);
-        r = consumeToken(b, BRACE_L);
-        r = r && string_literal_1(b, l + 1);
-        r = r && consumeToken(b, BRACE_R);
+        r = consumeTokens(b, 0, DOUBLE_QUOTE_L, STRING_TEXT, DOUBLE_QUOTE_R);
         exit_section_(b, m, STRING_LITERAL, r);
         return r;
     }
 
-    // interface-element*
-    private static boolean string_literal_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "string_literal_1")) return false;
+    /* ********************************************************** */
+    // BRACE_L struct-element* BRACE_R
+    public static boolean struct_body(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "struct_body")) return false;
+        if (!nextTokenIs(b, BRACE_L)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, BRACE_L);
+        r = r && struct_body_1(b, l + 1);
+        r = r && consumeToken(b, BRACE_R);
+        exit_section_(b, m, STRUCT_BODY, r);
+        return r;
+    }
+
+    // struct-element*
+    private static boolean struct_body_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "struct_body_1")) return false;
         while (true) {
             int c = current_position_(b);
-            if (!interface_element(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "string_literal_1", c)) break;
+            if (!struct_element(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "struct_body_1", c)) break;
         }
         return true;
     }
@@ -1545,7 +1616,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!r) r = export(b, l + 1);
         if (!r) r = while_statement(b, l + 1);
         if (!r) r = define_type(b, l + 1);
-        if (!r) r = enum_$(b, l + 1);
+        if (!r) r = consumeToken(b, ENUM);
         if (!r) r = variant(b, l + 1);
         if (!r) r = consumeToken(b, COMMENT_LINE);
         return r;

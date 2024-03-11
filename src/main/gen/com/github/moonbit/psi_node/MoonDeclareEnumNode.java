@@ -7,14 +7,14 @@ import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MoonDeclareStructNode extends AnyMoonNode implements MoonDeclareStruct {
+public class MoonDeclareEnumNode extends AnyMoonNode implements MoonDeclareEnum {
 
-    public MoonDeclareStructNode(@NotNull ASTNode node) {
+    public MoonDeclareEnumNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitDeclareStruct(this);
+        visitor.visitDeclareEnum(this);
     }
 
     @Override
@@ -31,14 +31,14 @@ public class MoonDeclareStructNode extends AnyMoonNode implements MoonDeclareStr
 
     @Override
     @Nullable
-    public MoonIdentifier getIdentifier() {
-        return findChildByClass(MoonIdentifier.class);
+    public MoonEnumBody getEnumBody() {
+        return findChildByClass(MoonEnumBody.class);
     }
 
     @Override
     @Nullable
-    public MoonStructBody getStructBody() {
-        return findChildByClass(MoonStructBody.class);
+    public MoonIdentifier getIdentifier() {
+        return findChildByClass(MoonIdentifier.class);
     }
 
 }
