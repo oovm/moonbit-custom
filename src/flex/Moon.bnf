@@ -18,36 +18,9 @@
     tokens = [
         // comment
         COMMENT_DOCUMENT = "Comment Document"
-        COMMENT = "Comment"
+        COMMENT_LINE = "Comment"
         COMMENT_BLOCK = "Comment Block"
 
-        // literal
-        URL = "Url"
-        SYMBOL    = "Symbol"
-        REFERENCE = "$Symbol"
-        STRING_QUOTE = "String Quote"
-        STRING_CHAR = "String Character"
-        STRING_ESCAPE = "String Escaped"
-        SELECTION_LINE = "SELECTION_LINE"
-
-		KW_PACKAGE     = "package"
-		KW_WORLD       = "world"
-		KW_INTERFACE   = "interface"
-		KW_INCLUDE     = "include"
-		KW_EXPORT      = "export"
-		KW_IMPORT      = "import"
-		KW_USE         = "use"
-		KW_AS          = "as"
-		KW_TYPE        = "type"
-		KW_RESOURCE    = "resource"
-		KW_RECORD      = "record"
-		KW_ENUM        = "enum"
-		KW_FLAGS       = "flags"
-		KW_VARIANT     = "variant"
-		KW_FUNCTION    = "func"
-		KW_CONSTRUCTOR = "constructor"
-
-		VERSION = "<<semver>>"
         PARENTHESIS_L = '('
         PARENTHESIS_R = ')'
         BRACKET_L = '['
@@ -146,15 +119,6 @@ let-statement ::= modifier? KW_LET identifier (COLON type-expression)? EQ term-e
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }
-private world-element ::= SEMICOLON
-	| include
-	| import
-	| export
-	| while-statement
-	| define-type
-	| enum
-	| variant
-	| COMMENT_LINE
 // include wasi:keyvalue/imports@0.2.0-draft;
 include ::= KW_INCLUDE include-name {
 	pin = 1
@@ -246,15 +210,6 @@ string-literal ::= DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R;
 number-literal ::= INTEGER;
 
 
-private interface-element ::= SEMICOLON
-	| while-statement
-	| define-type
-	| declare-trait
-	| declare-struct
-	| flags
-	| enum
-	| variant
-	| function
 
 constructor ::= KW_CONSTRUCTOR tuple (TO type-hint)? {
 	pin = 1

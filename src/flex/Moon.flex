@@ -97,8 +97,12 @@ KW_WHILE = "while"
 }
 <YYINITIAL> {
 	{KW_TYPE}     { return KW_TYPE; }
-	{KW_TRAIT} { return KW_TRAIT; }
+
 	{KW_STRUCT} { return KW_STRUCT; }
+	{KW_ENUM}   { return KW_ENUM; }
+
+	{KW_TRAIT} { return KW_TRAIT; }
+
 
 	{KW_PUBLIC}    { return KW_PUBLIC; }
 	{KW_PRIVATE} { return KW_PRIVATE; }

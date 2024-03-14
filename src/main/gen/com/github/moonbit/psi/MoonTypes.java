@@ -1,10 +1,10 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi;
 
-import com.intellij.psi.tree.IElementType;
-import com.intellij.psi.PsiElement;
-import com.intellij.lang.ASTNode;
 import com.github.moonbit.psi_node.*;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.tree.IElementType;
 
 public interface MoonTypes {
 
@@ -76,10 +76,9 @@ public interface MoonTypes {
     IElementType BRACKET_R = new MoonTokenType("]");
     IElementType COLON = new MoonTokenType(":");
     IElementType COMMA = new MoonTokenType(",");
-    IElementType COMMENT = new MoonTokenType("Comment");
     IElementType COMMENT_BLOCK = new MoonTokenType("Comment Block");
     IElementType COMMENT_DOCUMENT = new MoonTokenType("Comment Document");
-    IElementType COMMENT_LINE = new MoonTokenType("COMMENT_LINE");
+    IElementType COMMENT_LINE = new MoonTokenType("Comment");
     IElementType DECLARE_VARIANT = new MoonTokenType("declare-variant");
     IElementType DOLLAR = new MoonTokenType("$");
     IElementType DOT = new MoonTokenType(".");
@@ -90,51 +89,39 @@ public interface MoonTypes {
     IElementType HYPHEN = new MoonTokenType("-");
     IElementType INTEGER = new MoonTokenType("INTEGER");
     IElementType INTERFACE_NAME = new MoonTokenType("interface-name");
-    IElementType KW_AS = new MoonTokenType("as");
-    IElementType KW_CONSTRUCTOR = new MoonTokenType("constructor");
+    IElementType KW_CONSTRUCTOR = new MoonTokenType("KW_CONSTRUCTOR");
     IElementType KW_DERIVE = new MoonTokenType("KW_DERIVE");
     IElementType KW_ELSE = new MoonTokenType("KW_ELSE");
-    IElementType KW_ENUM = new MoonTokenType("enum");
-    IElementType KW_EXPORT = new MoonTokenType("export");
-    IElementType KW_FLAGS = new MoonTokenType("flags");
+    IElementType KW_ENUM = new MoonTokenType("KW_ENUM");
+    IElementType KW_EXPORT = new MoonTokenType("KW_EXPORT");
+    IElementType KW_FLAGS = new MoonTokenType("KW_FLAGS");
     IElementType KW_FN = new MoonTokenType("KW_FN");
-    IElementType KW_FUNCTION = new MoonTokenType("func");
+    IElementType KW_FUNCTION = new MoonTokenType("KW_FUNCTION");
     IElementType KW_IF = new MoonTokenType("KW_IF");
-    IElementType KW_IMPORT = new MoonTokenType("import");
-    IElementType KW_INCLUDE = new MoonTokenType("include");
-    IElementType KW_INTERFACE = new MoonTokenType("interface");
+    IElementType KW_IMPORT = new MoonTokenType("KW_IMPORT");
+    IElementType KW_INCLUDE = new MoonTokenType("KW_INCLUDE");
     IElementType KW_LET = new MoonTokenType("KW_LET");
-    IElementType KW_PACKAGE = new MoonTokenType("package");
+    IElementType KW_PACKAGE = new MoonTokenType("KW_PACKAGE");
     IElementType KW_PRIVATE = new MoonTokenType("KW_PRIVATE");
     IElementType KW_PUBLIC = new MoonTokenType("KW_PUBLIC");
-    IElementType KW_RECORD = new MoonTokenType("record");
-    IElementType KW_RESOURCE = new MoonTokenType("resource");
     IElementType KW_STRUCT = new MoonTokenType("KW_STRUCT");
     IElementType KW_TEST = new MoonTokenType("KW_TEST");
     IElementType KW_TRAIT = new MoonTokenType("KW_TRAIT");
-    IElementType KW_TYPE = new MoonTokenType("type");
-    IElementType KW_USE = new MoonTokenType("use");
-    IElementType KW_VARIANT = new MoonTokenType("variant");
+    IElementType KW_TYPE = new MoonTokenType("KW_TYPE");
+    IElementType KW_VARIANT = new MoonTokenType("KW_VARIANT");
     IElementType KW_WHILE = new MoonTokenType("KW_WHILE");
-    IElementType KW_WORLD = new MoonTokenType("world");
     IElementType OP_ADD = new MoonTokenType("OP_ADD");
     IElementType OP_ADD_ASSIGN = new MoonTokenType("OP_ADD_ASSIGN");
     IElementType PARENTHESIS_L = new MoonTokenType("(");
     IElementType PARENTHESIS_R = new MoonTokenType(")");
     IElementType PLACE_HOLDER = new MoonTokenType("_");
-    IElementType REFERENCE = new MoonTokenType("$Symbol");
-    IElementType SELECTION_LINE = new MoonTokenType("SELECTION_LINE");
     IElementType SEMICOLON = new MoonTokenType(";");
     IElementType SLASH = new MoonTokenType("/");
     IElementType STAR = new MoonTokenType("*");
-    IElementType STRING_CHAR = new MoonTokenType("String Character");
-    IElementType STRING_ESCAPE = new MoonTokenType("String Escaped");
-    IElementType STRING_QUOTE = new MoonTokenType("String Quote");
     IElementType STRING_TEXT = new MoonTokenType("STRING_TEXT");
-    IElementType SYMBOL = new MoonTokenType("Symbol");
+    IElementType SYMBOL = new MoonTokenType("SYMBOL");
     IElementType TO = new MoonTokenType("->");
-    IElementType URL = new MoonTokenType("Url");
-    IElementType VERSION = new MoonTokenType("<<semver>>");
+    IElementType VERSION = new MoonTokenType("VERSION");
 
     class Factory {
         public static PsiElement createElement(ASTNode node) {

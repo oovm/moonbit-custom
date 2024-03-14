@@ -761,31 +761,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // SEMICOLON
-    // 	| while-statement
-    // 	| define-type
-    // 	| declare-trait
-    // 	| declare-struct
-    // 	| flags
-    // 	| enum
-    // 	| variant
-    // 	| function
-    static boolean interface_element(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "interface_element")) return false;
-        boolean r;
-        r = consumeToken(b, SEMICOLON);
-        if (!r) r = while_statement(b, l + 1);
-        if (!r) r = define_type(b, l + 1);
-        if (!r) r = declare_trait(b, l + 1);
-        if (!r) r = declare_struct(b, l + 1);
-        if (!r) r = flags(b, l + 1);
-        if (!r) r = consumeToken(b, ENUM);
-        if (!r) r = variant(b, l + 1);
-        if (!r) r = function(b, l + 1);
-        return r;
-    }
-
-    /* ********************************************************** */
     // modifier? KW_LET identifier (COLON type-expression)? EQ term-expression
     public static boolean let_statement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "let_statement")) return false;
@@ -1595,31 +1570,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
         r = p && function_body(b, l + 1) && r;
         exit_section_(b, l, m, r, p, null);
         return r || p;
-    }
-
-    /* ********************************************************** */
-    // SEMICOLON
-    // 	| include
-    // 	| import
-    // 	| export
-    // 	| while-statement
-    // 	| define-type
-    // 	| enum
-    // 	| variant
-    // 	| COMMENT_LINE
-    static boolean world_element(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "world_element")) return false;
-        boolean r;
-        r = consumeToken(b, SEMICOLON);
-        if (!r) r = include(b, l + 1);
-        if (!r) r = import_$(b, l + 1);
-        if (!r) r = export(b, l + 1);
-        if (!r) r = while_statement(b, l + 1);
-        if (!r) r = define_type(b, l + 1);
-        if (!r) r = consumeToken(b, ENUM);
-        if (!r) r = variant(b, l + 1);
-        if (!r) r = consumeToken(b, COMMENT_LINE);
-        return r;
     }
 
 }

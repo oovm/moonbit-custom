@@ -20,10 +20,13 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
 
     private fun getTokenColor(tokenType: IElementType): MoonColor? {
         return when (tokenType) {
-            KW_PACKAGE, KW_WORLD, KW_INTERFACE,
-            KW_INCLUDE, KW_USE, KW_IMPORT, KW_EXPORT, KW_AS,
-            KW_TYPE, KW_RESOURCE, KW_RECORD, KW_VARIANT, KW_FLAGS, KW_ENUM,
-            KW_FUNCTION, KW_CONSTRUCTOR,
+            KW_PACKAGE,
+            KW_INCLUDE, KW_IMPORT, KW_EXPORT,
+            KW_TYPE, KW_PUBLIC, KW_PRIVATE,
+            KW_VARIANT, KW_FLAGS, KW_ENUM,
+            KW_FN, KW_TEST,
+            KW_LET,
+
             -> MoonColor.KEYWORD
 
             PARENTHESIS_L, PARENTHESIS_R -> MoonColor.PARENTHESES
@@ -36,9 +39,9 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
             // atom
             VERSION -> MoonColor.NUMBER
 
-            SELECTION_LINE -> MoonColor.TEXT
-            STRING_QUOTE, STRING_CHAR -> MoonColor.STRING
-            STRING_ESCAPE -> MoonColor.STRING_ESCAPED
+//            SELECTION_LINE -> MoonColor.TEXT
+//            STRING_QUOTE, STRING_CHAR -> MoonColor.STRING
+//            STRING_ESCAPE -> MoonColor.STRING_ESCAPED
 //            STRING -> AwslColor.STRING
             SYMBOL -> MoonColor.IDENTIFIER
             // 注释
