@@ -53,6 +53,7 @@ KW_STRUCT  = "struct"
 
 KW_PUBLIC  = "pub"
 KW_PRIVATE = "priv"
+KW_MUTABLE = "mut"
 KW_LET     = "let"
 KW_FN      = "fn"
 
@@ -87,11 +88,25 @@ KW_WHILE = "while"
 	";" { return SEMICOLON; }
 	"$" { return DOLLAR; }
 	"@" { return AT; }
-	"/" { return SLASH; }
 	"." { return DOT; }
 	"," { return COMMA; }
-	"+=" { return OP_ADD_ASSIGN;}
-	"+" { return OP_ADD;}
+
+	"+=" { return OP_ADD_ASSIGN; }
+	"+" { return OP_ADD; }
+	"*" { return OP_MUL; }
+	"/" { return OP_DIV; }
+	"%" { return OP_MOD; }
+	"->" { return OP_TO; }
+
+	"<=" { return OP_LEQ; }
+	"<" { return OP_LT; }
+	">" { return OP_GT; }
+	">=" { return OP_GEQ; }
+
+	"~" { return OP_REF; }
+
+
+
 	"-" { return HYPHEN; }
 	"=" { return EQ; }
 }
@@ -106,6 +121,8 @@ KW_WHILE = "while"
 
 	{KW_PUBLIC}    { return KW_PUBLIC; }
 	{KW_PRIVATE} { return KW_PRIVATE; }
+
+	{KW_MUTABLE} { return KW_MUTABLE; }
 
 	{KW_LET}       { return KW_LET; }
 	{KW_FN}        { return KW_FN; }
