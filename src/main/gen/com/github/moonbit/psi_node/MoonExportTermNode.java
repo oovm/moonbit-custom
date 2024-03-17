@@ -25,6 +25,12 @@ public class MoonExportTermNode extends AnyMoonNode implements MoonExportTerm {
 
     @Override
     @Nullable
+    public MoonDeclareTest getDeclareTest() {
+        return findChildByClass(MoonDeclareTest.class);
+    }
+
+    @Override
+    @Nullable
     public MoonFunction getFunction() {
         return findChildByClass(MoonFunction.class);
     }
@@ -33,12 +39,6 @@ public class MoonExportTermNode extends AnyMoonNode implements MoonExportTerm {
     @Nullable
     public MoonIncludeName getIncludeName() {
         return findChildByClass(MoonIncludeName.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonTestStatement getTestStatement() {
-        return findChildByClass(MoonTestStatement.class);
     }
 
 }

@@ -10,6 +10,7 @@ public interface MoonTypes {
 
     IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
     IElementType CONTROL_BREAK = new MoonElementType("CONTROL_BREAK");
+    IElementType DECLARE_CLOSURE = new MoonElementType("DECLARE_CLOSURE");
     IElementType DECLARE_ENUM = new MoonElementType("DECLARE_ENUM");
     IElementType DECLARE_FIELD = new MoonElementType("DECLARE_FIELD");
     IElementType DECLARE_FUNCTION = new MoonElementType("DECLARE_FUNCTION");
@@ -17,6 +18,7 @@ public interface MoonTypes {
     IElementType DECLARE_METHOD = new MoonElementType("DECLARE_METHOD");
     IElementType DECLARE_PARAMETER = new MoonElementType("DECLARE_PARAMETER");
     IElementType DECLARE_STRUCT = new MoonElementType("DECLARE_STRUCT");
+    IElementType DECLARE_TEST = new MoonElementType("DECLARE_TEST");
     IElementType DECLARE_TRAIT = new MoonElementType("DECLARE_TRAIT");
     IElementType DEFINE_TYPE = new MoonElementType("DEFINE_TYPE");
     IElementType DERIVE_STATEMENT = new MoonElementType("DERIVE_STATEMENT");
@@ -25,6 +27,7 @@ public interface MoonTypes {
     IElementType EXPORT = new MoonElementType("EXPORT");
     IElementType EXPORT_TERM = new MoonElementType("EXPORT_TERM");
     IElementType FLAGS = new MoonElementType("FLAGS");
+    IElementType FOR_STATEMENT = new MoonElementType("FOR_STATEMENT");
     IElementType FUNCTION = new MoonElementType("FUNCTION");
     IElementType FUNCTION_BODY = new MoonElementType("FUNCTION_BODY");
     IElementType FUNCTION_ELEMENT = new MoonElementType("FUNCTION_ELEMENT");
@@ -52,7 +55,6 @@ public interface MoonTypes {
     IElementType TERM_INFIX = new MoonElementType("TERM_INFIX");
     IElementType TERM_PREFIX = new MoonElementType("TERM_PREFIX");
     IElementType TERM_SUFFIX = new MoonElementType("TERM_SUFFIX");
-    IElementType TEST_STATEMENT = new MoonElementType("TEST_STATEMENT");
     IElementType TRAIT_BODY = new MoonElementType("TRAIT_BODY");
     IElementType TUPLE = new MoonElementType("TUPLE");
     IElementType TYPE_EXPRESSION = new MoonElementType("TYPE_EXPRESSION");
@@ -98,6 +100,7 @@ public interface MoonTypes {
     IElementType KW_EXPORT = new MoonTokenType("KW_EXPORT");
     IElementType KW_FLAGS = new MoonTokenType("KW_FLAGS");
     IElementType KW_FN = new MoonTokenType("KW_FN");
+    IElementType KW_FOR = new MoonTokenType("KW_FOR");
     IElementType KW_FUNCTION = new MoonTokenType("KW_FUNCTION");
     IElementType KW_IF = new MoonTokenType("KW_IF");
     IElementType KW_IMPORT = new MoonTokenType("KW_IMPORT");
@@ -142,6 +145,8 @@ public interface MoonTypes {
                 return new MoonConstructorNode(node);
             } else if (type == CONTROL_BREAK) {
                 return new MoonControlBreakNode(node);
+            } else if (type == DECLARE_CLOSURE) {
+                return new MoonDeclareClosureNode(node);
             } else if (type == DECLARE_ENUM) {
                 return new MoonDeclareEnumNode(node);
             } else if (type == DECLARE_FIELD) {
@@ -156,6 +161,8 @@ public interface MoonTypes {
                 return new MoonDeclareParameterNode(node);
             } else if (type == DECLARE_STRUCT) {
                 return new MoonDeclareStructNode(node);
+            } else if (type == DECLARE_TEST) {
+                return new MoonDeclareTestNode(node);
             } else if (type == DECLARE_TRAIT) {
                 return new MoonDeclareTraitNode(node);
             } else if (type == DEFINE_TYPE) {
@@ -172,6 +179,8 @@ public interface MoonTypes {
                 return new MoonExportTermNode(node);
             } else if (type == FLAGS) {
                 return new MoonFlagsNode(node);
+            } else if (type == FOR_STATEMENT) {
+                return new MoonForStatementNode(node);
             } else if (type == FUNCTION) {
                 return new MoonFunctionNode(node);
             } else if (type == FUNCTION_BODY) {
@@ -226,8 +235,6 @@ public interface MoonTypes {
                 return new MoonTermPrefixNode(node);
             } else if (type == TERM_SUFFIX) {
                 return new MoonTermSuffixNode(node);
-            } else if (type == TEST_STATEMENT) {
-                return new MoonTestStatementNode(node);
             } else if (type == TRAIT_BODY) {
                 return new MoonTraitBodyNode(node);
             } else if (type == TUPLE) {
