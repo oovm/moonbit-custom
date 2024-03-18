@@ -14,20 +14,32 @@ import static com.github.moonbit.psi.MoonTypes.*;
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
-public class MoonTypePrefixNode extends AnyMoonNode implements MoonTypePrefix {
+public class MoonMatchStatementNode extends AnyMoonNode implements MoonMatchStatement {
 
-    public MoonTypePrefixNode(@NotNull ASTNode node) {
+    public MoonMatchStatementNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitTypePrefix(this);
+        visitor.visitMatchStatement(this);
     }
 
     @Override
     public void accept(@NotNull PsiElementVisitor visitor) {
         if (visitor instanceof MoonVisitor) accept((MoonVisitor) visitor);
         else super.accept(visitor);
+    }
+
+    @Override
+    @Nullable
+    public MoonMatchBody getMatchBody() {
+        return findChildByClass(MoonMatchBody.class);
+    }
+
+    @Override
+    @Nullable
+    public MoonTermExpression getTermExpression() {
+        return findChildByClass(MoonTermExpression.class);
     }
 
 }
