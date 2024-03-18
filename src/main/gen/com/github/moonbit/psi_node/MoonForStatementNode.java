@@ -14,14 +14,14 @@ import static com.github.moonbit.psi.MoonTypes.*;
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
-public class MoonVariantItemNode extends AnyMoonNode implements MoonVariantItem {
+public class MoonForStatementNode extends AnyMoonNode implements MoonForStatement {
 
-    public MoonVariantItemNode(@NotNull ASTNode node) {
+    public MoonForStatementNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitVariantItem(this);
+        visitor.visitForStatement(this);
     }
 
     @Override
@@ -32,14 +32,26 @@ public class MoonVariantItemNode extends AnyMoonNode implements MoonVariantItem 
 
     @Override
     @NotNull
-    public MoonIdentifier getIdentifier() {
-        return findNotNullChildByClass(MoonIdentifier.class);
+    public MoonForCondition getForCondition() {
+        return findNotNullChildByClass(MoonForCondition.class);
     }
 
     @Override
-    @Nullable
-    public MoonTypeHint getTypeHint() {
-        return findChildByClass(MoonTypeHint.class);
+    @NotNull
+    public MoonForIncrement getForIncrement() {
+        return findNotNullChildByClass(MoonForIncrement.class);
+    }
+
+    @Override
+    @NotNull
+    public MoonForStartup getForStartup() {
+        return findNotNullChildByClass(MoonForStartup.class);
+    }
+
+    @Override
+    @NotNull
+    public MoonFunctionBody getFunctionBody() {
+        return findNotNullChildByClass(MoonFunctionBody.class);
     }
 
 }

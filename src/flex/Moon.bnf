@@ -60,6 +60,7 @@ private statements ::= SEMICOLON
 	| declare-closure
 	| declare-test
 	| while-statement
+	| for-statement
 	| if-statement
 
 // package wasi:blobstore@0.2.0-draft;
@@ -176,8 +177,10 @@ else-statement ::= KW_ELSE function-body {
 while-statement ::= KW_WHILE term-expression function-body {
 	pin = 1
 }
-for-statement  ::= KW_FOR term-expression COLON term-expression COLON term-expression function-body;
-
+for-statement  ::= KW_FOR for-startup for-condition for-increment function-body;
+for-startup    ::= term-expression COLON;
+for-condition  ::= term-expression COLON;
+for-increment  ::= term-expression;
 // =====================================================================================================================
 
 
@@ -191,11 +194,22 @@ term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
 	| number-literal
 
 term-prefix ::= OP_ADD | OP_SUB | OP_REF;
-term-infix  ::=
-	  OP_ADD | OP_SUB | OP_MUL | OP_DIV | OP_ADD_ASSIGN
-	| OP_LEQ | OP_LE | OP_GEQ | OP_GE
-	;
-term-suffix ::= "?"
+term-infix  ::= OP_ASSIGN
+	| OP_ADD | OP_ADD_ASSIGN
+	| OP_SUB
+	| OP_MUL
+	| OP_DIV
+	| OP_LE | OP_LEQ
+	| OP_GE | OP_GEQ
+term-suffix   ::= OP_THROW
+	| call-method
+	| call-field
+	| call-function
+	| call-index
+call-function ::= PARENTHESIS_L term-expression (COMMA term-expression)* PARENTHESIS_R;
+call-method   ::= DOT call-function
+call-field    ::= DOT identifier
+call-index    ::= BRACKET_L term-expression (COMMA term-expression)* BRACKET_R;
 // =====================================================================================================================
 type-expression ::= type-expression-item (type-infix type-expression-item)*;
 type-expression-item ::= type-prefix* type-expression-atom type-suffix*;

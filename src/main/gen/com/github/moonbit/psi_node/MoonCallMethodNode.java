@@ -1,20 +1,22 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.*;
+import com.github.moonbit.psi.AnyMoonNode;
+import com.github.moonbit.psi.MoonCallFunction;
+import com.github.moonbit.psi.MoonCallMethod;
+import com.github.moonbit.psi.MoonVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class MoonTermSuffixNode extends AnyMoonNode implements MoonTermSuffix {
+public class MoonCallMethodNode extends AnyMoonNode implements MoonCallMethod {
 
-    public MoonTermSuffixNode(@NotNull ASTNode node) {
+    public MoonCallMethodNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitTermSuffix(this);
+        visitor.visitCallMethod(this);
     }
 
     @Override
@@ -24,15 +26,9 @@ public class MoonTermSuffixNode extends AnyMoonNode implements MoonTermSuffix {
     }
 
     @Override
-    @Nullable
+    @NotNull
     public MoonCallFunction getCallFunction() {
-        return findChildByClass(MoonCallFunction.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonCallIndex getCallIndex() {
-        return findChildByClass(MoonCallIndex.class);
+        return findNotNullChildByClass(MoonCallFunction.class);
     }
 
 }

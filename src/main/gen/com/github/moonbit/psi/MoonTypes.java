@@ -8,6 +8,10 @@ import com.intellij.psi.tree.IElementType;
 
 public interface MoonTypes {
 
+    IElementType CALL_FIELD = new MoonElementType("CALL_FIELD");
+    IElementType CALL_FUNCTION = new MoonElementType("CALL_FUNCTION");
+    IElementType CALL_INDEX = new MoonElementType("CALL_INDEX");
+    IElementType CALL_METHOD = new MoonElementType("CALL_METHOD");
     IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
     IElementType CONTROL_BREAK = new MoonElementType("CONTROL_BREAK");
     IElementType DECLARE_CLOSURE = new MoonElementType("DECLARE_CLOSURE");
@@ -27,6 +31,9 @@ public interface MoonTypes {
     IElementType EXPORT = new MoonElementType("EXPORT");
     IElementType EXPORT_TERM = new MoonElementType("EXPORT_TERM");
     IElementType FLAGS = new MoonElementType("FLAGS");
+    IElementType FOR_CONDITION = new MoonElementType("FOR_CONDITION");
+    IElementType FOR_INCREMENT = new MoonElementType("FOR_INCREMENT");
+    IElementType FOR_STARTUP = new MoonElementType("FOR_STARTUP");
     IElementType FOR_STATEMENT = new MoonElementType("FOR_STATEMENT");
     IElementType FUNCTION = new MoonElementType("FUNCTION");
     IElementType FUNCTION_BODY = new MoonElementType("FUNCTION_BODY");
@@ -118,6 +125,7 @@ public interface MoonTypes {
     IElementType KW_WHILE = new MoonTokenType("KW_WHILE");
     IElementType OP_ADD = new MoonTokenType("OP_ADD");
     IElementType OP_ADD_ASSIGN = new MoonTokenType("OP_ADD_ASSIGN");
+    IElementType OP_ASSIGN = new MoonTokenType("OP_ASSIGN");
     IElementType OP_DIV = new MoonTokenType("OP_DIV");
     IElementType OP_GE = new MoonTokenType("OP_GE");
     IElementType OP_GEQ = new MoonTokenType("OP_GEQ");
@@ -126,6 +134,7 @@ public interface MoonTypes {
     IElementType OP_MUL = new MoonTokenType("OP_MUL");
     IElementType OP_REF = new MoonTokenType("OP_REF");
     IElementType OP_SUB = new MoonTokenType("OP_SUB");
+    IElementType OP_THROW = new MoonTokenType("OP_THROW");
     IElementType OP_TO = new MoonTokenType("OP_TO");
     IElementType PARENTHESIS_L = new MoonTokenType("(");
     IElementType PARENTHESIS_R = new MoonTokenType(")");
@@ -141,7 +150,15 @@ public interface MoonTypes {
     class Factory {
         public static PsiElement createElement(ASTNode node) {
             IElementType type = node.getElementType();
-            if (type == CONSTRUCTOR) {
+            if (type == CALL_FIELD) {
+                return new MoonCallFieldNode(node);
+            } else if (type == CALL_FUNCTION) {
+                return new MoonCallFunctionNode(node);
+            } else if (type == CALL_INDEX) {
+                return new MoonCallIndexNode(node);
+            } else if (type == CALL_METHOD) {
+                return new MoonCallMethodNode(node);
+            } else if (type == CONSTRUCTOR) {
                 return new MoonConstructorNode(node);
             } else if (type == CONTROL_BREAK) {
                 return new MoonControlBreakNode(node);
@@ -179,6 +196,12 @@ public interface MoonTypes {
                 return new MoonExportTermNode(node);
             } else if (type == FLAGS) {
                 return new MoonFlagsNode(node);
+            } else if (type == FOR_CONDITION) {
+                return new MoonForConditionNode(node);
+            } else if (type == FOR_INCREMENT) {
+                return new MoonForIncrementNode(node);
+            } else if (type == FOR_STARTUP) {
+                return new MoonForStartupNode(node);
             } else if (type == FOR_STATEMENT) {
                 return new MoonForStatementNode(node);
             } else if (type == FUNCTION) {
