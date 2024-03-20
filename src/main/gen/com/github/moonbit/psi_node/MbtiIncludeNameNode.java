@@ -1,18 +1,16 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import java.util.List;
-
-import org.jetbrains.annotations.*;
+import com.github.moonbit.psi.AnyMbtiNode;
+import com.github.moonbit.psi.MbtiIdentifier;
+import com.github.moonbit.psi.MbtiIncludeName;
+import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
+import org.jetbrains.annotations.NotNull;
 
-import static com.github.moonbit.psi.MbtiTypes.*;
-
-import com.github.moonbit.psi.AnyMbtiNode;
-import com.github.moonbit.psi.*;
+import java.util.List;
 
 public class MbtiIncludeNameNode extends AnyMbtiNode implements MbtiIncludeName {
 
@@ -34,12 +32,6 @@ public class MbtiIncludeNameNode extends AnyMbtiNode implements MbtiIncludeName 
     @NotNull
     public List<MbtiIdentifier> getIdentifierList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiIdentifier.class);
-    }
-
-    @Override
-    @Nullable
-    public MbtiPackageVersion getPackageVersion() {
-        return findChildByClass(MbtiPackageVersion.class);
     }
 
 }

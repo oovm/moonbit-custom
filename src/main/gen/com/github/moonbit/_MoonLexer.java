@@ -6,9 +6,9 @@ package com.github.moonbit;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 
+import static com.github.moonbit.psi.MoonTypes.*;
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
-import static com.github.moonbit.psi.MoonTypes.*;
 
 
 public class _MoonLexer implements FlexLexer {

@@ -1,17 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.parser;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
+import com.intellij.lang.PsiParser;
+import com.intellij.psi.tree.IElementType;
 
 import static com.github.moonbit.psi.MbtiTypes.*;
 import static com.github.moonbit.psi.MoonParserExtension.*;
-
-import com.intellij.psi.tree.IElementType;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.tree.TokenSet;
-import com.intellij.lang.PsiParser;
-import com.intellij.lang.LightPsiParser;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class MbtiParser implements PsiParser, LightPsiParser {
@@ -35,6 +33,70 @@ public class MbtiParser implements PsiParser, LightPsiParser {
 
     static boolean parse_root_(IElementType t, PsiBuilder b, int l) {
         return mbti(b, l + 1);
+    }
+
+    /* ********************************************************** */
+    // KW_ALIAS PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
+    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
+    // }
+    public static boolean alias_statement(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "alias_statement")) return false;
+        if (!nextTokenIs(b, KW_ALIAS)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeTokens(b, 0, KW_ALIAS, PARENTHESIS_L);
+        r = r && alias_statement_2(b, l + 1);
+        r = r && consumeToken(b, PARENTHESIS_R);
+        r = r && alias_statement_4(b, l + 1);
+        exit_section_(b, m, ALIAS_STATEMENT, r);
+        return r;
+    }
+
+    // (identifier (COMMA identifier)*)?
+    private static boolean alias_statement_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "alias_statement_2")) return false;
+        alias_statement_2_0(b, l + 1);
+        return true;
+    }
+
+    // identifier (COMMA identifier)*
+    private static boolean alias_statement_2_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "alias_statement_2_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = identifier(b, l + 1);
+        r = r && alias_statement_2_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (COMMA identifier)*
+    private static boolean alias_statement_2_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "alias_statement_2_0_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!alias_statement_2_0_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "alias_statement_2_0_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA identifier
+    private static boolean alias_statement_2_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "alias_statement_2_0_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && identifier(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // {
+    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
+    // }
+    private static boolean alias_statement_4(PsiBuilder b, int l) {
+        return true;
     }
 
     /* ********************************************************** */
@@ -199,7 +261,7 @@ public class MbtiParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // KW_ENUM identifier enum-body derive-statement?
+    // KW_ENUM identifier enum-body alias-statement?
     public static boolean declare_enum(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_enum")) return false;
         if (!nextTokenIs(b, KW_ENUM)) return false;
@@ -214,10 +276,10 @@ public class MbtiParser implements PsiParser, LightPsiParser {
         return r || p;
     }
 
-    // derive-statement?
+    // alias-statement?
     private static boolean declare_enum_3(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_enum_3")) return false;
-        derive_statement(b, l + 1);
+        alias_statement(b, l + 1);
         return true;
     }
 
@@ -335,18 +397,80 @@ public class MbtiParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // identifier COLON function-signature {
+    // KW_IMPL identifier BRACE_L (semantic-number (COMMA semantic-number)* COMMA?)? BRACE_R
+    public static boolean declare_impl(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_impl")) return false;
+        if (!nextTokenIs(b, KW_IMPL)) return false;
+        boolean r, p;
+        Marker m = enter_section_(b, l, _NONE_, DECLARE_IMPL, null);
+        r = consumeToken(b, KW_IMPL);
+        p = r; // pin = 1
+        r = r && report_error_(b, identifier(b, l + 1));
+        r = p && report_error_(b, consumeToken(b, BRACE_L)) && r;
+        r = p && report_error_(b, declare_impl_3(b, l + 1)) && r;
+        r = p && consumeToken(b, BRACE_R) && r;
+        exit_section_(b, l, m, r, p, null);
+        return r || p;
+    }
+
+    // (semantic-number (COMMA semantic-number)* COMMA?)?
+    private static boolean declare_impl_3(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_impl_3")) return false;
+        declare_impl_3_0(b, l + 1);
+        return true;
+    }
+
+    // semantic-number (COMMA semantic-number)* COMMA?
+    private static boolean declare_impl_3_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_impl_3_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = semantic_number(b, l + 1);
+        r = r && declare_impl_3_0_1(b, l + 1);
+        r = r && declare_impl_3_0_2(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (COMMA semantic-number)*
+    private static boolean declare_impl_3_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_impl_3_0_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!declare_impl_3_0_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "declare_impl_3_0_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA semantic-number
+    private static boolean declare_impl_3_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_impl_3_0_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && semantic_number(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // COMMA?
+    private static boolean declare_impl_3_0_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_impl_3_0_2")) return false;
+        consumeToken(b, COMMA);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // function-signature {
     // //	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
     // }
     public static boolean declare_method(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_method")) return false;
-        if (!nextTokenIs(b, "<declare method>", ESCAPED, SYMBOL)) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, DECLARE_METHOD, "<declare method>");
-        r = identifier(b, l + 1);
-        r = r && consumeToken(b, COLON);
-        r = r && function_signature(b, l + 1);
-        r = r && declare_method_3(b, l + 1);
+        r = function_signature(b, l + 1);
+        r = r && declare_method_1(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
@@ -354,8 +478,22 @@ public class MbtiParser implements PsiParser, LightPsiParser {
     // {
     // //	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
     // }
-    private static boolean declare_method_3(PsiBuilder b, int l) {
+    private static boolean declare_method_1(PsiBuilder b, int l) {
         return true;
+    }
+
+    /* ********************************************************** */
+    // KW_PACKAGE package-path
+    public static boolean declare_package(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_package")) return false;
+        if (!nextTokenIs(b, KW_PACKAGE)) return false;
+        boolean r, p;
+        Marker m = enter_section_(b, l, _NONE_, DECLARE_PACKAGE, null);
+        r = consumeToken(b, KW_PACKAGE);
+        p = r; // pin = 1
+        r = r && package_path(b, l + 1);
+        exit_section_(b, l, m, r, p, null);
+        return r || p;
     }
 
     /* ********************************************************** */
@@ -372,29 +510,6 @@ public class MbtiParser implements PsiParser, LightPsiParser {
         r = r && consumeToken(b, PARENTHESIS_R);
         exit_section_(b, m, DECLARE_PARAMETER, r);
         return r;
-    }
-
-    /* ********************************************************** */
-    // KW_STRUCT identifier struct-body derive-statement?
-    public static boolean declare_struct(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "declare_struct")) return false;
-        if (!nextTokenIs(b, KW_STRUCT)) return false;
-        boolean r, p;
-        Marker m = enter_section_(b, l, _NONE_, DECLARE_STRUCT, null);
-        r = consumeToken(b, KW_STRUCT);
-        p = r; // pin = 1
-        r = r && report_error_(b, identifier(b, l + 1));
-        r = p && report_error_(b, struct_body(b, l + 1)) && r;
-        r = p && declare_struct_3(b, l + 1) && r;
-        exit_section_(b, l, m, r, p, null);
-        return r || p;
-    }
-
-    // derive-statement?
-    private static boolean declare_struct_3(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "declare_struct_3")) return false;
-        derive_statement(b, l + 1);
-        return true;
     }
 
     /* ********************************************************** */
@@ -428,6 +543,20 @@ public class MbtiParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // KW_TYPE identifier
+    public static boolean declare_type(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_type")) return false;
+        if (!nextTokenIs(b, KW_TYPE)) return false;
+        boolean r, p;
+        Marker m = enter_section_(b, l, _NONE_, DECLARE_TYPE, null);
+        r = consumeToken(b, KW_TYPE);
+        p = r; // pin = 1
+        r = r && identifier(b, l + 1);
+        exit_section_(b, l, m, r, p, null);
+        return r || p;
+    }
+
+    /* ********************************************************** */
     // KW_TYPE identifier EQ type-hint
     public static boolean define_type(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "define_type")) return false;
@@ -441,70 +570,6 @@ public class MbtiParser implements PsiParser, LightPsiParser {
         r = p && type_hint(b, l + 1) && r;
         exit_section_(b, l, m, r, p, null);
         return r || p;
-    }
-
-    /* ********************************************************** */
-    // KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
-    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
-    // }
-    public static boolean derive_statement(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement")) return false;
-        if (!nextTokenIs(b, KW_DERIVE)) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeTokens(b, 0, KW_DERIVE, PARENTHESIS_L);
-        r = r && derive_statement_2(b, l + 1);
-        r = r && consumeToken(b, PARENTHESIS_R);
-        r = r && derive_statement_4(b, l + 1);
-        exit_section_(b, m, DERIVE_STATEMENT, r);
-        return r;
-    }
-
-    // (identifier (COMMA identifier)*)?
-    private static boolean derive_statement_2(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement_2")) return false;
-        derive_statement_2_0(b, l + 1);
-        return true;
-    }
-
-    // identifier (COMMA identifier)*
-    private static boolean derive_statement_2_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement_2_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = identifier(b, l + 1);
-        r = r && derive_statement_2_0_1(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
-
-    // (COMMA identifier)*
-    private static boolean derive_statement_2_0_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement_2_0_1")) return false;
-        while (true) {
-            int c = current_position_(b);
-            if (!derive_statement_2_0_1_0(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "derive_statement_2_0_1", c)) break;
-        }
-        return true;
-    }
-
-    // COMMA identifier
-    private static boolean derive_statement_2_0_1_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement_2_0_1_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, COMMA);
-        r = r && identifier(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
-
-    // {
-    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
-    // }
-    private static boolean derive_statement_4(PsiBuilder b, int l) {
-        return true;
     }
 
     /* ********************************************************** */
@@ -588,71 +653,6 @@ public class MbtiParser implements PsiParser, LightPsiParser {
         if (!r) r = include_name(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
-    }
-
-    /* ********************************************************** */
-    // KW_FLAGS identifier BRACE_L (semantic-number (COMMA semantic-number)* COMMA?)? BRACE_R
-    public static boolean flags(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "flags")) return false;
-        if (!nextTokenIs(b, KW_FLAGS)) return false;
-        boolean r, p;
-        Marker m = enter_section_(b, l, _NONE_, FLAGS, null);
-        r = consumeToken(b, KW_FLAGS);
-        p = r; // pin = 1
-        r = r && report_error_(b, identifier(b, l + 1));
-        r = p && report_error_(b, consumeToken(b, BRACE_L)) && r;
-        r = p && report_error_(b, flags_3(b, l + 1)) && r;
-        r = p && consumeToken(b, BRACE_R) && r;
-        exit_section_(b, l, m, r, p, null);
-        return r || p;
-    }
-
-    // (semantic-number (COMMA semantic-number)* COMMA?)?
-    private static boolean flags_3(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "flags_3")) return false;
-        flags_3_0(b, l + 1);
-        return true;
-    }
-
-    // semantic-number (COMMA semantic-number)* COMMA?
-    private static boolean flags_3_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "flags_3_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = semantic_number(b, l + 1);
-        r = r && flags_3_0_1(b, l + 1);
-        r = r && flags_3_0_2(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
-
-    // (COMMA semantic-number)*
-    private static boolean flags_3_0_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "flags_3_0_1")) return false;
-        while (true) {
-            int c = current_position_(b);
-            if (!flags_3_0_1_0(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "flags_3_0_1", c)) break;
-        }
-        return true;
-    }
-
-    // COMMA semantic-number
-    private static boolean flags_3_0_1_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "flags_3_0_1_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, COMMA);
-        r = r && semantic_number(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
-
-    // COMMA?
-    private static boolean flags_3_0_2(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "flags_3_0_2")) return false;
-        consumeToken(b, COMMA);
-        return true;
     }
 
     /* ********************************************************** */
@@ -946,6 +946,46 @@ public class MbtiParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // BRACE_L impl-element* BRACE_R
+    public static boolean impl_body(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "impl_body")) return false;
+        if (!nextTokenIs(b, BRACE_L)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, BRACE_L);
+        r = r && impl_body_1(b, l + 1);
+        r = r && consumeToken(b, BRACE_R);
+        exit_section_(b, m, IMPL_BODY, r);
+        return r;
+    }
+
+    // impl-element*
+    private static boolean impl_body_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "impl_body_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!impl_element(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "impl_body_1", c)) break;
+        }
+        return true;
+    }
+
+    /* ********************************************************** */
+    // declare-function
+    //   | declare-method
+    //   | constructor
+    //   | SEMICOLON
+    static boolean impl_element(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "impl_element")) return false;
+        boolean r;
+        r = declare_function(b, l + 1);
+        if (!r) r = declare_method(b, l + 1);
+        if (!r) r = constructor(b, l + 1);
+        if (!r) r = consumeToken(b, SEMICOLON);
+        return r;
+    }
+
+    /* ********************************************************** */
     // KW_IMPORT export-term
     public static boolean import_$(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "import_$")) return false;
@@ -1023,7 +1063,7 @@ public class MbtiParser implements PsiParser, LightPsiParser {
     // package-version?
     private static boolean include_name_0_3(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "include_name_0_3")) return false;
-        package_version(b, l + 1);
+        consumeToken(b, PACKAGE_VERSION);
         return true;
     }
 
@@ -1186,71 +1226,37 @@ public class MbtiParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // KW_PACKAGE package-name
-    public static boolean package_$(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "package_$")) return false;
-        if (!nextTokenIs(b, KW_PACKAGE)) return false;
-        boolean r, p;
-        Marker m = enter_section_(b, l, _NONE_, PACKAGE, null);
-        r = consumeToken(b, KW_PACKAGE);
-        p = r; // pin = 1
-        r = r && package_name(b, l + 1);
-        exit_section_(b, l, m, r, p, null);
-        return r || p;
-    }
-
-    /* ********************************************************** */
-    // module-name (COLON module-name)* package-version?
-    public static boolean package_name(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "package_name")) return false;
-        if (!nextTokenIs(b, "<package name>", ESCAPED, SYMBOL)) return false;
+    // identifier (OP_DIV identifier)*
+    public static boolean package_path(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "package_path")) return false;
+        if (!nextTokenIs(b, "<package path>", ESCAPED, SYMBOL)) return false;
         boolean r;
-        Marker m = enter_section_(b, l, _NONE_, PACKAGE_NAME, "<package name>");
-        r = module_name(b, l + 1);
-        r = r && package_name_1(b, l + 1);
-        r = r && package_name_2(b, l + 1);
+        Marker m = enter_section_(b, l, _NONE_, PACKAGE_PATH, "<package path>");
+        r = identifier(b, l + 1);
+        r = r && package_path_1(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
 
-    // (COLON module-name)*
-    private static boolean package_name_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "package_name_1")) return false;
+    // (OP_DIV identifier)*
+    private static boolean package_path_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "package_path_1")) return false;
         while (true) {
             int c = current_position_(b);
-            if (!package_name_1_0(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "package_name_1", c)) break;
+            if (!package_path_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "package_path_1", c)) break;
         }
         return true;
     }
 
-    // COLON module-name
-    private static boolean package_name_1_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "package_name_1_0")) return false;
+    // OP_DIV identifier
+    private static boolean package_path_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "package_path_1_0")) return false;
         boolean r;
         Marker m = enter_section_(b);
-        r = consumeToken(b, COLON);
-        r = r && module_name(b, l + 1);
+        r = consumeToken(b, OP_DIV);
+        r = r && identifier(b, l + 1);
         exit_section_(b, m, null, r);
-        return r;
-    }
-
-    // package-version?
-    private static boolean package_name_2(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "package_name_2")) return false;
-        package_version(b, l + 1);
-        return true;
-    }
-
-    /* ********************************************************** */
-    // AT VERSION
-    public static boolean package_version(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "package_version")) return false;
-        if (!nextTokenIs(b, AT)) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeTokens(b, 0, AT, VERSION);
-        exit_section_(b, m, PACKAGE_VERSION, r);
         return r;
     }
 
@@ -1277,19 +1283,6 @@ public class MbtiParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // declare-method
-    //   | constructor
-    //   | SEMICOLON
-    static boolean resource_element(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "resource_element")) return false;
-        boolean r;
-        r = declare_method(b, l + 1);
-        if (!r) r = constructor(b, l + 1);
-        if (!r) r = consumeToken(b, SEMICOLON);
-        return r;
-    }
-
-    /* ********************************************************** */
     // SYMBOL | ESCAPED
     public static boolean semantic_number(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "semantic_number")) return false;
@@ -1304,10 +1297,11 @@ public class MbtiParser implements PsiParser, LightPsiParser {
 
     /* ********************************************************** */
     // SEMICOLON
-    //     | package
-    // 	| declare-struct
+    //     | declare-package
+    // 	| declare-type
     // 	| declare-enum
     // 	| declare-trait
+    // 	| declare-impl
     // 	| let-statement
     // 	| declare-function
     // 	| declare-closure
@@ -1320,10 +1314,11 @@ public class MbtiParser implements PsiParser, LightPsiParser {
         if (!recursion_guard_(b, l, "statements")) return false;
         boolean r;
         r = consumeToken(b, SEMICOLON);
-        if (!r) r = package_$(b, l + 1);
-        if (!r) r = declare_struct(b, l + 1);
+        if (!r) r = declare_package(b, l + 1);
+        if (!r) r = declare_type(b, l + 1);
         if (!r) r = declare_enum(b, l + 1);
         if (!r) r = declare_trait(b, l + 1);
+        if (!r) r = declare_impl(b, l + 1);
         if (!r) r = let_statement(b, l + 1);
         if (!r) r = declare_function(b, l + 1);
         if (!r) r = declare_closure(b, l + 1);
@@ -1344,44 +1339,6 @@ public class MbtiParser implements PsiParser, LightPsiParser {
         Marker m = enter_section_(b);
         r = consumeTokens(b, 0, DOUBLE_QUOTE_L, STRING_TEXT, DOUBLE_QUOTE_R);
         exit_section_(b, m, STRING_LITERAL, r);
-        return r;
-    }
-
-    /* ********************************************************** */
-    // BRACE_L struct-element* BRACE_R
-    public static boolean struct_body(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "struct_body")) return false;
-        if (!nextTokenIs(b, BRACE_L)) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, BRACE_L);
-        r = r && struct_body_1(b, l + 1);
-        r = r && consumeToken(b, BRACE_R);
-        exit_section_(b, m, STRUCT_BODY, r);
-        return r;
-    }
-
-    // struct-element*
-    private static boolean struct_body_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "struct_body_1")) return false;
-        while (true) {
-            int c = current_position_(b);
-            if (!struct_element(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "struct_body_1", c)) break;
-        }
-        return true;
-    }
-
-    /* ********************************************************** */
-    // COMMA
-    // 	| declare-field
-    // 	| declare-method
-    static boolean struct_element(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "struct_element")) return false;
-        boolean r;
-        r = consumeToken(b, COMMA);
-        if (!r) r = declare_field(b, l + 1);
-        if (!r) r = declare_method(b, l + 1);
         return r;
     }
 
