@@ -156,9 +156,6 @@ generic-item ::= identifier (COLON type-expression)?;
 declare-closure  ::= KW_FN declare-parameter function-body {
 	pin = 1
 }
-
-
-
 // =====================================================================================================================
 declare-test ::= KW_TEST string-literal function-body {
 	pin = 1

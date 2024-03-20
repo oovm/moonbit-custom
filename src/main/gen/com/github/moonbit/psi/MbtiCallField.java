@@ -1,12 +1,14 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi;
 
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
+import java.util.List;
 
-public interface MoonCalField extends PsiElement {
+import org.jetbrains.annotations.*;
+import com.intellij.psi.PsiElement;
+
+public interface MbtiCallField extends PsiElement {
 
     @NotNull
-    MoonIdentifier getIdentifier();
+    MbtiIdentifier getIdentifier();
 
 }
