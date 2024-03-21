@@ -9,16 +9,4 @@ public interface MbtiFunctionElement extends PsiElement {
     @Nullable
     MbtiDeclareFunction getDeclareFunction();
 
-    @Nullable
-    MbtiDeclareTest getDeclareTest();
-
-    @Nullable
-    MbtiIfStatement getIfStatement();
-
-    @Nullable
-    MbtiLetStatement getLetStatement();
-
-    @Nullable
-    MbtiWhileStatement getWhileStatement();
-
 }

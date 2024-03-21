@@ -4,9 +4,11 @@ package com.github.moonbit.psi;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 
-public interface MoonForIncrement extends PsiElement {
+import java.util.List;
+
+public interface MbtiDeclareVariant extends PsiElement {
 
     @NotNull
-    MoonTermExpression getTermExpression();
+    List<MbtiIdentifier> getIdentifierList();
 
 }

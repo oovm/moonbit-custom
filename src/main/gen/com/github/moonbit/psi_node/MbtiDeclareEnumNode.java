@@ -25,12 +25,6 @@ public class MbtiDeclareEnumNode extends AnyMbtiNode implements MbtiDeclareEnum 
 
     @Override
     @Nullable
-    public MbtiAliasStatement getAliasStatement() {
-        return findChildByClass(MbtiAliasStatement.class);
-    }
-
-    @Override
-    @Nullable
     public MbtiEnumBody getEnumBody() {
         return findChildByClass(MbtiEnumBody.class);
     }

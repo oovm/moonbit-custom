@@ -2,11 +2,7 @@
 package com.github.moonbit.psi;
 
 import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
 
 public interface MbtiDeclareMethod extends PsiElement {
-
-    @NotNull
-    MbtiFunctionSignature getFunctionSignature();
 
 }

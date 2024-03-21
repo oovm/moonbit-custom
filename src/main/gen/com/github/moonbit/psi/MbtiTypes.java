@@ -9,13 +9,6 @@ import com.intellij.psi.tree.IElementType;
 public interface MbtiTypes {
 
     IElementType ALIAS_STATEMENT = new MoonElementType("ALIAS_STATEMENT");
-    IElementType CALL_FIELD = new MoonElementType("CALL_FIELD");
-    IElementType CALL_FUNCTION = new MoonElementType("CALL_FUNCTION");
-    IElementType CALL_INDEX = new MoonElementType("CALL_INDEX");
-    IElementType CALL_METHOD = new MoonElementType("CALL_METHOD");
-    IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
-    IElementType CONTROL_BREAK = new MoonElementType("CONTROL_BREAK");
-    IElementType DECLARE_CLOSURE = new MoonElementType("DECLARE_CLOSURE");
     IElementType DECLARE_ENUM = new MoonElementType("DECLARE_ENUM");
     IElementType DECLARE_FIELD = new MoonElementType("DECLARE_FIELD");
     IElementType DECLARE_FUNCTION = new MoonElementType("DECLARE_FUNCTION");
@@ -24,60 +17,26 @@ public interface MbtiTypes {
     IElementType DECLARE_METHOD = new MoonElementType("DECLARE_METHOD");
     IElementType DECLARE_PACKAGE = new MoonElementType("DECLARE_PACKAGE");
     IElementType DECLARE_PARAMETER = new MoonElementType("DECLARE_PARAMETER");
-    IElementType DECLARE_TEST = new MoonElementType("DECLARE_TEST");
     IElementType DECLARE_TRAIT = new MoonElementType("DECLARE_TRAIT");
     IElementType DECLARE_TYPE = new MoonElementType("DECLARE_TYPE");
-    IElementType DEFINE_TYPE = new MoonElementType("DEFINE_TYPE");
-    IElementType ELSE_STATEMENT = new MoonElementType("ELSE_STATEMENT");
+    IElementType DECLARE_VARIANT = new MoonElementType("DECLARE_VARIANT");
     IElementType ENUM_BODY = new MoonElementType("ENUM_BODY");
-    IElementType EXPORT = new MoonElementType("EXPORT");
-    IElementType EXPORT_TERM = new MoonElementType("EXPORT_TERM");
-    IElementType FOR_CONDITION = new MoonElementType("FOR_CONDITION");
-    IElementType FOR_INCREMENT = new MoonElementType("FOR_INCREMENT");
-    IElementType FOR_STARTUP = new MoonElementType("FOR_STARTUP");
-    IElementType FOR_STATEMENT = new MoonElementType("FOR_STATEMENT");
-    IElementType FUNCTION = new MoonElementType("FUNCTION");
     IElementType FUNCTION_BODY = new MoonElementType("FUNCTION_BODY");
     IElementType FUNCTION_ELEMENT = new MoonElementType("FUNCTION_ELEMENT");
-    IElementType FUNCTION_SIGNATURE = new MoonElementType("FUNCTION_SIGNATURE");
-    IElementType GENERIC = new MoonElementType("GENERIC");
     IElementType GENERIC_ITEM = new MoonElementType("GENERIC_ITEM");
     IElementType IDENTIFIER = new MoonElementType("IDENTIFIER");
-    IElementType IF_STATEMENT = new MoonElementType("IF_STATEMENT");
     IElementType IMPL_BODY = new MoonElementType("IMPL_BODY");
-    IElementType IMPORT = new MoonElementType("IMPORT");
-    IElementType INCLUDE = new MoonElementType("INCLUDE");
-    IElementType INCLUDE_NAME = new MoonElementType("INCLUDE_NAME");
-    IElementType LET_STATEMENT = new MoonElementType("LET_STATEMENT");
-    IElementType MATCH_BODY = new MoonElementType("MATCH_BODY");
-    IElementType MATCH_STATEMENT = new MoonElementType("MATCH_STATEMENT");
-    IElementType MATCH_VARIANT = new MoonElementType("MATCH_VARIANT");
     IElementType MODIFIER = new MoonElementType("MODIFIER");
-    IElementType MODULE_NAME = new MoonElementType("MODULE_NAME");
     IElementType NUMBER_LITERAL = new MoonElementType("NUMBER_LITERAL");
     IElementType PACKAGE_PATH = new MoonElementType("PACKAGE_PATH");
-    IElementType PARAMETER = new MoonElementType("PARAMETER");
-    IElementType SEMANTIC_NUMBER = new MoonElementType("SEMANTIC_NUMBER");
     IElementType STRING_LITERAL = new MoonElementType("STRING_LITERAL");
-    IElementType TERM_EXPRESSION = new MoonElementType("TERM_EXPRESSION");
-    IElementType TERM_EXPRESSION_ATOM = new MoonElementType("TERM_EXPRESSION_ATOM");
-    IElementType TERM_EXPRESSION_ITEM = new MoonElementType("TERM_EXPRESSION_ITEM");
-    IElementType TERM_INFIX = new MoonElementType("TERM_INFIX");
-    IElementType TERM_PREFIX = new MoonElementType("TERM_PREFIX");
-    IElementType TERM_SUFFIX = new MoonElementType("TERM_SUFFIX");
     IElementType TRAIT_BODY = new MoonElementType("TRAIT_BODY");
-    IElementType TUPLE = new MoonElementType("TUPLE");
     IElementType TYPE_EXPRESSION = new MoonElementType("TYPE_EXPRESSION");
     IElementType TYPE_EXPRESSION_ATOM = new MoonElementType("TYPE_EXPRESSION_ATOM");
     IElementType TYPE_EXPRESSION_ITEM = new MoonElementType("TYPE_EXPRESSION_ITEM");
-    IElementType TYPE_GENERIC = new MoonElementType("TYPE_GENERIC");
-    IElementType TYPE_HINT = new MoonElementType("TYPE_HINT");
     IElementType TYPE_INFIX = new MoonElementType("TYPE_INFIX");
     IElementType TYPE_PREFIX = new MoonElementType("TYPE_PREFIX");
     IElementType TYPE_SUFFIX = new MoonElementType("TYPE_SUFFIX");
-    IElementType VARIANT = new MoonElementType("VARIANT");
-    IElementType VARIANT_ITEM = new MoonElementType("VARIANT_ITEM");
-    IElementType WHILE_STATEMENT = new MoonElementType("WHILE_STATEMENT");
 
     IElementType ACCENT = new MoonTokenType("^");
     IElementType ANGLE_L = new MoonTokenType("<");
@@ -92,58 +51,30 @@ public interface MbtiTypes {
     IElementType COMMENT_BLOCK = new MoonTokenType("Comment Block");
     IElementType COMMENT_DOCUMENT = new MoonTokenType("Comment Document");
     IElementType COMMENT_LINE = new MoonTokenType("Comment");
-    IElementType DECLARE_VARIANT = new MoonTokenType("declare-variant");
+    IElementType CONSTRUCTOR = new MoonTokenType("constructor");
+    IElementType DECLARE_TEST = new MoonTokenType("declare-test");
     IElementType DOLLAR = new MoonTokenType("$");
     IElementType DOT = new MoonTokenType(".");
     IElementType DOUBLE_QUOTE_L = new MoonTokenType("DOUBLE_QUOTE_L");
     IElementType DOUBLE_QUOTE_R = new MoonTokenType("DOUBLE_QUOTE_R");
     IElementType EQ = new MoonTokenType("=");
     IElementType ESCAPED = new MoonTokenType("ESCAPED");
+    IElementType FUNCTION_SIGNATURE = new MoonTokenType("function-signature");
     IElementType HYPHEN = new MoonTokenType("-");
+    IElementType IF_STATEMENT = new MoonTokenType("if-statement");
     IElementType INTEGER = new MoonTokenType("INTEGER");
-    IElementType INTERFACE_NAME = new MoonTokenType("interface-name");
     IElementType KW_ALIAS = new MoonTokenType("KW_ALIAS");
-    IElementType KW_BREAK = new MoonTokenType("KW_BREAK");
-    IElementType KW_CONSTRUCTOR = new MoonTokenType("KW_CONSTRUCTOR");
-    IElementType KW_ELSE = new MoonTokenType("KW_ELSE");
     IElementType KW_ENUM = new MoonTokenType("KW_ENUM");
-    IElementType KW_EXPORT = new MoonTokenType("KW_EXPORT");
     IElementType KW_FN = new MoonTokenType("KW_FN");
-    IElementType KW_FOR = new MoonTokenType("KW_FOR");
-    IElementType KW_FUNCTION = new MoonTokenType("KW_FUNCTION");
-    IElementType KW_IF = new MoonTokenType("KW_IF");
     IElementType KW_IMPL = new MoonTokenType("KW_IMPL");
-    IElementType KW_IMPORT = new MoonTokenType("KW_IMPORT");
-    IElementType KW_INCLUDE = new MoonTokenType("KW_INCLUDE");
-    IElementType KW_LET = new MoonTokenType("KW_LET");
-    IElementType KW_MATCH = new MoonTokenType("KW_MATCH");
-    IElementType KW_MUTABLE = new MoonTokenType("KW_MUTABLE");
     IElementType KW_PACKAGE = new MoonTokenType("KW_PACKAGE");
     IElementType KW_PRIVATE = new MoonTokenType("KW_PRIVATE");
     IElementType KW_PUBLIC = new MoonTokenType("KW_PUBLIC");
-    IElementType KW_TEST = new MoonTokenType("KW_TEST");
     IElementType KW_TRAIT = new MoonTokenType("KW_TRAIT");
     IElementType KW_TYPE = new MoonTokenType("KW_TYPE");
-    IElementType KW_VARIANT = new MoonTokenType("KW_VARIANT");
-    IElementType KW_WHILE = new MoonTokenType("KW_WHILE");
     IElementType OP_ADD = new MoonTokenType("OP_ADD");
-    IElementType OP_ADD_ASSIGN = new MoonTokenType("OP_ADD_ASSIGN");
-    IElementType OP_AND = new MoonTokenType("OP_AND");
-    IElementType OP_ASSIGN = new MoonTokenType("OP_ASSIGN");
     IElementType OP_DIV = new MoonTokenType("OP_DIV");
-    IElementType OP_GEQ = new MoonTokenType("OP_GEQ");
-    IElementType OP_GT = new MoonTokenType("OP_GT");
-    IElementType OP_LEQ = new MoonTokenType("OP_LEQ");
-    IElementType OP_LT = new MoonTokenType("OP_LT");
-    IElementType OP_MOD = new MoonTokenType("OP_MOD");
-    IElementType OP_MUL = new MoonTokenType("OP_MUL");
-    IElementType OP_OR = new MoonTokenType("OP_OR");
-    IElementType OP_REF = new MoonTokenType("OP_REF");
-    IElementType OP_SUB = new MoonTokenType("OP_SUB");
-    IElementType OP_THEN = new MoonTokenType("OP_THEN");
-    IElementType OP_THROW = new MoonTokenType("OP_THROW");
     IElementType OP_TO = new MoonTokenType("OP_TO");
-    IElementType PACKAGE_VERSION = new MoonTokenType("package-version");
     IElementType PARENTHESIS_L = new MoonTokenType("(");
     IElementType PARENTHESIS_R = new MoonTokenType(")");
     IElementType PLACE_HOLDER = new MoonTokenType("_");
@@ -153,26 +84,14 @@ public interface MbtiTypes {
     IElementType STRING_TEXT = new MoonTokenType("STRING_TEXT");
     IElementType SYMBOL = new MoonTokenType("SYMBOL");
     IElementType TO = new MoonTokenType("->");
+    IElementType TYPE_HINT = new MoonTokenType("type-hint");
+    IElementType WHILE_STATEMENT = new MoonTokenType("while-statement");
 
     class Factory {
         public static PsiElement createElement(ASTNode node) {
             IElementType type = node.getElementType();
             if (type == ALIAS_STATEMENT) {
                 return new MbtiAliasStatementNode(node);
-            } else if (type == CALL_FIELD) {
-                return new MbtiCallFieldNode(node);
-            } else if (type == CALL_FUNCTION) {
-                return new MbtiCallFunctionNode(node);
-            } else if (type == CALL_INDEX) {
-                return new MbtiCallIndexNode(node);
-            } else if (type == CALL_METHOD) {
-                return new MbtiCallMethodNode(node);
-            } else if (type == CONSTRUCTOR) {
-                return new MbtiConstructorNode(node);
-            } else if (type == CONTROL_BREAK) {
-                return new MbtiControlBreakNode(node);
-            } else if (type == DECLARE_CLOSURE) {
-                return new MbtiDeclareClosureNode(node);
             } else if (type == DECLARE_ENUM) {
                 return new MbtiDeclareEnumNode(node);
             } else if (type == DECLARE_FIELD) {
@@ -189,114 +108,46 @@ public interface MbtiTypes {
                 return new MbtiDeclarePackageNode(node);
             } else if (type == DECLARE_PARAMETER) {
                 return new MbtiDeclareParameterNode(node);
-            } else if (type == DECLARE_TEST) {
-                return new MbtiDeclareTestNode(node);
             } else if (type == DECLARE_TRAIT) {
                 return new MbtiDeclareTraitNode(node);
             } else if (type == DECLARE_TYPE) {
                 return new MbtiDeclareTypeNode(node);
-            } else if (type == DEFINE_TYPE) {
-                return new MbtiDefineTypeNode(node);
-            } else if (type == ELSE_STATEMENT) {
-                return new MbtiElseStatementNode(node);
+            } else if (type == DECLARE_VARIANT) {
+                return new MbtiDeclareVariantNode(node);
             } else if (type == ENUM_BODY) {
                 return new MbtiEnumBodyNode(node);
-            } else if (type == EXPORT) {
-                return new MbtiExportNode(node);
-            } else if (type == EXPORT_TERM) {
-                return new MbtiExportTermNode(node);
-            } else if (type == FOR_CONDITION) {
-                return new MbtiForConditionNode(node);
-            } else if (type == FOR_INCREMENT) {
-                return new MbtiForIncrementNode(node);
-            } else if (type == FOR_STARTUP) {
-                return new MbtiForStartupNode(node);
-            } else if (type == FOR_STATEMENT) {
-                return new MbtiForStatementNode(node);
-            } else if (type == FUNCTION) {
-                return new MbtiFunctionNode(node);
             } else if (type == FUNCTION_BODY) {
                 return new MbtiFunctionBodyNode(node);
             } else if (type == FUNCTION_ELEMENT) {
                 return new MbtiFunctionElementNode(node);
-            } else if (type == FUNCTION_SIGNATURE) {
-                return new MbtiFunctionSignatureNode(node);
-            } else if (type == GENERIC) {
-                return new MbtiGenericNode(node);
             } else if (type == GENERIC_ITEM) {
                 return new MbtiGenericItemNode(node);
             } else if (type == IDENTIFIER) {
                 return new MbtiIdentifierNode(node);
-            } else if (type == IF_STATEMENT) {
-                return new MbtiIfStatementNode(node);
             } else if (type == IMPL_BODY) {
                 return new MbtiImplBodyNode(node);
-            } else if (type == IMPORT) {
-                return new MbtiImportNode(node);
-            } else if (type == INCLUDE) {
-                return new MbtiIncludeNode(node);
-            } else if (type == INCLUDE_NAME) {
-                return new MbtiIncludeNameNode(node);
-            } else if (type == LET_STATEMENT) {
-                return new MbtiLetStatementNode(node);
-            } else if (type == MATCH_BODY) {
-                return new MbtiMatchBodyNode(node);
-            } else if (type == MATCH_STATEMENT) {
-                return new MbtiMatchStatementNode(node);
-            } else if (type == MATCH_VARIANT) {
-                return new MbtiMatchVariantNode(node);
             } else if (type == MODIFIER) {
                 return new MbtiModifierNode(node);
-            } else if (type == MODULE_NAME) {
-                return new MbtiModuleNameNode(node);
             } else if (type == NUMBER_LITERAL) {
                 return new MbtiNumberLiteralNode(node);
             } else if (type == PACKAGE_PATH) {
                 return new MbtiPackagePathNode(node);
-            } else if (type == PARAMETER) {
-                return new MbtiParameterNode(node);
-            } else if (type == SEMANTIC_NUMBER) {
-                return new MbtiSemanticNumberNode(node);
             } else if (type == STRING_LITERAL) {
                 return new MbtiStringLiteralNode(node);
-            } else if (type == TERM_EXPRESSION) {
-                return new MbtiTermExpressionNode(node);
-            } else if (type == TERM_EXPRESSION_ATOM) {
-                return new MbtiTermExpressionAtomNode(node);
-            } else if (type == TERM_EXPRESSION_ITEM) {
-                return new MbtiTermExpressionItemNode(node);
-            } else if (type == TERM_INFIX) {
-                return new MbtiTermInfixNode(node);
-            } else if (type == TERM_PREFIX) {
-                return new MbtiTermPrefixNode(node);
-            } else if (type == TERM_SUFFIX) {
-                return new MbtiTermSuffixNode(node);
             } else if (type == TRAIT_BODY) {
                 return new MbtiTraitBodyNode(node);
-            } else if (type == TUPLE) {
-                return new MbtiTupleNode(node);
             } else if (type == TYPE_EXPRESSION) {
                 return new MbtiTypeExpressionNode(node);
             } else if (type == TYPE_EXPRESSION_ATOM) {
                 return new MbtiTypeExpressionAtomNode(node);
             } else if (type == TYPE_EXPRESSION_ITEM) {
                 return new MbtiTypeExpressionItemNode(node);
-            } else if (type == TYPE_GENERIC) {
-                return new MbtiTypeGenericNode(node);
-            } else if (type == TYPE_HINT) {
-                return new MbtiTypeHintNode(node);
             } else if (type == TYPE_INFIX) {
                 return new MbtiTypeInfixNode(node);
             } else if (type == TYPE_PREFIX) {
                 return new MbtiTypePrefixNode(node);
             } else if (type == TYPE_SUFFIX) {
                 return new MbtiTypeSuffixNode(node);
-            } else if (type == VARIANT) {
-                return new MbtiVariantNode(node);
-            } else if (type == VARIANT_ITEM) {
-                return new MbtiVariantItemNode(node);
-            } else if (type == WHILE_STATEMENT) {
-                return new MbtiWhileStatementNode(node);
             }
             throw new AssertionError("Unknown element type: " + type);
         }

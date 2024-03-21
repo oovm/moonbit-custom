@@ -1,7 +1,10 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.*;
+import com.github.moonbit.psi.AnyMbtiNode;
+import com.github.moonbit.psi.MbtiDeclareField;
+import com.github.moonbit.psi.MbtiIdentifier;
+import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
@@ -26,12 +29,6 @@ public class MbtiDeclareFieldNode extends AnyMbtiNode implements MbtiDeclareFiel
     @NotNull
     public MbtiIdentifier getIdentifier() {
         return findNotNullChildByClass(MbtiIdentifier.class);
-    }
-
-    @Override
-    @NotNull
-    public MbtiTypeHint getTypeHint() {
-        return findNotNullChildByClass(MbtiTypeHint.class);
     }
 
 }

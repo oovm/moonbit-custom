@@ -7,9 +7,6 @@ import org.jetbrains.annotations.Nullable;
 public interface MbtiDeclareEnum extends PsiElement {
 
     @Nullable
-    MbtiAliasStatement getAliasStatement();
-
-    @Nullable
     MbtiEnumBody getEnumBody();
 
     @Nullable
