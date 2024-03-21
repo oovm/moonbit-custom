@@ -11,7 +11,4 @@ public interface MbtiStructBody extends PsiElement {
     @NotNull
     List<MbtiDeclareField> getDeclareFieldList();
 
-    @NotNull
-    List<MbtiDeclareMethod> getDeclareMethodList();
-
 }

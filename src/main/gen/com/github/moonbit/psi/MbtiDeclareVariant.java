@@ -3,12 +3,14 @@ package com.github.moonbit.psi;
 
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public interface MbtiDeclareVariant extends PsiElement {
 
+    @Nullable
+    MbtiDeclareParameter getDeclareParameter();
+
     @NotNull
-    List<MbtiIdentifier> getIdentifierList();
+    MbtiIdentifier getIdentifier();
 
 }

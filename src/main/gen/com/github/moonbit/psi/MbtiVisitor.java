@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class MbtiVisitor extends PsiElementVisitor {
 
-    public void visitAliasStatement(@NotNull MbtiAliasStatement o) {
+    public void visitDeclareAlias(@NotNull MbtiDeclareAlias o) {
         visitPsiElement(o);
     }
 
@@ -43,6 +43,10 @@ public class MbtiVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitDeclareStruct(@NotNull MbtiDeclareStruct o) {
+        visitPsiElement(o);
+    }
+
     public void visitDeclareTrait(@NotNull MbtiDeclareTrait o) {
         visitPsiElement(o);
     }
@@ -56,14 +60,6 @@ public class MbtiVisitor extends PsiElementVisitor {
     }
 
     public void visitEnumBody(@NotNull MbtiEnumBody o) {
-        visitPsiElement(o);
-    }
-
-    public void visitFunctionBody(@NotNull MbtiFunctionBody o) {
-        visitPsiElement(o);
-    }
-
-    public void visitFunctionElement(@NotNull MbtiFunctionElement o) {
         visitPsiElement(o);
     }
 
@@ -95,6 +91,10 @@ public class MbtiVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitStructBody(@NotNull MbtiStructBody o) {
+        visitPsiElement(o);
+    }
+
     public void visitTraitBody(@NotNull MbtiTraitBody o) {
         visitPsiElement(o);
     }
@@ -116,6 +116,10 @@ public class MbtiVisitor extends PsiElementVisitor {
     }
 
     public void visitTypePrefix(@NotNull MbtiTypePrefix o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTypeReturn(@NotNull MbtiTypeReturn o) {
         visitPsiElement(o);
     }
 

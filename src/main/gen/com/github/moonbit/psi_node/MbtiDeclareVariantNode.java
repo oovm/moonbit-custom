@@ -1,16 +1,14 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.AnyMbtiNode;
+import com.github.moonbit.psi.MbtiDeclareParameter;
 import com.github.moonbit.psi.MbtiDeclareVariant;
 import com.github.moonbit.psi.MbtiIdentifier;
 import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public class MbtiDeclareVariantNode extends AnyMbtiNode implements MbtiDeclareVariant {
 
@@ -29,9 +27,15 @@ public class MbtiDeclareVariantNode extends AnyMbtiNode implements MbtiDeclareVa
     }
 
     @Override
+    @Nullable
+    public MbtiDeclareParameter getDeclareParameter() {
+        return findChildByClass(MbtiDeclareParameter.class);
+    }
+
+    @Override
     @NotNull
-    public List<MbtiIdentifier> getIdentifierList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiIdentifier.class);
+    public MbtiIdentifier getIdentifier() {
+        return findNotNullChildByClass(MbtiIdentifier.class);
     }
 
 }

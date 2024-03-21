@@ -7,9 +7,6 @@ import org.jetbrains.annotations.Nullable;
 public interface MbtiDeclareStruct extends PsiElement {
 
     @Nullable
-    MbtiAliasStatement getAliasStatement();
-
-    @Nullable
     MbtiIdentifier getIdentifier();
 
     @Nullable
