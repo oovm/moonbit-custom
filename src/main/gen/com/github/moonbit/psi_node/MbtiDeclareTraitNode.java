@@ -1,15 +1,19 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.*;
+import com.github.moonbit.mixin.MixinTrait;
+import com.github.moonbit.psi.MbtiDeclareTrait;
+import com.github.moonbit.psi.MbtiIdentifier;
+import com.github.moonbit.psi.MbtiTraitBody;
+import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MbtiDeclareTraitNode extends AnyMbtiNode implements MbtiDeclareTrait {
+public class MbtiDeclareTraitNode extends MixinTrait implements MbtiDeclareTrait {
 
-    public MbtiDeclareTraitNode(ASTNode node) {
+    public MbtiDeclareTraitNode(@NotNull ASTNode node) {
         super(node);
     }
 
