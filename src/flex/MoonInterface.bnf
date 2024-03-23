@@ -18,7 +18,7 @@
     tokens = [
         // comment
         COMMENT_DOCUMENT = "Comment Document"
-        COMMENT_LINE = "Comment"
+        COMMENT_LINE = "Comment Line"
         COMMENT_BLOCK = "Comment Block"
 
         PARENTHESIS_L = '('
@@ -27,24 +27,8 @@
         BRACKET_R = ']'
         BRACE_L = '{'
         BRACE_R = '}'
-        ANGLE_L = '<'
-        ANGLE_R = '>'
-        ACCENT = '^'
-        EQ = '='
-        COLON = ':'
-        SEMICOLON = ';'
-        COMMA = ','
-        DOLLAR = '$'
-        DOT = '.'
-        STAR = '*'
-        AT = '@'
-        TO = "->"
-        HYPHEN = "-"
-        SLASH = '/'
-        PLACE_HOLDER = "_"
-//      SPACE='regexp:\s+'
-//      ANY = 'regexp:.'
 
+        PLACE_HOLDER = "_"
     ]
 }
 
@@ -59,7 +43,6 @@ private statements ::= SEMICOLON
 	| declare-trait
 	| declare-impl
 	| declare-function
-
 // package wasi:blobstore@0.2.0-draft;
 declare-package ::= KW_PACKAGE package-path {
 	pin = 1
@@ -71,7 +54,12 @@ declare-alias ::= KW_ALIAS PARENTHESIS_L (identifier (COMMA identifier)*)? PAREN
 	pin = 1
 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
 }
-
+// =====================================================================================================================
+declare-type ::= KW_TYPE identifier {
+	pin = 1
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
+}
+modifier ::= KW_PUBLIC | KW_PRIVATE;
 // =====================================================================================================================
 declare-struct   ::= KW_STRUCT identifier struct-body {
 	pin = 1
@@ -83,18 +71,6 @@ private struct-element ::= SEMICOLON
 declare-field  ::= modifier* identifier COLON type-expression {
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
 }
-// =====================================================================================================================
-declare-type   ::= KW_TYPE identifier {
-	pin = 1
-//    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
-}
-modifier ::= KW_PUBLIC | KW_PRIVATE;
-
-
-declare-method ::= identifier declare-parameter type-return? {
-//	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
-}
-
 // ===========================================================================
 declare-enum ::= KW_ENUM identifier enum-body {
 	pin = 1
@@ -110,29 +86,10 @@ declare-function ::= modifier* KW_FN identifier declare-generic? declare-paramet
 }
 // ===========================================================================
 declare-parameter ::= PARENTHESIS_L (type-expression (COMMA type-expression)*)? PARENTHESIS_R
-
-
-
+// ===========================================================================
 declare-generic ::= BRACKET_L (generic-item (COMMA generic-item)*)? BRACKET_R;
 generic-item ::= identifier (COLON type-expression)?;
 // =====================================================================================================================
-type-expression ::= type-expression-item (type-infix type-expression-item)*;
-type-expression-item ::= type-prefix* type-expression-atom type-suffix*;
-type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
-	| identifier
-//	| string-literal
-//	| number-literal
-type-prefix ::= OP_ADD;
-type-infix  ::= OP_ADD | OP_TO;
-type-suffix ::= OP_THROW
-type-return ::= OP_TO type-expression;
-// =====================================================================================================================
-string-literal ::= DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R;
-
-number-literal ::= INTEGER;
-
-
-// resource type-name { method: func() };
 declare-trait  ::= KW_TRAIT identifier trait-body {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinResource"
@@ -140,18 +97,25 @@ declare-trait  ::= KW_TRAIT identifier trait-body {
 trait-body ::= BRACE_L trait-element* BRACE_R;
 private trait-element ::=
 	declare-function
-
-
+// =====================================================================================================================
 declare-impl ::= KW_IMPL identifier impl-body {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinFlags"
 }
 impl-body ::= BRACE_L impl-element* BRACE_R;
-private impl-element ::=
-    declare-function
-  | declare-method
-  | constructor
-  | SEMICOLON
-
-
+private impl-element ::= SEMICOLON
+	| declare-method
+declare-method ::= identifier declare-parameter type-return? {
+//	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
+}
+// =====================================================================================================================
+type-expression ::= type-expression-item (type-infix type-expression-item)*;
+type-expression-item ::= type-prefix* type-expression-atom type-suffix*;
+type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
+	| identifier
+type-prefix ::= OP_ADD;
+type-infix  ::= OP_ADD | OP_TO;
+type-suffix ::= OP_THROW
+type-return ::= OP_TO type-expression;
+// =====================================================================================================================
 identifier          ::= SYMBOL | ESCAPED;

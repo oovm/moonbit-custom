@@ -26,9 +26,7 @@ public interface MbtiTypes {
     IElementType IDENTIFIER = new MoonElementType("IDENTIFIER");
     IElementType IMPL_BODY = new MoonElementType("IMPL_BODY");
     IElementType MODIFIER = new MoonElementType("MODIFIER");
-    IElementType NUMBER_LITERAL = new MoonElementType("NUMBER_LITERAL");
     IElementType PACKAGE_PATH = new MoonElementType("PACKAGE_PATH");
-    IElementType STRING_LITERAL = new MoonElementType("STRING_LITERAL");
     IElementType STRUCT_BODY = new MoonElementType("STRUCT_BODY");
     IElementType TRAIT_BODY = new MoonElementType("TRAIT_BODY");
     IElementType TYPE_EXPRESSION = new MoonElementType("TYPE_EXPRESSION");
@@ -39,28 +37,16 @@ public interface MbtiTypes {
     IElementType TYPE_RETURN = new MoonElementType("TYPE_RETURN");
     IElementType TYPE_SUFFIX = new MoonElementType("TYPE_SUFFIX");
 
-    IElementType ACCENT = new MoonTokenType("^");
-    IElementType ANGLE_L = new MoonTokenType("<");
-    IElementType ANGLE_R = new MoonTokenType(">");
-    IElementType AT = new MoonTokenType("@");
     IElementType BRACE_L = new MoonTokenType("{");
     IElementType BRACE_R = new MoonTokenType("}");
     IElementType BRACKET_L = new MoonTokenType("[");
     IElementType BRACKET_R = new MoonTokenType("]");
-    IElementType COLON = new MoonTokenType(":");
-    IElementType COMMA = new MoonTokenType(",");
+    IElementType COLON = new MoonTokenType("COLON");
+    IElementType COMMA = new MoonTokenType("COMMA");
     IElementType COMMENT_BLOCK = new MoonTokenType("Comment Block");
     IElementType COMMENT_DOCUMENT = new MoonTokenType("Comment Document");
-    IElementType COMMENT_LINE = new MoonTokenType("Comment");
-    IElementType CONSTRUCTOR = new MoonTokenType("constructor");
-    IElementType DOLLAR = new MoonTokenType("$");
-    IElementType DOT = new MoonTokenType(".");
-    IElementType DOUBLE_QUOTE_L = new MoonTokenType("DOUBLE_QUOTE_L");
-    IElementType DOUBLE_QUOTE_R = new MoonTokenType("DOUBLE_QUOTE_R");
-    IElementType EQ = new MoonTokenType("=");
+    IElementType COMMENT_LINE = new MoonTokenType("Comment Line");
     IElementType ESCAPED = new MoonTokenType("ESCAPED");
-    IElementType HYPHEN = new MoonTokenType("-");
-    IElementType INTEGER = new MoonTokenType("INTEGER");
     IElementType KW_ALIAS = new MoonTokenType("KW_ALIAS");
     IElementType KW_ENUM = new MoonTokenType("KW_ENUM");
     IElementType KW_FN = new MoonTokenType("KW_FN");
@@ -78,12 +64,8 @@ public interface MbtiTypes {
     IElementType PARENTHESIS_L = new MoonTokenType("(");
     IElementType PARENTHESIS_R = new MoonTokenType(")");
     IElementType PLACE_HOLDER = new MoonTokenType("_");
-    IElementType SEMICOLON = new MoonTokenType(";");
-    IElementType SLASH = new MoonTokenType("/");
-    IElementType STAR = new MoonTokenType("*");
-    IElementType STRING_TEXT = new MoonTokenType("STRING_TEXT");
+    IElementType SEMICOLON = new MoonTokenType("SEMICOLON");
     IElementType SYMBOL = new MoonTokenType("SYMBOL");
-    IElementType TO = new MoonTokenType("->");
 
     class Factory {
         public static PsiElement createElement(ASTNode node) {
@@ -124,12 +106,8 @@ public interface MbtiTypes {
                 return new MbtiImplBodyNode(node);
             } else if (type == MODIFIER) {
                 return new MbtiModifierNode(node);
-            } else if (type == NUMBER_LITERAL) {
-                return new MbtiNumberLiteralNode(node);
             } else if (type == PACKAGE_PATH) {
                 return new MbtiPackagePathNode(node);
-            } else if (type == STRING_LITERAL) {
-                return new MbtiStringLiteralNode(node);
             } else if (type == STRUCT_BODY) {
                 return new MbtiStructBodyNode(node);
             } else if (type == TRAIT_BODY) {

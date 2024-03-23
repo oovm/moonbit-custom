@@ -80,27 +80,24 @@ public interface MoonTypes {
     IElementType VARIANT_ITEM = new MoonElementType("VARIANT_ITEM");
     IElementType WHILE_STATEMENT = new MoonElementType("WHILE_STATEMENT");
 
-    IElementType ACCENT = new MoonTokenType("^");
-    IElementType ANGLE_L = new MoonTokenType("<");
-    IElementType ANGLE_R = new MoonTokenType(">");
-    IElementType AT = new MoonTokenType("@");
+    IElementType ANGLE_L = new MoonTokenType("ANGLE_L");
+    IElementType ANGLE_R = new MoonTokenType("ANGLE_R");
+    IElementType AT = new MoonTokenType("AT");
     IElementType BRACE_L = new MoonTokenType("{");
     IElementType BRACE_R = new MoonTokenType("}");
     IElementType BRACKET_L = new MoonTokenType("[");
     IElementType BRACKET_R = new MoonTokenType("]");
-    IElementType COLON = new MoonTokenType(":");
-    IElementType COMMA = new MoonTokenType(",");
+    IElementType COLON = new MoonTokenType("COLON");
+    IElementType COMMA = new MoonTokenType("COMMA");
     IElementType COMMENT_BLOCK = new MoonTokenType("Comment Block");
     IElementType COMMENT_DOCUMENT = new MoonTokenType("Comment Document");
-    IElementType COMMENT_LINE = new MoonTokenType("Comment");
+    IElementType COMMENT_LINE = new MoonTokenType("Comment Line");
     IElementType DECLARE_VARIANT = new MoonTokenType("declare-variant");
-    IElementType DOLLAR = new MoonTokenType("$");
-    IElementType DOT = new MoonTokenType(".");
+    IElementType DOT = new MoonTokenType("DOT");
     IElementType DOUBLE_QUOTE_L = new MoonTokenType("DOUBLE_QUOTE_L");
     IElementType DOUBLE_QUOTE_R = new MoonTokenType("DOUBLE_QUOTE_R");
-    IElementType EQ = new MoonTokenType("=");
+    IElementType EQ = new MoonTokenType("EQ");
     IElementType ESCAPED = new MoonTokenType("ESCAPED");
-    IElementType HYPHEN = new MoonTokenType("-");
     IElementType INTEGER = new MoonTokenType("INTEGER");
     IElementType INTERFACE_NAME = new MoonTokenType("interface-name");
     IElementType KW_BREAK = new MoonTokenType("KW_BREAK");
@@ -147,13 +144,11 @@ public interface MoonTypes {
     IElementType OP_TO = new MoonTokenType("OP_TO");
     IElementType PARENTHESIS_L = new MoonTokenType("(");
     IElementType PARENTHESIS_R = new MoonTokenType(")");
-    IElementType PLACE_HOLDER = new MoonTokenType("_");
-    IElementType SEMICOLON = new MoonTokenType(";");
-    IElementType SLASH = new MoonTokenType("/");
-    IElementType STAR = new MoonTokenType("*");
+    IElementType SEMICOLON = new MoonTokenType("SEMICOLON");
+    IElementType SLASH = new MoonTokenType("SLASH");
     IElementType STRING_TEXT = new MoonTokenType("STRING_TEXT");
     IElementType SYMBOL = new MoonTokenType("SYMBOL");
-    IElementType TO = new MoonTokenType("->");
+    IElementType TO = new MoonTokenType("TO");
     IElementType VERSION = new MoonTokenType("VERSION");
 
     class Factory {

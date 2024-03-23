@@ -1,10 +1,7 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.MbtiDeclareEnum;
-import com.github.moonbit.psi.MbtiEnumBody;
-import com.github.moonbit.psi.MbtiIdentifier;
-import com.github.moonbit.psi.MbtiVisitor;
+import com.github.moonbit.psi.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;

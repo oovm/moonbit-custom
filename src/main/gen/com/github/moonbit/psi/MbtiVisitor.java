@@ -79,15 +79,7 @@ public class MbtiVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
-    public void visitNumberLiteral(@NotNull MbtiNumberLiteral o) {
-        visitPsiElement(o);
-    }
-
     public void visitPackagePath(@NotNull MbtiPackagePath o) {
-        visitPsiElement(o);
-    }
-
-    public void visitStringLiteral(@NotNull MbtiStringLiteral o) {
         visitPsiElement(o);
     }
 
