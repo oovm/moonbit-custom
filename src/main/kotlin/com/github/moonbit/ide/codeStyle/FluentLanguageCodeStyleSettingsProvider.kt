@@ -1,6 +1,6 @@
 package com.github.bytecodealliance.ide.codeStyle
 
-import com.github.bytecodealliance.MoonLanguage
+import com.github.moonbit.MoonLanguage
 import com.intellij.application.options.SmartIndentOptionsEditor
 import com.intellij.application.options.codeStyle.OtherFileTypesCodeStyleConfigurable
 import com.intellij.psi.codeStyle.*

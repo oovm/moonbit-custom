@@ -15,6 +15,13 @@
 				implementationClass="com.github.moonbit.file.MoonFileType"
 				fieldName="INSTANCE"
 		/>
+		<fileType
+				name="mbti"
+				language="mbti"
+				extensions="mbti;"
+				implementationClass="com.github.moonbit.file.MoonInterfaceFileType"
+				fieldName="INSTANCE"
+		/>
 		<lang.parserDefinition
 				language="moonbit"
 				implementationClass="com.github.moonbit.psi.MoonParserDefinition"
@@ -23,26 +30,26 @@
 				language="moonbit"
 				implementationClass="com.github.moonbit.psi.MbtiParserDefinition"
 		/>
-
+		<!-- Highlight -->
+		<additionalTextAttributes scheme="Default" file="colors/FluentDefault.xml"/>
+		<additionalTextAttributes scheme="Darcula" file="colors/FluentDarcula.xml"/>
+		<colorSettingsPage implementation="com.github.moonbit.ide.highlight.MoonHighlightSetting"/>
 		<lang.syntaxHighlighter
 				language="moonbit"
-				implementationClass="com.github.bytecodealliance.ide.highlight.MoonSyntaxHighlighter"
+				implementationClass="com.github.moonbit.ide.highlight.MoonSyntaxHighlighter"
 		/>
 		<lang.syntaxHighlighter
 				language="moonbit"
-				implementationClass="com.github.bytecodealliance.ide.highlight.MbtiSyntaxHighlighter"
+				implementationClass="com.github.moonbit.ide.highlight.MbtiSyntaxHighlighter"
 		/>
+		<highlightVisitor implementation="com.github.moonbit.ide.highlight.MoonHighlightVisitor"/>
+		<highlightVisitor implementation="com.github.moonbit.ide.highlight.MbtiHighlightVisitor"/>
 		<!-- StructureView -->
 		<lang.psiStructureViewFactory language="moonbit"
 		                              implementationClass="com.github.bytecodealliance.ide.view.WitStructureViewFactory"/>
 		<projectViewNestingRulesProvider implementation="com.github.moonbit.file.MoonFileGroup"/>
-		<!-- Highlight -->
-		<additionalTextAttributes scheme="Default" file="colors/FluentDefault.xml"/>
-		<additionalTextAttributes scheme="Darcula" file="colors/FluentDarcula.xml"/>
 
-		<colorSettingsPage implementation="com.github.bytecodealliance.ide.highlight.MoonHighlightSetting"/>
-		<highlightVisitor implementation="com.github.bytecodealliance.ide.highlight.MoonHighlightVisitor"/>
-		<highlightVisitor implementation="com.github.bytecodealliance.ide.highlight.MbtiHighlightVisitor"/>
+
 		<!-- Formatter -->
 		<lang.formatter
 				language="moonbit"
@@ -75,7 +82,7 @@
 		<!--		/>-->
 		<lang.foldingBuilder
 				language="moonbit"
-				implementationClass="com.github.bytecodealliance.ide.matcher.FluentFoldingBuilder"
+				implementationClass="com.github.moonbit.ide.matcher.FluentFoldingBuilder"
 		/>
 		<!--		<indexPatternBuilder-->
 		<!--				implementation="com.github.bytecodealliance.ide.todo.VomlTodoIndexPatternBuilder"-->

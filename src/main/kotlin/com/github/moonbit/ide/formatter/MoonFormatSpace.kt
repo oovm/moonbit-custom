@@ -1,6 +1,6 @@
 package com.github.bytecodealliance.ide.formatter
 
-import com.github.bytecodealliance.MoonLanguage
+import com.github.moonbit.MoonLanguage
 import com.github.moonbit.psi.MoonTypes.*
 import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CodeStyleSettings

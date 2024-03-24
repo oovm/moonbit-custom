@@ -1,5 +1,6 @@
-package com.github.bytecodealliance.ide.highlight
+package com.github.moonbit.ide.highlight
 
+import com.github.bytecodealliance.ide.highlight.MoonColor
 import com.github.moonbit.file.MoonIconProvider
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage

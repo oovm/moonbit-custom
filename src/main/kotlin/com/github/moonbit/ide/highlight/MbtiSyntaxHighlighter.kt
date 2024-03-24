@@ -1,5 +1,6 @@
-package com.github.bytecodealliance.ide.highlight
+package com.github.moonbit.ide.highlight
 
+import com.github.bytecodealliance.ide.highlight.MoonColor
 import com.github.moonbit.psi.MbtiParserDefinition
 import com.github.moonbit.psi.MoonTypes
 import com.intellij.lexer.Lexer

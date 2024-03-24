@@ -1,7 +1,7 @@
 package com.github.moonbit.file
 
-import com.github.bytecodealliance.MessageBundle
-import com.github.bytecodealliance.MoonLanguage
+import com.github.moonbit.MessageBundle
+import com.github.moonbit.MoonLanguage
 import com.intellij.extapi.psi.PsiFileBase
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.psi.FileViewProvider

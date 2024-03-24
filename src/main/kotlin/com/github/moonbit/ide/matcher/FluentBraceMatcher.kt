@@ -1,6 +1,6 @@
 package com.github.bytecodealliance.ide.matcher
 
-import com.github.bytecodealliance.MoonLanguage
+import com.github.moonbit.MoonLanguage
 import com.github.moonbit.file.MoonFileType
 import com.intellij.codeInsight.highlighting.PairedBraceMatcherAdapter
 import com.intellij.openapi.editor.highlighter.HighlighterIterator
