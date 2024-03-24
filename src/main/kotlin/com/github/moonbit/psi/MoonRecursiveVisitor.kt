@@ -11,3 +11,10 @@ open class MoonRecursiveVisitor : MoonVisitor(), PsiRecursiveVisitor {
         element.acceptChildren(this)
     }
 }
+
+open class MbtiRecursiveVisitor : MbtiVisitor(), PsiRecursiveVisitor {
+    override fun visitElement(element: PsiElement) {
+        ProgressManager.checkCanceled()
+        element.acceptChildren(this)
+    }
+}

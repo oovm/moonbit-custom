@@ -8,3 +8,6 @@ open class AnyMoonNode(node: ASTNode) : ASTWrapperPsiElement(node) {
 }
 
 
+open class AnyMbtiNode(node: ASTNode) : ASTWrapperPsiElement(node) {
+
+}
