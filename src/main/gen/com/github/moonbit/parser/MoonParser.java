@@ -1,15 +1,16 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.parser;
 
-import com.intellij.lang.ASTNode;
-import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
-import com.intellij.lang.PsiParser;
-import com.intellij.psi.tree.IElementType;
-
-import static com.github.moonbit.psi.MoonParserExtension.*;
 import static com.github.moonbit.psi.MoonTypes.*;
+import static com.github.moonbit.psi.MoonParserExtension.*;
+
+import com.intellij.psi.tree.IElementType;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.tree.TokenSet;
+import com.intellij.lang.PsiParser;
+import com.intellij.lang.LightPsiParser;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class MoonParser implements PsiParser, LightPsiParser {
@@ -1278,12 +1279,20 @@ public class MoonParser implements PsiParser, LightPsiParser {
     // declare-method
     //   | constructor
     //   | SEMICOLON
+    //   | HYPHEN
+    //   | DOLLAR
+    //   | ACCENT
+    //   | OP_REF
     static boolean resource_element(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "resource_element")) return false;
         boolean r;
         r = declare_method(b, l + 1);
         if (!r) r = constructor(b, l + 1);
         if (!r) r = consumeToken(b, SEMICOLON);
+        if (!r) r = consumeToken(b, HYPHEN);
+        if (!r) r = consumeToken(b, DOLLAR);
+        if (!r) r = consumeToken(b, ACCENT);
+        if (!r) r = consumeToken(b, OP_REF);
         return r;
     }
 

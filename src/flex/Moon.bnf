@@ -259,6 +259,10 @@ private resource-element ::=
     declare-method
   | constructor
   | SEMICOLON
+  | HYPHEN
+  | DOLLAR
+  | ACCENT
+  | OP_REF
 
 
 

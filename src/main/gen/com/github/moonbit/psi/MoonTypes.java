@@ -1,10 +1,10 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi;
 
-import com.github.moonbit.psi_node.*;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.PsiElement;
+import com.intellij.lang.ASTNode;
+import com.github.moonbit.psi_node.*;
 
 public interface MoonTypes {
 
@@ -80,6 +80,7 @@ public interface MoonTypes {
     IElementType VARIANT_ITEM = new MoonElementType("VARIANT_ITEM");
     IElementType WHILE_STATEMENT = new MoonElementType("WHILE_STATEMENT");
 
+    IElementType ACCENT = new MoonTokenType("ACCENT");
     IElementType ANGLE_L = new MoonTokenType("ANGLE_L");
     IElementType ANGLE_R = new MoonTokenType("ANGLE_R");
     IElementType AT = new MoonTokenType("AT");
@@ -93,11 +94,13 @@ public interface MoonTypes {
     IElementType COMMENT_DOCUMENT = new MoonTokenType("Comment Document");
     IElementType COMMENT_LINE = new MoonTokenType("Comment Line");
     IElementType DECLARE_VARIANT = new MoonTokenType("declare-variant");
+    IElementType DOLLAR = new MoonTokenType("DOLLAR");
     IElementType DOT = new MoonTokenType("DOT");
     IElementType DOUBLE_QUOTE_L = new MoonTokenType("DOUBLE_QUOTE_L");
     IElementType DOUBLE_QUOTE_R = new MoonTokenType("DOUBLE_QUOTE_R");
     IElementType EQ = new MoonTokenType("EQ");
     IElementType ESCAPED = new MoonTokenType("ESCAPED");
+    IElementType HYPHEN = new MoonTokenType("HYPHEN");
     IElementType INTEGER = new MoonTokenType("INTEGER");
     IElementType INTERFACE_NAME = new MoonTokenType("interface-name");
     IElementType KW_BREAK = new MoonTokenType("KW_BREAK");

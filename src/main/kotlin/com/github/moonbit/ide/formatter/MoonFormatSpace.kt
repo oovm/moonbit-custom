@@ -36,9 +36,9 @@ data class MoonFormatSpace(
         private val remove_space_newline_after = TokenSet.create(
             BRACKET_L,
             DOT,
-            DOLLAR,
-            STAR,
-            HYPHEN
+            // DOTLLAR,
+            // STAR,
+            // HYPHEN
         )
         private val remove_space_newline_before = TokenSet.create(
             BRACKET_R
