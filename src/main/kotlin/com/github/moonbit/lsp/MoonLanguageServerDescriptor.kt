@@ -16,6 +16,6 @@ class MoonLanguageServerDescriptor : ProjectWideLspServerDescriptor {
     }
 
     override fun createCommandLine(): GeneralCommandLine {
-        return GeneralCommandLine("wit-lsp")
+        return GeneralCommandLine("moon-lsp")
     }
 }

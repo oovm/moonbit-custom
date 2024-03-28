@@ -11,7 +11,7 @@ class MoonFileType : LanguageFileType {
 
     override fun getName(): String = MoonLanguage.id
 
-    override fun getDescription(): String = MessageBundle.message("filetype.x.description")
+    override fun getDescription(): String = MessageBundle.message("filetype.mbt.description")
 
     override fun getDefaultExtension(): String = "mbt;mbti;"
 

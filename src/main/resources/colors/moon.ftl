@@ -14,9 +14,3 @@ last-operation-failed(error),
 closed
 }
 
-resource input-stream {
-read: func(len: u64) -> result
-<list
-<u8>, stream-error>;
-	}
-	}
