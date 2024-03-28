@@ -71,7 +71,7 @@ private struct-element ::= COMMA
 declare-field  ::= identifier COLON type-hint {
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
 }
-declare-method ::= identifier COLON function-signature {
+declare-method ::= identifier COLON declare-signature {
 //	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
 }
 // ===========================================================================
@@ -115,8 +115,8 @@ export-term ::= function
 //  use wasi:io/streams@0.2.0.{input-stream, output-stream};
 
 // interface name { }
-declare-function ::= modifier* KW_FN identifier declare-generic? declare-parameter function-body {
-	pin = 3
+declare-function ::= modifier* KW_FN namepath declare-generic? declare-parameter function-body {
+	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
 function-body  ::= BRACE_L function-element* BRACE_R;
@@ -223,12 +223,10 @@ number-literal ::= INTEGER;
 constructor ::= KW_CONSTRUCTOR tuple (TO type-hint)? {
 	pin = 1
 }
-function ::= identifier COLON function-signature {
+function ::= identifier COLON declare-signature {
 //	mixin = "com.github.bytecodealliance.language.mixin.MixinFunction"
 }
-function-signature ::= modifier? KW_FUNCTION tuple (TO type-hint)? {
-	pin = 2
-}
+
 
 // type type-name = type-hint;
 define-type ::= KW_TYPE identifier EQ type-hint {
@@ -242,15 +240,22 @@ parameter ::= identifier COLON type-hint {
 }
 generic   ::= ANGLE_L (type-hint (COMMA type-hint)* COMMA?)? ANGLE_R;
 // resource type-name { method: func() };
-declare-trait  ::= KW_TRAIT identifier trait-body {
-	pin = 1
+declare-trait  ::= modifier* KW_TRAIT identifier trait-body {
+	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinResource"
 }
 trait-body ::= BRACE_L trait-element* BRACE_R;
 private trait-element ::=
-	declare-function
+	declare-signature
 
+// pub trait Compare: Eq {
+//  compare(Self, Self) -> Int
+//}
+// to_bool(Self) -> Bool
+declare-signature ::= modifier? identifier declare-generic? signature-parameter (OP_TO type-hint)? {
 
+}
+signature-parameter ::= PARENTHESIS_L (identifier (COMMA identifier)* COMMA?)? PARENTHESIS_R
 
 
 
@@ -288,3 +293,4 @@ variant-item 	 ::= identifier (PARENTHESIS_L type-hint PARENTHESIS_R)? {
 module-name         ::= SYMBOL | ESCAPED;
 semantic-number     ::= SYMBOL | ESCAPED;
 identifier          ::= SYMBOL | ESCAPED;
+namepath            ::= identifier (NAME_JOIN identifier)*

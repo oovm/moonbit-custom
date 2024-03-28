@@ -2,7 +2,6 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
@@ -10,6 +9,9 @@ public interface MoonDeclareTrait extends PsiElement {
 
     @Nullable
     MoonIdentifier getIdentifier();
+
+    @NotNull
+    List<MoonModifier> getModifierList();
 
     @Nullable
     MoonTraitBody getTraitBody();
