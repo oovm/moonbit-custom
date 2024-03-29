@@ -29,14 +29,14 @@ public class MoonConstructorNode extends AnyMoonNode implements MoonConstructor 
 
     @Override
     @Nullable
-    public MoonTuple getTuple() {
-        return findChildByClass(MoonTuple.class);
+    public MoonReturnType getReturnType() {
+        return findChildByClass(MoonReturnType.class);
     }
 
     @Override
     @Nullable
-    public MoonTypeHint getTypeHint() {
-        return findChildByClass(MoonTypeHint.class);
+    public MoonTuple getTuple() {
+        return findChildByClass(MoonTuple.class);
     }
 
 }

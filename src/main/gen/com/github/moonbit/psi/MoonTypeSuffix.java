@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonTypeSuffix extends PsiElement {
 
+    @Nullable
+    MoonGenericCall getGenericCall();
+
 }

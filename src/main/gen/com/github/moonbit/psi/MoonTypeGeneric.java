@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface MoonTypeGeneric extends PsiElement {
 
     @Nullable
-    MoonGeneric getGeneric();
+    MoonGenericCall getGenericCall();
 
     @NotNull
     MoonIdentifier getIdentifier();

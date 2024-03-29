@@ -57,4 +57,10 @@ public class MoonDeclareFunctionNode extends AnyMoonNode implements MoonDeclareF
         return findChildByClass(MoonNamepath.class);
     }
 
+    @Override
+    @Nullable
+    public MoonReturnType getReturnType() {
+        return findChildByClass(MoonReturnType.class);
+    }
+
 }

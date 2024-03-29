@@ -34,6 +34,7 @@
 moon ::= statements*
 private statements ::= SEMICOLON
     | package
+    | define-type
 	| declare-struct
 	| declare-enum
 	| declare-trait
@@ -68,7 +69,7 @@ struct-body ::= BRACE_L struct-element* BRACE_R
 private struct-element ::= COMMA
 	| declare-field
 	| declare-method
-declare-field  ::= identifier COLON type-hint {
+declare-field  ::= identifier type-hint {
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
 }
 declare-method ::= identifier COLON declare-signature {
@@ -115,7 +116,7 @@ export-term ::= function
 //  use wasi:io/streams@0.2.0.{input-stream, output-stream};
 
 // interface name { }
-declare-function ::= modifier* KW_FN namepath declare-generic? declare-parameter function-body {
+declare-function ::= modifier* KW_FN namepath declare-generic? declare-parameter return-type? function-body {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
@@ -209,7 +210,7 @@ type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
 //	| number-literal
 type-prefix ::= OP_ADD;
 type-infix  ::= OP_ADD | OP_TO;
-type-suffix ::= "?"
+type-suffix ::= generic-call | "?";
 // =====================================================================================================================
 string-literal ::= DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R;
 
@@ -220,7 +221,7 @@ number-literal ::= INTEGER;
 
 
 
-constructor ::= KW_CONSTRUCTOR tuple (TO type-hint)? {
+constructor ::= KW_CONSTRUCTOR tuple return-type? {
 	pin = 1
 }
 function ::= identifier COLON declare-signature {
@@ -228,17 +229,18 @@ function ::= identifier COLON declare-signature {
 }
 
 
-// type type-name = type-hint;
-define-type ::= KW_TYPE identifier EQ type-hint {
-	pin = 1
+// priv type UninitializedArray[T] FixedArray[UnsafeMaybeUninit[T]]
+define-type ::= modifier* KW_TYPE type-expression type-expression {
+	pin = 2
 }
-type-hint ::= tuple | type-generic;
-type-generic ::= identifier generic?;
+type-hint ::= COLON type-expression;
+return-type ::= OP_TO type-expression;
+type-generic ::= identifier generic-call?;
 tuple ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R;
 parameter ::= identifier COLON type-hint {
 
 }
-generic   ::= ANGLE_L (type-hint (COMMA type-hint)* COMMA?)? ANGLE_R;
+generic-call   ::= BRACKET_L (type-expression (COMMA type-expression)* COMMA?)? BRACKET_R;
 // resource type-name { method: func() };
 declare-trait  ::= modifier* KW_TRAIT identifier trait-body {
 	pin = 2
@@ -252,7 +254,7 @@ private trait-element ::=
 //  compare(Self, Self) -> Int
 //}
 // to_bool(Self) -> Bool
-declare-signature ::= modifier? identifier declare-generic? signature-parameter (OP_TO type-hint)? {
+declare-signature ::= modifier? identifier declare-generic? signature-parameter return-type? {
 
 }
 signature-parameter ::= PARENTHESIS_L (identifier (COMMA identifier)* COMMA?)? PARENTHESIS_R

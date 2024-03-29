@@ -7,10 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonDefineType extends PsiElement {
 
-    @Nullable
-    MoonIdentifier getIdentifier();
+    @NotNull
+    List<MoonModifier> getModifierList();
 
-    @Nullable
-    MoonTypeHint getTypeHint();
+    @NotNull
+    List<MoonTypeExpression> getTypeExpressionList();
 
 }

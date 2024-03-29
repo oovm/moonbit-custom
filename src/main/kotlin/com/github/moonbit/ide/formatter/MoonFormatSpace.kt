@@ -19,19 +19,19 @@ data class MoonFormatSpace(
 
         private val space_around = TokenSet.create(
             EQ,
-            TO,
+            OP_TO,
         )
         private val remove_space_before = TokenSet.create(
             PARENTHESIS_R,
             BRACKET_R,
-            ANGLE_R,
+            //ANGLE_R,
             COMMA,
             SEMICOLON
         )
         private val remove_space_after = TokenSet.create(
             PARENTHESIS_L,
             BRACKET_L,
-            ANGLE_L,
+            //ANGLE_L,
         )
         private val remove_space_newline_after = TokenSet.create(
             BRACKET_L,
@@ -43,7 +43,7 @@ data class MoonFormatSpace(
         private val remove_space_newline_before = TokenSet.create(
             BRACKET_R
         )
-        private val newline_indent_after = TokenSet.create(TO)
+        private val newline_indent_after = TokenSet.create(OP_TO)
 
         private val separators = TokenSet.create(COMMA, SEMICOLON)
 

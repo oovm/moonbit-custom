@@ -2,23 +2,26 @@
 package com.github.moonbit.psi_node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
+
 import static com.github.moonbit.psi.MoonTypes.*;
+
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
-public class MoonNamepathNode extends AnyMoonNode implements MoonNamepath {
+public class MoonGenericCallNode extends AnyMoonNode implements MoonGenericCall {
 
-    public MoonNamepathNode(@NotNull ASTNode node) {
+    public MoonGenericCallNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitNamepath(this);
+        visitor.visitGenericCall(this);
     }
 
     @Override
@@ -29,8 +32,8 @@ public class MoonNamepathNode extends AnyMoonNode implements MoonNamepath {
 
     @Override
     @NotNull
-    public List<MoonIdentifier> getIdentifierList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonIdentifier.class);
+    public List<MoonTypeExpression> getTypeExpressionList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTypeExpression.class);
     }
 
 }
