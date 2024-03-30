@@ -61,8 +61,9 @@ derive-statement ::= KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? P
 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
 }
 // =====================================================================================================================
-declare-struct   ::= KW_STRUCT identifier struct-body derive-statement? {
-	pin = 1
+
+declare-struct   ::= modifier* KW_STRUCT identifier declare-generic? struct-body derive-statement? {
+	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
 }
 struct-body ::= BRACE_L struct-element* BRACE_R
@@ -116,27 +117,30 @@ export-term ::= function
 //  use wasi:io/streams@0.2.0.{input-stream, output-stream};
 
 // interface name { }
-declare-function ::= modifier* KW_FN namepath declare-generic? declare-parameter return-type? function-body {
+declare-function ::= modifier* KW_FN namepath declare-generic? declare-parameters return-type? function-body {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
 function-body  ::= BRACE_L function-element* BRACE_R;
-function-element ::= SEMICOLON
+private function-element ::= SEMICOLON
 	| let-statement
 	| declare-function
 	| declare-test
 	| while-statement
 	| if-statement
+	| term-expression
+// (self : Array[T])
+declare-parameters ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R
+parameter ::= identifier COLON type-expression {
 
-declare-parameter ::= PARENTHESIS_L identifier COLON identifier PARENTHESIS_R
-
+}
 
 
 modifier ::= KW_PUBLIC | KW_PRIVATE;
 declare-generic ::= BRACKET_L (generic-item (COMMA generic-item)*)? BRACKET_R;
 generic-item ::= identifier (COLON type-expression)?;
 // =====================================================================================================================
-declare-closure  ::= KW_FN declare-parameter function-body {
+declare-closure  ::= KW_FN declare-parameters function-body {
 	pin = 1
 }
 // =====================================================================================================================
@@ -194,8 +198,8 @@ term-infix  ::= OP_ASSIGN
 	| OP_THEN
 term-suffix   ::= OP_THROW
 	| call-method
-	| call-field
 	| call-function
+	| call-field
 	| call-index
 call-function ::= PARENTHESIS_L term-expression (COMMA term-expression)* PARENTHESIS_R;
 call-method   ::= DOT call-function
@@ -237,9 +241,7 @@ type-hint ::= COLON type-expression;
 return-type ::= OP_TO type-expression;
 type-generic ::= identifier generic-call?;
 tuple ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R;
-parameter ::= identifier COLON type-hint {
 
-}
 generic-call   ::= BRACKET_L (type-expression (COMMA type-expression)* COMMA?)? BRACKET_R;
 // resource type-name { method: func() };
 declare-trait  ::= modifier* KW_TRAIT identifier trait-body {

@@ -2,13 +2,12 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface MoonGenericCall extends PsiElement {
 
-    @NotNull
-    List<MoonTypeExpression> getTypeExpressionList();
+  @NotNull
+  List<MoonTypeExpression> getTypeExpressionList();
 
 }

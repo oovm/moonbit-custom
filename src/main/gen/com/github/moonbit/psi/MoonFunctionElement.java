@@ -20,6 +20,9 @@ public interface MoonFunctionElement extends PsiElement {
     MoonLetStatement getLetStatement();
 
     @Nullable
+    MoonTermExpression getTermExpression();
+
+    @Nullable
     MoonWhileStatement getWhileStatement();
 
 }

@@ -8,6 +8,21 @@ import com.intellij.psi.PsiElement;
 public interface MoonFunctionBody extends PsiElement {
 
     @NotNull
-    List<MoonFunctionElement> getFunctionElementList();
+    List<MoonDeclareFunction> getDeclareFunctionList();
+
+    @NotNull
+    List<MoonDeclareTest> getDeclareTestList();
+
+    @NotNull
+    List<MoonIfStatement> getIfStatementList();
+
+    @NotNull
+    List<MoonLetStatement> getLetStatementList();
+
+    @NotNull
+    List<MoonTermExpression> getTermExpressionList();
+
+    @NotNull
+    List<MoonWhileStatement> getWhileStatementList();
 
 }
