@@ -83,6 +83,14 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitDictLiteral(@NotNull MoonDictLiteral o) {
+        visitPsiElement(o);
+    }
+
+    public void visitDictTerm(@NotNull MoonDictTerm o) {
+        visitPsiElement(o);
+    }
+
     public void visitElseStatement(@NotNull MoonElseStatement o) {
         visitPsiElement(o);
     }

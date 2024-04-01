@@ -657,6 +657,82 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // BRACE_L (dict-term (COMMA dict-term)* COMMA?)? BRACE_R
+    public static boolean dict_literal(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "dict_literal")) return false;
+        if (!nextTokenIs(b, BRACE_L)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, BRACE_L);
+        r = r && dict_literal_1(b, l + 1);
+        r = r && consumeToken(b, BRACE_R);
+        exit_section_(b, m, DICT_LITERAL, r);
+        return r;
+    }
+
+    // (dict-term (COMMA dict-term)* COMMA?)?
+    private static boolean dict_literal_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "dict_literal_1")) return false;
+        dict_literal_1_0(b, l + 1);
+        return true;
+    }
+
+    // dict-term (COMMA dict-term)* COMMA?
+    private static boolean dict_literal_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "dict_literal_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = dict_term(b, l + 1);
+        r = r && dict_literal_1_0_1(b, l + 1);
+        r = r && dict_literal_1_0_2(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (COMMA dict-term)*
+    private static boolean dict_literal_1_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "dict_literal_1_0_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!dict_literal_1_0_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "dict_literal_1_0_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA dict-term
+    private static boolean dict_literal_1_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "dict_literal_1_0_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && dict_term(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // COMMA?
+    private static boolean dict_literal_1_0_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "dict_literal_1_0_2")) return false;
+        consumeToken(b, COMMA);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // identifier COLON term-expression
+    public static boolean dict_term(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "dict_term")) return false;
+        if (!nextTokenIs(b, "<dict term>", ESCAPED, SYMBOL)) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, DICT_TERM, "<dict term>");
+        r = identifier(b, l + 1);
+        r = r && consumeToken(b, COLON);
+        r = r && term_expression(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    /* ********************************************************** */
     // KW_ELSE function-body
     public static boolean else_statement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "else_statement")) return false;
@@ -1641,17 +1717,19 @@ public class MoonParser implements PsiParser, LightPsiParser {
 
     /* ********************************************************** */
     // PARENTHESIS_L term-expression PARENTHESIS_R
-    // 	| identifier
+    // 	| dict-literal
     // 	| string-literal
     // 	| number-literal
+    // 	| identifier
     public static boolean term_expression_atom(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "term_expression_atom")) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, TERM_EXPRESSION_ATOM, "<term expression atom>");
         r = term_expression_atom_0(b, l + 1);
-        if (!r) r = identifier(b, l + 1);
+        if (!r) r = dict_literal(b, l + 1);
         if (!r) r = string_literal(b, l + 1);
         if (!r) r = number_literal(b, l + 1);
+        if (!r) r = identifier(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
