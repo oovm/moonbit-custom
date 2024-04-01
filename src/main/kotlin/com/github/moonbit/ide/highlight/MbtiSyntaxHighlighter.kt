@@ -32,7 +32,7 @@ class MbtiSyntaxHighlighter : SyntaxHighlighterBase() {
             MoonTypes.PARENTHESIS_L, MoonTypes.PARENTHESIS_R -> MoonColor.PARENTHESES
             MoonTypes.BRACKET_L, MoonTypes.BRACKET_R -> MoonColor.BRACKETS
             MoonTypes.BRACE_L, MoonTypes.BRACE_R -> MoonColor.BRACES
-            MoonTypes.COLON, MoonTypes.EQ -> MoonColor.OPERATION
+            MoonTypes.COLON, MoonTypes.OP_ASSIGN -> MoonColor.OPERATION
             MoonTypes.AT -> MoonColor.OPERATION
 
             MoonTypes.COMMA -> MoonColor.COMMA

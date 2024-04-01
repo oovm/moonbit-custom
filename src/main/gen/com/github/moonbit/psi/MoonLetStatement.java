@@ -17,6 +17,6 @@ public interface MoonLetStatement extends PsiElement {
     MoonTermExpression getTermExpression();
 
     @Nullable
-    MoonTypeExpression getTypeExpression();
+    MoonTypeHint getTypeHint();
 
 }

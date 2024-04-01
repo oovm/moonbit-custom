@@ -98,7 +98,6 @@ public interface MoonTypes {
     IElementType DOT = new MoonTokenType("DOT");
     IElementType DOUBLE_QUOTE_L = new MoonTokenType("DOUBLE_QUOTE_L");
     IElementType DOUBLE_QUOTE_R = new MoonTokenType("DOUBLE_QUOTE_R");
-    IElementType EQ = new MoonTokenType("EQ");
     IElementType ESCAPED = new MoonTokenType("ESCAPED");
     IElementType HYPHEN = new MoonTokenType("HYPHEN");
     IElementType INTEGER = new MoonTokenType("INTEGER");
