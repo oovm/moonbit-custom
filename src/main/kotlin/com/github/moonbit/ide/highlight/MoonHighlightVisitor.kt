@@ -3,10 +3,9 @@ package com.github.moonbit.ide.highlight
 
 import com.github.bytecodealliance.ide.highlight.MoonColor
 import com.github.bytecodealliance.ide.highlight.MoonColor.SYMBOL_FUNCTION
+import com.github.bytecodealliance.ide.highlight.MoonColor.SYMBOL_FIELD
 import com.github.moonbit.file.MoonFile
-import com.github.moonbit.psi.MoonFunction
-import com.github.moonbit.psi.MoonLetStatement
-import com.github.moonbit.psi.MoonVisitor
+import com.github.moonbit.psi.*
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType
 import com.intellij.codeInsight.daemon.impl.HighlightVisitor
@@ -41,7 +40,9 @@ class MoonHighlightVisitor : MoonVisitor(), HighlightVisitor {
 //        highlight(o.identifier, SYM_FIELD)
 //    }
 //
-//    override fun visitEnum(o: WitEnum) {
+
+
+    //    override fun visitEnum(o: WitEnum) {
 //        o.identifier?.let { highlight(it, NUMBER) }
 //    }
 //
@@ -60,13 +61,24 @@ class MoonHighlightVisitor : MoonVisitor(), HighlightVisitor {
 //    override fun visitVariantItem(o: WitVariantItem) {
 //        highlight(o.identifier, SYM_FIELD)
 //    }
+    override fun visitDeclareFunction(o: MoonDeclareFunction) {
+        highlight(o.namepath?.lastChild, SYMBOL_FUNCTION)
+    }
 
     override fun visitFunction(o: MoonFunction) {
-        highlight(o, SYMBOL_FUNCTION)
+        highlight(o.identifier, SYMBOL_FUNCTION)
+    }
+
+    override fun visitDeclareMethod(o: MoonDeclareMethod) {
+        highlight(o.identifier, SYMBOL_FUNCTION)
     }
 
     override fun visitLetStatement(o: MoonLetStatement) {
 //        highlight(o, SYMBOL_FUNCTION)
+    }
+
+    override fun visitParameter(o: MoonParameter) {
+        highlight(o.identifier, SYMBOL_FIELD)
     }
 
 //
@@ -87,6 +99,10 @@ class MoonHighlightVisitor : MoonVisitor(), HighlightVisitor {
 //    }
 //
 //
+
+    override fun visitDeclareField(o: MoonDeclareField) {
+        highlight(o.identifier, SYMBOL_FIELD)
+    }
 //    override fun visitDefineType(o: WitDefineType) {
 //        o.identifier?.let { highlight(it, SYM_TYPE) }
 //    }
@@ -131,7 +147,8 @@ class MoonHighlightVisitor : MoonVisitor(), HighlightVisitor {
 //    }
 
 
-    private fun highlight(element: PsiElement, color: MoonColor) {
+    private fun highlight(element: PsiElement?, color: MoonColor) {
+        if (element == null) return
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
         builder.textAttributes(color.textAttributesKey)
         builder.range(element)

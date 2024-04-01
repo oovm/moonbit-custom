@@ -15,7 +15,7 @@ import static com.github.moonbit.psi.MoonTypes.*;
 %type IElementType
 %unicode
 
-%state StringInterpolation
+%state DoubleStringLiteral
 
 WHITE_SPACE      = [\s\t]
 COMMENT_LINE     = [/]{2}[^\r\n]*
@@ -61,8 +61,6 @@ KW_FN      = "fn"
 KW_TEST = "test"
 
 
-KW_IF    = "if"
-KW_ELSE  = "else"
 KW_MATCH = "match"
 
 KW_FOR   = "for"
@@ -96,6 +94,7 @@ KW_WHILE = "while"
 	"+=" { return OP_ADD_ASSIGN; }
 	"+" { return OP_ADD; }
 	"*" { return OP_MUL; }
+	"/=" { return OP_DIV_ASSIGN; }
 	"/" { return OP_DIV; }
 	"%" { return OP_MOD; }
 	"->" { return OP_TO; }
@@ -137,15 +136,29 @@ KW_WHILE = "while"
 	{KW_FN}        { return KW_FN; }
 	{KW_TEST} { return KW_TEST; }
 
-	{KW_IF}    { return KW_WHILE; }
-	{KW_ELSE}  { return KW_WHILE; }
-	{KW_WHILE} { return KW_WHILE; }
+	if    { return KW_IF; }
+	else  { return KW_ELSE; }
+	while { return KW_WHILE; }
 
-    for { return KW_FOR; }
+    for  { return KW_FOR; }
 }
 <YYINITIAL> {
 	{SYMBOL}  { return SYMBOL; }
 	{INTEGER} { return INTEGER; }
+}
+
+<YYINITIAL> {
+	"\""  {
+	          yybegin(DoubleStringLiteral);
+	          return DOUBLE_QUOTE_L;
+	}
+}
+<DoubleStringLiteral> {
+	"\""  {
+	          yybegin(YYINITIAL);
+	          return DOUBLE_QUOTE_R;
+	}
+	[^] { return STRING_TEXT; }
 }
 // =====================================================================================================================
 [^] { return BAD_CHARACTER; }

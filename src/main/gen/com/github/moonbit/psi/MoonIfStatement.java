@@ -11,9 +11,6 @@ public interface MoonIfStatement extends PsiElement {
     MoonElseStatement getElseStatement();
 
     @Nullable
-    MoonFunctionBody getFunctionBody();
-
-    @Nullable
-    MoonTermExpression getTermExpression();
+    MoonThenStatement getThenStatement();
 
 }

@@ -29,7 +29,8 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
             KW_VARIANT, KW_FLAGS, KW_ENUM,
             KW_FN, KW_TEST,
             KW_LET,
-            KW_FOR,
+            KW_FOR, KW_WHILE,
+            KW_IF, KW_ELSE,
 
                 -> MoonColor.KEYWORD
 
@@ -37,7 +38,13 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
             BRACKET_L, BRACKET_R -> MoonColor.BRACKETS
             BRACE_L, BRACE_R -> MoonColor.BRACES
             COLON, OP_ASSIGN -> MoonColor.OPERATION
-            AT -> MoonColor.OPERATION
+            OP_ADD, OP_ASSIGN,
+            OP_SUB,
+            OP_MUL,
+            OP_DIV, OP_DIV_ASSIGN,
+            OP_MOD,
+            AT,
+                -> MoonColor.OPERATION
 
             COMMA -> MoonColor.COMMA
             // atom
@@ -46,7 +53,7 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
 //            SELECTION_LINE -> MoonColor.TEXT
 //            STRING_QUOTE, STRING_CHAR -> MoonColor.STRING
 //            STRING_ESCAPE -> MoonColor.STRING_ESCAPED
-//            STRING -> AwslColor.STRING
+            STRING_TEXT, DOUBLE_QUOTE_L, DOUBLE_QUOTE_R -> MoonColor.STRING
             SYMBOL -> MoonColor.IDENTIFIER
             // 注释
             COMMENT_LINE -> MoonColor.LINE_COMMENT

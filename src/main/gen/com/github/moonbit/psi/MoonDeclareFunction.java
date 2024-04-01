@@ -7,22 +7,25 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonDeclareFunction extends PsiElement {
 
-    @Nullable
-    MoonDeclareGeneric getDeclareGeneric();
+  @Nullable
+  MoonDeclareGeneric getDeclareGeneric();
 
-    @Nullable
-    MoonDeclareParameters getDeclareParameters();
+  @Nullable
+  MoonDeclareParameters getDeclareParameters();
 
-    @Nullable
-    MoonFunctionBody getFunctionBody();
+  @Nullable
+  MoonFunctionBody getFunctionBody();
 
-    @NotNull
-    List<MoonModifier> getModifierList();
+  @Nullable
+  MoonFunctionInline getFunctionInline();
 
-    @Nullable
-    MoonNamepath getNamepath();
+  @NotNull
+  List<MoonModifier> getModifierList();
 
-    @Nullable
-    MoonReturnType getReturnType();
+  @Nullable
+  MoonNamepath getNamepath();
+
+  @Nullable
+  MoonReturnType getReturnType();
 
 }

@@ -13,4 +13,7 @@ public interface MoonEnumBody extends PsiElement {
     @NotNull
     List<MoonDeclareMethod> getDeclareMethodList();
 
+    @NotNull
+    List<MoonDeclareVariant> getDeclareVariantList();
+
 }

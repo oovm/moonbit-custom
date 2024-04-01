@@ -46,6 +46,12 @@ public class MoonDeclareFunctionNode extends AnyMoonNode implements MoonDeclareF
     }
 
     @Override
+    @Nullable
+    public MoonFunctionInline getFunctionInline() {
+        return findChildByClass(MoonFunctionInline.class);
+    }
+
+    @Override
     @NotNull
     public List<MoonModifier> getModifierList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonModifier.class);

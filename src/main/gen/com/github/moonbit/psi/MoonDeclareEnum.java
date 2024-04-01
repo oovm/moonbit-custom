@@ -16,4 +16,7 @@ public interface MoonDeclareEnum extends PsiElement {
     @Nullable
     MoonIdentifier getIdentifier();
 
+    @NotNull
+    List<MoonModifier> getModifierList();
+
 }

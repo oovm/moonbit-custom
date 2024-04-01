@@ -27,10 +27,4 @@ public class MoonCallIndexNode extends AnyMoonNode implements MoonCallIndex {
         else super.accept(visitor);
     }
 
-    @Override
-    @NotNull
-    public List<MoonTermExpression> getTermExpressionList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTermExpression.class);
-    }
-
 }
