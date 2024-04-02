@@ -29,6 +29,12 @@ public class MoonFunctionBodyNode extends AnyMoonNode implements MoonFunctionBod
 
     @Override
     @NotNull
+    public List<MoonControlStatement> getControlStatementList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonControlStatement.class);
+    }
+
+    @Override
+    @NotNull
     public List<MoonDeclareFunction> getDeclareFunctionList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonDeclareFunction.class);
     }
@@ -43,12 +49,6 @@ public class MoonFunctionBodyNode extends AnyMoonNode implements MoonFunctionBod
     @NotNull
     public List<MoonForStatement> getForStatementList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonForStatement.class);
-    }
-
-    @Override
-    @NotNull
-    public List<MoonIfStatement> getIfStatementList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonIfStatement.class);
     }
 
     @Override

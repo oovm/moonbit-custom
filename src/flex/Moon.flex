@@ -109,7 +109,8 @@ KW_WHILE = "while"
       "|>" { return OP_THEN; }
       "&&" { return OP_AND; }
 
-
+	"!=" { return OP_NE; }
+	"==" { return OP_EQ; }
 	"=" { return OP_ASSIGN; }
 
 	"~" { return OP_REF; }
@@ -119,28 +120,32 @@ KW_WHILE = "while"
 	"-" { return OP_SUB; }
 }
 <YYINITIAL> {
-	{KW_TYPE}     { return KW_TYPE; }
+	{KW_TYPE}    { return KW_TYPE; }
 
-	{KW_STRUCT} { return KW_STRUCT; }
-	{KW_ENUM}   { return KW_ENUM; }
+	{KW_STRUCT}  { return KW_STRUCT; }
+	{KW_ENUM}    { return KW_ENUM; }
 
-	{KW_TRAIT} { return KW_TRAIT; }
+	{KW_TRAIT}   { return KW_TRAIT; }
 
 
-	{KW_PUBLIC}    { return KW_PUBLIC; }
+	{KW_PUBLIC}  { return KW_PUBLIC; }
 	{KW_PRIVATE} { return KW_PRIVATE; }
 
 	{KW_MUTABLE} { return KW_MUTABLE; }
 
-	{KW_LET}       { return KW_LET; }
-	{KW_FN}        { return KW_FN; }
-	{KW_TEST} { return KW_TEST; }
+	{KW_LET}     { return KW_LET; }
+	{KW_FN}      { return KW_FN; }
+	{KW_TEST}    { return KW_TEST; }
 
 	if    { return KW_IF; }
 	else  { return KW_ELSE; }
 	while { return KW_WHILE; }
 
     for  { return KW_FOR; }
+
+	break { return KW_BREAK; }
+	continue { return KW_CONTINUE; }
+	return { return KW_RETURN; }
 }
 <YYINITIAL> {
 	{SYMBOL}  { return SYMBOL; }

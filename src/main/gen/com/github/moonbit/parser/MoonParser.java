@@ -208,6 +208,31 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // KW_RETURN term-expression
+    // 	| KW_CONTINUE
+    public static boolean control_statement(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "control_statement")) return false;
+        if (!nextTokenIs(b, "<control statement>", KW_CONTINUE, KW_RETURN)) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, CONTROL_STATEMENT, "<control statement>");
+        r = control_statement_0(b, l + 1);
+        if (!r) r = consumeToken(b, KW_CONTINUE);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // KW_RETURN term-expression
+    private static boolean control_statement_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "control_statement_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, KW_RETURN);
+        r = r && term_expression(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
     // KW_FN declare-parameters function-body
     public static boolean declare_closure(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_closure")) return false;
@@ -257,25 +282,32 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // identifier type-hint {
+    // KW_MUTABLE? identifier type-hint {
     // //    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
     // }
     public static boolean declare_field(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_field")) return false;
-        if (!nextTokenIs(b, "<declare field>", ESCAPED, SYMBOL)) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, DECLARE_FIELD, "<declare field>");
-        r = identifier(b, l + 1);
+        r = declare_field_0(b, l + 1);
+        r = r && identifier(b, l + 1);
         r = r && type_hint(b, l + 1);
-        r = r && declare_field_2(b, l + 1);
+        r = r && declare_field_3(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
+    }
+
+    // KW_MUTABLE?
+    private static boolean declare_field_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_field_0")) return false;
+        consumeToken(b, KW_MUTABLE);
+        return true;
     }
 
     // {
     // //    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
     // }
-    private static boolean declare_field_2(PsiBuilder b, int l) {
+    private static boolean declare_field_3(PsiBuilder b, int l) {
         return true;
     }
 
@@ -1000,7 +1032,8 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // BRACE_L function-element* BRACE_R
+    // BRACE_L function-element* BRACE_R {
+    // }
     public static boolean function_body(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "function_body")) return false;
         if (!nextTokenIs(b, BRACE_L)) return false;
@@ -1009,6 +1042,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         r = consumeToken(b, BRACE_L);
         r = r && function_body_1(b, l + 1);
         r = r && consumeToken(b, BRACE_R);
+        r = r && function_body_3(b, l + 1);
         exit_section_(b, m, FUNCTION_BODY, r);
         return r;
     }
@@ -1024,6 +1058,12 @@ public class MoonParser implements PsiParser, LightPsiParser {
         return true;
     }
 
+    // {
+    // }
+    private static boolean function_body_3(PsiBuilder b, int l) {
+        return true;
+    }
+
     /* ********************************************************** */
     // SEMICOLON
     // 	| let-statement
@@ -1031,7 +1071,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     // 	| declare-test
     // 	| while-statement
     // 	| for-statement
-    // 	| if-statement
+    // 	| control-statement
     // 	| term-expression
     static boolean function_element(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "function_element")) return false;
@@ -1042,7 +1082,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!r) r = declare_test(b, l + 1);
         if (!r) r = while_statement(b, l + 1);
         if (!r) r = for_statement(b, l + 1);
-        if (!r) r = if_statement(b, l + 1);
+        if (!r) r = control_statement(b, l + 1);
         if (!r) r = term_expression(b, l + 1);
         return r;
     }
@@ -1863,6 +1903,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
 
     /* ********************************************************** */
     // PARENTHESIS_L term-expression PARENTHESIS_R
+    // 	| if-statement
     // 	| dict-literal
     // 	| list-literal
     // 	| string-literal
@@ -1873,6 +1914,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, TERM_EXPRESSION_ATOM, "<term expression atom>");
         r = term_expression_atom_0(b, l + 1);
+        if (!r) r = if_statement(b, l + 1);
         if (!r) r = dict_literal(b, l + 1);
         if (!r) r = list_literal(b, l + 1);
         if (!r) r = string_literal(b, l + 1);
@@ -1936,6 +1978,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     // 	| OP_MUL
     // 	| OP_DIV | OP_DIV_ASSIGN
     // 	| OP_MOD
+    // 	| OP_EQ | OP_NE
     // 	| OP_LT | OP_LEQ
     // 	| OP_GT | OP_GEQ
     // 	| OP_OR | OP_AND
@@ -1952,6 +1995,8 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!r) r = consumeToken(b, OP_DIV);
         if (!r) r = consumeToken(b, OP_DIV_ASSIGN);
         if (!r) r = consumeToken(b, OP_MOD);
+        if (!r) r = consumeToken(b, OP_EQ);
+        if (!r) r = consumeToken(b, OP_NE);
         if (!r) r = consumeToken(b, OP_LT);
         if (!r) r = consumeToken(b, OP_LEQ);
         if (!r) r = consumeToken(b, OP_GT);
