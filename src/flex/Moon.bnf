@@ -198,9 +198,10 @@ term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
 	| dict-literal
 	| list-literal
 	| string-literal
+	| string-lines
 	| number-literal
+	| AT namepath-free
 	| namepath
-
 term-prefix ::= OP_ADD | OP_SUB | OP_REF;
 term-infix  ::= OP_ASSIGN
 	| OP_ADD | OP_ADD_ASSIGN
@@ -219,7 +220,8 @@ term-suffix   ::= OP_THROW
 	| call-field
 	| call-index
 	| call-slice
-call-function ::= PARENTHESIS_L (term-expression (COMMA term-expression)* COMMA?)? PARENTHESIS_R;
+call-function ::= errorable? PARENTHESIS_L (term-expression (COMMA term-expression)* COMMA?)? PARENTHESIS_R;
+errorable ::= OP_ERROR | OP_THROW;
 call-method   ::= DOT call-function
 call-field    ::= DOT identifier
 call-index    ::= DOT INTEGER
@@ -244,7 +246,7 @@ list-term ::= term-expression;
 //   { array: self.array, start: self.start + start, end: self.start + end }
 // =====================================================================================================================
 string-literal ::= DOUBLE_QUOTE_L STRING_TEXT+ DOUBLE_QUOTE_R;
-
+string-lines   ::= STRING_LINE+
 number-literal ::= INTEGER;
 
 
@@ -324,4 +326,6 @@ variant-item 	 ::= identifier (PARENTHESIS_L type-hint PARENTHESIS_R)? {
 module-name         ::= SYMBOL | ESCAPED;
 semantic-number     ::= SYMBOL | ESCAPED;
 identifier          ::= SYMBOL | ESCAPED;
+identifier-free     ::= SYMBOL | KW_TEST;
 namepath            ::= identifier (NAME_JOIN identifier)*
+namepath-free       ::= identifier-free (DOT identifier-free)*
