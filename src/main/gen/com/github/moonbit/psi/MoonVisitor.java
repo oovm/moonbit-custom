@@ -27,17 +27,9 @@ public class MoonVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitConstructor(@NotNull MoonConstructor o) {
+  public void visitControlStatement(@NotNull MoonControlStatement o) {
     visitPsiElement(o);
   }
-
-  public void visitControlBreak(@NotNull MoonControlBreak o) {
-    visitPsiElement(o);
-  }
-
-    public void visitControlStatement(@NotNull MoonControlStatement o) {
-        visitPsiElement(o);
-    }
 
   public void visitDeclareClosure(@NotNull MoonDeclareClosure o) {
     visitPsiElement(o);
@@ -56,6 +48,10 @@ public class MoonVisitor extends PsiElementVisitor {
   }
 
   public void visitDeclareGeneric(@NotNull MoonDeclareGeneric o) {
+    visitPsiElement(o);
+  }
+
+  public void visitDeclareImpl(@NotNull MoonDeclareImpl o) {
     visitPsiElement(o);
   }
 
@@ -111,15 +107,7 @@ public class MoonVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-    public void visitErrorable(@NotNull MoonErrorable o) {
-        visitPsiElement(o);
-    }
-
-  public void visitExport(@NotNull MoonExport o) {
-    visitPsiElement(o);
-  }
-
-  public void visitExportTerm(@NotNull MoonExportTerm o) {
+  public void visitErrorable(@NotNull MoonErrorable o) {
     visitPsiElement(o);
   }
 
@@ -143,10 +131,6 @@ public class MoonVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitFunction(@NotNull MoonFunction o) {
-    visitPsiElement(o);
-  }
-
   public void visitFunctionBody(@NotNull MoonFunctionBody o) {
     visitPsiElement(o);
   }
@@ -167,23 +151,11 @@ public class MoonVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-    public void visitIdentifierFree(@NotNull MoonIdentifierFree o) {
-        visitPsiElement(o);
-    }
+  public void visitIdentifierFree(@NotNull MoonIdentifierFree o) {
+    visitPsiElement(o);
+  }
 
   public void visitIfStatement(@NotNull MoonIfStatement o) {
-    visitPsiElement(o);
-  }
-
-  public void visitImport(@NotNull MoonImport o) {
-    visitPsiElement(o);
-  }
-
-  public void visitInclude(@NotNull MoonInclude o) {
-    visitPsiElement(o);
-  }
-
-  public void visitIncludeName(@NotNull MoonIncludeName o) {
     visitPsiElement(o);
   }
 
@@ -223,9 +195,9 @@ public class MoonVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-    public void visitNamepathFree(@NotNull MoonNamepathFree o) {
-        visitPsiElement(o);
-    }
+  public void visitNamepathFree(@NotNull MoonNamepathFree o) {
+    visitPsiElement(o);
+  }
 
   public void visitNumberLiteral(@NotNull MoonNumberLiteral o) {
     visitPsiElement(o);
@@ -259,9 +231,9 @@ public class MoonVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-    public void visitStringLines(@NotNull MoonStringLines o) {
-        visitPsiElement(o);
-    }
+  public void visitStringLines(@NotNull MoonStringLines o) {
+    visitPsiElement(o);
+  }
 
   public void visitStringLiteral(@NotNull MoonStringLiteral o) {
     visitPsiElement(o);
@@ -303,10 +275,6 @@ public class MoonVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitTuple(@NotNull MoonTuple o) {
-    visitPsiElement(o);
-  }
-
   public void visitTypeExpression(@NotNull MoonTypeExpression o) {
     visitPsiElement(o);
   }
@@ -316,10 +284,6 @@ public class MoonVisitor extends PsiElementVisitor {
   }
 
   public void visitTypeExpressionItem(@NotNull MoonTypeExpressionItem o) {
-    visitPsiElement(o);
-  }
-
-  public void visitTypeGeneric(@NotNull MoonTypeGeneric o) {
     visitPsiElement(o);
   }
 

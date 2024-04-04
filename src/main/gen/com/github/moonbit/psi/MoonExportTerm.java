@@ -11,9 +11,6 @@ public interface MoonExportTerm extends PsiElement {
     MoonDeclareTest getDeclareTest();
 
     @Nullable
-    MoonFunction getFunction();
-
-    @Nullable
     MoonIncludeName getIncludeName();
 
 }

@@ -22,7 +22,6 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
     private fun getTokenColor(tokenType: IElementType): MoonColor? {
         return when (tokenType) {
             KW_PACKAGE,
-            KW_INCLUDE, KW_IMPORT, KW_EXPORT,
             KW_TYPE, KW_PUBLIC, KW_PRIVATE,
             KW_STRUCT,
             KW_TRAIT,
