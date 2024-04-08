@@ -46,6 +46,7 @@ public interface MoonTypes {
     IElementType IDENTIFIER = new MoonElementType("IDENTIFIER");
     IElementType IDENTIFIER_FREE = new MoonElementType("IDENTIFIER_FREE");
     IElementType IF_STATEMENT = new MoonElementType("IF_STATEMENT");
+    IElementType IMPL_WITH = new MoonElementType("IMPL_WITH");
     IElementType LET_STATEMENT = new MoonElementType("LET_STATEMENT");
     IElementType LIST_LITERAL = new MoonElementType("LIST_LITERAL");
     IElementType LIST_TERM = new MoonElementType("LIST_TERM");
@@ -128,6 +129,7 @@ public interface MoonTypes {
     IElementType KW_TYPE = new MoonTokenType("KW_TYPE");
     IElementType KW_VARIANT = new MoonTokenType("KW_VARIANT");
     IElementType KW_WHILE = new MoonTokenType("KW_WHILE");
+    IElementType KW_WITH = new MoonTokenType("KW_WITH");
     IElementType NAME_JOIN = new MoonTokenType("NAME_JOIN");
     IElementType OP_ADD = new MoonTokenType("OP_ADD");
     IElementType OP_ADD_ASSIGN = new MoonTokenType("OP_ADD_ASSIGN");
@@ -238,6 +240,8 @@ public interface MoonTypes {
                 return new MoonIdentifierFreeNode(node);
             } else if (type == IF_STATEMENT) {
                 return new MoonIfStatementNode(node);
+            } else if (type == IMPL_WITH) {
+                return new MoonImplWithNode(node);
             } else if (type == LET_STATEMENT) {
                 return new MoonLetStatementNode(node);
             } else if (type == LIST_LITERAL) {

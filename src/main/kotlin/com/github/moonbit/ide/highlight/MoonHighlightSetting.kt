@@ -19,7 +19,7 @@ class MoonHighlightSetting : ColorSettingsPage {
 
     override fun getIcon() = MoonIconProvider.Moon
 
-    override fun getHighlighter() = MoonSyntaxHighlighter()
+    override fun getHighlighter() = MoonTokenHighlighter()
 
     override fun getAdditionalHighlightingTagToDescriptorMap() = annotatorTags
 

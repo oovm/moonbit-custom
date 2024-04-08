@@ -10,4 +10,7 @@ public interface MoonListLiteral extends PsiElement {
     @NotNull
     List<MoonListTerm> getListTermList();
 
+    @Nullable
+    MoonTypeHint getTypeHint();
+
 }

@@ -117,10 +117,12 @@ signature-parameter ::= PARENTHESIS_L (identifier (COMMA identifier)* COMMA?)? P
 
 // pub impl Hash for Bool with hash(self) { self.to_int() }
 // =====================================================================================================================
-declare-impl ::= modifier* KW_IMPLEMENT identifier-free KW_FOR identifier-free return-type? {
+declare-impl ::= modifier* KW_IMPLEMENT identifier-free KW_FOR identifier-free impl-with {
 	pin = 2
 }
-
+impl-with  ::= KW_WITH identifier-free declare-parameters function-body {
+	pin = 1
+}
 // =====================================================================================================================
 // world name { }
 let-statement ::= modifier? KW_LET KW_MUTABLE? identifier type-hint? OP_ASSIGN term-expression {
@@ -246,7 +248,7 @@ type-suffix ::= generic-call | "?";
 dict-literal ::= BRACE_L (dict-term (COMMA dict-term)* COMMA?)? BRACE_R
 dict-term ::= identifier COLON term-expression;
 // =====================================================================================================================
-list-literal ::= BRACKET_L (list-term (COMMA list-term)* COMMA?)? BRACKET_R
+list-literal ::= BRACKET_L (list-term (COMMA list-term)* COMMA?)? BRACKET_R type-hint?
 list-term ::= term-expression;
 
 //   { array: self.array, start: self.start + start, end: self.start + end }
