@@ -34,4 +34,7 @@ public interface MoonTermExpressionAtom extends PsiElement {
     @Nullable
     MoonTermExpression getTermExpression();
 
+    @Nullable
+    MoonTupleLiteral getTupleLiteral();
+
 }

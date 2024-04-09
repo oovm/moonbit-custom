@@ -25,16 +25,19 @@ enum class MoonColor(humanName: Supplier<@AttributeDescriptor String>, default: 
 
     // 标识符
     IDENTIFIER(OptionsBundle.messagePointer("options.language.defaults.identifier"), Default.IDENTIFIER),
-    SYM_WORLD(MessageBundle.messagePointer("color.token.symbol.world"), Default.INTERFACE_NAME),
-    SYM_INTERFACE(MessageBundle.messagePointer("color.token.symbol.interface"), Default.INTERFACE_NAME),
+    SYMBOL_CLASS(MessageBundle.messagePointer("color.token.symbol.class"), Default.CLASS_NAME),
+    SYMBOL_TRAIT(MessageBundle.messagePointer("color.token.symbol.trait"), Default.INTERFACE_NAME),
     SYM_TYPE(MessageBundle.messagePointer("color.token.symbol.type"), Default.CLASS_NAME),
-    SYMBOL_FIELD(MessageBundle.messagePointer("color.token.symbol.field"), Default.INSTANCE_FIELD),
 
+
+    SYMBOL_FIELD(MessageBundle.messagePointer("color.token.symbol.field"), Default.INSTANCE_FIELD),
+    SYMBOL_LOCAL(MessageBundle.messagePointer("color.token.symbol.local"), Default.LOCAL_VARIABLE),
     SYM_VARIANT(MessageBundle.messagePointer("color.token.symbol.variant"), Default.STATIC_FIELD),
 
     //    SYM_ATTRIBUTE(WitBundle.messagePointer("color.token.symbol.attribute"), Default.STATIC_METHOD),
 //    SYM_VARIABLE(WitBundle.messagePointer("color.token.symbol.variable"), Default.REASSIGNED_PARAMETER),
     SYMBOL_FUNCTION(MessageBundle.messagePointer("color.token.symbol.function"), Default.FUNCTION_DECLARATION),
+    SYMBOL_GENERIC(MessageBundle.messagePointer("color.token.symbol.generic"), Default.PREDEFINED_SYMBOL),
     SYM_BUILTIN(MessageBundle.messagePointer("color.token.symbol.builtin"), Default.PREDEFINED_SYMBOL),
 
     // 标点符号

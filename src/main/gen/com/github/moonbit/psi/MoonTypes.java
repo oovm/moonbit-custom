@@ -76,6 +76,8 @@ public interface MoonTypes {
     IElementType TERM_SUFFIX = new MoonElementType("TERM_SUFFIX");
     IElementType THEN_STATEMENT = new MoonElementType("THEN_STATEMENT");
     IElementType TRAIT_BODY = new MoonElementType("TRAIT_BODY");
+    IElementType TUPLE_LITERAL = new MoonElementType("TUPLE_LITERAL");
+    IElementType TUPLE_TERM = new MoonElementType("TUPLE_TERM");
     IElementType TYPE_EXPRESSION = new MoonElementType("TYPE_EXPRESSION");
     IElementType TYPE_EXPRESSION_ATOM = new MoonElementType("TYPE_EXPRESSION_ATOM");
     IElementType TYPE_EXPRESSION_ITEM = new MoonElementType("TYPE_EXPRESSION_ITEM");
@@ -149,6 +151,7 @@ public interface MoonTypes {
     IElementType OP_OR = new MoonTokenType("OP_OR");
     IElementType OP_PATTERN_TO = new MoonTokenType("OP_PATTERN_TO");
     IElementType OP_REF = new MoonTokenType("OP_REF");
+    IElementType OP_SPREAD = new MoonTokenType("OP_SPREAD");
     IElementType OP_SUB = new MoonTokenType("OP_SUB");
     IElementType OP_THEN = new MoonTokenType("OP_THEN");
     IElementType OP_THROW = new MoonTokenType("OP_THROW");
@@ -300,6 +303,10 @@ public interface MoonTypes {
                 return new MoonThenStatementNode(node);
             } else if (type == TRAIT_BODY) {
                 return new MoonTraitBodyNode(node);
+            } else if (type == TUPLE_LITERAL) {
+                return new MoonTupleLiteralNode(node);
+            } else if (type == TUPLE_TERM) {
+                return new MoonTupleTermNode(node);
             } else if (type == TYPE_EXPRESSION) {
                 return new MoonTypeExpressionNode(node);
             } else if (type == TYPE_EXPRESSION_ATOM) {
