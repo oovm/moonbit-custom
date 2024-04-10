@@ -95,6 +95,9 @@ public interface MoonTypes {
     IElementType BRACE_R = new MoonTokenType("}");
     IElementType BRACKET_L = new MoonTokenType("[");
     IElementType BRACKET_R = new MoonTokenType("]");
+    IElementType BYTES_BIN = new MoonTokenType("BYTES_BIN");
+    IElementType BYTES_HEX = new MoonTokenType("BYTES_HEX");
+    IElementType BYTES_OCT = new MoonTokenType("BYTES_OCT");
     IElementType COLON = new MoonTokenType("COLON");
     IElementType COMMA = new MoonTokenType("COMMA");
     IElementType COMMENT_BLOCK = new MoonTokenType("Comment Block");

@@ -1368,14 +1368,22 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // term-expression
+    // OP_SPREAD? term-expression
     public static boolean list_term(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "list_term")) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, LIST_TERM, "<list term>");
-        r = term_expression(b, l + 1);
+        r = list_term_0(b, l + 1);
+        r = r && term_expression(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
+    }
+
+    // OP_SPREAD?
+    private static boolean list_term_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "list_term_0")) return false;
+        consumeToken(b, OP_SPREAD);
+        return true;
     }
 
     /* ********************************************************** */
@@ -1545,14 +1553,16 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // INTEGER
+    // INTEGER | BYTES_HEX | BYTES_OCT | BYTES_BIN
     public static boolean number_literal(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "number_literal")) return false;
-        if (!nextTokenIs(b, INTEGER)) return false;
         boolean r;
-        Marker m = enter_section_(b);
+        Marker m = enter_section_(b, l, _NONE_, NUMBER_LITERAL, "<number literal>");
         r = consumeToken(b, INTEGER);
-        exit_section_(b, m, NUMBER_LITERAL, r);
+        if (!r) r = consumeToken(b, BYTES_HEX);
+        if (!r) r = consumeToken(b, BYTES_OCT);
+        if (!r) r = consumeToken(b, BYTES_BIN);
+        exit_section_(b, l, m, r, false, null);
         return r;
     }
 
@@ -2038,7 +2048,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // OP_ADD | OP_SUB | OP_REF | OP_SPREAD
+    // OP_ADD | OP_SUB | OP_REF
     public static boolean term_prefix(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "term_prefix")) return false;
         boolean r;
@@ -2046,7 +2056,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
         r = consumeToken(b, OP_ADD);
         if (!r) r = consumeToken(b, OP_SUB);
         if (!r) r = consumeToken(b, OP_REF);
-        if (!r) r = consumeToken(b, OP_SPREAD);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
@@ -2125,14 +2134,76 @@ public class MoonParser implements PsiParser, LightPsiParser {
 
     /* ********************************************************** */
     // PARENTHESIS_L PARENTHESIS_R
+    // 	| PARENTHESIS_L (tuple-term (COMMA tuple-term)* COMMA?)? PARENTHESIS_R
     public static boolean tuple_literal(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "tuple_literal")) return false;
         if (!nextTokenIs(b, PARENTHESIS_L)) return false;
         boolean r;
         Marker m = enter_section_(b);
-        r = consumeTokens(b, 0, PARENTHESIS_L, PARENTHESIS_R);
+        r = parseTokens(b, 0, PARENTHESIS_L, PARENTHESIS_R);
+        if (!r) r = tuple_literal_1(b, l + 1);
         exit_section_(b, m, TUPLE_LITERAL, r);
         return r;
+    }
+
+    // PARENTHESIS_L (tuple-term (COMMA tuple-term)* COMMA?)? PARENTHESIS_R
+    private static boolean tuple_literal_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "tuple_literal_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, PARENTHESIS_L);
+        r = r && tuple_literal_1_1(b, l + 1);
+        r = r && consumeToken(b, PARENTHESIS_R);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (tuple-term (COMMA tuple-term)* COMMA?)?
+    private static boolean tuple_literal_1_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "tuple_literal_1_1")) return false;
+        tuple_literal_1_1_0(b, l + 1);
+        return true;
+    }
+
+    // tuple-term (COMMA tuple-term)* COMMA?
+    private static boolean tuple_literal_1_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "tuple_literal_1_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = tuple_term(b, l + 1);
+        r = r && tuple_literal_1_1_0_1(b, l + 1);
+        r = r && tuple_literal_1_1_0_2(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (COMMA tuple-term)*
+    private static boolean tuple_literal_1_1_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "tuple_literal_1_1_0_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!tuple_literal_1_1_0_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "tuple_literal_1_1_0_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA tuple-term
+    private static boolean tuple_literal_1_1_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "tuple_literal_1_1_0_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && tuple_term(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // COMMA?
+    private static boolean tuple_literal_1_1_0_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "tuple_literal_1_1_0_2")) return false;
+        consumeToken(b, COMMA);
+        return true;
     }
 
     /* ********************************************************** */

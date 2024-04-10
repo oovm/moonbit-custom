@@ -27,8 +27,13 @@ ESCAPED = %[a-zA-Z0-9\-]+
 SYMBOL = [_\p{XID_START}][\p{XID_CONTINUE}]*
 WORD = [a-zA-Z][a-zA-Z0-9]*
 //STRING=\"([^\"\\]|\\.)*\"
-INTEGER=(0|[1-9][0-9_]*)[L]?
+
+INTEGER=(0|[1-9][0-9_]*)(UL|U|L)?
 DECIMAL=([0-9]+\.[0-9]*([Ee][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)
+HEX = 0x[_0-9a-fA-F]+
+OCT = 0o[0-7_]*
+BIN = 0b[01_]*
+
 
 HEX = [0-9a-fA-F]
 
@@ -151,6 +156,9 @@ KW_FN      = "fn"
 <YYINITIAL> {
 	{SYMBOL}  { return SYMBOL; }
 	{INTEGER} { return INTEGER; }
+	{HEX}     { return BYTES_HEX; }
+	{OCT}     { return BYTES_OCT; }
+	{BIN}     { return BYTES_BIN; }
 }
 
 <YYINITIAL> {
