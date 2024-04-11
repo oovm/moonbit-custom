@@ -27,6 +27,10 @@ public class MoonVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitCharLiteral(@NotNull MoonCharLiteral o) {
+    visitPsiElement(o);
+  }
+
   public void visitControlStatement(@NotNull MoonControlStatement o) {
     visitPsiElement(o);
   }

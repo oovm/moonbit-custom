@@ -180,6 +180,35 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // SINGLE_QUOTE_L STRING_TEXT+ SINGLE_QUOTE_R
+    public static boolean char_literal(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "char_literal")) return false;
+        if (!nextTokenIs(b, SINGLE_QUOTE_L)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, SINGLE_QUOTE_L);
+        r = r && char_literal_1(b, l + 1);
+        r = r && consumeToken(b, SINGLE_QUOTE_R);
+        exit_section_(b, m, CHAR_LITERAL, r);
+        return r;
+    }
+
+    // STRING_TEXT+
+    private static boolean char_literal_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "char_literal_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, STRING_TEXT);
+        while (r) {
+            int c = current_position_(b);
+            if (!consumeToken(b, STRING_TEXT)) break;
+            if (!empty_element_parsed_guard_(b, "char_literal_1", c)) break;
+        }
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
     // KW_RETURN term-expression?
     // 	| KW_CONTINUE
     // 	| KW_BREAK term-expression?
@@ -1931,6 +1960,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     // 	| tuple-literal
     // 	| string-literal
     // 	| string-lines
+    // 	| char-literal
     // 	| number-literal
     // 	| AT namepath-free
     // 	| namepath
@@ -1945,8 +1975,9 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!r) r = tuple_literal(b, l + 1);
         if (!r) r = string_literal(b, l + 1);
         if (!r) r = string_lines(b, l + 1);
+        if (!r) r = char_literal(b, l + 1);
         if (!r) r = number_literal(b, l + 1);
-        if (!r) r = term_expression_atom_8(b, l + 1);
+        if (!r) r = term_expression_atom_9(b, l + 1);
         if (!r) r = namepath(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
@@ -1965,8 +1996,8 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     // AT namepath-free
-    private static boolean term_expression_atom_8(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "term_expression_atom_8")) return false;
+    private static boolean term_expression_atom_9(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "term_expression_atom_9")) return false;
         boolean r;
         Marker m = enter_section_(b);
         r = consumeToken(b, AT);
@@ -2350,13 +2381,14 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // generic-call | "?"
+    // generic-call | OP_THROW
     public static boolean type_suffix(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "type_suffix")) return false;
+        if (!nextTokenIs(b, "<type suffix>", BRACKET_L, OP_THROW)) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, TYPE_SUFFIX, "<type suffix>");
         r = generic_call(b, l + 1);
-        if (!r) r = consumeToken(b, "?");
+        if (!r) r = consumeToken(b, OP_THROW);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
