@@ -149,9 +149,11 @@ KW_FN      = "fn"
 	while { return KW_WHILE; }
     for  { return KW_FOR; }
 
-	break { return KW_BREAK; }
+
+	return   { return KW_RETURN; }
 	continue { return KW_CONTINUE; }
-	return { return KW_RETURN; }
+	break    { return KW_BREAK; }
+	raise    { return KW_RAISE; }
 }
 <YYINITIAL> {
 	{SYMBOL}  { return SYMBOL; }

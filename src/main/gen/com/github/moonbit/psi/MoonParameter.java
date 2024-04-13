@@ -10,6 +10,9 @@ public interface MoonParameter extends PsiElement {
   @NotNull
   MoonIdentifier getIdentifier();
 
+    @Nullable
+    MoonTermExpression getTermExpression();
+
   @NotNull
   MoonTypeExpression getTypeExpression();
 
