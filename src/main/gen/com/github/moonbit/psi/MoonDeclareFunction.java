@@ -16,16 +16,19 @@ public interface MoonDeclareFunction extends PsiElement {
   @Nullable
   MoonFunctionBody getFunctionBody();
 
-  @Nullable
-  MoonFunctionInline getFunctionInline();
+    @Nullable
+    MoonFunctionExtern getFunctionExtern();
 
-  @NotNull
-  List<MoonModifier> getModifierList();
+    @Nullable
+    MoonFunctionInline getFunctionInline();
 
-  @Nullable
-  MoonNamepath getNamepath();
+    @NotNull
+    List<MoonModifier> getModifierList();
 
-  @Nullable
-  MoonReturnType getReturnType();
+    @Nullable
+    MoonNamepath getNamepath();
+
+    @Nullable
+    MoonReturnType getReturnType();
 
 }

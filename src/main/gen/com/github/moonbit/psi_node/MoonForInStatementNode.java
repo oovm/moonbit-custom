@@ -2,50 +2,47 @@
 package com.github.moonbit.psi_node;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-
 import static com.github.moonbit.psi.MoonTypes.*;
-
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
 public class MoonForInStatementNode extends AnyMoonNode implements MoonForInStatement {
 
-    public MoonForInStatementNode(@NotNull ASTNode node) {
-        super(node);
-    }
+  public MoonForInStatementNode(@NotNull ASTNode node) {
+    super(node);
+  }
 
-    public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitForInStatement(this);
-    }
+  public void accept(@NotNull MoonVisitor visitor) {
+    visitor.visitForInStatement(this);
+  }
 
-    @Override
-    public void accept(@NotNull PsiElementVisitor visitor) {
-        if (visitor instanceof MoonVisitor) accept((MoonVisitor) visitor);
-        else super.accept(visitor);
-    }
+  @Override
+  public void accept(@NotNull PsiElementVisitor visitor) {
+    if (visitor instanceof MoonVisitor) accept((MoonVisitor) visitor);
+    else super.accept(visitor);
+  }
 
-    @Override
-    @NotNull
-    public MoonFunctionBody getFunctionBody() {
-        return findNotNullChildByClass(MoonFunctionBody.class);
-    }
+  @Override
+  @NotNull
+  public MoonFunctionBody getFunctionBody() {
+    return findNotNullChildByClass(MoonFunctionBody.class);
+  }
 
-    @Override
-    @NotNull
-    public MoonIdentifier getIdentifier() {
-        return findNotNullChildByClass(MoonIdentifier.class);
-    }
+  @Override
+  @NotNull
+  public MoonIdentifier getIdentifier() {
+    return findNotNullChildByClass(MoonIdentifier.class);
+  }
 
-    @Override
-    @NotNull
-    public MoonTermExpression getTermExpression() {
-        return findNotNullChildByClass(MoonTermExpression.class);
-    }
+  @Override
+  @NotNull
+  public MoonTermExpression getTermExpression() {
+    return findNotNullChildByClass(MoonTermExpression.class);
+  }
 
 }

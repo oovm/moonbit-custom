@@ -2,19 +2,18 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface MoonForInStatement extends PsiElement {
 
-    @NotNull
-    MoonFunctionBody getFunctionBody();
+  @NotNull
+  MoonFunctionBody getFunctionBody();
 
-    @NotNull
-    MoonIdentifier getIdentifier();
+  @NotNull
+  MoonIdentifier getIdentifier();
 
-    @NotNull
-    MoonTermExpression getTermExpression();
+  @NotNull
+  MoonTermExpression getTermExpression();
 
 }

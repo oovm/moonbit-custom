@@ -131,7 +131,7 @@ KW_FN      = "fn"
     impl         { return KW_IMPLEMENT; }
       with       { return KW_WITH; }
 
-
+	extern       { return KW_EXTERN; }
 	{KW_PUBLIC}  { return KW_PUBLIC; }
 	{KW_PRIVATE} { return KW_PRIVATE; }
 

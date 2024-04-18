@@ -47,6 +47,12 @@ public class MoonDeclareFunctionNode extends AnyMoonNode implements MoonDeclareF
 
     @Override
     @Nullable
+    public MoonFunctionExtern getFunctionExtern() {
+        return findChildByClass(MoonFunctionExtern.class);
+    }
+
+    @Override
+    @Nullable
     public MoonFunctionInline getFunctionInline() {
         return findChildByClass(MoonFunctionInline.class);
     }

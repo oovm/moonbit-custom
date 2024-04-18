@@ -42,6 +42,7 @@ public interface MoonTypes {
     IElementType FOR_STARTUP = new MoonElementType("FOR_STARTUP");
     IElementType FOR_STATEMENT = new MoonElementType("FOR_STATEMENT");
     IElementType FUNCTION_BODY = new MoonElementType("FUNCTION_BODY");
+    IElementType FUNCTION_EXTERN = new MoonElementType("FUNCTION_EXTERN");
     IElementType FUNCTION_INLINE = new MoonElementType("FUNCTION_INLINE");
     IElementType GENERIC_CALL = new MoonElementType("GENERIC_CALL");
     IElementType GENERIC_ITEM = new MoonElementType("GENERIC_ITEM");
@@ -118,6 +119,7 @@ public interface MoonTypes {
     IElementType KW_DERIVE = new MoonTokenType("KW_DERIVE");
     IElementType KW_ELSE = new MoonTokenType("KW_ELSE");
     IElementType KW_ENUM = new MoonTokenType("KW_ENUM");
+    IElementType KW_EXTERN = new MoonTokenType("KW_EXTERN");
     IElementType KW_FLAGS = new MoonTokenType("KW_FLAGS");
     IElementType KW_FN = new MoonTokenType("KW_FN");
     IElementType KW_FOR = new MoonTokenType("KW_FOR");
@@ -244,6 +246,8 @@ public interface MoonTypes {
                 return new MoonForStatementNode(node);
             } else if (type == FUNCTION_BODY) {
                 return new MoonFunctionBodyNode(node);
+            } else if (type == FUNCTION_EXTERN) {
+                return new MoonFunctionExternNode(node);
             } else if (type == FUNCTION_INLINE) {
                 return new MoonFunctionInlineNode(node);
             } else if (type == GENERIC_CALL) {

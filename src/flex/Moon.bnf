@@ -129,10 +129,11 @@ let-statement ::= modifier? KW_LET KW_MUTABLE? identifier type-hint? OP_ASSIGN t
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }
 // =====================================================================================================================
-declare-function ::= modifier* KW_FN namepath declare-generic? declare-parameters return-type? (function-body | function-inline) {
-	pin = 2
+declare-function ::= modifier* function-extern? KW_FN namepath declare-generic? declare-parameters return-type? (function-body | function-inline) {
+	pin = 3
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
+function-extern ::= KW_EXTERN string-literal;
 function-inline ::= OP_ASSIGN term-expression;
 
 function-body  ::= BRACE_L function-element* BRACE_R {
