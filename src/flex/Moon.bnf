@@ -193,8 +193,8 @@ match-variant ::= identifier;
 while-statement ::= KW_WHILE term-expression function-body {
 	pin = 1
 }
-
-for-statement  ::= KW_FOR for-startup for-condition for-increment function-body;
+for-in-statement ::= KW_FOR identifier KW_IN term-expression function-body;
+for-statement  ::= for-in-statement | KW_FOR for-startup for-condition for-increment function-body;
 for-startup    ::= term-expression SEMICOLON;
 for-condition  ::= term-expression SEMICOLON;
 for-increment  ::= term-expression;

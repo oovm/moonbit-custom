@@ -29,8 +29,8 @@ public class MoonReturnTypeNode extends AnyMoonNode implements MoonReturnType {
 
     @Override
     @NotNull
-    public MoonTypeExpression getTypeExpression() {
-        return findNotNullChildByClass(MoonTypeExpression.class);
+    public List<MoonTypeExpression> getTypeExpressionList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTypeExpression.class);
     }
 
 }

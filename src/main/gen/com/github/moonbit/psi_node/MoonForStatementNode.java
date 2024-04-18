@@ -28,27 +28,33 @@ public class MoonForStatementNode extends AnyMoonNode implements MoonForStatemen
     }
 
     @Override
-    @NotNull
+    @Nullable
     public MoonForCondition getForCondition() {
-        return findNotNullChildByClass(MoonForCondition.class);
+        return findChildByClass(MoonForCondition.class);
     }
 
     @Override
-    @NotNull
+    @Nullable
+    public MoonForInStatement getForInStatement() {
+        return findChildByClass(MoonForInStatement.class);
+    }
+
+    @Override
+    @Nullable
     public MoonForIncrement getForIncrement() {
-        return findNotNullChildByClass(MoonForIncrement.class);
+        return findChildByClass(MoonForIncrement.class);
     }
 
     @Override
-    @NotNull
+    @Nullable
     public MoonForStartup getForStartup() {
-        return findNotNullChildByClass(MoonForStartup.class);
+        return findChildByClass(MoonForStartup.class);
     }
 
     @Override
-    @NotNull
+    @Nullable
     public MoonFunctionBody getFunctionBody() {
-        return findNotNullChildByClass(MoonFunctionBody.class);
+        return findChildByClass(MoonFunctionBody.class);
     }
 
 }

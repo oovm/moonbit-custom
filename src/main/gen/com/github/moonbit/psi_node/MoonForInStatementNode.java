@@ -2,23 +2,26 @@
 package com.github.moonbit.psi_node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
+
 import static com.github.moonbit.psi.MoonTypes.*;
+
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
-public class MoonTypeExpressionAtomNode extends AnyMoonNode implements MoonTypeExpressionAtom {
+public class MoonForInStatementNode extends AnyMoonNode implements MoonForInStatement {
 
-    public MoonTypeExpressionAtomNode(@NotNull ASTNode node) {
+    public MoonForInStatementNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitTypeExpressionAtom(this);
+        visitor.visitForInStatement(this);
     }
 
     @Override
@@ -28,21 +31,21 @@ public class MoonTypeExpressionAtomNode extends AnyMoonNode implements MoonTypeE
     }
 
     @Override
-    @Nullable
-    public MoonNamepath getNamepath() {
-        return findChildByClass(MoonNamepath.class);
+    @NotNull
+    public MoonFunctionBody getFunctionBody() {
+        return findNotNullChildByClass(MoonFunctionBody.class);
     }
 
     @Override
-    @Nullable
-    public MoonNamepathFree getNamepathFree() {
-        return findChildByClass(MoonNamepathFree.class);
+    @NotNull
+    public MoonIdentifier getIdentifier() {
+        return findNotNullChildByClass(MoonIdentifier.class);
     }
 
     @Override
-    @Nullable
-    public MoonTypeExpression getTypeExpression() {
-        return findChildByClass(MoonTypeExpression.class);
+    @NotNull
+    public MoonTermExpression getTermExpression() {
+        return findNotNullChildByClass(MoonTermExpression.class);
     }
 
 }

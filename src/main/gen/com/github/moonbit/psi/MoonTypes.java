@@ -38,6 +38,7 @@ public interface MoonTypes {
     IElementType FLAGS = new MoonElementType("FLAGS");
     IElementType FOR_CONDITION = new MoonElementType("FOR_CONDITION");
     IElementType FOR_INCREMENT = new MoonElementType("FOR_INCREMENT");
+    IElementType FOR_IN_STATEMENT = new MoonElementType("FOR_IN_STATEMENT");
     IElementType FOR_STARTUP = new MoonElementType("FOR_STARTUP");
     IElementType FOR_STATEMENT = new MoonElementType("FOR_STATEMENT");
     IElementType FUNCTION_BODY = new MoonElementType("FUNCTION_BODY");
@@ -122,6 +123,7 @@ public interface MoonTypes {
     IElementType KW_FOR = new MoonTokenType("KW_FOR");
     IElementType KW_IF = new MoonTokenType("KW_IF");
     IElementType KW_IMPLEMENT = new MoonTokenType("KW_IMPLEMENT");
+    IElementType KW_IN = new MoonTokenType("KW_IN");
     IElementType KW_LET = new MoonTokenType("KW_LET");
     IElementType KW_MATCH = new MoonTokenType("KW_MATCH");
     IElementType KW_MUTABLE = new MoonTokenType("KW_MUTABLE");
@@ -234,6 +236,8 @@ public interface MoonTypes {
                 return new MoonForConditionNode(node);
             } else if (type == FOR_INCREMENT) {
                 return new MoonForIncrementNode(node);
+            } else if (type == FOR_IN_STATEMENT) {
+                return new MoonForInStatementNode(node);
             } else if (type == FOR_STARTUP) {
                 return new MoonForStartupNode(node);
             } else if (type == FOR_STATEMENT) {

@@ -143,6 +143,10 @@ class MoonSyntaxHighlighter : MoonVisitor(), HighlightVisitor {
 //        highlight(o, SYM_INTERFACE)
 //    }
 
+    override fun visitDictTerm(o: MoonDictTerm) {
+        highlight(o.identifier, SYMBOL_FIELD)
+    }
+
 //    override fun visitSchemaStatement(o: JssSchemaStatement) {
 //        //
 //        val head = o.firstChild;

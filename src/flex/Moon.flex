@@ -148,7 +148,7 @@ KW_FN      = "fn"
 
 	while { return KW_WHILE; }
     for  { return KW_FOR; }
-
+    in   { return KW_IN; }
 
 	return   { return KW_RETURN; }
 	continue { return KW_CONTINUE; }

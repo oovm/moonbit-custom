@@ -7,16 +7,19 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonForStatement extends PsiElement {
 
-    @NotNull
+    @Nullable
     MoonForCondition getForCondition();
 
-    @NotNull
+    @Nullable
+    MoonForInStatement getForInStatement();
+
+    @Nullable
     MoonForIncrement getForIncrement();
 
-    @NotNull
+    @Nullable
     MoonForStartup getForStartup();
 
-    @NotNull
+    @Nullable
     MoonFunctionBody getFunctionBody();
 
 }
