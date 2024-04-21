@@ -40,9 +40,9 @@ public class MoonParameterNode extends AnyMoonNode implements MoonParameter {
     }
 
     @Override
-    @NotNull
+    @Nullable
     public MoonTypeExpression getTypeExpression() {
-        return findNotNullChildByClass(MoonTypeExpression.class);
+        return findChildByClass(MoonTypeExpression.class);
     }
 
 }
