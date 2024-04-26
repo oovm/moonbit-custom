@@ -147,6 +147,7 @@ KW_FN      = "fn"
 	{KW_FN}      { return KW_FN; }
 	test    { return KW_TEST; }
 
+	guard { return KW_GUARD; }
 	if    { return KW_IF; }
 	else  { return KW_ELSE; }
 
