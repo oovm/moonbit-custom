@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface MoonDeclareEnum extends PsiElement {
 
     @Nullable
-    MoonDeriveStatement getDeriveStatement();
+    MoonAppendDerive getAppendDerive();
 
     @Nullable
     MoonEnumBody getEnumBody();

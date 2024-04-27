@@ -36,6 +36,70 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
+    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
+    // }
+    public static boolean append_derive(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "append_derive")) return false;
+        if (!nextTokenIs(b, KW_DERIVE)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeTokens(b, 0, KW_DERIVE, PARENTHESIS_L);
+        r = r && append_derive_2(b, l + 1);
+        r = r && consumeToken(b, PARENTHESIS_R);
+        r = r && append_derive_4(b, l + 1);
+        exit_section_(b, m, APPEND_DERIVE, r);
+        return r;
+    }
+
+    // (identifier (COMMA identifier)*)?
+    private static boolean append_derive_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "append_derive_2")) return false;
+        append_derive_2_0(b, l + 1);
+        return true;
+    }
+
+    // identifier (COMMA identifier)*
+    private static boolean append_derive_2_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "append_derive_2_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = identifier(b, l + 1);
+        r = r && append_derive_2_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (COMMA identifier)*
+    private static boolean append_derive_2_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "append_derive_2_0_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!append_derive_2_0_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "append_derive_2_0_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA identifier
+    private static boolean append_derive_2_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "append_derive_2_0_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && identifier(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // {
+    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
+    // }
+    private static boolean append_derive_4(PsiBuilder b, int l) {
+        return true;
+    }
+
+    /* ********************************************************** */
     // DOT identifier
     public static boolean call_field(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "call_field")) return false;
@@ -391,7 +455,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // modifier* KW_ENUM identifier enum-body derive-statement?
+    // modifier* KW_ENUM identifier enum-body append-derive?
     public static boolean declare_enum(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_enum")) return false;
         boolean r, p;
@@ -417,10 +481,10 @@ public class MoonParser implements PsiParser, LightPsiParser {
         return true;
     }
 
-    // derive-statement?
+    // append-derive?
     private static boolean declare_enum_4(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_enum_4")) return false;
-        derive_statement(b, l + 1);
+        append_derive(b, l + 1);
         return true;
     }
 
@@ -738,7 +802,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // modifier* KW_STRUCT identifier declare-generic? struct-body derive-statement?
+    // modifier* KW_STRUCT identifier declare-generic? struct-body append-derive?
     public static boolean declare_struct(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_struct")) return false;
         boolean r, p;
@@ -772,10 +836,10 @@ public class MoonParser implements PsiParser, LightPsiParser {
         return true;
     }
 
-    // derive-statement?
+    // append-derive?
     private static boolean declare_struct_5(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_struct_5")) return false;
-        derive_statement(b, l + 1);
+        append_derive(b, l + 1);
         return true;
     }
 
@@ -904,70 +968,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
             if (!modifier(b, l + 1)) break;
             if (!empty_element_parsed_guard_(b, "define_type_alias_0", c)) break;
         }
-        return true;
-    }
-
-    /* ********************************************************** */
-    // KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
-    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
-    // }
-    public static boolean derive_statement(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement")) return false;
-        if (!nextTokenIs(b, KW_DERIVE)) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeTokens(b, 0, KW_DERIVE, PARENTHESIS_L);
-        r = r && derive_statement_2(b, l + 1);
-        r = r && consumeToken(b, PARENTHESIS_R);
-        r = r && derive_statement_4(b, l + 1);
-        exit_section_(b, m, DERIVE_STATEMENT, r);
-        return r;
-    }
-
-    // (identifier (COMMA identifier)*)?
-    private static boolean derive_statement_2(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement_2")) return false;
-        derive_statement_2_0(b, l + 1);
-        return true;
-    }
-
-    // identifier (COMMA identifier)*
-    private static boolean derive_statement_2_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement_2_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = identifier(b, l + 1);
-        r = r && derive_statement_2_0_1(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
-
-    // (COMMA identifier)*
-    private static boolean derive_statement_2_0_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement_2_0_1")) return false;
-        while (true) {
-            int c = current_position_(b);
-            if (!derive_statement_2_0_1_0(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "derive_statement_2_0_1", c)) break;
-        }
-        return true;
-    }
-
-    // COMMA identifier
-    private static boolean derive_statement_2_0_1_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "derive_statement_2_0_1_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, COMMA);
-        r = r && identifier(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
-
-    // {
-    // 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
-    // }
-    private static boolean derive_statement_4(PsiBuilder b, int l) {
         return true;
     }
 
@@ -1459,18 +1459,27 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // KW_IF then-statement else-statement?
+    // (KW_IF|KW_GUARD) then-statement else-statement?
     public static boolean if_statement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "if_statement")) return false;
-        if (!nextTokenIs(b, KW_IF)) return false;
+        if (!nextTokenIs(b, "<if statement>", KW_GUARD, KW_IF)) return false;
         boolean r, p;
-        Marker m = enter_section_(b, l, _NONE_, IF_STATEMENT, null);
-        r = consumeToken(b, KW_IF);
+        Marker m = enter_section_(b, l, _NONE_, IF_STATEMENT, "<if statement>");
+        r = if_statement_0(b, l + 1);
         p = r; // pin = 1
         r = r && report_error_(b, then_statement(b, l + 1));
         r = p && if_statement_2(b, l + 1) && r;
         exit_section_(b, l, m, r, p, null);
         return r || p;
+    }
+
+    // KW_IF|KW_GUARD
+    private static boolean if_statement_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "if_statement_0")) return false;
+        boolean r;
+        r = consumeToken(b, KW_IF);
+        if (!r) r = consumeToken(b, KW_GUARD);
+        return r;
     }
 
     // else-statement?
@@ -2349,7 +2358,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     /* ********************************************************** */
     // OP_ASSIGN
     // 	| OP_ADD | OP_ADD_ASSIGN
-    // 	| OP_SUB
+    // 	| OP_SUB | OP_SUB_ASSIGN
     // 	| OP_MUL
     // 	| OP_DIV | OP_DIV_ASSIGN
     // 	| OP_MOD
@@ -2368,6 +2377,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!r) r = consumeToken(b, OP_ADD);
         if (!r) r = consumeToken(b, OP_ADD_ASSIGN);
         if (!r) r = consumeToken(b, OP_SUB);
+        if (!r) r = consumeToken(b, OP_SUB_ASSIGN);
         if (!r) r = consumeToken(b, OP_MUL);
         if (!r) r = consumeToken(b, OP_DIV);
         if (!r) r = consumeToken(b, OP_DIV_ASSIGN);

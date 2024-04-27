@@ -8,10 +8,10 @@ import com.intellij.psi.PsiElement;
 public interface MoonDeclareStruct extends PsiElement {
 
     @Nullable
-    MoonDeclareGeneric getDeclareGeneric();
+    MoonAppendDerive getAppendDerive();
 
     @Nullable
-    MoonDeriveStatement getDeriveStatement();
+    MoonDeclareGeneric getDeclareGeneric();
 
     @Nullable
     MoonIdentifier getIdentifier();

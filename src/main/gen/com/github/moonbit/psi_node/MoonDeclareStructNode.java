@@ -29,14 +29,14 @@ public class MoonDeclareStructNode extends AnyMoonNode implements MoonDeclareStr
 
     @Override
     @Nullable
-    public MoonDeclareGeneric getDeclareGeneric() {
-        return findChildByClass(MoonDeclareGeneric.class);
+    public MoonAppendDerive getAppendDerive() {
+        return findChildByClass(MoonAppendDerive.class);
     }
 
     @Override
     @Nullable
-    public MoonDeriveStatement getDeriveStatement() {
-        return findChildByClass(MoonDeriveStatement.class);
+    public MoonDeclareGeneric getDeclareGeneric() {
+        return findChildByClass(MoonDeclareGeneric.class);
     }
 
     @Override

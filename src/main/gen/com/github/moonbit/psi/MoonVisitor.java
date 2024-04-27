@@ -7,29 +7,33 @@ import com.intellij.psi.PsiElement;
 
 public class MoonVisitor extends PsiElementVisitor {
 
-  public void visitCallField(@NotNull MoonCallField o) {
-    visitPsiElement(o);
-  }
+    public void visitAppendDerive(@NotNull MoonAppendDerive o) {
+        visitPsiElement(o);
+    }
 
-  public void visitCallFunction(@NotNull MoonCallFunction o) {
-    visitPsiElement(o);
-  }
+    public void visitCallField(@NotNull MoonCallField o) {
+        visitPsiElement(o);
+    }
 
-  public void visitCallIndex(@NotNull MoonCallIndex o) {
-    visitPsiElement(o);
-  }
+    public void visitCallFunction(@NotNull MoonCallFunction o) {
+        visitPsiElement(o);
+    }
 
-  public void visitCallMethod(@NotNull MoonCallMethod o) {
-    visitPsiElement(o);
-  }
+    public void visitCallIndex(@NotNull MoonCallIndex o) {
+        visitPsiElement(o);
+    }
 
-  public void visitCallSlice(@NotNull MoonCallSlice o) {
-    visitPsiElement(o);
-  }
+    public void visitCallMethod(@NotNull MoonCallMethod o) {
+        visitPsiElement(o);
+    }
 
-  public void visitCharLiteral(@NotNull MoonCharLiteral o) {
-    visitPsiElement(o);
-  }
+    public void visitCallSlice(@NotNull MoonCallSlice o) {
+        visitPsiElement(o);
+    }
+
+    public void visitCharLiteral(@NotNull MoonCharLiteral o) {
+        visitPsiElement(o);
+    }
 
     public void visitClosureParameters(@NotNull MoonClosureParameters o) {
         visitPsiElement(o);
@@ -96,10 +100,6 @@ public class MoonVisitor extends PsiElementVisitor {
     }
 
     public void visitDefineTypeAlias(@NotNull MoonDefineTypeAlias o) {
-        visitPsiElement(o);
-    }
-
-    public void visitDeriveStatement(@NotNull MoonDeriveStatement o) {
         visitPsiElement(o);
     }
 

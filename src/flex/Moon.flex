@@ -121,11 +121,14 @@ KW_FN      = "fn"
 
 	"?" { return OP_THROW; }
 
-	"-" { return OP_SUB; }
+	"-=" { return OP_SUB_ASSIGN; }
+	"-"  { return OP_SUB; }
 }
 <YYINITIAL> {
 	type         { return KW_TYPE; }
     typealias    { return KW_TYPE_ALIAS; }
+
+    derive       { return KW_DERIVE;}
 
 	{KW_STRUCT}  { return KW_STRUCT; }
 	{KW_ENUM}    { return KW_ENUM; }

@@ -8,6 +8,7 @@ import com.github.moonbit.psi_node.*;
 
 public interface MoonTypes {
 
+  IElementType APPEND_DERIVE = new MoonElementType("APPEND_DERIVE");
   IElementType CALL_FIELD = new MoonElementType("CALL_FIELD");
   IElementType CALL_FUNCTION = new MoonElementType("CALL_FUNCTION");
   IElementType CALL_INDEX = new MoonElementType("CALL_INDEX");
@@ -31,7 +32,6 @@ public interface MoonTypes {
   IElementType DECLARE_VARIANT = new MoonElementType("DECLARE_VARIANT");
   IElementType DEFINE_TYPE = new MoonElementType("DEFINE_TYPE");
   IElementType DEFINE_TYPE_ALIAS = new MoonElementType("DEFINE_TYPE_ALIAS");
-  IElementType DERIVE_STATEMENT = new MoonElementType("DERIVE_STATEMENT");
   IElementType DICT_LITERAL = new MoonElementType("DICT_LITERAL");
   IElementType DICT_TERM = new MoonElementType("DICT_TERM");
   IElementType ELSE_STATEMENT = new MoonElementType("ELSE_STATEMENT");
@@ -126,6 +126,7 @@ public interface MoonTypes {
   IElementType KW_FLAGS = new MoonTokenType("KW_FLAGS");
   IElementType KW_FN = new MoonTokenType("KW_FN");
   IElementType KW_FOR = new MoonTokenType("KW_FOR");
+  IElementType KW_GUARD = new MoonTokenType("KW_GUARD");
   IElementType KW_IF = new MoonTokenType("KW_IF");
   IElementType KW_IMPLEMENT = new MoonTokenType("KW_IMPLEMENT");
   IElementType KW_IN = new MoonTokenType("KW_IN");
@@ -170,6 +171,7 @@ public interface MoonTypes {
   IElementType OP_REF = new MoonTokenType("OP_REF");
   IElementType OP_SPREAD = new MoonTokenType("OP_SPREAD");
   IElementType OP_SUB = new MoonTokenType("OP_SUB");
+  IElementType OP_SUB_ASSIGN = new MoonTokenType("OP_SUB_ASSIGN");
   IElementType OP_THEN = new MoonTokenType("OP_THEN");
   IElementType OP_THROW = new MoonTokenType("OP_THROW");
   IElementType OP_TO = new MoonTokenType("OP_TO");
@@ -186,7 +188,9 @@ public interface MoonTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == CALL_FIELD) {
+      if (type == APPEND_DERIVE) {
+        return new MoonAppendDeriveNode(node);
+      } else if (type == CALL_FIELD) {
         return new MoonCallFieldNode(node);
       } else if (type == CALL_FUNCTION) {
         return new MoonCallFunctionNode(node);
@@ -232,8 +236,6 @@ public interface MoonTypes {
         return new MoonDefineTypeNode(node);
       } else if (type == DEFINE_TYPE_ALIAS) {
         return new MoonDefineTypeAliasNode(node);
-      } else if (type == DERIVE_STATEMENT) {
-        return new MoonDeriveStatementNode(node);
       } else if (type == DICT_LITERAL) {
         return new MoonDictLiteralNode(node);
       } else if (type == DICT_TERM) {

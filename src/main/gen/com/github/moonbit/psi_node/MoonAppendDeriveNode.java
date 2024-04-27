@@ -2,23 +2,26 @@
 package com.github.moonbit.psi_node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
+
 import static com.github.moonbit.psi.MoonTypes.*;
+
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
-public class MoonDeclareEnumNode extends AnyMoonNode implements MoonDeclareEnum {
+public class MoonAppendDeriveNode extends AnyMoonNode implements MoonAppendDerive {
 
-    public MoonDeclareEnumNode(@NotNull ASTNode node) {
+    public MoonAppendDeriveNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitDeclareEnum(this);
+        visitor.visitAppendDerive(this);
     }
 
     @Override
@@ -28,27 +31,9 @@ public class MoonDeclareEnumNode extends AnyMoonNode implements MoonDeclareEnum 
     }
 
     @Override
-    @Nullable
-    public MoonAppendDerive getAppendDerive() {
-        return findChildByClass(MoonAppendDerive.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonEnumBody getEnumBody() {
-        return findChildByClass(MoonEnumBody.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonIdentifier getIdentifier() {
-        return findChildByClass(MoonIdentifier.class);
-    }
-
-    @Override
     @NotNull
-    public List<MoonModifier> getModifierList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonModifier.class);
+    public List<MoonIdentifier> getIdentifierList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonIdentifier.class);
     }
 
 }

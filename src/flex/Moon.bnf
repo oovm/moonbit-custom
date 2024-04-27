@@ -59,11 +59,11 @@ package-name ::= module-name (COLON module-name)* package-version?;
 package-version ::= AT VERSION;
 
 // =====================================================================================================================
-derive-statement ::= KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
+append-derive ::= KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
 }
 // =====================================================================================================================
-declare-struct   ::= modifier* KW_STRUCT identifier declare-generic? struct-body derive-statement? {
+declare-struct   ::= modifier* KW_STRUCT identifier declare-generic? struct-body append-derive? {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
 }
@@ -78,7 +78,7 @@ declare-method ::= identifier COLON declare-signature {
 //	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
 }
 // =====================================================================================================================
-declare-enum ::= modifier* KW_ENUM identifier enum-body derive-statement? {
+declare-enum ::= modifier* KW_ENUM identifier enum-body append-derive? {
 	pin = 2
 }
 enum-body ::= BRACE_L enum-element* BRACE_R
@@ -182,7 +182,7 @@ declare-test ::= KW_TEST string-literal? function-body {
 
 // exports: interface
 // =====================================================================================================================
-if-statement ::= KW_IF then-statement else-statement? {
+if-statement ::= (KW_IF|KW_GUARD) then-statement else-statement? {
 	pin = 1
 }
 then-statement ::= term-expression function-body {
@@ -223,7 +223,7 @@ term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
 term-prefix ::= OP_ADD | OP_SUB | OP_REF;
 term-infix  ::= OP_ASSIGN
 	| OP_ADD | OP_ADD_ASSIGN
-	| OP_SUB
+	| OP_SUB | OP_SUB_ASSIGN
 	| OP_MUL
 	| OP_DIV | OP_DIV_ASSIGN
 	| OP_MOD
