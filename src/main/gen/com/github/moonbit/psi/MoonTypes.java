@@ -94,7 +94,6 @@ public interface MoonTypes {
   IElementType VARIANT_ITEM = new MoonElementType("VARIANT_ITEM");
   IElementType WHILE_STATEMENT = new MoonElementType("WHILE_STATEMENT");
 
-  IElementType ACCENT = new MoonTokenType("ACCENT");
   IElementType AT = new MoonTokenType("AT");
   IElementType BRACE_L = new MoonTokenType("{");
   IElementType BRACE_R = new MoonTokenType("}");
@@ -164,6 +163,7 @@ public interface MoonTypes {
   IElementType OP_LT = new MoonTokenType("OP_LT");
   IElementType OP_MOD = new MoonTokenType("OP_MOD");
   IElementType OP_MUL = new MoonTokenType("OP_MUL");
+  IElementType OP_MUL_ASSIGN = new MoonTokenType("OP_MUL_ASSIGN");
   IElementType OP_NE = new MoonTokenType("OP_NE");
   IElementType OP_OR = new MoonTokenType("OP_OR");
   IElementType OP_PATTERN_TO = new MoonTokenType("OP_PATTERN_TO");
@@ -175,6 +175,7 @@ public interface MoonTypes {
   IElementType OP_THEN = new MoonTokenType("OP_THEN");
   IElementType OP_THROW = new MoonTokenType("OP_THROW");
   IElementType OP_TO = new MoonTokenType("OP_TO");
+  IElementType OP_XOR = new MoonTokenType("OP_XOR");
   IElementType PARENTHESIS_L = new MoonTokenType("(");
   IElementType PARENTHESIS_R = new MoonTokenType(")");
   IElementType SEMICOLON = new MoonTokenType("SEMICOLON");

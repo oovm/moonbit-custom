@@ -1985,8 +1985,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
   //   | SEMICOLON
   //   | HYPHEN
   //   | DOLLAR
-  //   | ACCENT
-  //   | OP_REF
   //   | OP_PATTERN_TO
   static boolean resource_element(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "resource_element")) return false;
@@ -1996,8 +1994,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, SEMICOLON);
     if (!r) r = consumeToken(b, HYPHEN);
     if (!r) r = consumeToken(b, DOLLAR);
-    if (!r) r = consumeToken(b, ACCENT);
-    if (!r) r = consumeToken(b, OP_REF);
     if (!r) r = consumeToken(b, OP_PATTERN_TO);
     return r;
   }
@@ -2359,13 +2355,13 @@ public class MoonParser implements PsiParser, LightPsiParser {
   // OP_ASSIGN
   // 	| OP_ADD | OP_ADD_ASSIGN
   // 	| OP_SUB | OP_SUB_ASSIGN
-  // 	| OP_MUL
+  // 	| OP_MUL | OP_MUL_ASSIGN
   // 	| OP_DIV | OP_DIV_ASSIGN
   // 	| OP_MOD
   // 	| OP_EQ | OP_NE
   // 	| OP_LT | OP_LL | OP_LEQ
   // 	| OP_GT | OP_GG | OP_GEQ
-  // 	| OP_OR | OP_AND
+  // 	| OP_OR | OP_AND | OP_XOR
   // 	| OP_THEN
   // 	| OP_SPREAD
   // 	| OP_RANGE_TO
@@ -2379,6 +2375,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, OP_SUB);
     if (!r) r = consumeToken(b, OP_SUB_ASSIGN);
     if (!r) r = consumeToken(b, OP_MUL);
+    if (!r) r = consumeToken(b, OP_MUL_ASSIGN);
     if (!r) r = consumeToken(b, OP_DIV);
     if (!r) r = consumeToken(b, OP_DIV_ASSIGN);
     if (!r) r = consumeToken(b, OP_MOD);
@@ -2392,6 +2389,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, OP_GEQ);
     if (!r) r = consumeToken(b, OP_OR);
     if (!r) r = consumeToken(b, OP_AND);
+    if (!r) r = consumeToken(b, OP_XOR);
     if (!r) r = consumeToken(b, OP_THEN);
     if (!r) r = consumeToken(b, OP_SPREAD);
     if (!r) r = consumeToken(b, OP_RANGE_TO);

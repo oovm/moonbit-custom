@@ -224,13 +224,13 @@ term-prefix ::= OP_ADD | OP_SUB | OP_REF;
 term-infix  ::= OP_ASSIGN
 	| OP_ADD | OP_ADD_ASSIGN
 	| OP_SUB | OP_SUB_ASSIGN
-	| OP_MUL
+	| OP_MUL | OP_MUL_ASSIGN
 	| OP_DIV | OP_DIV_ASSIGN
 	| OP_MOD
 	| OP_EQ | OP_NE
 	| OP_LT | OP_LL | OP_LEQ
 	| OP_GT | OP_GG | OP_GEQ
-	| OP_OR | OP_AND
+	| OP_OR | OP_AND | OP_XOR
 	| OP_THEN
 	| OP_SPREAD
 	| OP_RANGE_TO
@@ -283,8 +283,6 @@ private resource-element ::=
   | SEMICOLON
   | HYPHEN
   | DOLLAR
-  | ACCENT
-  | OP_REF
   | OP_PATTERN_TO
 
 

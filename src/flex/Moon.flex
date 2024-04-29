@@ -78,7 +78,7 @@ KW_FN      = "fn"
     "]" { return BRACKET_R; }
 	"{" { return BRACE_L; }
 	"}" { return BRACE_R; }
-	"^" { return ACCENT; }
+	"^" { return OP_XOR; }
 	"::" { return NAME_JOIN; }
 	":" { return COLON; }
 	";" { return SEMICOLON; }
@@ -93,6 +93,7 @@ KW_FN      = "fn"
 
 	"+=" { return OP_ADD_ASSIGN; }
 	"+" { return OP_ADD; }
+    "*=" { return OP_MUL_ASSIGN; }
 	"*" { return OP_MUL; }
 	"/=" { return OP_DIV_ASSIGN; }
 	"/" { return OP_DIV; }
@@ -135,7 +136,7 @@ KW_FN      = "fn"
 
 	{KW_TRAIT}   { return KW_TRAIT; }
     impl         { return KW_IMPLEMENT; }
-      with       { return KW_WITH; }
+    with       { return KW_WITH; }
 
 	extern       { return KW_EXTERN; }
 	pub          { return KW_PUBLIC; }
