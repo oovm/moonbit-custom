@@ -11,6 +11,9 @@ public interface MoonDeclareEnum extends PsiElement {
     MoonAppendDerive getAppendDerive();
 
     @Nullable
+    MoonDeclareGeneric getDeclareGeneric();
+
+    @Nullable
     MoonEnumBody getEnumBody();
 
     @Nullable

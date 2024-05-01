@@ -78,7 +78,7 @@ declare-method ::= identifier COLON declare-signature {
 //	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
 }
 // =====================================================================================================================
-declare-enum ::= modifier* KW_ENUM identifier enum-body append-derive? {
+declare-enum ::= modifier* KW_ENUM identifier declare-generic? enum-body append-derive? {
 	pin = 2
 }
 enum-body ::= BRACE_L enum-element* BRACE_R

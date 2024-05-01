@@ -455,7 +455,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // modifier* KW_ENUM identifier enum-body append-derive?
+  // modifier* KW_ENUM identifier declare-generic? enum-body append-derive?
   public static boolean declare_enum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "declare_enum")) return false;
     boolean r, p;
@@ -464,8 +464,9 @@ public class MoonParser implements PsiParser, LightPsiParser {
     r = r && consumeToken(b, KW_ENUM);
     p = r; // pin = 2
     r = r && report_error_(b, identifier(b, l + 1));
+    r = p && report_error_(b, declare_enum_3(b, l + 1)) && r;
     r = p && report_error_(b, enum_body(b, l + 1)) && r;
-    r = p && declare_enum_4(b, l + 1) && r;
+    r = p && declare_enum_5(b, l + 1) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
@@ -481,9 +482,16 @@ public class MoonParser implements PsiParser, LightPsiParser {
     return true;
   }
 
+  // declare-generic?
+  private static boolean declare_enum_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declare_enum_3")) return false;
+    declare_generic(b, l + 1);
+    return true;
+  }
+
   // append-derive?
-  private static boolean declare_enum_4(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "declare_enum_4")) return false;
+  private static boolean declare_enum_5(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declare_enum_5")) return false;
     append_derive(b, l + 1);
     return true;
   }

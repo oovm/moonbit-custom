@@ -35,6 +35,12 @@ public class MoonDeclareEnumNode extends AnyMoonNode implements MoonDeclareEnum 
 
     @Override
     @Nullable
+    public MoonDeclareGeneric getDeclareGeneric() {
+        return findChildByClass(MoonDeclareGeneric.class);
+    }
+
+    @Override
+    @Nullable
     public MoonEnumBody getEnumBody() {
         return findChildByClass(MoonEnumBody.class);
     }
