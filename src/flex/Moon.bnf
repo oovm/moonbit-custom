@@ -271,7 +271,7 @@ tuple-term ::= term-expression;
 //   { array: self.array, start: self.start + start, end: self.start + end }
 // =====================================================================================================================
 string-literal ::= DOUBLE_QUOTE_L STRING_TEXT+ DOUBLE_QUOTE_R;
-char-literal   ::= SINGLE_QUOTE_L STRING_TEXT+ SINGLE_QUOTE_R;
+char-literal   ::= identifier? SINGLE_QUOTE_L STRING_TEXT+ SINGLE_QUOTE_R;
 string-lines   ::= STRING_LINE+
 number-literal ::= INTEGER | BYTES_HEX | BYTES_OCT | BYTES_BIN;
 

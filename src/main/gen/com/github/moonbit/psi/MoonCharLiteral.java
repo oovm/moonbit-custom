@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonCharLiteral extends PsiElement {
 
+    @Nullable
+    MoonIdentifier getIdentifier();
+
 }

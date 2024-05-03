@@ -27,4 +27,10 @@ public class MoonCharLiteralNode extends AnyMoonNode implements MoonCharLiteral 
         else super.accept(visitor);
     }
 
+    @Override
+    @Nullable
+    public MoonIdentifier getIdentifier() {
+        return findChildByClass(MoonIdentifier.class);
+    }
+
 }

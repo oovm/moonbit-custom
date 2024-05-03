@@ -192,175 +192,175 @@ public interface MoonTypes {
       if (type == APPEND_DERIVE) {
         return new MoonAppendDeriveNode(node);
       } else if (type == CALL_FIELD) {
-        return new MoonCallFieldNode(node);
+          return new MoonCallFieldNode(node);
       } else if (type == CALL_FUNCTION) {
-        return new MoonCallFunctionNode(node);
+          return new MoonCallFunctionNode(node);
       } else if (type == CALL_INDEX) {
-        return new MoonCallIndexNode(node);
+          return new MoonCallIndexNode(node);
       } else if (type == CALL_METHOD) {
-        return new MoonCallMethodNode(node);
+          return new MoonCallMethodNode(node);
       } else if (type == CALL_SLICE) {
-        return new MoonCallSliceNode(node);
+          return new MoonCallSliceNode(node);
       } else if (type == CHAR_LITERAL) {
-        return new MoonCharLiteralNode(node);
+          return new MoonCharLiteralNode(node);
       } else if (type == CLOSURE_PARAMETERS) {
-        return new MoonClosureParametersNode(node);
+          return new MoonClosureParametersNode(node);
       } else if (type == CONTROL_STATEMENT) {
-        return new MoonControlStatementNode(node);
+          return new MoonControlStatementNode(node);
       } else if (type == DECLARE_CLOSURE) {
-        return new MoonDeclareClosureNode(node);
+          return new MoonDeclareClosureNode(node);
       } else if (type == DECLARE_ENUM) {
-        return new MoonDeclareEnumNode(node);
+          return new MoonDeclareEnumNode(node);
       } else if (type == DECLARE_FIELD) {
-        return new MoonDeclareFieldNode(node);
+          return new MoonDeclareFieldNode(node);
       } else if (type == DECLARE_FUNCTION) {
-        return new MoonDeclareFunctionNode(node);
+          return new MoonDeclareFunctionNode(node);
       } else if (type == DECLARE_GENERIC) {
-        return new MoonDeclareGenericNode(node);
+          return new MoonDeclareGenericNode(node);
       } else if (type == DECLARE_IMPL) {
-        return new MoonDeclareImplNode(node);
+          return new MoonDeclareImplNode(node);
       } else if (type == DECLARE_METHOD) {
-        return new MoonDeclareMethodNode(node);
+          return new MoonDeclareMethodNode(node);
       } else if (type == DECLARE_PARAMETERS) {
-        return new MoonDeclareParametersNode(node);
+          return new MoonDeclareParametersNode(node);
       } else if (type == DECLARE_SIGNATURE) {
-        return new MoonDeclareSignatureNode(node);
+          return new MoonDeclareSignatureNode(node);
       } else if (type == DECLARE_STRUCT) {
-        return new MoonDeclareStructNode(node);
+          return new MoonDeclareStructNode(node);
       } else if (type == DECLARE_TEST) {
-        return new MoonDeclareTestNode(node);
+          return new MoonDeclareTestNode(node);
       } else if (type == DECLARE_TRAIT) {
-        return new MoonDeclareTraitNode(node);
+          return new MoonDeclareTraitNode(node);
       } else if (type == DECLARE_VARIANT) {
-        return new MoonDeclareVariantNode(node);
+          return new MoonDeclareVariantNode(node);
       } else if (type == DEFINE_TYPE) {
-        return new MoonDefineTypeNode(node);
+          return new MoonDefineTypeNode(node);
       } else if (type == DEFINE_TYPE_ALIAS) {
-        return new MoonDefineTypeAliasNode(node);
+          return new MoonDefineTypeAliasNode(node);
       } else if (type == DICT_LITERAL) {
-        return new MoonDictLiteralNode(node);
+          return new MoonDictLiteralNode(node);
       } else if (type == DICT_TERM) {
-        return new MoonDictTermNode(node);
+          return new MoonDictTermNode(node);
       } else if (type == ELSE_STATEMENT) {
-        return new MoonElseStatementNode(node);
+          return new MoonElseStatementNode(node);
       } else if (type == ENUM_BODY) {
-        return new MoonEnumBodyNode(node);
+          return new MoonEnumBodyNode(node);
       } else if (type == ERRORABLE) {
-        return new MoonErrorableNode(node);
+          return new MoonErrorableNode(node);
       } else if (type == FLAGS) {
-        return new MoonFlagsNode(node);
+          return new MoonFlagsNode(node);
       } else if (type == FOR_CONDITION) {
-        return new MoonForConditionNode(node);
+          return new MoonForConditionNode(node);
       } else if (type == FOR_INCREMENT) {
-        return new MoonForIncrementNode(node);
+          return new MoonForIncrementNode(node);
       } else if (type == FOR_IN_STATEMENT) {
-        return new MoonForInStatementNode(node);
+          return new MoonForInStatementNode(node);
       } else if (type == FOR_STARTUP) {
-        return new MoonForStartupNode(node);
+          return new MoonForStartupNode(node);
       } else if (type == FOR_STATEMENT) {
-        return new MoonForStatementNode(node);
+          return new MoonForStatementNode(node);
       } else if (type == FUNCTION_BODY) {
-        return new MoonFunctionBodyNode(node);
+          return new MoonFunctionBodyNode(node);
       } else if (type == FUNCTION_EXTERN) {
-        return new MoonFunctionExternNode(node);
+          return new MoonFunctionExternNode(node);
       } else if (type == FUNCTION_INLINE) {
-        return new MoonFunctionInlineNode(node);
+          return new MoonFunctionInlineNode(node);
       } else if (type == GENERIC_CALL) {
-        return new MoonGenericCallNode(node);
+          return new MoonGenericCallNode(node);
       } else if (type == GENERIC_ITEM) {
-        return new MoonGenericItemNode(node);
+          return new MoonGenericItemNode(node);
       } else if (type == IDENTIFIER) {
-        return new MoonIdentifierNode(node);
+          return new MoonIdentifierNode(node);
       } else if (type == IDENTIFIER_FREE) {
-        return new MoonIdentifierFreeNode(node);
+          return new MoonIdentifierFreeNode(node);
       } else if (type == IF_STATEMENT) {
-        return new MoonIfStatementNode(node);
+          return new MoonIfStatementNode(node);
       } else if (type == IMPL_WITH) {
-        return new MoonImplWithNode(node);
+          return new MoonImplWithNode(node);
       } else if (type == LET_STATEMENT) {
-        return new MoonLetStatementNode(node);
+          return new MoonLetStatementNode(node);
       } else if (type == LIST_LITERAL) {
-        return new MoonListLiteralNode(node);
+          return new MoonListLiteralNode(node);
       } else if (type == LIST_TERM) {
-        return new MoonListTermNode(node);
+          return new MoonListTermNode(node);
       } else if (type == MATCH_BODY) {
-        return new MoonMatchBodyNode(node);
+          return new MoonMatchBodyNode(node);
       } else if (type == MATCH_STATEMENT) {
-        return new MoonMatchStatementNode(node);
+          return new MoonMatchStatementNode(node);
       } else if (type == MATCH_VARIANT) {
-        return new MoonMatchVariantNode(node);
+          return new MoonMatchVariantNode(node);
       } else if (type == MODIFIER) {
-        return new MoonModifierNode(node);
+          return new MoonModifierNode(node);
       } else if (type == MODULE_NAME) {
-        return new MoonModuleNameNode(node);
+          return new MoonModuleNameNode(node);
       } else if (type == NAMEPATH) {
-        return new MoonNamepathNode(node);
+          return new MoonNamepathNode(node);
       } else if (type == NAMEPATH_FREE) {
-        return new MoonNamepathFreeNode(node);
+          return new MoonNamepathFreeNode(node);
       } else if (type == NUMBER_LITERAL) {
-        return new MoonNumberLiteralNode(node);
+          return new MoonNumberLiteralNode(node);
       } else if (type == PACKAGE) {
-        return new MoonPackageNode(node);
+          return new MoonPackageNode(node);
       } else if (type == PACKAGE_NAME) {
-        return new MoonPackageNameNode(node);
+          return new MoonPackageNameNode(node);
       } else if (type == PACKAGE_VERSION) {
-        return new MoonPackageVersionNode(node);
+          return new MoonPackageVersionNode(node);
       } else if (type == PARAMETER) {
-        return new MoonParameterNode(node);
+          return new MoonParameterNode(node);
       } else if (type == RETURN_TYPE) {
-        return new MoonReturnTypeNode(node);
+          return new MoonReturnTypeNode(node);
       } else if (type == SEMANTIC_NUMBER) {
-        return new MoonSemanticNumberNode(node);
+          return new MoonSemanticNumberNode(node);
       } else if (type == SIGNATURE_PARAMETER) {
-        return new MoonSignatureParameterNode(node);
+          return new MoonSignatureParameterNode(node);
       } else if (type == STRING_LINES) {
-        return new MoonStringLinesNode(node);
+          return new MoonStringLinesNode(node);
       } else if (type == STRING_LITERAL) {
-        return new MoonStringLiteralNode(node);
+          return new MoonStringLiteralNode(node);
       } else if (type == STRUCT_BODY) {
-        return new MoonStructBodyNode(node);
+          return new MoonStructBodyNode(node);
       } else if (type == TERM_EXPRESSION) {
-        return new MoonTermExpressionNode(node);
+          return new MoonTermExpressionNode(node);
       } else if (type == TERM_EXPRESSION_ATOM) {
-        return new MoonTermExpressionAtomNode(node);
+          return new MoonTermExpressionAtomNode(node);
       } else if (type == TERM_EXPRESSION_ITEM) {
-        return new MoonTermExpressionItemNode(node);
+          return new MoonTermExpressionItemNode(node);
       } else if (type == TERM_INFIX) {
-        return new MoonTermInfixNode(node);
+          return new MoonTermInfixNode(node);
       } else if (type == TERM_PREFIX) {
-        return new MoonTermPrefixNode(node);
+          return new MoonTermPrefixNode(node);
       } else if (type == TERM_SUFFIX) {
-        return new MoonTermSuffixNode(node);
+          return new MoonTermSuffixNode(node);
       } else if (type == THEN_STATEMENT) {
-        return new MoonThenStatementNode(node);
+          return new MoonThenStatementNode(node);
       } else if (type == TRAIT_BODY) {
-        return new MoonTraitBodyNode(node);
+          return new MoonTraitBodyNode(node);
       } else if (type == TUPLE_LITERAL) {
-        return new MoonTupleLiteralNode(node);
+          return new MoonTupleLiteralNode(node);
       } else if (type == TUPLE_TERM) {
-        return new MoonTupleTermNode(node);
+          return new MoonTupleTermNode(node);
       } else if (type == TYPE_EXPRESSION) {
-        return new MoonTypeExpressionNode(node);
+          return new MoonTypeExpressionNode(node);
       } else if (type == TYPE_EXPRESSION_ATOM) {
-        return new MoonTypeExpressionAtomNode(node);
+          return new MoonTypeExpressionAtomNode(node);
       } else if (type == TYPE_EXPRESSION_ITEM) {
-        return new MoonTypeExpressionItemNode(node);
+          return new MoonTypeExpressionItemNode(node);
       } else if (type == TYPE_HINT) {
-        return new MoonTypeHintNode(node);
+          return new MoonTypeHintNode(node);
       } else if (type == TYPE_INFIX) {
-        return new MoonTypeInfixNode(node);
+          return new MoonTypeInfixNode(node);
       } else if (type == TYPE_PREFIX) {
-        return new MoonTypePrefixNode(node);
+          return new MoonTypePrefixNode(node);
       } else if (type == TYPE_SUFFIX) {
-        return new MoonTypeSuffixNode(node);
+          return new MoonTypeSuffixNode(node);
       } else if (type == VARIANT) {
-        return new MoonVariantNode(node);
+          return new MoonVariantNode(node);
       } else if (type == VARIANT_ITEM) {
-        return new MoonVariantItemNode(node);
+          return new MoonVariantItemNode(node);
       } else if (type == WHILE_STATEMENT) {
-        return new MoonWhileStatementNode(node);
+          return new MoonWhileStatementNode(node);
       }
-      throw new AssertionError("Unknown element type: " + type);
+        throw new AssertionError("Unknown element type: " + type);
     }
   }
 }
