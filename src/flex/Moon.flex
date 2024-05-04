@@ -109,8 +109,10 @@ KW_FN      = "fn"
 	">=" { return OP_GEQ; }
 
 	"||" { return OP_OR; }
+	"|"  { return OP_BIT_OR; }
 	"|>" { return OP_THEN; }
 	"&&" { return OP_AND; }
+	"&"  { return OP_BIT_AND; }
 
 	"!=" { return OP_NE; }
 	"==" { return OP_EQ; }

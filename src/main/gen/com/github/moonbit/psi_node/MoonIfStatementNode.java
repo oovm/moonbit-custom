@@ -28,6 +28,12 @@ public class MoonIfStatementNode extends AnyMoonNode implements MoonIfStatement 
     }
 
     @Override
+    @NotNull
+    public List<MoonElseIf> getElseIfList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonElseIf.class);
+    }
+
+    @Override
     @Nullable
     public MoonElseStatement getElseStatement() {
         return findChildByClass(MoonElseStatement.class);

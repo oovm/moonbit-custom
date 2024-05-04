@@ -30,7 +30,8 @@ class MoonTokenHighlighter : SyntaxHighlighterBase() {
             KW_FN, KW_TEST,
             KW_LET,
             KW_FOR, KW_WHILE,
-            KW_IF, KW_ELSE,
+            KW_IF, KW_GUARD,
+            KW_ELSE,
             KW_MATCH,
             KW_RETURN, KW_CONTINUE, KW_BREAK,
                 -> MoonColor.KEYWORD

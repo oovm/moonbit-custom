@@ -7,6 +7,9 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonIfStatement extends PsiElement {
 
+    @NotNull
+    List<MoonElseIf> getElseIfList();
+
     @Nullable
     MoonElseStatement getElseStatement();
 

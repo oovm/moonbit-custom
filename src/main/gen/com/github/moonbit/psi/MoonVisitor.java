@@ -115,6 +115,10 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitElseIf(@NotNull MoonElseIf o) {
+        visitPsiElement(o);
+    }
+
     public void visitElseStatement(@NotNull MoonElseStatement o) {
         visitPsiElement(o);
     }

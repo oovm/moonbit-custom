@@ -183,11 +183,14 @@ declare-test ::= KW_TEST string-literal? function-body {
 
 // exports: interface
 // =====================================================================================================================
-if-statement ::= KW_IF then-statement else-statement? {
+if-statement   ::= KW_IF then-statement else-if* else-statement? {
 	pin = 1
 }
 then-statement ::= term-expression function-body {
 
+}
+else-if        ::= KW_ELSE KW_IF then-statement {
+	pin = 2
 }
 else-statement ::= KW_ELSE function-body {
 	pin = 1
@@ -247,7 +250,9 @@ term-infix  ::= OP_ASSIGN
 	| OP_EQ | OP_NE
 	| OP_LT | OP_LL | OP_LEQ
 	| OP_GT | OP_GG | OP_GEQ
-	| OP_OR | OP_AND | OP_XOR
+	| OP_OR | OP_BIT_OR
+	| OP_AND | OP_BIT_AND
+	| OP_XOR
 	| OP_THEN
 	| OP_SPREAD
 	| OP_RANGE_TO

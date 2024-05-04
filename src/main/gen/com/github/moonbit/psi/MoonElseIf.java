@@ -2,13 +2,11 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface MoonGuardNormal extends PsiElement {
-
-    @Nullable
-    MoonElseStatement getElseStatement();
+public interface MoonElseIf extends PsiElement {
 
     @Nullable
     MoonThenStatement getThenStatement();

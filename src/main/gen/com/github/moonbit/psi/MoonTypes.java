@@ -35,6 +35,7 @@ public interface MoonTypes {
     IElementType DEFINE_TYPE_ALIAS = new MoonElementType("DEFINE_TYPE_ALIAS");
     IElementType DICT_LITERAL = new MoonElementType("DICT_LITERAL");
     IElementType DICT_TERM = new MoonElementType("DICT_TERM");
+    IElementType ELSE_IF = new MoonElementType("ELSE_IF");
     IElementType ELSE_STATEMENT = new MoonElementType("ELSE_STATEMENT");
     IElementType ENUM_BODY = new MoonElementType("ENUM_BODY");
     IElementType ERRORABLE = new MoonElementType("ERRORABLE");
@@ -156,6 +157,8 @@ public interface MoonTypes {
     IElementType OP_ADD_ASSIGN = new MoonTokenType("OP_ADD_ASSIGN");
     IElementType OP_AND = new MoonTokenType("OP_AND");
     IElementType OP_ASSIGN = new MoonTokenType("OP_ASSIGN");
+    IElementType OP_BIT_AND = new MoonTokenType("OP_BIT_AND");
+    IElementType OP_BIT_OR = new MoonTokenType("OP_BIT_OR");
     IElementType OP_DIV = new MoonTokenType("OP_DIV");
     IElementType OP_DIV_ASSIGN = new MoonTokenType("OP_DIV_ASSIGN");
     IElementType OP_EQ = new MoonTokenType("OP_EQ");
@@ -248,6 +251,8 @@ public interface MoonTypes {
                 return new MoonDictLiteralNode(node);
             } else if (type == DICT_TERM) {
                 return new MoonDictTermNode(node);
+            } else if (type == ELSE_IF) {
+                return new MoonElseIfNode(node);
             } else if (type == ELSE_STATEMENT) {
                 return new MoonElseStatementNode(node);
             } else if (type == ENUM_BODY) {
