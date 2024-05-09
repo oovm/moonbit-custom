@@ -134,10 +134,11 @@ let-statement ::= modifier? KW_LET KW_MUTABLE? identifier type-hint? OP_ASSIGN t
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }
 // =====================================================================================================================
-declare-function ::= modifier* function-extern? KW_FN identifier-free declare-generic? declare-parameters return-type? (function-body | function-inline) {
+declare-function ::= modifier* function-extern? KW_FN function-name declare-generic? declare-parameters return-type? (function-body | function-inline) {
 //	pin = 3
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
+function-name   ::= (identifier-free NAME_JOIN)? identifier-free
 function-extern ::= KW_EXTERN string-literal;
 function-inline ::= OP_ASSIGN term-expression;
 
@@ -275,6 +276,7 @@ call-slice    ::= BRACKET_L term-expression (COMMA term-expression)* BRACKET_R;
 type-expression ::= type-expression-item (type-infix type-expression-item)*;
 type-expression-item ::= type-prefix* type-expression-atom type-suffix*;
 type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
+	| PARENTHESIS_L PARENTHESIS_R
 	| AT identifier-free
 	| identifier
 type-prefix ::= OP_ADD;
@@ -327,7 +329,8 @@ identifier          ::= SYMBOL | ESCAPED;
 identifier-free     ::= SYMBOL | KW_TEST;
 
 // @moonbitlang/core/byte.to_uint64
-namepath       ::= AT identifier-free (OP_DIV identifier-free)* (DOT identifier-free)?;
+namepath       ::= AT identifier-free (OP_DIV identifier-free)* (DOT identifier-free)?
+	| identifier;
 
 // useless, but generating unused token
 private resource-element ::=

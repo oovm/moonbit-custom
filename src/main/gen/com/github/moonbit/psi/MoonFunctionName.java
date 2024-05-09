@@ -2,12 +2,13 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface MoonCallStatic extends PsiElement {
+public interface MoonFunctionName extends PsiElement {
 
-  @NotNull
-  MoonCallFunction getCallFunction();
+    @NotNull
+    List<MoonIdentifierFree> getIdentifierFreeList();
 
 }

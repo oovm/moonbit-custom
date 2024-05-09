@@ -28,6 +28,12 @@ public class MoonNamepathNode extends AnyMoonNode implements MoonNamepath {
     }
 
     @Override
+    @Nullable
+    public MoonIdentifier getIdentifier() {
+        return findChildByClass(MoonIdentifier.class);
+    }
+
+    @Override
     @NotNull
     public List<MoonIdentifierFree> getIdentifierFreeList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonIdentifierFree.class);

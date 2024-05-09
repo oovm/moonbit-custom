@@ -49,6 +49,7 @@ public interface MoonTypes {
     IElementType FUNCTION_BODY = new MoonElementType("FUNCTION_BODY");
     IElementType FUNCTION_EXTERN = new MoonElementType("FUNCTION_EXTERN");
     IElementType FUNCTION_INLINE = new MoonElementType("FUNCTION_INLINE");
+    IElementType FUNCTION_NAME = new MoonElementType("FUNCTION_NAME");
     IElementType GENERIC_CALL = new MoonElementType("GENERIC_CALL");
     IElementType GENERIC_ITEM = new MoonElementType("GENERIC_ITEM");
     IElementType GUARD_LET = new MoonElementType("GUARD_LET");
@@ -279,6 +280,8 @@ public interface MoonTypes {
                 return new MoonFunctionExternNode(node);
             } else if (type == FUNCTION_INLINE) {
                 return new MoonFunctionInlineNode(node);
+            } else if (type == FUNCTION_NAME) {
+                return new MoonFunctionNameNode(node);
             } else if (type == GENERIC_CALL) {
                 return new MoonGenericCallNode(node);
             } else if (type == GENERIC_ITEM) {

@@ -59,8 +59,8 @@ public class MoonDeclareFunctionNode extends AnyMoonNode implements MoonDeclareF
 
     @Override
     @NotNull
-    public MoonIdentifierFree getIdentifierFree() {
-        return findNotNullChildByClass(MoonIdentifierFree.class);
+    public MoonFunctionName getFunctionName() {
+        return findNotNullChildByClass(MoonFunctionName.class);
     }
 
     @Override

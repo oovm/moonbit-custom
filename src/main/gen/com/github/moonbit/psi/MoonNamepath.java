@@ -7,6 +7,9 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonNamepath extends PsiElement {
 
+    @Nullable
+    MoonIdentifier getIdentifier();
+
     @NotNull
     List<MoonIdentifierFree> getIdentifierFreeList();
 

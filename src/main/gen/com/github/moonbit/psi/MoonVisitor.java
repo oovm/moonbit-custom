@@ -171,6 +171,10 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitFunctionName(@NotNull MoonFunctionName o) {
+        visitPsiElement(o);
+    }
+
     public void visitGenericCall(@NotNull MoonGenericCall o) {
         visitPsiElement(o);
     }

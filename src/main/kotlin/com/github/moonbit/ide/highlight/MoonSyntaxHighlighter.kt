@@ -69,7 +69,16 @@ class MoonSyntaxHighlighter : MoonVisitor(), HighlightVisitor {
 //        highlight(o.identifier, SYM_FIELD)
 //    }
     override fun visitDeclareFunction(o: MoonDeclareFunction) {
-        highlight(o.identifierFree, SYMBOL_FUNCTION)
+
+    }
+
+    override fun visitFunctionName(o: MoonFunctionName) {
+        if (o.identifierFreeList.count() == 2) {
+            highlight(o.identifierFreeList[0], SYMBOL_CLASS)
+            highlight(o.identifierFreeList[1], SYMBOL_FUNCTION)
+        } else {
+            highlight(o.identifierFreeList[0], SYMBOL_FUNCTION)
+        }
     }
 
 
