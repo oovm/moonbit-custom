@@ -2,15 +2,16 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface MoonTypeExpressionAtom extends PsiElement {
+public interface MoonImplFor extends PsiElement {
 
     @Nullable
-    MoonNamepath getNamepath();
+    MoonGenericCall getGenericCall();
 
     @Nullable
-    MoonTypeExpression getTypeExpression();
+    MoonIdentifierFree getIdentifierFree();
 
 }

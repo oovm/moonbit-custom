@@ -28,9 +28,15 @@ public class MoonDeclareImplNode extends AnyMoonNode implements MoonDeclareImpl 
     }
 
     @Override
-    @NotNull
-    public List<MoonIdentifierFree> getIdentifierFreeList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonIdentifierFree.class);
+    @Nullable
+    public MoonDeclareGeneric getDeclareGeneric() {
+        return findChildByClass(MoonDeclareGeneric.class);
+    }
+
+    @Override
+    @Nullable
+    public MoonImplFor getImplFor() {
+        return findChildByClass(MoonImplFor.class);
     }
 
     @Override
@@ -43,6 +49,12 @@ public class MoonDeclareImplNode extends AnyMoonNode implements MoonDeclareImpl 
     @NotNull
     public List<MoonModifier> getModifierList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonModifier.class);
+    }
+
+    @Override
+    @Nullable
+    public MoonNamepath getNamepath() {
+        return findChildByClass(MoonNamepath.class);
     }
 
 }

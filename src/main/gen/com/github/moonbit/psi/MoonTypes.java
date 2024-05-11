@@ -58,6 +58,7 @@ public interface MoonTypes {
     IElementType IDENTIFIER = new MoonElementType("IDENTIFIER");
     IElementType IDENTIFIER_FREE = new MoonElementType("IDENTIFIER_FREE");
     IElementType IF_STATEMENT = new MoonElementType("IF_STATEMENT");
+    IElementType IMPL_FOR = new MoonElementType("IMPL_FOR");
     IElementType IMPL_WITH = new MoonElementType("IMPL_WITH");
     IElementType LET_STATEMENT = new MoonElementType("LET_STATEMENT");
     IElementType LIST_LITERAL = new MoonElementType("LIST_LITERAL");
@@ -298,6 +299,8 @@ public interface MoonTypes {
                 return new MoonIdentifierFreeNode(node);
             } else if (type == IF_STATEMENT) {
                 return new MoonIfStatementNode(node);
+            } else if (type == IMPL_FOR) {
+                return new MoonImplForNode(node);
             } else if (type == IMPL_WITH) {
                 return new MoonImplWithNode(node);
             } else if (type == LET_STATEMENT) {

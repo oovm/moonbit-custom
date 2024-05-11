@@ -684,7 +684,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // modifier* KW_IMPLEMENT identifier-free KW_FOR identifier-free impl-with
+  // modifier* KW_IMPLEMENT declare-generic? namepath impl-for impl-with
   public static boolean declare_impl(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "declare_impl")) return false;
     boolean r, p;
@@ -692,9 +692,9 @@ public class MoonParser implements PsiParser, LightPsiParser {
     r = declare_impl_0(b, l + 1);
     r = r && consumeToken(b, KW_IMPLEMENT);
     p = r; // pin = 2
-    r = r && report_error_(b, identifier_free(b, l + 1));
-    r = p && report_error_(b, consumeToken(b, KW_FOR)) && r;
-    r = p && report_error_(b, identifier_free(b, l + 1)) && r;
+    r = r && report_error_(b, declare_impl_2(b, l + 1));
+    r = p && report_error_(b, namepath(b, l + 1)) && r;
+    r = p && report_error_(b, impl_for(b, l + 1)) && r;
     r = p && impl_with(b, l + 1) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
@@ -708,6 +708,13 @@ public class MoonParser implements PsiParser, LightPsiParser {
       if (!modifier(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "declare_impl_0", c)) break;
     }
+    return true;
+  }
+
+  // declare-generic?
+  private static boolean declare_impl_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declare_impl_2")) return false;
+    declare_generic(b, l + 1);
     return true;
   }
 
@@ -1658,6 +1665,28 @@ public class MoonParser implements PsiParser, LightPsiParser {
   private static boolean if_statement_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "if_statement_3")) return false;
     else_statement(b, l + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // KW_FOR identifier-free generic-call?
+  public static boolean impl_for(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "impl_for")) return false;
+    if (!nextTokenIs(b, KW_FOR)) return false;
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, IMPL_FOR, null);
+    r = consumeToken(b, KW_FOR);
+    p = r; // pin = 1
+    r = r && report_error_(b, identifier_free(b, l + 1));
+    r = p && impl_for_2(b, l + 1) && r;
+    exit_section_(b, l, m, r, p, null);
+    return r || p;
+  }
+
+  // generic-call?
+  private static boolean impl_for_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "impl_for_2")) return false;
+    generic_call(b, l + 1);
     return true;
   }
 
@@ -2812,16 +2841,14 @@ public class MoonParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // PARENTHESIS_L type-expression PARENTHESIS_R
   // 	| PARENTHESIS_L PARENTHESIS_R
-  // 	| AT identifier-free
-  // 	| identifier
+  // 	| namepath
   public static boolean type_expression_atom(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "type_expression_atom")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, TYPE_EXPRESSION_ATOM, "<type expression atom>");
     r = type_expression_atom_0(b, l + 1);
     if (!r) r = parseTokens(b, 0, PARENTHESIS_L, PARENTHESIS_R);
-    if (!r) r = type_expression_atom_2(b, l + 1);
-    if (!r) r = identifier(b, l + 1);
+    if (!r) r = namepath(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -2834,17 +2861,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, PARENTHESIS_L);
     r = r && type_expression(b, l + 1);
     r = r && consumeToken(b, PARENTHESIS_R);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // AT identifier-free
-  private static boolean type_expression_atom_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "type_expression_atom_2")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, AT);
-    r = r && identifier_free(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
