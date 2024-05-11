@@ -39,7 +39,6 @@ public interface MoonTypes {
     IElementType ELSE_IF = new MoonElementType("ELSE_IF");
     IElementType ELSE_STATEMENT = new MoonElementType("ELSE_STATEMENT");
     IElementType ENUM_BODY = new MoonElementType("ENUM_BODY");
-    IElementType ERRORABLE = new MoonElementType("ERRORABLE");
     IElementType FLAGS = new MoonElementType("FLAGS");
     IElementType FOR_CONDITION = new MoonElementType("FOR_CONDITION");
     IElementType FOR_INCREMENT = new MoonElementType("FOR_INCREMENT");
@@ -88,6 +87,7 @@ public interface MoonTypes {
     IElementType TERM_PREFIX = new MoonElementType("TERM_PREFIX");
     IElementType TERM_SUFFIX = new MoonElementType("TERM_SUFFIX");
     IElementType THEN_STATEMENT = new MoonElementType("THEN_STATEMENT");
+    IElementType THROWABLE = new MoonElementType("THROWABLE");
     IElementType TRAIT_BODY = new MoonElementType("TRAIT_BODY");
     IElementType TUPLE_LITERAL = new MoonElementType("TUPLE_LITERAL");
     IElementType TUPLE_TERM = new MoonElementType("TUPLE_TERM");
@@ -261,8 +261,6 @@ public interface MoonTypes {
                 return new MoonElseStatementNode(node);
             } else if (type == ENUM_BODY) {
                 return new MoonEnumBodyNode(node);
-            } else if (type == ERRORABLE) {
-                return new MoonErrorableNode(node);
             } else if (type == FLAGS) {
                 return new MoonFlagsNode(node);
             } else if (type == FOR_CONDITION) {
@@ -359,6 +357,8 @@ public interface MoonTypes {
                 return new MoonTermSuffixNode(node);
             } else if (type == THEN_STATEMENT) {
                 return new MoonThenStatementNode(node);
+            } else if (type == THROWABLE) {
+                return new MoonThrowableNode(node);
             } else if (type == TRAIT_BODY) {
                 return new MoonTraitBodyNode(node);
             } else if (type == TUPLE_LITERAL) {

@@ -152,6 +152,15 @@ class MoonSyntaxHighlighter : MoonVisitor(), HighlightVisitor {
 //        highlight(o, SYM_INTERFACE)
 //    }
 
+    override fun visitCallStatic(o: MoonCallStatic) {
+        highlight(o.identifierFree, SYMBOL_FUNCTION)
+    }
+
+    override fun visitCallMethod(o: MoonCallMethod) {
+        highlight(o.identifierFree, SYMBOL_FUNCTION)
+    }
+
+
     override fun visitDictTerm(o: MoonDictTerm) {
         highlight(o.identifier, SYMBOL_FIELD)
     }

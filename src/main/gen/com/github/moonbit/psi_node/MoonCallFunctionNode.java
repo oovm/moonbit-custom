@@ -28,15 +28,15 @@ public class MoonCallFunctionNode extends AnyMoonNode implements MoonCallFunctio
     }
 
     @Override
-    @Nullable
-    public MoonErrorable getErrorable() {
-        return findChildByClass(MoonErrorable.class);
-    }
-
-    @Override
     @NotNull
     public List<MoonTermExpression> getTermExpressionList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTermExpression.class);
+    }
+
+    @Override
+    @Nullable
+    public MoonThrowable getThrowable() {
+        return findChildByClass(MoonThrowable.class);
     }
 
 }

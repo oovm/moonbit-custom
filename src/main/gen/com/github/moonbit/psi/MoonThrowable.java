@@ -2,15 +2,10 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface MoonCallFunction extends PsiElement {
-
-    @NotNull
-    List<MoonTermExpression> getTermExpressionList();
-
-    @Nullable
-    MoonThrowable getThrowable();
+public interface MoonThrowable extends PsiElement {
 
 }

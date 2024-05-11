@@ -33,4 +33,10 @@ public class MoonCallMethodNode extends AnyMoonNode implements MoonCallMethod {
         return findNotNullChildByClass(MoonCallFunction.class);
     }
 
+    @Override
+    @NotNull
+    public MoonIdentifierFree getIdentifierFree() {
+        return findNotNullChildByClass(MoonIdentifierFree.class);
+    }
+
 }

@@ -10,4 +10,7 @@ public interface MoonCallMethod extends PsiElement {
     @NotNull
     MoonCallFunction getCallFunction();
 
+    @NotNull
+    MoonIdentifierFree getIdentifierFree();
+
 }

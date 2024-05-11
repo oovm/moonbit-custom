@@ -268,10 +268,10 @@ term-suffix   ::= OP_THROW
 	| call-index
 	| call-slice
 	| OP_REF
-call-function ::= errorable? PARENTHESIS_L (term-expression (COMMA term-expression)* COMMA?)? PARENTHESIS_R;
-errorable ::= OP_ERROR | OP_THROW;
-call-static   ::= NAME_JOIN call-function
-call-method   ::= DOT call-function
+call-function ::= throwable? PARENTHESIS_L (term-expression (COMMA term-expression)* COMMA?)? PARENTHESIS_R;
+throwable ::= OP_ERROR | OP_THROW;
+call-static   ::= NAME_JOIN identifier-free call-function
+call-method   ::= DOT identifier-free call-function
 call-field    ::= DOT identifier
 call-index    ::= DOT INTEGER
 call-slice    ::= BRACKET_L term-expression (COMMA term-expression)* BRACKET_R;

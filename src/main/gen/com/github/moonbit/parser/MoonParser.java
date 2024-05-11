@@ -113,7 +113,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // errorable? PARENTHESIS_L (term-expression (COMMA term-expression)* COMMA?)? PARENTHESIS_R
+  // throwable? PARENTHESIS_L (term-expression (COMMA term-expression)* COMMA?)? PARENTHESIS_R
   public static boolean call_function(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "call_function")) return false;
     boolean r;
@@ -126,10 +126,10 @@ public class MoonParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // errorable?
+  // throwable?
   private static boolean call_function_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "call_function_0")) return false;
-    errorable(b, l + 1);
+    throwable(b, l + 1);
     return true;
   }
 
@@ -194,13 +194,14 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // DOT call-function
+  // DOT identifier-free call-function
   public static boolean call_method(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "call_method")) return false;
     if (!nextTokenIs(b, DOT)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, DOT);
+    r = r && identifier_free(b, l + 1);
     r = r && call_function(b, l + 1);
     exit_section_(b, m, CALL_METHOD, r);
     return r;
@@ -244,13 +245,14 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // NAME_JOIN call-function
+  // NAME_JOIN identifier-free call-function
   public static boolean call_static(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "call_static")) return false;
     if (!nextTokenIs(b, NAME_JOIN)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, NAME_JOIN);
+    r = r && identifier_free(b, l + 1);
     r = r && call_function(b, l + 1);
     exit_section_(b, m, CALL_STATIC, r);
     return r;
@@ -1167,19 +1169,6 @@ public class MoonParser implements PsiParser, LightPsiParser {
     if (!r) r = declare_variant(b, l + 1);
     if (!r) r = declare_field(b, l + 1);
     if (!r) r = declare_method(b, l + 1);
-    return r;
-  }
-
-  /* ********************************************************** */
-  // OP_ERROR | OP_THROW
-  public static boolean errorable(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "errorable")) return false;
-    if (!nextTokenIs(b, "<errorable>", OP_ERROR, OP_THROW)) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, ERRORABLE, "<errorable>");
-    r = consumeToken(b, OP_ERROR);
-    if (!r) r = consumeToken(b, OP_THROW);
-    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -2686,6 +2675,19 @@ public class MoonParser implements PsiParser, LightPsiParser {
   // }
   private static boolean then_statement_2(PsiBuilder b, int l) {
     return true;
+  }
+
+  /* ********************************************************** */
+  // OP_ERROR | OP_THROW
+  public static boolean throwable(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "throwable")) return false;
+    if (!nextTokenIs(b, "<throwable>", OP_ERROR, OP_THROW)) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, THROWABLE, "<throwable>");
+    r = consumeToken(b, OP_ERROR);
+    if (!r) r = consumeToken(b, OP_THROW);
+    exit_section_(b, l, m, r, false, null);
+    return r;
   }
 
   /* ********************************************************** */

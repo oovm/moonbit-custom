@@ -10,4 +10,7 @@ public interface MoonCallStatic extends PsiElement {
   @NotNull
   MoonCallFunction getCallFunction();
 
+  @NotNull
+  MoonIdentifierFree getIdentifierFree();
+
 }
