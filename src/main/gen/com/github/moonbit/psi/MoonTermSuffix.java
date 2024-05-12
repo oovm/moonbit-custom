@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface MoonTermSuffix extends PsiElement {
 
     @Nullable
+    MoonCallDict getCallDict();
+
+    @Nullable
     MoonCallField getCallField();
 
     @Nullable

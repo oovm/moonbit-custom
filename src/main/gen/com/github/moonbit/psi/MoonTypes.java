@@ -9,11 +9,12 @@ import com.github.moonbit.psi_node.*;
 public interface MoonTypes {
 
   IElementType APPEND_DERIVE = new MoonElementType("APPEND_DERIVE");
-  IElementType CALL_FIELD = new MoonElementType("CALL_FIELD");
-  IElementType CALL_FUNCTION = new MoonElementType("CALL_FUNCTION");
-  IElementType CALL_INDEX = new MoonElementType("CALL_INDEX");
-  IElementType CALL_METHOD = new MoonElementType("CALL_METHOD");
-  IElementType CALL_SLICE = new MoonElementType("CALL_SLICE");
+    IElementType CALL_DICT = new MoonElementType("CALL_DICT");
+    IElementType CALL_FIELD = new MoonElementType("CALL_FIELD");
+    IElementType CALL_FUNCTION = new MoonElementType("CALL_FUNCTION");
+    IElementType CALL_INDEX = new MoonElementType("CALL_INDEX");
+    IElementType CALL_METHOD = new MoonElementType("CALL_METHOD");
+    IElementType CALL_SLICE = new MoonElementType("CALL_SLICE");
     IElementType CALL_STATIC = new MoonElementType("CALL_STATIC");
     IElementType CHAR_LITERAL = new MoonElementType("CHAR_LITERAL");
     IElementType CHAR_SYNTAX = new MoonElementType("CHAR_SYNTAX");
@@ -201,6 +202,8 @@ public interface MoonTypes {
             IElementType type = node.getElementType();
             if (type == APPEND_DERIVE) {
                 return new MoonAppendDeriveNode(node);
+            } else if (type == CALL_DICT) {
+                return new MoonCallDictNode(node);
             } else if (type == CALL_FIELD) {
                 return new MoonCallFieldNode(node);
             } else if (type == CALL_FUNCTION) {

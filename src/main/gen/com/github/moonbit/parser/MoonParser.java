@@ -100,6 +100,19 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // NAME_JOIN dict-literal
+  public static boolean call_dict(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "call_dict")) return false;
+    if (!nextTokenIs(b, NAME_JOIN)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, NAME_JOIN);
+    r = r && dict_literal(b, l + 1);
+    exit_section_(b, m, CALL_DICT, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // DOT identifier
   public static boolean call_field(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "call_field")) return false;
@@ -2648,6 +2661,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
   // 	| call-method
   // 	| call-field
   // 	| call-index
+  // 	| call-dict
   // 	| call-slice
   // 	| OP_REF
   public static boolean term_suffix(PsiBuilder b, int l) {
@@ -2660,6 +2674,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     if (!r) r = call_method(b, l + 1);
     if (!r) r = call_field(b, l + 1);
     if (!r) r = call_index(b, l + 1);
+    if (!r) r = call_dict(b, l + 1);
     if (!r) r = call_slice(b, l + 1);
     if (!r) r = consumeToken(b, OP_REF);
     exit_section_(b, l, m, r, false, null);

@@ -266,10 +266,12 @@ term-suffix   ::= OP_THROW
 	| call-method
 	| call-field
 	| call-index
+	| call-dict
 	| call-slice
 	| OP_REF
 call-function ::= throwable? PARENTHESIS_L (term-expression (COMMA term-expression)* COMMA?)? PARENTHESIS_R;
 throwable ::= OP_ERROR | OP_THROW;
+call-dict     ::= NAME_JOIN dict-literal
 call-static   ::= NAME_JOIN identifier-free call-function?
 call-method   ::= DOT identifier-free call-function
 call-field    ::= DOT identifier
