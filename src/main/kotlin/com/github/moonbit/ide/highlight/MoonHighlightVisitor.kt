@@ -1,6 +1,7 @@
-package com.github.bytecodealliance.ide.highlight
+package com.github.moonbit.ide.highlight
 
 
+import com.github.bytecodealliance.ide.highlight.MoonColor
 import com.github.bytecodealliance.ide.highlight.MoonColor.SYMBOL_FUNCTION
 import com.github.moonbit.file.MoonFile
 import com.github.moonbit.psi.MoonFunction

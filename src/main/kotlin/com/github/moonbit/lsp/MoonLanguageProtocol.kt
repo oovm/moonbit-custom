@@ -1,4 +1,4 @@
-package com.github.bytecodealliance.lsp
+package com.github.moonbit.lsp
 
 import com.github.moonbit.file.MoonFileType
 import com.github.moonbit.file.MoonIconProvider
@@ -10,10 +10,10 @@ import com.intellij.platform.lsp.api.LspServerSupportProvider.LspServerStarter
 import com.intellij.platform.lsp.api.lsWidget.LspServerWidgetItem
 
 
-class WitLanguageProtocol : LspServerSupportProvider {
+class MoonLanguageProtocol : LspServerSupportProvider {
     override fun fileOpened(project: Project, file: VirtualFile, serverStarter: LspServerStarter) {
         if (file.fileType is MoonFileType) {
-            serverStarter.ensureServerStarted(WitLanguageServerDescriptor(project))
+            serverStarter.ensureServerStarted(MoonLanguageServerDescriptor(project))
         }
     }
 

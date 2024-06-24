@@ -1,4 +1,4 @@
-package com.github.bytecodealliance
+package com.github.moonbit
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.PropertyKey

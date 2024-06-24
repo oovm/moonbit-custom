@@ -1,5 +1,5 @@
 <idea-plugin>
 	<extensions defaultExtensionNs="com.intellij">
-		<platform.lsp.serverSupportProvider implementation="com.github.bytecodealliance.lsp.WitLanguageProtocol"/>
+		<platform.lsp.serverSupportProvider implementation="com.github.moonbit.lsp.MoonLanguageProtocol"/>
 	</extensions>
 </idea-plugin>

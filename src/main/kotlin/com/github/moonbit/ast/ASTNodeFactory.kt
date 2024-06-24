@@ -1,6 +1,6 @@
 package com.github.moonbit.ast
 
-import com.github.bytecodealliance.MoonLanguage
+import com.github.moonbit.MoonLanguage
 import com.github.moonbit.file.MoonFile
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFileFactory

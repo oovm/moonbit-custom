@@ -1,6 +1,6 @@
 package com.github.bytecodealliance.ide.highlight
 
-import com.github.bytecodealliance.MessageBundle
+import com.github.moonbit.MessageBundle
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
