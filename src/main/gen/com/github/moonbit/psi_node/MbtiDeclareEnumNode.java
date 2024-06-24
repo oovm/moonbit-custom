@@ -1,0 +1,51 @@
+// This is a generated file. Not intended for manual editing.
+package com.github.moonbit.psi_node;
+
+import java.util.List;
+
+import org.jetbrains.annotations.*;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiElementVisitor;
+import com.intellij.psi.util.PsiTreeUtil;
+
+import static com.github.moonbit.psi.MbtiTypes.*;
+
+import com.github.moonbit.psi.AnyMbtiNode;
+import com.github.moonbit.psi.*;
+
+public class MbtiDeclareEnumNode extends AnyMbtiNode implements MbtiDeclareEnum {
+
+    public MbtiDeclareEnumNode(ASTNode node) {
+        super(node);
+    }
+
+    public void accept(@NotNull MbtiVisitor visitor) {
+        visitor.visitDeclareEnum(this);
+    }
+
+    @Override
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof MbtiVisitor) accept((MbtiVisitor) visitor);
+        else super.accept(visitor);
+    }
+
+    @Override
+    @Nullable
+    public MbtiDeriveStatement getDeriveStatement() {
+        return findChildByClass(MbtiDeriveStatement.class);
+    }
+
+    @Override
+    @Nullable
+    public MbtiEnumBody getEnumBody() {
+        return findChildByClass(MbtiEnumBody.class);
+    }
+
+    @Override
+    @Nullable
+    public MbtiIdentifier getIdentifier() {
+        return findChildByClass(MbtiIdentifier.class);
+    }
+
+}

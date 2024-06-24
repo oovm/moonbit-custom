@@ -1,0 +1,304 @@
+{
+    parserClass = "com.github.moonbit.parser.MbtiParser"
+    parserUtilClass = "com.github.moonbit.psi.MoonParserExtension"
+
+    extends = "com.github.moonbit.psi.AnyMbtiNode"
+
+    psiClassPrefix = "Mbti"
+    psiImplClassSuffix = "Node"
+    psiPackage = "com.github.moonbit.psi"
+    psiImplPackage = "com.github.moonbit.psi_node"
+
+    elementTypeHolderClass = "com.github.moonbit.psi.MbtiTypes"
+    elementTypeClass = "com.github.moonbit.psi.MoonElementType"
+    tokenTypeClass = "com.github.moonbit.psi.MoonTokenType"
+
+    psiImplUtilClass = "com.github.moonbit.psi_node.MoonPsiExtension"
+
+    tokens = [
+        // comment
+        COMMENT_DOCUMENT = "Comment Document"
+        COMMENT_LINE = "Comment"
+        COMMENT_BLOCK = "Comment Block"
+
+        PARENTHESIS_L = '('
+        PARENTHESIS_R = ')'
+        BRACKET_L = '['
+        BRACKET_R = ']'
+        BRACE_L = '{'
+        BRACE_R = '}'
+        ANGLE_L = '<'
+        ANGLE_R = '>'
+        ACCENT = '^'
+        EQ = '='
+        COLON = ':'
+        SEMICOLON = ';'
+        COMMA = ','
+        DOLLAR = '$'
+        DOT = '.'
+        STAR = '*'
+        AT = '@'
+        TO = "->"
+        HYPHEN = "-"
+        SLASH = '/'
+        PLACE_HOLDER = "_"
+//      SPACE='regexp:\s+'
+//      ANY = 'regexp:.'
+
+    ]
+}
+
+// https://github.com/bytecodealliance/fluent/blob/master/spec/fluent.ebnf
+mbti ::= statements*
+private statements ::= SEMICOLON
+    | package
+	| declare-struct
+	| declare-enum
+	| declare-trait
+	| let-statement
+	| declare-function
+	| declare-closure
+	| declare-test
+	| while-statement
+	| for-statement
+	| if-statement
+	| match-statement
+
+// package wasi:blobstore@0.2.0-draft;
+package ::= KW_PACKAGE package-name {
+	pin = 1
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinPackage"
+}
+
+package-name ::= module-name (COLON module-name)* package-version?;
+package-version ::= AT VERSION;
+
+// =====================================================================================================================
+derive-statement ::= KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
+	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
+}
+// =====================================================================================================================
+declare-struct   ::= KW_STRUCT identifier struct-body derive-statement? {
+	pin = 1
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
+}
+struct-body ::= BRACE_L struct-element* BRACE_R
+private struct-element ::= COMMA
+	| declare-field
+	| declare-method
+declare-field  ::= identifier COLON type-hint {
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
+}
+declare-method ::= identifier COLON function-signature {
+//	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
+}
+// ===========================================================================
+declare-enum ::= KW_ENUM identifier enum-body derive-statement? {
+	pin = 1
+}
+enum-body ::= BRACE_L enum-element* BRACE_R
+private enum-element ::= SEMICOLON
+	| declare-variant
+	| declare-field
+	| declare-method
+
+
+// world name { }
+let-statement ::= modifier? KW_LET KW_MUTABLE? identifier (COLON type-expression)? EQ term-expression {
+	pin = 2
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
+}
+// include wasi:keyvalue/imports@0.2.0-draft;
+include ::= KW_INCLUDE include-name {
+	pin = 1
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinInclude"
+}
+include-name ::=
+    identifier (COLON identifier) (SLASH interface-name) package-version?
+  | interface-name
+// import imports;
+// import error-code: func(err: u32) -> option<u32>;
+// export imports;
+// export my:dep/a@0.2.0;
+import    ::= KW_IMPORT export-term {
+	pin = 1
+}
+export    ::= KW_EXPORT export-term {
+	pin = 1
+}
+export-term ::= function
+	| declare-test
+	| include-name
+//  use wasi:poll/poll.{pollable};
+//  use wasi:io/streams@0.2.0.{input-stream, output-stream};
+
+// interface name { }
+declare-function ::= modifier* KW_FN identifier declare-generic? declare-parameter function-body {
+	pin = 3
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
+}
+function-body  ::= BRACE_L function-element* BRACE_R;
+function-element ::= SEMICOLON
+	| let-statement
+	| declare-function
+	| declare-test
+	| while-statement
+	| if-statement
+
+declare-parameter ::= PARENTHESIS_L identifier COLON identifier PARENTHESIS_R
+
+
+
+modifier ::= KW_PUBLIC | KW_PRIVATE;
+declare-generic ::= BRACKET_L (generic-item (COMMA generic-item)*)? BRACKET_R;
+generic-item ::= identifier (COLON type-expression)?;
+// =====================================================================================================================
+declare-closure  ::= KW_FN declare-parameter function-body {
+	pin = 1
+}
+// =====================================================================================================================
+declare-test ::= KW_TEST string-literal function-body {
+	pin = 1
+//	extends = interface
+//	mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
+}
+
+
+// exports: interface
+// =====================================================================================================================
+if-statement ::= KW_IF term-expression function-body else-statement? {
+	pin = 1
+}
+else-statement ::= KW_ELSE function-body {
+	pin = 1
+}
+match-statement ::= KW_MATCH term-expression match-body {
+	pin = 1
+}
+match-body ::= BRACE_L match-element* BRACE_R;
+private match-element ::= match-variant
+match-variant ::= identifier;
+// =====================================================================================================================
+while-statement ::= KW_WHILE term-expression function-body {
+	pin = 1
+}
+for-statement  ::= KW_FOR for-startup for-condition for-increment function-body;
+for-startup    ::= term-expression COLON;
+for-condition  ::= term-expression COLON;
+for-increment  ::= term-expression;
+// =====================================================================================================================
+
+
+control-break ::= KW_BREAK term-expression;
+// =====================================================================================================================
+term-expression ::= term-expression-item (term-infix term-expression-item)*;
+term-expression-item ::= term-prefix* term-expression-atom term-suffix*;
+term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
+	| identifier
+	| string-literal
+	| number-literal
+
+term-prefix ::= OP_ADD | OP_SUB | OP_REF;
+term-infix  ::= OP_ASSIGN
+	| OP_ADD | OP_ADD_ASSIGN
+	| OP_SUB
+	| OP_MUL
+	| OP_DIV
+	| OP_MOD
+	| OP_LT | OP_LEQ
+	| OP_GT | OP_GEQ
+	| OP_OR | OP_AND
+	| OP_THEN
+term-suffix   ::= OP_THROW
+	| call-method
+	| call-field
+	| call-function
+	| call-index
+call-function ::= PARENTHESIS_L term-expression (COMMA term-expression)* PARENTHESIS_R;
+call-method   ::= DOT call-function
+call-field    ::= DOT identifier
+call-index    ::= BRACKET_L term-expression (COMMA term-expression)* BRACKET_R;
+// =====================================================================================================================
+type-expression ::= type-expression-item (type-infix type-expression-item)*;
+type-expression-item ::= type-prefix* type-expression-atom type-suffix*;
+type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
+	| identifier
+//	| string-literal
+//	| number-literal
+type-prefix ::= OP_ADD;
+type-infix  ::= OP_ADD | OP_TO;
+type-suffix ::= "?"
+// =====================================================================================================================
+string-literal ::= DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R;
+
+number-literal ::= INTEGER;
+
+
+
+
+
+
+constructor ::= KW_CONSTRUCTOR tuple (TO type-hint)? {
+	pin = 1
+}
+function ::= identifier COLON function-signature {
+//	mixin = "com.github.bytecodealliance.language.mixin.MixinFunction"
+}
+function-signature ::= modifier? KW_FUNCTION tuple (TO type-hint)? {
+	pin = 2
+}
+
+// type type-name = type-hint;
+define-type ::= KW_TYPE identifier EQ type-hint {
+	pin = 1
+}
+type-hint ::= tuple | type-generic;
+type-generic ::= identifier generic?;
+tuple ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R;
+parameter ::= identifier COLON type-hint {
+
+}
+generic   ::= ANGLE_L (type-hint (COMMA type-hint)* COMMA?)? ANGLE_R;
+// resource type-name { method: func() };
+declare-trait  ::= KW_TRAIT identifier trait-body {
+	pin = 1
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinResource"
+}
+trait-body ::= BRACE_L trait-element* BRACE_R;
+private trait-element ::=
+	declare-function
+
+
+
+
+
+
+private resource-element ::=
+    declare-method
+  | constructor
+  | SEMICOLON
+
+
+
+
+flags       ::= KW_FLAGS identifier BRACE_L (semantic-number (COMMA semantic-number)* COMMA?)? BRACE_R {
+	pin = 1
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinFlags"
+}
+
+
+variant          ::= KW_VARIANT identifier BRACE_L (variant-item (COMMA variant-item)* COMMA?)? BRACE_R {
+	pin = 1
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinVariant"
+}
+variant-item 	 ::= identifier (PARENTHESIS_L type-hint PARENTHESIS_R)? {
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinVariantItem"
+}
+
+
+/* Literals */
+
+/* Identifier */
+module-name         ::= SYMBOL | ESCAPED;
+semantic-number     ::= SYMBOL | ESCAPED;
+identifier          ::= SYMBOL | ESCAPED;
