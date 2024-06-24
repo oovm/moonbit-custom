@@ -33,7 +33,7 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
             BRACKET_L, BRACKET_R -> MoonColor.BRACKETS
             BRACE_L, BRACE_R -> MoonColor.BRACES
             COLON, EQ -> MoonColor.OPERATION
-            AT, STAR -> MoonColor.OPERATION
+            AT -> MoonColor.OPERATION
 
             COMMA -> MoonColor.COMMA
             // atom
@@ -53,6 +53,5 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
             else -> null
         }
     }
-
 }
 

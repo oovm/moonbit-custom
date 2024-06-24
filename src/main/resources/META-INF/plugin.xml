@@ -19,9 +19,18 @@
 				language="moonbit"
 				implementationClass="com.github.moonbit.psi.MoonParserDefinition"
 		/>
+		<lang.parserDefinition
+				language="moonbit"
+				implementationClass="com.github.moonbit.psi.MbtiParserDefinition"
+		/>
+
 		<lang.syntaxHighlighter
 				language="moonbit"
 				implementationClass="com.github.bytecodealliance.ide.highlight.MoonSyntaxHighlighter"
+		/>
+		<lang.syntaxHighlighter
+				language="moonbit"
+				implementationClass="com.github.bytecodealliance.ide.highlight.MbtiSyntaxHighlighter"
 		/>
 		<!-- StructureView -->
 		<lang.psiStructureViewFactory language="moonbit"
@@ -33,7 +42,7 @@
 
 		<colorSettingsPage implementation="com.github.bytecodealliance.ide.highlight.MoonHighlightSetting"/>
 		<highlightVisitor implementation="com.github.bytecodealliance.ide.highlight.MoonHighlightVisitor"/>
-
+		<highlightVisitor implementation="com.github.bytecodealliance.ide.highlight.MbtiHighlightVisitor"/>
 		<!-- Formatter -->
 		<lang.formatter
 				language="moonbit"
