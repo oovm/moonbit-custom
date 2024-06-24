@@ -11,6 +11,10 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitControlBreak(@NotNull MoonControlBreak o) {
+        visitPsiElement(o);
+    }
+
     public void visitDeclareEnum(@NotNull MoonDeclareEnum o) {
         visitPsiElement(o);
     }

@@ -9,6 +9,7 @@ import com.intellij.psi.tree.IElementType;
 public interface MoonTypes {
 
     IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
+    IElementType CONTROL_BREAK = new MoonElementType("CONTROL_BREAK");
     IElementType DECLARE_ENUM = new MoonElementType("DECLARE_ENUM");
     IElementType DECLARE_FIELD = new MoonElementType("DECLARE_FIELD");
     IElementType DECLARE_FUNCTION = new MoonElementType("DECLARE_FUNCTION");
@@ -89,6 +90,7 @@ public interface MoonTypes {
     IElementType HYPHEN = new MoonTokenType("-");
     IElementType INTEGER = new MoonTokenType("INTEGER");
     IElementType INTERFACE_NAME = new MoonTokenType("interface-name");
+    IElementType KW_BREAK = new MoonTokenType("KW_BREAK");
     IElementType KW_CONSTRUCTOR = new MoonTokenType("KW_CONSTRUCTOR");
     IElementType KW_DERIVE = new MoonTokenType("KW_DERIVE");
     IElementType KW_ELSE = new MoonTokenType("KW_ELSE");
@@ -101,6 +103,7 @@ public interface MoonTypes {
     IElementType KW_IMPORT = new MoonTokenType("KW_IMPORT");
     IElementType KW_INCLUDE = new MoonTokenType("KW_INCLUDE");
     IElementType KW_LET = new MoonTokenType("KW_LET");
+    IElementType KW_MUTABLE = new MoonTokenType("KW_MUTABLE");
     IElementType KW_PACKAGE = new MoonTokenType("KW_PACKAGE");
     IElementType KW_PRIVATE = new MoonTokenType("KW_PRIVATE");
     IElementType KW_PUBLIC = new MoonTokenType("KW_PUBLIC");
@@ -112,6 +115,15 @@ public interface MoonTypes {
     IElementType KW_WHILE = new MoonTokenType("KW_WHILE");
     IElementType OP_ADD = new MoonTokenType("OP_ADD");
     IElementType OP_ADD_ASSIGN = new MoonTokenType("OP_ADD_ASSIGN");
+    IElementType OP_DIV = new MoonTokenType("OP_DIV");
+    IElementType OP_GE = new MoonTokenType("OP_GE");
+    IElementType OP_GEQ = new MoonTokenType("OP_GEQ");
+    IElementType OP_LE = new MoonTokenType("OP_LE");
+    IElementType OP_LEQ = new MoonTokenType("OP_LEQ");
+    IElementType OP_MUL = new MoonTokenType("OP_MUL");
+    IElementType OP_REF = new MoonTokenType("OP_REF");
+    IElementType OP_SUB = new MoonTokenType("OP_SUB");
+    IElementType OP_TO = new MoonTokenType("OP_TO");
     IElementType PARENTHESIS_L = new MoonTokenType("(");
     IElementType PARENTHESIS_R = new MoonTokenType(")");
     IElementType PLACE_HOLDER = new MoonTokenType("_");
@@ -128,6 +140,8 @@ public interface MoonTypes {
             IElementType type = node.getElementType();
             if (type == CONSTRUCTOR) {
                 return new MoonConstructorNode(node);
+            } else if (type == CONTROL_BREAK) {
+                return new MoonControlBreakNode(node);
             } else if (type == DECLARE_ENUM) {
                 return new MoonDeclareEnumNode(node);
             } else if (type == DECLARE_FIELD) {

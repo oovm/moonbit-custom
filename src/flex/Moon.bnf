@@ -100,22 +100,8 @@ private enum-element ::= SEMICOLON
 	| declare-method
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // world name { }
-let-statement ::= modifier? KW_LET identifier (COLON type-expression)? EQ term-expression {
+let-statement ::= modifier? KW_LET KW_MUTABLE? identifier (COLON type-expression)? EQ term-expression {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }
@@ -182,7 +168,7 @@ test-statement ::= KW_TEST string-literal function-body {
 
 // exports: interface
 
-
+control-break ::= KW_BREAK term-expression;
 // =====================================================================================================================
 term-expression ::= term-expression-item (term-infix term-expression-item)*;
 term-expression-item ::= term-prefix* term-expression-atom term-suffix*;
@@ -191,8 +177,11 @@ term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
 	| string-literal
 	| number-literal
 
-term-prefix ::= OP_ADD;
-term-infix  ::= OP_ADD | OP_ADD_ASSIGN;
+term-prefix ::= OP_ADD | OP_SUB | OP_REF;
+term-infix  ::=
+	  OP_ADD | OP_SUB | OP_MUL | OP_DIV | OP_ADD_ASSIGN
+	| OP_LEQ | OP_LE | OP_GEQ | OP_GE
+	;
 term-suffix ::= "?"
 // =====================================================================================================================
 type-expression ::= type-expression-item (type-infix type-expression-item)*;
@@ -202,12 +191,15 @@ type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
 //	| string-literal
 //	| number-literal
 type-prefix ::= OP_ADD;
-type-infix  ::= OP_ADD | OP_ADD_ASSIGN;
+type-infix  ::= OP_ADD | OP_TO;
 type-suffix ::= "?"
 // =====================================================================================================================
 string-literal ::= DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R;
 
 number-literal ::= INTEGER;
+
+
+
 
 
 

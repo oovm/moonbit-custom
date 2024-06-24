@@ -14,7 +14,6 @@ abstract class MixinField(node: ASTNode) : WitElement(node),
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
-
     override fun getNameIdentifier(): PsiElement? {
         return this.identifier
     }
