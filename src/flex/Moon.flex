@@ -80,9 +80,6 @@ KW_WHILE = "while"
     "]" { return BRACKET_R; }
 	"{" { return BRACE_L; }
 	"}" { return BRACE_R; }
-	"<" { return ANGLE_L; }
-	">" { return ANGLE_R; }
-    "->" { return TO; }
 	"^" { return ACCENT; }
 	":" { return COLON; }
 	";" { return SEMICOLON; }
@@ -98,17 +95,18 @@ KW_WHILE = "while"
 	"%" { return OP_MOD; }
 	"->" { return OP_TO; }
 
+
 	"<=" { return OP_LEQ; }
 	"<" { return OP_LT; }
 	">" { return OP_GT; }
 	">=" { return OP_GEQ; }
+	"=" { return OP_ASSIGN; }
 
 	"~" { return OP_REF; }
 
-
+	"?" { return OP_THROW; }
 
 	"-" { return HYPHEN; }
-	"=" { return EQ; }
 }
 <YYINITIAL> {
 	{KW_TYPE}     { return KW_TYPE; }

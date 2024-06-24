@@ -14,14 +14,14 @@ import static com.github.moonbit.psi.MoonTypes.*;
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
-public class MoonVariantItemNode extends AnyMoonNode implements MoonVariantItem {
+public class MoonDeclareClosureNode extends AnyMoonNode implements MoonDeclareClosure {
 
-    public MoonVariantItemNode(@NotNull ASTNode node) {
+    public MoonDeclareClosureNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitVariantItem(this);
+        visitor.visitDeclareClosure(this);
     }
 
     @Override
@@ -31,15 +31,15 @@ public class MoonVariantItemNode extends AnyMoonNode implements MoonVariantItem 
     }
 
     @Override
-    @NotNull
-    public MoonIdentifier getIdentifier() {
-        return findNotNullChildByClass(MoonIdentifier.class);
+    @Nullable
+    public MoonDeclareParameter getDeclareParameter() {
+        return findChildByClass(MoonDeclareParameter.class);
     }
 
     @Override
     @Nullable
-    public MoonTypeHint getTypeHint() {
-        return findChildByClass(MoonTypeHint.class);
+    public MoonFunctionBody getFunctionBody() {
+        return findChildByClass(MoonFunctionBody.class);
     }
 
 }

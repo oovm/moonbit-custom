@@ -4,12 +4,12 @@ package com.github.moonbit.psi;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.Nullable;
 
-public interface MoonTermSuffix extends PsiElement {
+public interface MoonDeclareClosure extends PsiElement {
 
     @Nullable
-    MoonCallFunction getCallFunction();
+    MoonDeclareParameter getDeclareParameter();
 
     @Nullable
-    MoonCallIndex getCallIndex();
+    MoonFunctionBody getFunctionBody();
 
 }

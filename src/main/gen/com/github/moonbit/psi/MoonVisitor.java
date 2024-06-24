@@ -7,6 +7,22 @@ import org.jetbrains.annotations.NotNull;
 
 public class MoonVisitor extends PsiElementVisitor {
 
+    public void visitCallField(@NotNull MoonCallField o) {
+        visitPsiElement(o);
+    }
+
+    public void visitCallFunction(@NotNull MoonCallFunction o) {
+        visitPsiElement(o);
+    }
+
+    public void visitCallIndex(@NotNull MoonCallIndex o) {
+        visitPsiElement(o);
+    }
+
+    public void visitCallMethod(@NotNull MoonCallMethod o) {
+        visitPsiElement(o);
+    }
+
     public void visitConstructor(@NotNull MoonConstructor o) {
         visitPsiElement(o);
     }
@@ -80,6 +96,18 @@ public class MoonVisitor extends PsiElementVisitor {
     }
 
     public void visitFlags(@NotNull MoonFlags o) {
+        visitPsiElement(o);
+    }
+
+    public void visitForCondition(@NotNull MoonForCondition o) {
+        visitPsiElement(o);
+    }
+
+    public void visitForIncrement(@NotNull MoonForIncrement o) {
+        visitPsiElement(o);
+    }
+
+    public void visitForStartup(@NotNull MoonForStartup o) {
         visitPsiElement(o);
     }
 

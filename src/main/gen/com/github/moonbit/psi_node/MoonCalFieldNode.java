@@ -1,27 +1,22 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import java.util.List;
-
-import org.jetbrains.annotations.*;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiElementVisitor;
-import com.intellij.psi.util.PsiTreeUtil;
-
-import static com.github.moonbit.psi.MoonTypes.*;
-
 import com.github.moonbit.psi.AnyMoonNode;
-import com.github.moonbit.psi.*;
+import com.github.moonbit.psi.MoonCalField;
+import com.github.moonbit.psi.MoonIdentifier;
+import com.github.moonbit.psi.MoonVisitor;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElementVisitor;
+import org.jetbrains.annotations.NotNull;
 
-public class MoonVariantItemNode extends AnyMoonNode implements MoonVariantItem {
+public class MoonCalFieldNode extends AnyMoonNode implements MoonCalField {
 
-    public MoonVariantItemNode(@NotNull ASTNode node) {
+    public MoonCalFieldNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitVariantItem(this);
+        visitor.visitCalField(this);
     }
 
     @Override
@@ -34,12 +29,6 @@ public class MoonVariantItemNode extends AnyMoonNode implements MoonVariantItem 
     @NotNull
     public MoonIdentifier getIdentifier() {
         return findNotNullChildByClass(MoonIdentifier.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonTypeHint getTypeHint() {
-        return findChildByClass(MoonTypeHint.class);
     }
 
 }
