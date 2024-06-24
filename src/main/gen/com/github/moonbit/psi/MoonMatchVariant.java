@@ -4,11 +4,9 @@ package com.github.moonbit.psi;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
-public interface MoonMatchBody extends PsiElement {
+public interface MoonMatchVariant extends PsiElement {
 
     @NotNull
-    List<MoonMatchVariant> getMatchVariantList();
+    MoonIdentifier getIdentifier();
 
 }

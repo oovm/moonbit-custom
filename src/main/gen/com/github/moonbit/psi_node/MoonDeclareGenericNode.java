@@ -32,8 +32,8 @@ public class MoonDeclareGenericNode extends AnyMoonNode implements MoonDeclareGe
 
     @Override
     @NotNull
-    public MoonIdentifier getIdentifier() {
-        return findNotNullChildByClass(MoonIdentifier.class);
+    public List<MoonGenericItem> getGenericItemList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonGenericItem.class);
     }
 
 }
