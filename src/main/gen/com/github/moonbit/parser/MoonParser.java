@@ -1,17 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.parser;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
-
-import static com.github.moonbit.psi.MoonTypes.*;
-import static com.github.moonbit.psi.MoonParserExtension.*;
-
-import com.intellij.psi.tree.IElementType;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.tree.TokenSet;
 import com.intellij.lang.PsiParser;
-import com.intellij.lang.LightPsiParser;
+import com.intellij.psi.tree.IElementType;
+
+import static com.github.moonbit.psi.MoonParserExtension.*;
+import static com.github.moonbit.psi.MoonTypes.*;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class MoonParser implements PsiParser, LightPsiParser {

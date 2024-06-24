@@ -1,11 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi;
 
-import org.jetbrains.annotations.*;
-import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiElementVisitor;
+import org.jetbrains.annotations.NotNull;
 
 public class MbtiVisitor extends PsiElementVisitor {
+
+    public void visitAliasStatement(@NotNull MbtiAliasStatement o) {
+        visitPsiElement(o);
+    }
 
     public void visitCallField(@NotNull MbtiCallField o) {
         visitPsiElement(o);
@@ -51,15 +55,19 @@ public class MbtiVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitDeclareImpl(@NotNull MbtiDeclareImpl o) {
+        visitPsiElement(o);
+    }
+
     public void visitDeclareMethod(@NotNull MbtiDeclareMethod o) {
         visitPsiElement(o);
     }
 
-    public void visitDeclareParameter(@NotNull MbtiDeclareParameter o) {
+    public void visitDeclarePackage(@NotNull MbtiDeclarePackage o) {
         visitPsiElement(o);
     }
 
-    public void visitDeclareStruct(@NotNull MbtiDeclareStruct o) {
+    public void visitDeclareParameter(@NotNull MbtiDeclareParameter o) {
         visitPsiElement(o);
     }
 
@@ -71,11 +79,11 @@ public class MbtiVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
-    public void visitDefineType(@NotNull MbtiDefineType o) {
+    public void visitDeclareType(@NotNull MbtiDeclareType o) {
         visitPsiElement(o);
     }
 
-    public void visitDeriveStatement(@NotNull MbtiDeriveStatement o) {
+    public void visitDefineType(@NotNull MbtiDefineType o) {
         visitPsiElement(o);
     }
 
@@ -92,10 +100,6 @@ public class MbtiVisitor extends PsiElementVisitor {
     }
 
     public void visitExportTerm(@NotNull MbtiExportTerm o) {
-        visitPsiElement(o);
-    }
-
-    public void visitFlags(@NotNull MbtiFlags o) {
         visitPsiElement(o);
     }
 
@@ -147,6 +151,10 @@ public class MbtiVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitImplBody(@NotNull MbtiImplBody o) {
+        visitPsiElement(o);
+    }
+
     public void visitImport(@NotNull MbtiImport o) {
         visitPsiElement(o);
     }
@@ -187,15 +195,7 @@ public class MbtiVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
-    public void visitPackage(@NotNull MbtiPackage o) {
-        visitPsiElement(o);
-    }
-
-    public void visitPackageName(@NotNull MbtiPackageName o) {
-        visitPsiElement(o);
-    }
-
-    public void visitPackageVersion(@NotNull MbtiPackageVersion o) {
+    public void visitPackagePath(@NotNull MbtiPackagePath o) {
         visitPsiElement(o);
     }
 
@@ -208,10 +208,6 @@ public class MbtiVisitor extends PsiElementVisitor {
     }
 
     public void visitStringLiteral(@NotNull MbtiStringLiteral o) {
-        visitPsiElement(o);
-    }
-
-    public void visitStructBody(@NotNull MbtiStructBody o) {
         visitPsiElement(o);
     }
 

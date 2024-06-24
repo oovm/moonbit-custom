@@ -1,15 +1,13 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi;
 
-import java.util.List;
-
-import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
+import org.jetbrains.annotations.Nullable;
 
 public interface MbtiDeclareStruct extends PsiElement {
 
     @Nullable
-    MbtiDeriveStatement getDeriveStatement();
+    MbtiAliasStatement getAliasStatement();
 
     @Nullable
     MbtiIdentifier getIdentifier();

@@ -51,10 +51,11 @@
 // https://github.com/bytecodealliance/fluent/blob/master/spec/fluent.ebnf
 mbti ::= statements*
 private statements ::= SEMICOLON
-    | package
-	| declare-struct
+    | declare-package
+	| declare-type
 	| declare-enum
 	| declare-trait
+	| declare-impl
 	| let-statement
 	| declare-function
 	| declare-closure
@@ -65,35 +66,29 @@ private statements ::= SEMICOLON
 	| match-statement
 
 // package wasi:blobstore@0.2.0-draft;
-package ::= KW_PACKAGE package-name {
+declare-package ::= KW_PACKAGE package-path {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinPackage"
 }
-
-package-name ::= module-name (COLON module-name)* package-version?;
-package-version ::= AT VERSION;
-
+package-path ::= identifier (OP_DIV identifier)*;
 // =====================================================================================================================
-derive-statement ::= KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
+alias-statement ::= KW_ALIAS PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
 }
 // =====================================================================================================================
-declare-struct   ::= KW_STRUCT identifier struct-body derive-statement? {
+declare-type   ::= KW_TYPE identifier {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
 }
-struct-body ::= BRACE_L struct-element* BRACE_R
-private struct-element ::= COMMA
-	| declare-field
-	| declare-method
+
 declare-field  ::= identifier COLON type-hint {
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
 }
-declare-method ::= identifier COLON function-signature {
+declare-method ::= function-signature {
 //	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
 }
 // ===========================================================================
-declare-enum ::= KW_ENUM identifier enum-body derive-statement? {
+declare-enum ::= KW_ENUM identifier enum-body alias-statement? {
 	pin = 1
 }
 enum-body ::= BRACE_L enum-element* BRACE_R
@@ -269,22 +264,16 @@ private trait-element ::=
 	declare-function
 
 
-
-
-
-
-private resource-element ::=
-    declare-method
-  | constructor
-  | SEMICOLON
-
-
-
-
-flags       ::= KW_FLAGS identifier BRACE_L (semantic-number (COMMA semantic-number)* COMMA?)? BRACE_R {
+declare-impl ::= KW_IMPL identifier BRACE_L (semantic-number (COMMA semantic-number)* COMMA?)? BRACE_R {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinFlags"
 }
+impl-body ::= BRACE_L impl-element* BRACE_R;
+private impl-element ::=
+    declare-function
+  | declare-method
+  | constructor
+  | SEMICOLON
 
 
 variant          ::= KW_VARIANT identifier BRACE_L (variant-item (COMMA variant-item)* COMMA?)? BRACE_R {
