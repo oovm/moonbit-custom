@@ -7,12 +7,12 @@ import org.jetbrains.annotations.Nullable;
 public interface MoonExportTerm extends PsiElement {
 
     @Nullable
+    MoonDeclareTest getDeclareTest();
+
+    @Nullable
     MoonFunction getFunction();
 
     @Nullable
     MoonIncludeName getIncludeName();
-
-    @Nullable
-    MoonTestStatement getTestStatement();
 
 }

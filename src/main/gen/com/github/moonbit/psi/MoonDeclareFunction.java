@@ -18,7 +18,7 @@ public interface MoonDeclareFunction extends PsiElement {
     @Nullable
     MoonFunctionBody getFunctionBody();
 
-    @Nullable
+    @NotNull
     MoonIdentifier getIdentifier();
 
     @NotNull

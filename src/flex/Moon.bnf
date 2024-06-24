@@ -57,7 +57,8 @@ private statements ::= SEMICOLON
 	| declare-trait
 	| let-statement
 	| declare-function
-	| test-statement
+	| declare-closure
+	| declare-test
 	| while-statement
 	| if-statement
 
@@ -124,42 +125,39 @@ export    ::= KW_EXPORT export-term {
 	pin = 1
 }
 export-term ::= function
-	| test-statement
+	| declare-test
 	| include-name
 //  use wasi:poll/poll.{pollable};
 //  use wasi:io/streams@0.2.0.{input-stream, output-stream};
-while-statement ::= KW_WHILE term-expression function-body {
-	pin = 1
-}
-if-statement ::= KW_IF term-expression function-body else-statement? {
-	pin = 1
-}
-else-statement ::= KW_ELSE function-body {
-	pin = 1
-}
+
 // interface name { }
 declare-function ::= modifier* KW_FN identifier declare-generic? declare-parameter function-body {
-	pin = 2
+	pin = 3
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
 function-body  ::= BRACE_L function-element* BRACE_R;
 function-element ::= SEMICOLON
 	| let-statement
 	| declare-function
-	| test-statement
+	| declare-test
 	| while-statement
 	| if-statement
 
 declare-parameter ::= PARENTHESIS_L identifier COLON identifier PARENTHESIS_R
 
 
-declare-generic ::= BRACKET_L identifier BRACKET_R;
-
 
 modifier ::= KW_PUBLIC | KW_PRIVATE;
+declare-generic ::= BRACKET_L identifier BRACKET_R;
+// =====================================================================================================================
+declare-closure  ::= KW_FN declare-parameter function-body {
+	pin = 1
+}
 
-// exports: interface
-test-statement ::= KW_TEST string-literal function-body {
+
+
+// =====================================================================================================================
+declare-test ::= KW_TEST string-literal function-body {
 	pin = 1
 //	extends = interface
 //	mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
@@ -167,6 +165,21 @@ test-statement ::= KW_TEST string-literal function-body {
 
 
 // exports: interface
+
+if-statement ::= KW_IF term-expression function-body else-statement? {
+	pin = 1
+}
+else-statement ::= KW_ELSE function-body {
+	pin = 1
+}
+// =====================================================================================================================
+while-statement ::= KW_WHILE term-expression function-body {
+	pin = 1
+}
+for-statement  ::= KW_FOR term-expression COLON term-expression COLON term-expression function-body;
+
+// =====================================================================================================================
+
 
 control-break ::= KW_BREAK term-expression;
 // =====================================================================================================================

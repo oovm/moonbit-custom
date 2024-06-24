@@ -38,6 +38,12 @@ public class MoonFunctionElementNode extends AnyMoonNode implements MoonFunction
 
     @Override
     @Nullable
+    public MoonDeclareTest getDeclareTest() {
+        return findChildByClass(MoonDeclareTest.class);
+    }
+
+    @Override
+    @Nullable
     public MoonIfStatement getIfStatement() {
         return findChildByClass(MoonIfStatement.class);
     }
@@ -46,12 +52,6 @@ public class MoonFunctionElementNode extends AnyMoonNode implements MoonFunction
     @Nullable
     public MoonLetStatement getLetStatement() {
         return findChildByClass(MoonLetStatement.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonTestStatement getTestStatement() {
-        return findChildByClass(MoonTestStatement.class);
     }
 
     @Override
