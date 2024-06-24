@@ -62,6 +62,7 @@ private statements ::= SEMICOLON
 	| while-statement
 	| for-statement
 	| if-statement
+	| match-statement
 
 // package wasi:blobstore@0.2.0-draft;
 package ::= KW_PACKAGE package-name {
@@ -166,13 +167,22 @@ declare-test ::= KW_TEST string-literal function-body {
 
 
 // exports: interface
-
+// =====================================================================================================================
 if-statement ::= KW_IF term-expression function-body else-statement? {
 	pin = 1
 }
 else-statement ::= KW_ELSE function-body {
 	pin = 1
 }
+match-statement ::= KW_MATCH term-expression match-body {
+	pin = 1
+}
+match-body ::= BRACE_L match-element* BRACE_R;
+private match-element ::= SEMICOLON
+	| match-variant
+	| match-field
+	| match-method
+
 // =====================================================================================================================
 while-statement ::= KW_WHILE term-expression function-body {
 	pin = 1
@@ -199,8 +209,11 @@ term-infix  ::= OP_ASSIGN
 	| OP_SUB
 	| OP_MUL
 	| OP_DIV
-	| OP_LE | OP_LEQ
-	| OP_GE | OP_GEQ
+	| OP_MOD
+	| OP_LT | OP_LEQ
+	| OP_GT | OP_GEQ
+	| OP_OR | OP_AND
+	| OP_THEN
 term-suffix   ::= OP_THROW
 	| call-method
 	| call-field

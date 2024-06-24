@@ -63,7 +63,11 @@ KW_TEST = "test"
 
 KW_IF    = "if"
 KW_ELSE  = "else"
+KW_MATCH = "match"
+
+KW_FOR   = "for"
 KW_WHILE = "while"
+
 
 %%
 
@@ -100,6 +104,12 @@ KW_WHILE = "while"
 	"<" { return OP_LT; }
 	">" { return OP_GT; }
 	">=" { return OP_GEQ; }
+
+      "||" { return OP_OR; }
+      "|>" { return OP_THEN; }
+      "&&" { return OP_AND; }
+
+
 	"=" { return OP_ASSIGN; }
 
 	"~" { return OP_REF; }

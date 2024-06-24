@@ -159,6 +159,14 @@ public class MoonVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitMatchBody(@NotNull MoonMatchBody o) {
+        visitPsiElement(o);
+    }
+
+    public void visitMatchStatement(@NotNull MoonMatchStatement o) {
+        visitPsiElement(o);
+    }
+
     public void visitModifier(@NotNull MoonModifier o) {
         visitPsiElement(o);
     }

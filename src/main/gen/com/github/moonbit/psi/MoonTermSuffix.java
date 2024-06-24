@@ -7,9 +7,15 @@ import org.jetbrains.annotations.Nullable;
 public interface MoonTermSuffix extends PsiElement {
 
     @Nullable
+    MoonCallField getCallField();
+
+    @Nullable
     MoonCallFunction getCallFunction();
 
     @Nullable
     MoonCallIndex getCallIndex();
+
+    @Nullable
+    MoonCallMethod getCallMethod();
 
 }
