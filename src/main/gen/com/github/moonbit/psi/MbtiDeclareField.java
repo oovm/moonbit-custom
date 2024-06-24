@@ -9,7 +9,4 @@ public interface MbtiDeclareField extends PsiElement {
     @NotNull
     MbtiIdentifier getIdentifier();
 
-    @NotNull
-    MbtiTypeHint getTypeHint();
-
 }

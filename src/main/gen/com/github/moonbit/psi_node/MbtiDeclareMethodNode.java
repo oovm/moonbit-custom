@@ -3,7 +3,6 @@ package com.github.moonbit.psi_node;
 
 import com.github.moonbit.psi.AnyMbtiNode;
 import com.github.moonbit.psi.MbtiDeclareMethod;
-import com.github.moonbit.psi.MbtiFunctionSignature;
 import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
@@ -23,12 +22,6 @@ public class MbtiDeclareMethodNode extends AnyMbtiNode implements MbtiDeclareMet
     public void accept(@NotNull PsiElementVisitor visitor) {
         if (visitor instanceof MbtiVisitor) accept((MbtiVisitor) visitor);
         else super.accept(visitor);
-    }
-
-    @Override
-    @NotNull
-    public MbtiFunctionSignature getFunctionSignature() {
-        return findNotNullChildByClass(MbtiFunctionSignature.class);
     }
 
 }

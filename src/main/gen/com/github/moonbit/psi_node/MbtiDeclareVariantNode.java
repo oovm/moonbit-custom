@@ -2,22 +2,24 @@
 package com.github.moonbit.psi_node;
 
 import com.github.moonbit.psi.AnyMbtiNode;
-import com.github.moonbit.psi.MbtiDeclareFunction;
-import com.github.moonbit.psi.MbtiFunctionElement;
+import com.github.moonbit.psi.MbtiDeclareVariant;
+import com.github.moonbit.psi.MbtiIdentifier;
 import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
+import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class MbtiFunctionElementNode extends AnyMbtiNode implements MbtiFunctionElement {
+import java.util.List;
 
-    public MbtiFunctionElementNode(ASTNode node) {
+public class MbtiDeclareVariantNode extends AnyMbtiNode implements MbtiDeclareVariant {
+
+    public MbtiDeclareVariantNode(ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MbtiVisitor visitor) {
-        visitor.visitFunctionElement(this);
+        visitor.visitDeclareVariant(this);
     }
 
     @Override
@@ -27,9 +29,9 @@ public class MbtiFunctionElementNode extends AnyMbtiNode implements MbtiFunction
     }
 
     @Override
-    @Nullable
-    public MbtiDeclareFunction getDeclareFunction() {
-        return findChildByClass(MbtiDeclareFunction.class);
+    @NotNull
+    public List<MbtiIdentifier> getIdentifierList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiIdentifier.class);
     }
 
 }

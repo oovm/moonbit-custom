@@ -9,6 +9,6 @@ import java.util.List;
 public interface MbtiDeclareParameter extends PsiElement {
 
     @NotNull
-    List<MbtiIdentifier> getIdentifierList();
+    List<MbtiTypeExpression> getTypeExpressionList();
 
 }

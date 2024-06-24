@@ -27,12 +27,6 @@ public class MbtiImplBodyNode extends AnyMbtiNode implements MbtiImplBody {
 
     @Override
     @NotNull
-    public List<MbtiConstructor> getConstructorList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiConstructor.class);
-    }
-
-    @Override
-    @NotNull
     public List<MbtiDeclareFunction> getDeclareFunctionList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiDeclareFunction.class);
     }

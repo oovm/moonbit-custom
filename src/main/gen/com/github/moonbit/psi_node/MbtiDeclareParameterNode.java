@@ -3,7 +3,7 @@ package com.github.moonbit.psi_node;
 
 import com.github.moonbit.psi.AnyMbtiNode;
 import com.github.moonbit.psi.MbtiDeclareParameter;
-import com.github.moonbit.psi.MbtiIdentifier;
+import com.github.moonbit.psi.MbtiTypeExpression;
 import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
@@ -30,8 +30,8 @@ public class MbtiDeclareParameterNode extends AnyMbtiNode implements MbtiDeclare
 
     @Override
     @NotNull
-    public List<MbtiIdentifier> getIdentifierList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiIdentifier.class);
+    public List<MbtiTypeExpression> getTypeExpressionList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiTypeExpression.class);
     }
 
 }

@@ -9,9 +9,6 @@ import java.util.List;
 public interface MbtiEnumBody extends PsiElement {
 
     @NotNull
-    List<MbtiDeclareField> getDeclareFieldList();
-
-    @NotNull
-    List<MbtiDeclareMethod> getDeclareMethodList();
+    List<MbtiDeclareVariant> getDeclareVariantList();
 
 }
