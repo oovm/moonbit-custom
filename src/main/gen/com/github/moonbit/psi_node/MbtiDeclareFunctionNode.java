@@ -39,12 +39,6 @@ public class MbtiDeclareFunctionNode extends AnyMbtiNode implements MbtiDeclareF
     }
 
     @Override
-    @Nullable
-    public MbtiFunctionBody getFunctionBody() {
-        return findChildByClass(MbtiFunctionBody.class);
-    }
-
-    @Override
     @NotNull
     public MbtiIdentifier getIdentifier() {
         return findNotNullChildByClass(MbtiIdentifier.class);

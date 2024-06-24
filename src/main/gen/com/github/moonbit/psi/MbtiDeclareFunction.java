@@ -15,9 +15,6 @@ public interface MbtiDeclareFunction extends PsiElement {
     @Nullable
     MbtiDeclareParameter getDeclareParameter();
 
-    @Nullable
-    MbtiFunctionBody getFunctionBody();
-
     @NotNull
     MbtiIdentifier getIdentifier();
 

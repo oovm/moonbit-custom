@@ -1,7 +1,10 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.*;
+import com.github.moonbit.psi.AnyMbtiNode;
+import com.github.moonbit.psi.MbtiDeclareField;
+import com.github.moonbit.psi.MbtiStructBody;
+import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
@@ -29,12 +32,6 @@ public class MbtiStructBodyNode extends AnyMbtiNode implements MbtiStructBody {
     @NotNull
     public List<MbtiDeclareField> getDeclareFieldList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiDeclareField.class);
-    }
-
-    @Override
-    @NotNull
-    public List<MbtiDeclareMethod> getDeclareMethodList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiDeclareMethod.class);
     }
 
 }

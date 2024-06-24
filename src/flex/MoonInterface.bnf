@@ -52,8 +52,9 @@
 mbti ::= statements*
 private statements ::= SEMICOLON
     | declare-package
-    | alias-statement
+    | declare-alias
 	| declare-type
+	| declare-struct
 	| declare-enum
 	| declare-trait
 	| declare-impl
@@ -66,21 +67,34 @@ declare-package ::= KW_PACKAGE package-path {
 }
 package-path ::= identifier (OP_DIV identifier)*;
 // =====================================================================================================================
-alias-statement ::= KW_ALIAS PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
+declare-alias ::= KW_ALIAS PARENTHESIS_L (identifier (COMMA identifier)*)? PARENTHESIS_R {
+	pin = 1
 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
+}
+
+// =====================================================================================================================
+declare-struct   ::= KW_STRUCT identifier struct-body {
+	pin = 1
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
+}
+struct-body ::= BRACE_L struct-element* BRACE_R
+private struct-element ::= SEMICOLON
+	| declare-field
+declare-field  ::= modifier* identifier COLON type-expression {
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
 }
 // =====================================================================================================================
 declare-type   ::= KW_TYPE identifier {
 	pin = 1
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
 }
+modifier ::= KW_PUBLIC | KW_PRIVATE;
 
-declare-field  ::= identifier COLON type-hint {
-//    mixin = "com.github.bytecodealliance.language.mixin.MixinField"
-}
-declare-method ::= function-signature {
+
+declare-method ::= identifier declare-parameter type-return? {
 //	mixin = "com.github.bytecodealliance.language.mixin.MixinMethod"
 }
+
 // ===========================================================================
 declare-enum ::= KW_ENUM identifier enum-body {
 	pin = 1
@@ -88,25 +102,17 @@ declare-enum ::= KW_ENUM identifier enum-body {
 enum-body ::= BRACE_L enum-element* BRACE_R
 private enum-element ::= SEMICOLON
 	| declare-variant
-declare-variant ::= identifier (PARENTHESIS_L identifier PARENTHESIS_R)?;
-
-// interface name { }
-declare-function ::= modifier* KW_FN identifier declare-generic? declare-parameter function-body {
+declare-variant ::= identifier declare-parameter?;
+// ===========================================================================
+declare-function ::= modifier* KW_FN identifier declare-generic? declare-parameter {
 	pin = 3
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
-function-body  ::= BRACE_L function-element* BRACE_R;
-function-element ::= SEMICOLON
-	| declare-function
-	| declare-test
-	| while-statement
-	| if-statement
-
+// ===========================================================================
 declare-parameter ::= PARENTHESIS_L (type-expression (COMMA type-expression)*)? PARENTHESIS_R
 
 
 
-modifier ::= KW_PUBLIC | KW_PRIVATE;
 declare-generic ::= BRACKET_L (generic-item (COMMA generic-item)*)? BRACKET_R;
 generic-item ::= identifier (COLON type-expression)?;
 // =====================================================================================================================
@@ -118,7 +124,8 @@ type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
 //	| number-literal
 type-prefix ::= OP_ADD;
 type-infix  ::= OP_ADD | OP_TO;
-type-suffix ::= "?"
+type-suffix ::= OP_THROW
+type-return ::= OP_TO type-expression;
 // =====================================================================================================================
 string-literal ::= DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R;
 
