@@ -92,7 +92,7 @@ generic-item ::= identifier (COLON type-expression)?;
 // =====================================================================================================================
 declare-trait  ::= KW_TRAIT identifier trait-body {
 	pin = 1
-//    mixin = "com.github.bytecodealliance.language.mixin.MixinResource"
+    mixin = "com.github.moonbit.mixin.MixinTrait"
 }
 trait-body ::= BRACE_L trait-element* BRACE_R;
 private trait-element ::=
