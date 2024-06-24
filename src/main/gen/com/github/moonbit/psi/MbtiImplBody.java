@@ -9,9 +9,6 @@ import java.util.List;
 public interface MbtiImplBody extends PsiElement {
 
     @NotNull
-    List<MbtiDeclareFunction> getDeclareFunctionList();
-
-    @NotNull
     List<MbtiDeclareMethod> getDeclareMethodList();
 
 }

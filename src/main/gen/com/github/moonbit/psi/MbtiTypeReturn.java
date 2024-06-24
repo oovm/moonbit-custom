@@ -4,9 +4,9 @@ package com.github.moonbit.psi;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 
-public interface MbtiCallMethod extends PsiElement {
+public interface MbtiTypeReturn extends PsiElement {
 
     @NotNull
-    MbtiCallFunction getCallFunction();
+    MbtiTypeExpression getTypeExpression();
 
 }

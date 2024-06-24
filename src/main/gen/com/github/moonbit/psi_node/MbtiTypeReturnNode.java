@@ -1,23 +1,22 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.MbtiIdentifier;
-import com.github.moonbit.psi.MbtiTypeHint;
-import com.github.moonbit.psi.MbtiVariantItem;
+import com.github.moonbit.psi.AnyMbtiNode;
+import com.github.moonbit.psi.MbtiTypeExpression;
+import com.github.moonbit.psi.MbtiTypeReturn;
 import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class MbtiVariantItemNode extends AnyMbtiNode implements MbtiVariantItem {
+public class MbtiTypeReturnNode extends AnyMbtiNode implements MbtiTypeReturn {
 
-    public MbtiVariantItemNode(ASTNode node) {
+    public MbtiTypeReturnNode(ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MbtiVisitor visitor) {
-        visitor.visitVariantItem(this);
+        visitor.visitTypeReturn(this);
     }
 
     @Override
@@ -28,14 +27,8 @@ public class MbtiVariantItemNode extends AnyMbtiNode implements MbtiVariantItem 
 
     @Override
     @NotNull
-    public MbtiIdentifier getIdentifier() {
-        return findNotNullChildByClass(MbtiIdentifier.class);
-    }
-
-    @Override
-    @Nullable
-    public MbtiTypeHint getTypeHint() {
-        return findChildByClass(MbtiTypeHint.class);
+    public MbtiTypeExpression getTypeExpression() {
+        return findNotNullChildByClass(MbtiTypeExpression.class);
     }
 
 }

@@ -18,7 +18,7 @@
     tokens = [
         // comment
         COMMENT_DOCUMENT = "Comment Document"
-        COMMENT_LINE = "Comment"
+        COMMENT_LINE = "Comment Line"
         COMMENT_BLOCK = "Comment Block"
 
         PARENTHESIS_L = '('
@@ -27,24 +27,6 @@
         BRACKET_R = ']'
         BRACE_L = '{'
         BRACE_R = '}'
-        ANGLE_L = '<'
-        ANGLE_R = '>'
-        ACCENT = '^'
-        EQ = '='
-        COLON = ':'
-        SEMICOLON = ';'
-        COMMA = ','
-        DOLLAR = '$'
-        DOT = '.'
-        STAR = '*'
-        AT = '@'
-        TO = "->"
-        HYPHEN = "-"
-        SLASH = '/'
-        PLACE_HOLDER = "_"
-//      SPACE='regexp:\s+'
-//      ANY = 'regexp:.'
-
     ]
 }
 

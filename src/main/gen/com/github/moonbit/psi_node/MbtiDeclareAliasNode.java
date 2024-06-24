@@ -2,21 +2,24 @@
 package com.github.moonbit.psi_node;
 
 import com.github.moonbit.psi.AnyMbtiNode;
-import com.github.moonbit.psi.MbtiForCondition;
-import com.github.moonbit.psi.MbtiTermExpression;
+import com.github.moonbit.psi.MbtiDeclareAlias;
+import com.github.moonbit.psi.MbtiIdentifier;
 import com.github.moonbit.psi.MbtiVisitor;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
+import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
-public class MbtiForConditionNode extends AnyMbtiNode implements MbtiForCondition {
+import java.util.List;
 
-    public MbtiForConditionNode(ASTNode node) {
+public class MbtiDeclareAliasNode extends AnyMbtiNode implements MbtiDeclareAlias {
+
+    public MbtiDeclareAliasNode(ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MbtiVisitor visitor) {
-        visitor.visitForCondition(this);
+        visitor.visitDeclareAlias(this);
     }
 
     @Override
@@ -27,8 +30,8 @@ public class MbtiForConditionNode extends AnyMbtiNode implements MbtiForConditio
 
     @Override
     @NotNull
-    public MbtiTermExpression getTermExpression() {
-        return findNotNullChildByClass(MbtiTermExpression.class);
+    public List<MbtiIdentifier> getIdentifierList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MbtiIdentifier.class);
     }
 
 }

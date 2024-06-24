@@ -1,10 +1,7 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.MbtiTypeExpression;
-import com.github.moonbit.psi.MbtiTypeExpressionItem;
-import com.github.moonbit.psi.MbtiTypeInfix;
-import com.github.moonbit.psi.MbtiVisitor;
+import com.github.moonbit.psi.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;

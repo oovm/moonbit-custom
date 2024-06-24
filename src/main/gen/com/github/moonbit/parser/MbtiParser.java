@@ -512,17 +512,13 @@ public class MbtiParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // declare-function
-    //   | declare-method
-    //   | constructor
-    //   | SEMICOLON
+    // SEMICOLON
+    // 	| declare-method
     static boolean impl_element(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "impl_element")) return false;
         boolean r;
-        r = declare_function(b, l + 1);
+        r = consumeToken(b, SEMICOLON);
         if (!r) r = declare_method(b, l + 1);
-        if (!r) r = consumeToken(b, CONSTRUCTOR);
-        if (!r) r = consumeToken(b, SEMICOLON);
         return r;
     }
 
@@ -548,18 +544,6 @@ public class MbtiParser implements PsiParser, LightPsiParser {
         r = consumeToken(b, KW_PUBLIC);
         if (!r) r = consumeToken(b, KW_PRIVATE);
         exit_section_(b, l, m, r, false, null);
-        return r;
-    }
-
-    /* ********************************************************** */
-    // INTEGER
-    public static boolean number_literal(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "number_literal")) return false;
-        if (!nextTokenIs(b, INTEGER)) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, INTEGER);
-        exit_section_(b, m, NUMBER_LITERAL, r);
         return r;
     }
 
@@ -620,18 +604,6 @@ public class MbtiParser implements PsiParser, LightPsiParser {
         if (!r) r = declare_trait(b, l + 1);
         if (!r) r = declare_impl(b, l + 1);
         if (!r) r = declare_function(b, l + 1);
-        return r;
-    }
-
-    /* ********************************************************** */
-    // DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R
-    public static boolean string_literal(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "string_literal")) return false;
-        if (!nextTokenIs(b, DOUBLE_QUOTE_L)) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeTokens(b, 0, DOUBLE_QUOTE_L, STRING_TEXT, DOUBLE_QUOTE_R);
-        exit_section_(b, m, STRING_LITERAL, r);
         return r;
     }
 
