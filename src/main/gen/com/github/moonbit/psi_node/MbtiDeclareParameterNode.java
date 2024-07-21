@@ -1,20 +1,22 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi_node;
 
-import com.github.moonbit.psi.AnyMbtiNode;
-import com.github.moonbit.psi.MbtiDeclareParameter;
-import com.github.moonbit.psi.MbtiTypeExpression;
-import com.github.moonbit.psi.MbtiVisitor;
+import java.util.List;
+
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import static com.github.moonbit.psi.MbtiTypes.*;
+
+import com.github.moonbit.psi.AnyMbtiNode;
+import com.github.moonbit.psi.*;
 
 public class MbtiDeclareParameterNode extends AnyMbtiNode implements MbtiDeclareParameter {
 
-    public MbtiDeclareParameterNode(ASTNode node) {
+    public MbtiDeclareParameterNode(@NotNull ASTNode node) {
         super(node);
     }
 

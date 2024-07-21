@@ -1,15 +1,16 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.parser;
 
-import com.intellij.lang.ASTNode;
-import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
-import com.intellij.lang.PsiParser;
-import com.intellij.psi.tree.IElementType;
-
 import static com.github.moonbit.psi.MbtiTypes.*;
 import static com.github.moonbit.psi.MoonParserExtension.*;
+
+import com.intellij.psi.tree.IElementType;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.tree.TokenSet;
+import com.intellij.lang.PsiParser;
+import com.intellij.lang.LightPsiParser;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class MbtiParser implements PsiParser, LightPsiParser {
@@ -815,6 +816,45 @@ public class MbtiParser implements PsiParser, LightPsiParser {
         Marker m = enter_section_(b);
         r = consumeToken(b, OP_THROW);
         exit_section_(b, m, TYPE_SUFFIX, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // DOLLAR | AT | ACCENT
+    // 	| KW_WHILE | OP_THEN | OP_OR | KW_LET | KW_MUTABLE | KW_TEST
+    // 	| OP_MOD | OP_MUL
+    // 	| HYPHEN | DOT
+    // 	| INTEGER | OP_LT | OP_LEQ
+    // 	| OP_ASSIGN | OP_GT | OP_GEQ
+    // 	| OP_REF
+    // 	| OP_AND | OP_ADD_ASSIGN
+    public static boolean unused(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "unused")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, UNUSED, "<unused>");
+        r = consumeToken(b, DOLLAR);
+        if (!r) r = consumeToken(b, AT);
+        if (!r) r = consumeToken(b, ACCENT);
+        if (!r) r = consumeToken(b, KW_WHILE);
+        if (!r) r = consumeToken(b, OP_THEN);
+        if (!r) r = consumeToken(b, OP_OR);
+        if (!r) r = consumeToken(b, KW_LET);
+        if (!r) r = consumeToken(b, KW_MUTABLE);
+        if (!r) r = consumeToken(b, KW_TEST);
+        if (!r) r = consumeToken(b, OP_MOD);
+        if (!r) r = consumeToken(b, OP_MUL);
+        if (!r) r = consumeToken(b, HYPHEN);
+        if (!r) r = consumeToken(b, DOT);
+        if (!r) r = consumeToken(b, INTEGER);
+        if (!r) r = consumeToken(b, OP_LT);
+        if (!r) r = consumeToken(b, OP_LEQ);
+        if (!r) r = consumeToken(b, OP_ASSIGN);
+        if (!r) r = consumeToken(b, OP_GT);
+        if (!r) r = consumeToken(b, OP_GEQ);
+        if (!r) r = consumeToken(b, OP_REF);
+        if (!r) r = consumeToken(b, OP_AND);
+        if (!r) r = consumeToken(b, OP_ADD_ASSIGN);
+        exit_section_(b, l, m, r, false, null);
         return r;
     }
 

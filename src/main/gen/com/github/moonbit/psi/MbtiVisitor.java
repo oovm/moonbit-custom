@@ -1,9 +1,9 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.moonbit.psi;
 
-import com.intellij.psi.PsiElement;
+import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.psi.PsiElement;
 
 public class MbtiVisitor extends PsiElementVisitor {
 
@@ -116,6 +116,10 @@ public class MbtiVisitor extends PsiElementVisitor {
     }
 
     public void visitTypeSuffix(@NotNull MbtiTypeSuffix o) {
+        visitPsiElement(o);
+    }
+
+    public void visitUnused(@NotNull MbtiUnused o) {
         visitPsiElement(o);
     }
 

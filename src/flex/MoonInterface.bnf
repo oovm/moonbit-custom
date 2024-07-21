@@ -118,4 +118,12 @@ type-infix  ::= OP_ADD | OP_TO;
 type-suffix ::= OP_THROW
 type-return ::= OP_TO type-expression;
 // =====================================================================================================================
+unused  ::= DOLLAR | AT | ACCENT
+	| KW_WHILE | OP_THEN | OP_OR | KW_LET | KW_MUTABLE | KW_TEST
+	| OP_MOD | OP_MUL
+	| HYPHEN | DOT
+	| INTEGER | OP_LT | OP_LEQ
+	| OP_ASSIGN | OP_GT | OP_GEQ
+	| OP_REF
+	| OP_AND | OP_ADD_ASSIGN
 identifier          ::= SYMBOL | ESCAPED;
