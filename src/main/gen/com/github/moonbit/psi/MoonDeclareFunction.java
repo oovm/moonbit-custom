@@ -22,4 +22,7 @@ public interface MoonDeclareFunction extends PsiElement {
     @Nullable
     MoonNamepath getNamepath();
 
+    @Nullable
+    MoonReturnType getReturnType();
+
 }

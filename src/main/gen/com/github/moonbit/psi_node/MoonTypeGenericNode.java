@@ -29,8 +29,8 @@ public class MoonTypeGenericNode extends AnyMoonNode implements MoonTypeGeneric 
 
     @Override
     @Nullable
-    public MoonGeneric getGeneric() {
-        return findChildByClass(MoonGeneric.class);
+    public MoonGenericCall getGenericCall() {
+        return findChildByClass(MoonGenericCall.class);
     }
 
     @Override

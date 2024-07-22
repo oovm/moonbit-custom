@@ -27,4 +27,10 @@ public class MoonTypeSuffixNode extends AnyMoonNode implements MoonTypeSuffix {
         else super.accept(visitor);
     }
 
+    @Override
+    @Nullable
+    public MoonGenericCall getGenericCall() {
+        return findChildByClass(MoonGenericCall.class);
+    }
+
 }

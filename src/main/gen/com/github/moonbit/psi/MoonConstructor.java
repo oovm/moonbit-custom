@@ -8,9 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface MoonConstructor extends PsiElement {
 
     @Nullable
-    MoonTuple getTuple();
+    MoonReturnType getReturnType();
 
     @Nullable
-    MoonTypeHint getTypeHint();
+    MoonTuple getTuple();
 
 }

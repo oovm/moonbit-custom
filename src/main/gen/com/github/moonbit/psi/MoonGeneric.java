@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface MoonGeneric extends PsiElement {
 
     @NotNull
-    List<MoonTypeHint> getTypeHintList();
+    List<MoonTypeExpression> getTypeExpressionList();
 
 }

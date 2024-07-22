@@ -7,10 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonTypeHint extends PsiElement {
 
-    @Nullable
-    MoonTuple getTuple();
-
-    @Nullable
-    MoonTypeGeneric getTypeGeneric();
+    @NotNull
+    MoonTypeExpression getTypeExpression();
 
 }

@@ -2,15 +2,12 @@
 package com.github.moonbit.psi_node;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-
 import static com.github.moonbit.psi.MoonTypes.*;
-
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
@@ -49,15 +46,15 @@ public class MoonDeclareSignatureNode extends AnyMoonNode implements MoonDeclare
     }
 
     @Override
-    @NotNull
-    public MoonSignatureParameter getSignatureParameter() {
-        return findNotNullChildByClass(MoonSignatureParameter.class);
+    @Nullable
+    public MoonReturnType getReturnType() {
+        return findChildByClass(MoonReturnType.class);
     }
 
     @Override
-    @Nullable
-    public MoonTypeHint getTypeHint() {
-        return findChildByClass(MoonTypeHint.class);
+    @NotNull
+    public MoonSignatureParameter getSignatureParameter() {
+        return findNotNullChildByClass(MoonSignatureParameter.class);
     }
 
 }

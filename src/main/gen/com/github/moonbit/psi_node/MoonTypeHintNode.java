@@ -28,15 +28,9 @@ public class MoonTypeHintNode extends AnyMoonNode implements MoonTypeHint {
     }
 
     @Override
-    @Nullable
-    public MoonTuple getTuple() {
-        return findChildByClass(MoonTuple.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonTypeGeneric getTypeGeneric() {
-        return findChildByClass(MoonTypeGeneric.class);
+    @NotNull
+    public MoonTypeExpression getTypeExpression() {
+        return findNotNullChildByClass(MoonTypeExpression.class);
     }
 
 }
