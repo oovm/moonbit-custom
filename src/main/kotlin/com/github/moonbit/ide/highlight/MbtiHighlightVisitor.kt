@@ -138,7 +138,7 @@ class MbtiHighlightVisitor : MbtiVisitor(), HighlightVisitor {
         return true
     }
 
-    override fun clone(): HighlightVisitor = MoonHighlightVisitor()
+    override fun clone(): HighlightVisitor = MbtiHighlightVisitor()
 
     override fun suitableForFile(file: PsiFile): Boolean = file is MoonFile
 
