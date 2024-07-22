@@ -183,9 +183,10 @@ control-break ::= KW_BREAK term-expression;
 term-expression ::= term-expression-item (term-infix term-expression-item)*;
 term-expression-item ::= term-prefix* term-expression-atom term-suffix*;
 term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
-	| identifier
+	| dict-literal
 	| string-literal
 	| number-literal
+	| identifier
 
 term-prefix ::= OP_ADD | OP_SUB | OP_REF;
 term-infix  ::= OP_ASSIGN
@@ -217,6 +218,10 @@ type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
 type-prefix ::= OP_ADD;
 type-infix  ::= OP_ADD | OP_TO;
 type-suffix ::= generic-call | "?";
+// =====================================================================================================================
+dict-literal ::= BRACE_L (dict-term (COMMA dict-term)* COMMA?)? BRACE_R
+dict-term ::= identifier COLON term-expression;
+//   { array: self.array, start: self.start + start, end: self.start + end }
 // =====================================================================================================================
 string-literal ::= DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R;
 

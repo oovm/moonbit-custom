@@ -27,6 +27,8 @@ public interface MoonTypes {
     IElementType DECLARE_TRAIT = new MoonElementType("DECLARE_TRAIT");
     IElementType DEFINE_TYPE = new MoonElementType("DEFINE_TYPE");
     IElementType DERIVE_STATEMENT = new MoonElementType("DERIVE_STATEMENT");
+    IElementType DICT_LITERAL = new MoonElementType("DICT_LITERAL");
+    IElementType DICT_TERM = new MoonElementType("DICT_TERM");
     IElementType ELSE_STATEMENT = new MoonElementType("ELSE_STATEMENT");
     IElementType ENUM_BODY = new MoonElementType("ENUM_BODY");
     IElementType EXPORT = new MoonElementType("EXPORT");
@@ -193,6 +195,10 @@ public interface MoonTypes {
                 return new MoonDefineTypeNode(node);
             } else if (type == DERIVE_STATEMENT) {
                 return new MoonDeriveStatementNode(node);
+            } else if (type == DICT_LITERAL) {
+                return new MoonDictLiteralNode(node);
+            } else if (type == DICT_TERM) {
+                return new MoonDictTermNode(node);
             } else if (type == ELSE_STATEMENT) {
                 return new MoonElseStatementNode(node);
             } else if (type == ENUM_BODY) {

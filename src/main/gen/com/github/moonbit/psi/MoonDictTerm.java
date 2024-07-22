@@ -2,24 +2,16 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface MoonTermExpressionAtom extends PsiElement {
+public interface MoonDictTerm extends PsiElement {
 
-    @Nullable
-    MoonDictLiteral getDictLiteral();
-
-    @Nullable
+    @NotNull
     MoonIdentifier getIdentifier();
 
-    @Nullable
-    MoonNumberLiteral getNumberLiteral();
-
-    @Nullable
-    MoonStringLiteral getStringLiteral();
-
-    @Nullable
+    @NotNull
     MoonTermExpression getTermExpression();
 
 }
