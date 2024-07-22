@@ -140,6 +140,8 @@ KW_WHILE = "while"
 	{KW_IF}    { return KW_WHILE; }
 	{KW_ELSE}  { return KW_WHILE; }
 	{KW_WHILE} { return KW_WHILE; }
+
+    for { return KW_FOR; }
 }
 <YYINITIAL> {
 	{SYMBOL}  { return SYMBOL; }

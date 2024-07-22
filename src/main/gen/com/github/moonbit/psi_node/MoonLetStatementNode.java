@@ -47,8 +47,8 @@ public class MoonLetStatementNode extends AnyMoonNode implements MoonLetStatemen
 
     @Override
     @Nullable
-    public MoonTypeExpression getTypeExpression() {
-        return findChildByClass(MoonTypeExpression.class);
+    public MoonTypeHint getTypeHint() {
+        return findChildByClass(MoonTypeHint.class);
     }
 
 }

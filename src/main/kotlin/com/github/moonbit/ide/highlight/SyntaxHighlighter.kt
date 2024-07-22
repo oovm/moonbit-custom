@@ -24,16 +24,19 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
             KW_PACKAGE,
             KW_INCLUDE, KW_IMPORT, KW_EXPORT,
             KW_TYPE, KW_PUBLIC, KW_PRIVATE,
+            KW_STRUCT,
+            KW_TRAIT,
             KW_VARIANT, KW_FLAGS, KW_ENUM,
             KW_FN, KW_TEST,
             KW_LET,
+            KW_FOR,
 
-            -> MoonColor.KEYWORD
+                -> MoonColor.KEYWORD
 
             PARENTHESIS_L, PARENTHESIS_R -> MoonColor.PARENTHESES
             BRACKET_L, BRACKET_R -> MoonColor.BRACKETS
             BRACE_L, BRACE_R -> MoonColor.BRACES
-            COLON, EQ -> MoonColor.OPERATION
+            COLON, OP_ASSIGN -> MoonColor.OPERATION
             AT -> MoonColor.OPERATION
 
             COMMA -> MoonColor.COMMA

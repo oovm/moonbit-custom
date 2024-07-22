@@ -18,7 +18,7 @@ data class MoonFormatSpace(
         }
 
         private val space_around = TokenSet.create(
-            EQ,
+            OP_ASSIGN,
             OP_TO,
         )
         private val remove_space_before = TokenSet.create(

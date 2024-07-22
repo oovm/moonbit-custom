@@ -88,7 +88,7 @@ private enum-element ::= SEMICOLON
 
 
 // world name { }
-let-statement ::= modifier? KW_LET KW_MUTABLE? identifier (COLON type-expression)? EQ term-expression {
+let-statement ::= modifier? KW_LET KW_MUTABLE? identifier type-hint? OP_ASSIGN term-expression {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }
@@ -127,6 +127,7 @@ private function-element ::= SEMICOLON
 	| declare-function
 	| declare-test
 	| while-statement
+	| for-statement
 	| if-statement
 	| term-expression
 // (self : Array[T])
@@ -169,9 +170,10 @@ match-variant ::= identifier;
 while-statement ::= KW_WHILE term-expression function-body {
 	pin = 1
 }
+
 for-statement  ::= KW_FOR for-startup for-condition for-increment function-body;
-for-startup    ::= term-expression COLON;
-for-condition  ::= term-expression COLON;
+for-startup    ::= term-expression SEMICOLON;
+for-condition  ::= term-expression SEMICOLON;
 for-increment  ::= term-expression;
 // =====================================================================================================================
 
@@ -197,11 +199,11 @@ term-infix  ::= OP_ASSIGN
 	| OP_OR | OP_AND
 	| OP_THEN
 term-suffix   ::= OP_THROW
-	| call-method
 	| call-function
+	| call-method
 	| call-field
 	| call-index
-call-function ::= PARENTHESIS_L term-expression (COMMA term-expression)* PARENTHESIS_R;
+call-function ::= PARENTHESIS_L (term-expression (COMMA term-expression)* COMMA?)? PARENTHESIS_R;
 call-method   ::= DOT call-function
 call-field    ::= DOT identifier
 call-index    ::= BRACKET_L term-expression (COMMA term-expression)* BRACKET_R;
