@@ -85,6 +85,7 @@ KW_WHILE = "while"
 	"{" { return BRACE_L; }
 	"}" { return BRACE_R; }
 	"^" { return ACCENT; }
+	"::" { return NAME_JOIN; }
 	":" { return COLON; }
 	";" { return SEMICOLON; }
 	"$" { return DOLLAR; }

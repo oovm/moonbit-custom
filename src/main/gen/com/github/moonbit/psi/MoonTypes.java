@@ -21,6 +21,7 @@ public interface MoonTypes {
     IElementType DECLARE_GENERIC = new MoonElementType("DECLARE_GENERIC");
     IElementType DECLARE_METHOD = new MoonElementType("DECLARE_METHOD");
     IElementType DECLARE_PARAMETER = new MoonElementType("DECLARE_PARAMETER");
+    IElementType DECLARE_SIGNATURE = new MoonElementType("DECLARE_SIGNATURE");
     IElementType DECLARE_STRUCT = new MoonElementType("DECLARE_STRUCT");
     IElementType DECLARE_TEST = new MoonElementType("DECLARE_TEST");
     IElementType DECLARE_TRAIT = new MoonElementType("DECLARE_TRAIT");
@@ -38,7 +39,6 @@ public interface MoonTypes {
     IElementType FUNCTION = new MoonElementType("FUNCTION");
     IElementType FUNCTION_BODY = new MoonElementType("FUNCTION_BODY");
     IElementType FUNCTION_ELEMENT = new MoonElementType("FUNCTION_ELEMENT");
-    IElementType FUNCTION_SIGNATURE = new MoonElementType("FUNCTION_SIGNATURE");
     IElementType GENERIC = new MoonElementType("GENERIC");
     IElementType GENERIC_ITEM = new MoonElementType("GENERIC_ITEM");
     IElementType IDENTIFIER = new MoonElementType("IDENTIFIER");
@@ -52,12 +52,14 @@ public interface MoonTypes {
     IElementType MATCH_VARIANT = new MoonElementType("MATCH_VARIANT");
     IElementType MODIFIER = new MoonElementType("MODIFIER");
     IElementType MODULE_NAME = new MoonElementType("MODULE_NAME");
+    IElementType NAMEPATH = new MoonElementType("NAMEPATH");
     IElementType NUMBER_LITERAL = new MoonElementType("NUMBER_LITERAL");
     IElementType PACKAGE = new MoonElementType("PACKAGE");
     IElementType PACKAGE_NAME = new MoonElementType("PACKAGE_NAME");
     IElementType PACKAGE_VERSION = new MoonElementType("PACKAGE_VERSION");
     IElementType PARAMETER = new MoonElementType("PARAMETER");
     IElementType SEMANTIC_NUMBER = new MoonElementType("SEMANTIC_NUMBER");
+    IElementType SIGNATURE_PARAMETER = new MoonElementType("SIGNATURE_PARAMETER");
     IElementType STRING_LITERAL = new MoonElementType("STRING_LITERAL");
     IElementType STRUCT_BODY = new MoonElementType("STRUCT_BODY");
     IElementType TERM_EXPRESSION = new MoonElementType("TERM_EXPRESSION");
@@ -112,7 +114,6 @@ public interface MoonTypes {
     IElementType KW_FLAGS = new MoonTokenType("KW_FLAGS");
     IElementType KW_FN = new MoonTokenType("KW_FN");
     IElementType KW_FOR = new MoonTokenType("KW_FOR");
-    IElementType KW_FUNCTION = new MoonTokenType("KW_FUNCTION");
     IElementType KW_IF = new MoonTokenType("KW_IF");
     IElementType KW_IMPORT = new MoonTokenType("KW_IMPORT");
     IElementType KW_INCLUDE = new MoonTokenType("KW_INCLUDE");
@@ -128,6 +129,7 @@ public interface MoonTypes {
     IElementType KW_TYPE = new MoonTokenType("KW_TYPE");
     IElementType KW_VARIANT = new MoonTokenType("KW_VARIANT");
     IElementType KW_WHILE = new MoonTokenType("KW_WHILE");
+    IElementType NAME_JOIN = new MoonTokenType("NAME_JOIN");
     IElementType OP_ADD = new MoonTokenType("OP_ADD");
     IElementType OP_ADD_ASSIGN = new MoonTokenType("OP_ADD_ASSIGN");
     IElementType OP_AND = new MoonTokenType("OP_AND");
@@ -183,6 +185,8 @@ public interface MoonTypes {
                 return new MoonDeclareMethodNode(node);
             } else if (type == DECLARE_PARAMETER) {
                 return new MoonDeclareParameterNode(node);
+            } else if (type == DECLARE_SIGNATURE) {
+                return new MoonDeclareSignatureNode(node);
             } else if (type == DECLARE_STRUCT) {
                 return new MoonDeclareStructNode(node);
             } else if (type == DECLARE_TEST) {
@@ -217,8 +221,6 @@ public interface MoonTypes {
                 return new MoonFunctionBodyNode(node);
             } else if (type == FUNCTION_ELEMENT) {
                 return new MoonFunctionElementNode(node);
-            } else if (type == FUNCTION_SIGNATURE) {
-                return new MoonFunctionSignatureNode(node);
             } else if (type == GENERIC) {
                 return new MoonGenericNode(node);
             } else if (type == GENERIC_ITEM) {
@@ -245,6 +247,8 @@ public interface MoonTypes {
                 return new MoonModifierNode(node);
             } else if (type == MODULE_NAME) {
                 return new MoonModuleNameNode(node);
+            } else if (type == NAMEPATH) {
+                return new MoonNamepathNode(node);
             } else if (type == NUMBER_LITERAL) {
                 return new MoonNumberLiteralNode(node);
             } else if (type == PACKAGE) {
@@ -257,6 +261,8 @@ public interface MoonTypes {
                 return new MoonParameterNode(node);
             } else if (type == SEMANTIC_NUMBER) {
                 return new MoonSemanticNumberNode(node);
+            } else if (type == SIGNATURE_PARAMETER) {
+                return new MoonSignatureParameterNode(node);
             } else if (type == STRING_LITERAL) {
                 return new MoonStringLiteralNode(node);
             } else if (type == STRUCT_BODY) {
