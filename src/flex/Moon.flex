@@ -117,7 +117,7 @@ KW_WHILE = "while"
 
 	"?" { return OP_THROW; }
 
-	"-" { return HYPHEN; }
+	"-" { return OP_SUB; }
 }
 <YYINITIAL> {
 	{KW_TYPE}     { return KW_TYPE; }

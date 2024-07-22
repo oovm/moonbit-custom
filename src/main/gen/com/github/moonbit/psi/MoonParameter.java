@@ -11,6 +11,6 @@ public interface MoonParameter extends PsiElement {
     MoonIdentifier getIdentifier();
 
     @NotNull
-    MoonTypeHint getTypeHint();
+    MoonTypeExpression getTypeExpression();
 
 }

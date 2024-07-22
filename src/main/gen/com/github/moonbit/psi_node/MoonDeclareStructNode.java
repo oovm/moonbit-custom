@@ -29,6 +29,12 @@ public class MoonDeclareStructNode extends AnyMoonNode implements MoonDeclareStr
 
     @Override
     @Nullable
+    public MoonDeclareGeneric getDeclareGeneric() {
+        return findChildByClass(MoonDeclareGeneric.class);
+    }
+
+    @Override
+    @Nullable
     public MoonDeriveStatement getDeriveStatement() {
         return findChildByClass(MoonDeriveStatement.class);
     }
@@ -37,6 +43,12 @@ public class MoonDeclareStructNode extends AnyMoonNode implements MoonDeclareStr
     @Nullable
     public MoonIdentifier getIdentifier() {
         return findChildByClass(MoonIdentifier.class);
+    }
+
+    @Override
+    @NotNull
+    public List<MoonModifier> getModifierList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonModifier.class);
     }
 
     @Override

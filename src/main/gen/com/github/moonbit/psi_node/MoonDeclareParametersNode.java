@@ -2,23 +2,26 @@
 package com.github.moonbit.psi_node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
+
 import static com.github.moonbit.psi.MoonTypes.*;
+
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
-public class MoonDeclareClosureNode extends AnyMoonNode implements MoonDeclareClosure {
+public class MoonDeclareParametersNode extends AnyMoonNode implements MoonDeclareParameters {
 
-    public MoonDeclareClosureNode(@NotNull ASTNode node) {
+    public MoonDeclareParametersNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitDeclareClosure(this);
+        visitor.visitDeclareParameters(this);
     }
 
     @Override
@@ -28,15 +31,9 @@ public class MoonDeclareClosureNode extends AnyMoonNode implements MoonDeclareCl
     }
 
     @Override
-    @Nullable
-    public MoonDeclareParameters getDeclareParameters() {
-        return findChildByClass(MoonDeclareParameters.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonFunctionBody getFunctionBody() {
-        return findChildByClass(MoonFunctionBody.class);
+    @NotNull
+    public List<MoonParameter> getParameterList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonParameter.class);
     }
 
 }

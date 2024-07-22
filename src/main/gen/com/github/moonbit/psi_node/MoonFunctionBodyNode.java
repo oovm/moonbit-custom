@@ -29,8 +29,38 @@ public class MoonFunctionBodyNode extends AnyMoonNode implements MoonFunctionBod
 
     @Override
     @NotNull
-    public List<MoonFunctionElement> getFunctionElementList() {
-        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonFunctionElement.class);
+    public List<MoonDeclareFunction> getDeclareFunctionList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonDeclareFunction.class);
+    }
+
+    @Override
+    @NotNull
+    public List<MoonDeclareTest> getDeclareTestList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonDeclareTest.class);
+    }
+
+    @Override
+    @NotNull
+    public List<MoonIfStatement> getIfStatementList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonIfStatement.class);
+    }
+
+    @Override
+    @NotNull
+    public List<MoonLetStatement> getLetStatementList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonLetStatement.class);
+    }
+
+    @Override
+    @NotNull
+    public List<MoonTermExpression> getTermExpressionList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTermExpression.class);
+    }
+
+    @Override
+    @NotNull
+    public List<MoonWhileStatement> getWhileStatementList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonWhileStatement.class);
     }
 
 }

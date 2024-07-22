@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface MoonDeclareParameter extends PsiElement {
 
     @NotNull
-    List<MoonIdentifier> getIdentifierList();
+    MoonIdentifier getIdentifier();
+
+    @NotNull
+    MoonTypeHint getTypeHint();
 
 }

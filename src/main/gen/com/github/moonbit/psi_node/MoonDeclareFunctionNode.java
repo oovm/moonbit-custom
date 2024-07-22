@@ -35,8 +35,8 @@ public class MoonDeclareFunctionNode extends AnyMoonNode implements MoonDeclareF
 
     @Override
     @Nullable
-    public MoonDeclareParameter getDeclareParameter() {
-        return findChildByClass(MoonDeclareParameter.class);
+    public MoonDeclareParameters getDeclareParameters() {
+        return findChildByClass(MoonDeclareParameters.class);
     }
 
     @Override

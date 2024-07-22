@@ -20,7 +20,7 @@ public interface MoonTypes {
     IElementType DECLARE_FUNCTION = new MoonElementType("DECLARE_FUNCTION");
     IElementType DECLARE_GENERIC = new MoonElementType("DECLARE_GENERIC");
     IElementType DECLARE_METHOD = new MoonElementType("DECLARE_METHOD");
-    IElementType DECLARE_PARAMETER = new MoonElementType("DECLARE_PARAMETER");
+    IElementType DECLARE_PARAMETERS = new MoonElementType("DECLARE_PARAMETERS");
     IElementType DECLARE_SIGNATURE = new MoonElementType("DECLARE_SIGNATURE");
     IElementType DECLARE_STRUCT = new MoonElementType("DECLARE_STRUCT");
     IElementType DECLARE_TEST = new MoonElementType("DECLARE_TEST");
@@ -38,7 +38,6 @@ public interface MoonTypes {
     IElementType FOR_STATEMENT = new MoonElementType("FOR_STATEMENT");
     IElementType FUNCTION = new MoonElementType("FUNCTION");
     IElementType FUNCTION_BODY = new MoonElementType("FUNCTION_BODY");
-    IElementType FUNCTION_ELEMENT = new MoonElementType("FUNCTION_ELEMENT");
     IElementType GENERIC_CALL = new MoonElementType("GENERIC_CALL");
     IElementType GENERIC_ITEM = new MoonElementType("GENERIC_ITEM");
     IElementType IDENTIFIER = new MoonElementType("IDENTIFIER");
@@ -181,8 +180,8 @@ public interface MoonTypes {
                 return new MoonDeclareGenericNode(node);
             } else if (type == DECLARE_METHOD) {
                 return new MoonDeclareMethodNode(node);
-            } else if (type == DECLARE_PARAMETER) {
-                return new MoonDeclareParameterNode(node);
+            } else if (type == DECLARE_PARAMETERS) {
+                return new MoonDeclareParametersNode(node);
             } else if (type == DECLARE_SIGNATURE) {
                 return new MoonDeclareSignatureNode(node);
             } else if (type == DECLARE_STRUCT) {
@@ -217,8 +216,6 @@ public interface MoonTypes {
                 return new MoonFunctionNode(node);
             } else if (type == FUNCTION_BODY) {
                 return new MoonFunctionBodyNode(node);
-            } else if (type == FUNCTION_ELEMENT) {
-                return new MoonFunctionElementNode(node);
             } else if (type == GENERIC_CALL) {
                 return new MoonGenericCallNode(node);
             } else if (type == GENERIC_ITEM) {
