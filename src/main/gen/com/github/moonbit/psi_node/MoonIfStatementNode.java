@@ -35,14 +35,8 @@ public class MoonIfStatementNode extends AnyMoonNode implements MoonIfStatement 
 
     @Override
     @Nullable
-    public MoonFunctionBody getFunctionBody() {
-        return findChildByClass(MoonFunctionBody.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonTermExpression getTermExpression() {
-        return findChildByClass(MoonTermExpression.class);
+    public MoonThenStatement getThenStatement() {
+        return findChildByClass(MoonThenStatement.class);
     }
 
 }

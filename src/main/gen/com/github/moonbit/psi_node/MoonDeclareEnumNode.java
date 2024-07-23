@@ -45,4 +45,10 @@ public class MoonDeclareEnumNode extends AnyMoonNode implements MoonDeclareEnum 
         return findChildByClass(MoonIdentifier.class);
     }
 
+    @Override
+    @NotNull
+    public List<MoonModifier> getModifierList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonModifier.class);
+    }
+
 }

@@ -51,4 +51,10 @@ public class MoonTermSuffixNode extends AnyMoonNode implements MoonTermSuffix {
         return findChildByClass(MoonCallMethod.class);
     }
 
+    @Override
+    @Nullable
+    public MoonCallSlice getCallSlice() {
+        return findChildByClass(MoonCallSlice.class);
+    }
+
 }

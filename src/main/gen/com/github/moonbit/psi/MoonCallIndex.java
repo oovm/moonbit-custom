@@ -7,7 +7,4 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonCallIndex extends PsiElement {
 
-    @NotNull
-    List<MoonTermExpression> getTermExpressionList();
-
 }

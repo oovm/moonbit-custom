@@ -39,4 +39,10 @@ public class MoonEnumBodyNode extends AnyMoonNode implements MoonEnumBody {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonDeclareMethod.class);
     }
 
+    @Override
+    @NotNull
+    public List<MoonDeclareVariant> getDeclareVariantList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonDeclareVariant.class);
+    }
+
 }

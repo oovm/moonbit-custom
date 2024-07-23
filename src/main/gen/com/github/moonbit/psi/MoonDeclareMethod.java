@@ -7,10 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonDeclareMethod extends PsiElement {
 
-    @NotNull
-    MoonDeclareSignature getDeclareSignature();
+  @NotNull
+  MoonDeclareSignature getDeclareSignature();
 
-    @NotNull
-    MoonIdentifier getIdentifier();
+  @NotNull
+  MoonIdentifier getIdentifier();
 
 }

@@ -19,4 +19,7 @@ public interface MoonTermSuffix extends PsiElement {
     @Nullable
     MoonCallMethod getCallMethod();
 
+    @Nullable
+    MoonCallSlice getCallSlice();
+
 }

@@ -28,7 +28,7 @@ enum class MoonColor(humanName: Supplier<@AttributeDescriptor String>, default: 
     SYM_WORLD(MessageBundle.messagePointer("color.token.symbol.world"), Default.INTERFACE_NAME),
     SYM_INTERFACE(MessageBundle.messagePointer("color.token.symbol.interface"), Default.INTERFACE_NAME),
     SYM_TYPE(MessageBundle.messagePointer("color.token.symbol.type"), Default.CLASS_NAME),
-    SYM_FIELD(MessageBundle.messagePointer("color.token.symbol.field"), Default.INSTANCE_FIELD),
+    SYMBOL_FIELD(MessageBundle.messagePointer("color.token.symbol.field"), Default.INSTANCE_FIELD),
 
     SYM_VARIANT(MessageBundle.messagePointer("color.token.symbol.variant"), Default.STATIC_FIELD),
 

@@ -7,10 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface MoonDeclareField extends PsiElement {
 
-    @NotNull
-    MoonIdentifier getIdentifier();
+  @NotNull
+  MoonIdentifier getIdentifier();
 
-    @NotNull
-    MoonTypeHint getTypeHint();
+  @NotNull
+  MoonTypeHint getTypeHint();
 
 }

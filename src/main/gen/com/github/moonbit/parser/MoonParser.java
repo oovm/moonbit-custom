@@ -111,39 +111,14 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // BRACKET_L term-expression (COMMA term-expression)* BRACKET_R
+    // DOT INTEGER
     public static boolean call_index(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "call_index")) return false;
-        if (!nextTokenIs(b, BRACKET_L)) return false;
+        if (!nextTokenIs(b, DOT)) return false;
         boolean r;
         Marker m = enter_section_(b);
-        r = consumeToken(b, BRACKET_L);
-        r = r && term_expression(b, l + 1);
-        r = r && call_index_2(b, l + 1);
-        r = r && consumeToken(b, BRACKET_R);
+        r = consumeTokens(b, 0, DOT, INTEGER);
         exit_section_(b, m, CALL_INDEX, r);
-        return r;
-    }
-
-    // (COMMA term-expression)*
-    private static boolean call_index_2(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "call_index_2")) return false;
-        while (true) {
-            int c = current_position_(b);
-            if (!call_index_2_0(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "call_index_2", c)) break;
-        }
-        return true;
-    }
-
-    // COMMA term-expression
-    private static boolean call_index_2_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "call_index_2_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, COMMA);
-        r = r && term_expression(b, l + 1);
-        exit_section_(b, m, null, r);
         return r;
     }
 
@@ -157,6 +132,43 @@ public class MoonParser implements PsiParser, LightPsiParser {
         r = consumeToken(b, DOT);
         r = r && call_function(b, l + 1);
         exit_section_(b, m, CALL_METHOD, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // BRACKET_L term-expression (COMMA term-expression)* BRACKET_R
+    public static boolean call_slice(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "call_slice")) return false;
+        if (!nextTokenIs(b, BRACKET_L)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, BRACKET_L);
+        r = r && term_expression(b, l + 1);
+        r = r && call_slice_2(b, l + 1);
+        r = r && consumeToken(b, BRACKET_R);
+        exit_section_(b, m, CALL_SLICE, r);
+        return r;
+    }
+
+    // (COMMA term-expression)*
+    private static boolean call_slice_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "call_slice_2")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!call_slice_2_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "call_slice_2", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA term-expression
+    private static boolean call_slice_2_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "call_slice_2_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && term_expression(b, l + 1);
+        exit_section_(b, m, null, r);
         return r;
     }
 
@@ -211,24 +223,35 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // KW_ENUM identifier enum-body derive-statement?
+    // modifier* KW_ENUM identifier enum-body derive-statement?
     public static boolean declare_enum(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_enum")) return false;
-        if (!nextTokenIs(b, KW_ENUM)) return false;
         boolean r, p;
-        Marker m = enter_section_(b, l, _NONE_, DECLARE_ENUM, null);
-        r = consumeToken(b, KW_ENUM);
-        p = r; // pin = 1
+        Marker m = enter_section_(b, l, _NONE_, DECLARE_ENUM, "<declare enum>");
+        r = declare_enum_0(b, l + 1);
+        r = r && consumeToken(b, KW_ENUM);
+        p = r; // pin = 2
         r = r && report_error_(b, identifier(b, l + 1));
         r = p && report_error_(b, enum_body(b, l + 1)) && r;
-        r = p && declare_enum_3(b, l + 1) && r;
+        r = p && declare_enum_4(b, l + 1) && r;
         exit_section_(b, l, m, r, p, null);
         return r || p;
     }
 
+    // modifier*
+    private static boolean declare_enum_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_enum_0")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!modifier(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "declare_enum_0", c)) break;
+        }
+        return true;
+    }
+
     // derive-statement?
-    private static boolean declare_enum_3(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "declare_enum_3")) return false;
+    private static boolean declare_enum_4(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_enum_4")) return false;
         derive_statement(b, l + 1);
         return true;
     }
@@ -257,7 +280,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // modifier* KW_FN namepath declare-generic? declare-parameters return-type? function-body
+    // modifier* KW_FN namepath declare-generic? declare-parameters return-type? (function-body | function-inline)
     public static boolean declare_function(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "declare_function")) return false;
         boolean r, p;
@@ -269,7 +292,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         r = p && report_error_(b, declare_function_3(b, l + 1)) && r;
         r = p && report_error_(b, declare_parameters(b, l + 1)) && r;
         r = p && report_error_(b, declare_function_5(b, l + 1)) && r;
-        r = p && function_body(b, l + 1) && r;
+        r = p && declare_function_6(b, l + 1) && r;
         exit_section_(b, l, m, r, p, null);
         return r || p;
     }
@@ -297,6 +320,15 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!recursion_guard_(b, l, "declare_function_5")) return false;
         return_type(b, l + 1);
         return true;
+    }
+
+    // function-body | function-inline
+    private static boolean declare_function_6(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_function_6")) return false;
+        boolean r;
+        r = function_body(b, l + 1);
+        if (!r) r = function_inline(b, l + 1);
+        return r;
     }
 
     /* ********************************************************** */
@@ -567,6 +599,18 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // identifier
+    public static boolean declare_variant(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "declare_variant")) return false;
+        if (!nextTokenIs(b, "<declare variant>", ESCAPED, SYMBOL)) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, DECLARE_VARIANT, "<declare variant>");
+        r = identifier(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    /* ********************************************************** */
     // modifier* KW_TYPE type-expression type-expression
     public static boolean define_type(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "define_type")) return false;
@@ -780,7 +824,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!recursion_guard_(b, l, "enum_element")) return false;
         boolean r;
         r = consumeToken(b, SEMICOLON);
-        if (!r) r = consumeToken(b, DECLARE_VARIANT);
+        if (!r) r = declare_variant(b, l + 1);
         if (!r) r = declare_field(b, l + 1);
         if (!r) r = declare_method(b, l + 1);
         return r;
@@ -1004,6 +1048,19 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // OP_ASSIGN term-expression
+    public static boolean function_inline(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "function_inline")) return false;
+        if (!nextTokenIs(b, OP_ASSIGN)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, OP_ASSIGN);
+        r = r && term_expression(b, l + 1);
+        exit_section_(b, m, FUNCTION_INLINE, r);
+        return r;
+    }
+
+    /* ********************************************************** */
     // BRACKET_L (type-expression (COMMA type-expression)* COMMA?)? BRACKET_R
     public static boolean generic_call(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "generic_call")) return false;
@@ -1110,7 +1167,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // KW_IF term-expression function-body else-statement?
+    // KW_IF then-statement else-statement?
     public static boolean if_statement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "if_statement")) return false;
         if (!nextTokenIs(b, KW_IF)) return false;
@@ -1118,16 +1175,15 @@ public class MoonParser implements PsiParser, LightPsiParser {
         Marker m = enter_section_(b, l, _NONE_, IF_STATEMENT, null);
         r = consumeToken(b, KW_IF);
         p = r; // pin = 1
-        r = r && report_error_(b, term_expression(b, l + 1));
-        r = p && report_error_(b, function_body(b, l + 1)) && r;
-        r = p && if_statement_3(b, l + 1) && r;
+        r = r && report_error_(b, then_statement(b, l + 1));
+        r = p && if_statement_2(b, l + 1) && r;
         exit_section_(b, l, m, r, p, null);
         return r || p;
     }
 
     // else-statement?
-    private static boolean if_statement_3(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "if_statement_3")) return false;
+    private static boolean if_statement_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "if_statement_2")) return false;
         else_statement(b, l + 1);
         return true;
     }
@@ -1251,6 +1307,79 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!recursion_guard_(b, l, "let_statement_4")) return false;
         type_hint(b, l + 1);
         return true;
+    }
+
+    /* ********************************************************** */
+    // BRACKET_L (list-term (COMMA list-term)* COMMA?)? BRACKET_R
+    public static boolean list_literal(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "list_literal")) return false;
+        if (!nextTokenIs(b, BRACKET_L)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, BRACKET_L);
+        r = r && list_literal_1(b, l + 1);
+        r = r && consumeToken(b, BRACKET_R);
+        exit_section_(b, m, LIST_LITERAL, r);
+        return r;
+    }
+
+    // (list-term (COMMA list-term)* COMMA?)?
+    private static boolean list_literal_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "list_literal_1")) return false;
+        list_literal_1_0(b, l + 1);
+        return true;
+    }
+
+    // list-term (COMMA list-term)* COMMA?
+    private static boolean list_literal_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "list_literal_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = list_term(b, l + 1);
+        r = r && list_literal_1_0_1(b, l + 1);
+        r = r && list_literal_1_0_2(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (COMMA list-term)*
+    private static boolean list_literal_1_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "list_literal_1_0_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!list_literal_1_0_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "list_literal_1_0_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA list-term
+    private static boolean list_literal_1_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "list_literal_1_0_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && list_term(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // COMMA?
+    private static boolean list_literal_1_0_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "list_literal_1_0_2")) return false;
+        consumeToken(b, COMMA);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // term-expression
+    public static boolean list_term(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "list_term")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, LIST_TERM, "<list term>");
+        r = term_expression(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
     }
 
     /* ********************************************************** */
@@ -1632,14 +1761,31 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // DOUBLE_QUOTE_L STRING_TEXT DOUBLE_QUOTE_R
+    // DOUBLE_QUOTE_L STRING_TEXT+ DOUBLE_QUOTE_R
     public static boolean string_literal(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "string_literal")) return false;
         if (!nextTokenIs(b, DOUBLE_QUOTE_L)) return false;
         boolean r;
         Marker m = enter_section_(b);
-        r = consumeTokens(b, 0, DOUBLE_QUOTE_L, STRING_TEXT, DOUBLE_QUOTE_R);
+        r = consumeToken(b, DOUBLE_QUOTE_L);
+        r = r && string_literal_1(b, l + 1);
+        r = r && consumeToken(b, DOUBLE_QUOTE_R);
         exit_section_(b, m, STRING_LITERAL, r);
+        return r;
+    }
+
+    // STRING_TEXT+
+    private static boolean string_literal_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "string_literal_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, STRING_TEXT);
+        while (r) {
+            int c = current_position_(b);
+            if (!consumeToken(b, STRING_TEXT)) break;
+            if (!empty_element_parsed_guard_(b, "string_literal_1", c)) break;
+        }
+        exit_section_(b, m, null, r);
         return r;
     }
 
@@ -1718,18 +1864,20 @@ public class MoonParser implements PsiParser, LightPsiParser {
     /* ********************************************************** */
     // PARENTHESIS_L term-expression PARENTHESIS_R
     // 	| dict-literal
+    // 	| list-literal
     // 	| string-literal
     // 	| number-literal
-    // 	| identifier
+    // 	| namepath
     public static boolean term_expression_atom(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "term_expression_atom")) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, TERM_EXPRESSION_ATOM, "<term expression atom>");
         r = term_expression_atom_0(b, l + 1);
         if (!r) r = dict_literal(b, l + 1);
+        if (!r) r = list_literal(b, l + 1);
         if (!r) r = string_literal(b, l + 1);
         if (!r) r = number_literal(b, l + 1);
-        if (!r) r = identifier(b, l + 1);
+        if (!r) r = namepath(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
@@ -1786,7 +1934,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     // 	| OP_ADD | OP_ADD_ASSIGN
     // 	| OP_SUB
     // 	| OP_MUL
-    // 	| OP_DIV
+    // 	| OP_DIV | OP_DIV_ASSIGN
     // 	| OP_MOD
     // 	| OP_LT | OP_LEQ
     // 	| OP_GT | OP_GEQ
@@ -1802,6 +1950,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!r) r = consumeToken(b, OP_SUB);
         if (!r) r = consumeToken(b, OP_MUL);
         if (!r) r = consumeToken(b, OP_DIV);
+        if (!r) r = consumeToken(b, OP_DIV_ASSIGN);
         if (!r) r = consumeToken(b, OP_MOD);
         if (!r) r = consumeToken(b, OP_LT);
         if (!r) r = consumeToken(b, OP_LEQ);
@@ -1833,6 +1982,7 @@ public class MoonParser implements PsiParser, LightPsiParser {
     // 	| call-method
     // 	| call-field
     // 	| call-index
+    // 	| call-slice
     public static boolean term_suffix(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "term_suffix")) return false;
         boolean r;
@@ -1842,8 +1992,29 @@ public class MoonParser implements PsiParser, LightPsiParser {
         if (!r) r = call_method(b, l + 1);
         if (!r) r = call_field(b, l + 1);
         if (!r) r = call_index(b, l + 1);
+        if (!r) r = call_slice(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
+    }
+
+    /* ********************************************************** */
+    // term-expression function-body {
+    // }
+    public static boolean then_statement(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "then_statement")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEN_STATEMENT, "<then statement>");
+        r = term_expression(b, l + 1);
+        r = r && function_body(b, l + 1);
+        r = r && then_statement_2(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // {
+    // }
+    private static boolean then_statement_2(PsiBuilder b, int l) {
+        return true;
     }
 
     /* ********************************************************** */
