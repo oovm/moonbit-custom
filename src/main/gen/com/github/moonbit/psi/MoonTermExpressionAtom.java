@@ -11,6 +11,9 @@ public interface MoonTermExpressionAtom extends PsiElement {
     MoonDictLiteral getDictLiteral();
 
     @Nullable
+    MoonIfStatement getIfStatement();
+
+    @Nullable
     MoonListLiteral getListLiteral();
 
     @Nullable

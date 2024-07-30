@@ -15,6 +15,7 @@ public interface MoonTypes {
     IElementType CALL_SLICE = new MoonElementType("CALL_SLICE");
     IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
     IElementType CONTROL_BREAK = new MoonElementType("CONTROL_BREAK");
+    IElementType CONTROL_STATEMENT = new MoonElementType("CONTROL_STATEMENT");
     IElementType DECLARE_CLOSURE = new MoonElementType("DECLARE_CLOSURE");
     IElementType DECLARE_ENUM = new MoonElementType("DECLARE_ENUM");
     IElementType DECLARE_FIELD = new MoonElementType("DECLARE_FIELD");
@@ -111,6 +112,7 @@ public interface MoonTypes {
     IElementType INTERFACE_NAME = new MoonTokenType("interface-name");
     IElementType KW_BREAK = new MoonTokenType("KW_BREAK");
     IElementType KW_CONSTRUCTOR = new MoonTokenType("KW_CONSTRUCTOR");
+    IElementType KW_CONTINUE = new MoonTokenType("KW_CONTINUE");
     IElementType KW_DERIVE = new MoonTokenType("KW_DERIVE");
     IElementType KW_ELSE = new MoonTokenType("KW_ELSE");
     IElementType KW_ENUM = new MoonTokenType("KW_ENUM");
@@ -127,6 +129,7 @@ public interface MoonTypes {
     IElementType KW_PACKAGE = new MoonTokenType("KW_PACKAGE");
     IElementType KW_PRIVATE = new MoonTokenType("KW_PRIVATE");
     IElementType KW_PUBLIC = new MoonTokenType("KW_PUBLIC");
+    IElementType KW_RETURN = new MoonTokenType("KW_RETURN");
     IElementType KW_STRUCT = new MoonTokenType("KW_STRUCT");
     IElementType KW_TEST = new MoonTokenType("KW_TEST");
     IElementType KW_TRAIT = new MoonTokenType("KW_TRAIT");
@@ -140,12 +143,14 @@ public interface MoonTypes {
     IElementType OP_ASSIGN = new MoonTokenType("OP_ASSIGN");
     IElementType OP_DIV = new MoonTokenType("OP_DIV");
     IElementType OP_DIV_ASSIGN = new MoonTokenType("OP_DIV_ASSIGN");
+    IElementType OP_EQ = new MoonTokenType("OP_EQ");
     IElementType OP_GEQ = new MoonTokenType("OP_GEQ");
     IElementType OP_GT = new MoonTokenType("OP_GT");
     IElementType OP_LEQ = new MoonTokenType("OP_LEQ");
     IElementType OP_LT = new MoonTokenType("OP_LT");
     IElementType OP_MOD = new MoonTokenType("OP_MOD");
     IElementType OP_MUL = new MoonTokenType("OP_MUL");
+    IElementType OP_NE = new MoonTokenType("OP_NE");
     IElementType OP_OR = new MoonTokenType("OP_OR");
     IElementType OP_REF = new MoonTokenType("OP_REF");
     IElementType OP_SUB = new MoonTokenType("OP_SUB");
@@ -177,6 +182,8 @@ public interface MoonTypes {
                 return new MoonConstructorNode(node);
             } else if (type == CONTROL_BREAK) {
                 return new MoonControlBreakNode(node);
+            } else if (type == CONTROL_STATEMENT) {
+                return new MoonControlStatementNode(node);
             } else if (type == DECLARE_CLOSURE) {
                 return new MoonDeclareClosureNode(node);
             } else if (type == DECLARE_ENUM) {
