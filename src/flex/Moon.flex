@@ -15,6 +15,7 @@ import static com.github.moonbit.psi.MoonTypes.*;
 %type IElementType
 %unicode
 
+%state SingleStringLiteral
 %state DoubleStringLiteral
 
 WHITE_SPACE      = [\s\t]
@@ -28,14 +29,13 @@ SYMBOL = [_\p{XID_START}][\p{XID_CONTINUE}]*
 WORD = [a-zA-Z][a-zA-Z0-9]*
 //STRING=\"([^\"\\]|\\.)*\"
 
-INTEGER=(0|[1-9][0-9_]*)(UL|U|L)?
+HEX = 0x[_0-9a-fA-F]+{INTEGER_TYPE}?
+OCT = 0o[0-7_]*{INTEGER_TYPE}?
+BIN = 0b[01_]*{INTEGER_TYPE}?
+INTEGER=[0-9_]+{INTEGER_TYPE}?
 DECIMAL=([0-9]+\.[0-9]*([Ee][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)
-HEX = 0x[_0-9a-fA-F]+
-OCT = 0o[0-7_]*
-BIN = 0b[01_]*
+INTEGER_TYPE = UL|U|L
 
-
-HEX = [0-9a-fA-F]
 
 KW_PACKAGE     = "package"
 KW_WORLD       = "world"
@@ -155,17 +155,28 @@ KW_FN      = "fn"
 }
 <YYINITIAL> {
 	{SYMBOL}  { return SYMBOL; }
-	{INTEGER} { return INTEGER; }
 	{HEX}     { return BYTES_HEX; }
 	{OCT}     { return BYTES_OCT; }
 	{BIN}     { return BYTES_BIN; }
+	{INTEGER} { return INTEGER; }
 }
 
 <YYINITIAL> {
+	"\'"  {
+	          yybegin(SingleStringLiteral);
+	          return SINGLE_QUOTE_L;
+	}
 	"\""  {
 	          yybegin(DoubleStringLiteral);
 	          return DOUBLE_QUOTE_L;
 	}
+}
+<SingleStringLiteral> {
+	"\'"  {
+	          yybegin(YYINITIAL);
+	          return SINGLE_QUOTE_R;
+	}
+	[^] { return STRING_TEXT; }
 }
 <DoubleStringLiteral> {
 	"\""  {
@@ -174,5 +185,7 @@ KW_FN      = "fn"
 	}
 	[^] { return STRING_TEXT; }
 }
+
+
 // =====================================================================================================================
 [^] { return BAD_CHARACTER; }

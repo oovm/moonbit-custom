@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface MoonTermExpressionAtom extends PsiElement {
 
     @Nullable
+    MoonCharLiteral getCharLiteral();
+
+    @Nullable
     MoonDictLiteral getDictLiteral();
 
     @Nullable
