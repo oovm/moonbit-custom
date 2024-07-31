@@ -2,23 +2,26 @@
 package com.github.moonbit.psi_node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
+
 import static com.github.moonbit.psi.MoonTypes.*;
+
 import com.github.moonbit.psi.AnyMoonNode;
 import com.github.moonbit.psi.*;
 
-public class MoonImplWithNode extends AnyMoonNode implements MoonImplWith {
+public class MoonTupleTermNode extends AnyMoonNode implements MoonTupleTerm {
 
-    public MoonImplWithNode(@NotNull ASTNode node) {
+    public MoonTupleTermNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull MoonVisitor visitor) {
-        visitor.visitImplWith(this);
+        visitor.visitTupleTerm(this);
     }
 
     @Override
@@ -28,27 +31,9 @@ public class MoonImplWithNode extends AnyMoonNode implements MoonImplWith {
     }
 
     @Override
-    @Nullable
-    public MoonFunctionBody getFunctionBody() {
-        return findChildByClass(MoonFunctionBody.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonIdentifierFree getIdentifierFree() {
-        return findChildByClass(MoonIdentifierFree.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonReturnType getReturnType() {
-        return findChildByClass(MoonReturnType.class);
-    }
-
-    @Override
-    @Nullable
-    public MoonSignatureParameter getSignatureParameter() {
-        return findChildByClass(MoonSignatureParameter.class);
+    @NotNull
+    public MoonTermExpression getTermExpression() {
+        return findNotNullChildByClass(MoonTermExpression.class);
     }
 
 }

@@ -80,8 +80,11 @@ KW_FN      = "fn"
 	";" { return SEMICOLON; }
 	"$" { return DOLLAR; }
 	"@" { return AT; }
-	"." { return DOT; }
 	"," { return COMMA; }
+
+	".." { return OP_SPREAD; }
+	"."  { return DOT; }
+
 
 	"+=" { return OP_ADD_ASSIGN; }
 	"+" { return OP_ADD; }
@@ -121,6 +124,7 @@ KW_FN      = "fn"
 
 	{KW_TRAIT}   { return KW_TRAIT; }
     impl         { return KW_IMPLEMENT; }
+      with       { return KW_WITH; }
 
 
 	{KW_PUBLIC}  { return KW_PUBLIC; }

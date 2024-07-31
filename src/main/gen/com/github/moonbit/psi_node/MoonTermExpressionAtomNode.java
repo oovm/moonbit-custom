@@ -81,4 +81,10 @@ public class MoonTermExpressionAtomNode extends AnyMoonNode implements MoonTermE
         return findChildByClass(MoonTermExpression.class);
     }
 
+    @Override
+    @Nullable
+    public MoonTupleLiteral getTupleLiteral() {
+        return findChildByClass(MoonTupleLiteral.class);
+    }
+
 }

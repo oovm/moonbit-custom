@@ -279,6 +279,14 @@ public class MoonVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitTupleLiteral(@NotNull MoonTupleLiteral o) {
+    visitPsiElement(o);
+  }
+
+  public void visitTupleTerm(@NotNull MoonTupleTerm o) {
+    visitPsiElement(o);
+  }
+
   public void visitTypeExpression(@NotNull MoonTypeExpression o) {
     visitPsiElement(o);
   }

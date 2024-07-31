@@ -2,19 +2,21 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface MoonImplWith extends PsiElement {
 
-    @Nullable
-    MoonDeclareParameters getDeclareParameters();
+  @Nullable
+  MoonFunctionBody getFunctionBody();
 
-    @Nullable
-    MoonFunctionBody getFunctionBody();
+  @Nullable
+  MoonIdentifierFree getIdentifierFree();
 
-    @Nullable
-    MoonIdentifierFree getIdentifierFree();
+  @Nullable
+  MoonReturnType getReturnType();
+
+  @Nullable
+  MoonSignatureParameter getSignatureParameter();
 
 }

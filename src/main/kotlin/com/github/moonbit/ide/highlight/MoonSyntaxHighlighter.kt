@@ -2,8 +2,7 @@ package com.github.moonbit.ide.highlight
 
 
 import com.github.bytecodealliance.ide.highlight.MoonColor
-import com.github.bytecodealliance.ide.highlight.MoonColor.SYMBOL_FUNCTION
-import com.github.bytecodealliance.ide.highlight.MoonColor.SYMBOL_FIELD
+import com.github.bytecodealliance.ide.highlight.MoonColor.*
 import com.github.moonbit.file.MoonFile
 import com.github.moonbit.psi.*
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
@@ -15,7 +14,8 @@ import com.intellij.psi.PsiFile
 
 class MoonSyntaxHighlighter : MoonVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
-//
+
+    //
 //
 //    override fun visitUseAlias(o: WitUseAlias) {
 //        highlight(o.identifier, SYM_TYPE)
@@ -40,6 +40,13 @@ class MoonSyntaxHighlighter : MoonVisitor(), HighlightVisitor {
 //        highlight(o.identifier, SYM_FIELD)
 //    }
 //
+    override fun visitDeclareStruct(o: MoonDeclareStruct) {
+        highlight(o.identifier, SYMBOL_CLASS)
+    }
+
+    override fun visitDeclareTrait(o: MoonDeclareTrait) {
+        highlight(o.identifier, SYMBOL_TRAIT)
+    }
 
 
     //    override fun visitEnum(o: WitEnum) {
@@ -65,12 +72,17 @@ class MoonSyntaxHighlighter : MoonVisitor(), HighlightVisitor {
         highlight(o.namepath?.lastChild, SYMBOL_FUNCTION)
     }
 
+
+    override fun visitGenericItem(o: MoonGenericItem) {
+        highlight(o.identifier, SYMBOL_GENERIC)
+    }
+
     override fun visitDeclareMethod(o: MoonDeclareMethod) {
         highlight(o.identifier, SYMBOL_FUNCTION)
     }
 
     override fun visitLetStatement(o: MoonLetStatement) {
-//        highlight(o, SYMBOL_FUNCTION)
+        highlight(o.identifier, SYMBOL_LOCAL)
     }
 
     override fun visitParameter(o: MoonParameter) {

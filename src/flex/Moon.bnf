@@ -120,16 +120,15 @@ signature-parameter ::= PARENTHESIS_L (identifier (COMMA identifier)* COMMA?)? P
 declare-impl ::= modifier* KW_IMPLEMENT identifier-free KW_FOR identifier-free impl-with {
 	pin = 2
 }
-impl-with  ::= KW_WITH identifier-free declare-parameters function-body {
+impl-with  ::= KW_WITH identifier-free signature-parameter return-type? function-body {
 	pin = 1
 }
 // =====================================================================================================================
-// world name { }
 let-statement ::= modifier? KW_LET KW_MUTABLE? identifier type-hint? OP_ASSIGN term-expression {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }
-// interface name { }
+// =====================================================================================================================
 declare-function ::= modifier* KW_FN namepath declare-generic? declare-parameters return-type? (function-body | function-inline) {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
@@ -147,7 +146,7 @@ private function-element ::= SEMICOLON
 	| for-statement
 	| control-statement
 	| term-expression
-// (self : Array[T])
+// =====================================================================================================================
 declare-parameters ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R
 parameter ::= identifier COLON type-expression {
 
@@ -165,7 +164,7 @@ declare-closure  ::= KW_FN declare-parameters function-body {
 	pin = 1
 }
 // =====================================================================================================================
-declare-test ::= KW_TEST string-literal function-body {
+declare-test ::= KW_TEST string-literal? function-body {
 	pin = 1
 //	extends = interface
 //	mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
@@ -205,12 +204,13 @@ term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
 	| if-statement
 	| dict-literal
 	| list-literal
+	| tuple-literal
 	| string-literal
 	| string-lines
 	| number-literal
 	| AT namepath-free
 	| namepath
-term-prefix ::= OP_ADD | OP_SUB | OP_REF;
+term-prefix ::= OP_ADD | OP_SUB | OP_REF | OP_SPREAD;
 term-infix  ::= OP_ASSIGN
 	| OP_ADD | OP_ADD_ASSIGN
 	| OP_SUB
@@ -250,6 +250,11 @@ dict-term ::= identifier COLON term-expression;
 // =====================================================================================================================
 list-literal ::= BRACKET_L (list-term (COMMA list-term)* COMMA?)? BRACKET_R type-hint?
 list-term ::= term-expression;
+// =====================================================================================================================
+tuple-literal ::= PARENTHESIS_L PARENTHESIS_R
+	| PARENTHESIS_L (tuple-term (COMMA tuple-term)* COMMA?)? PARENTHESIS_R
+tuple-term ::= term-expression;
+
 
 //   { array: self.array, start: self.start + start, end: self.start + end }
 // =====================================================================================================================
