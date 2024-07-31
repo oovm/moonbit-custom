@@ -58,23 +58,13 @@ KW_MUTABLE = "mut"
 KW_LET     = "let"
 KW_FN      = "fn"
 
-
-KW_TEST = "test"
-
-
-KW_MATCH = "match"
-
-KW_FOR   = "for"
-KW_WHILE = "while"
-
-
 %%
 
 <YYINITIAL> {
     {WHITE_SPACE}+     { return WHITE_SPACE; }
 	{COMMENT_LINE}     { return COMMENT_LINE; }
 	{COMMENT_BLOCK}    { return COMMENT_BLOCK; }
-    {STRING_LINE}      { return COMMENT_BLOCK; }
+    {STRING_LINE}      { return STRING_LINE; }
 }
 
 <YYINITIAL> {
@@ -107,12 +97,13 @@ KW_WHILE = "while"
 	">" { return OP_GT; }
 	">=" { return OP_GEQ; }
 
-      "||" { return OP_OR; }
-      "|>" { return OP_THEN; }
-      "&&" { return OP_AND; }
+	"||" { return OP_OR; }
+	"|>" { return OP_THEN; }
+	"&&" { return OP_AND; }
 
 	"!=" { return OP_NE; }
 	"==" { return OP_EQ; }
+	"=>" { return OP_PATTERN_TO; }
 	"=" { return OP_ASSIGN; }
 	"!" { return OP_ERROR; }
 
@@ -129,6 +120,7 @@ KW_WHILE = "while"
 	{KW_ENUM}    { return KW_ENUM; }
 
 	{KW_TRAIT}   { return KW_TRAIT; }
+    impl         { return KW_IMPLEMENT; }
 
 
 	{KW_PUBLIC}  { return KW_PUBLIC; }
@@ -138,7 +130,7 @@ KW_WHILE = "while"
 
 	{KW_LET}     { return KW_LET; }
 	{KW_FN}      { return KW_FN; }
-	{KW_TEST}    { return KW_TEST; }
+	test    { return KW_TEST; }
 
 	if    { return KW_IF; }
 	else  { return KW_ELSE; }

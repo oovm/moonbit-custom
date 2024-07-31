@@ -38,6 +38,7 @@ private statements ::= SEMICOLON
 	| declare-struct
 	| declare-enum
 	| declare-trait
+	| declare-impl
 	| let-statement
 	| declare-function
 	| declare-closure
@@ -61,7 +62,6 @@ derive-statement ::= KW_DERIVE PARENTHESIS_L (identifier (COMMA identifier)*)? P
 	//	mixin = "com.github.bytecodealliance.language.mixin.MixinDerive"
 }
 // =====================================================================================================================
-
 declare-struct   ::= modifier* KW_STRUCT identifier declare-generic? struct-body derive-statement? {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinRecord"
@@ -88,36 +88,45 @@ private enum-element ::= SEMICOLON
 
 declare-variant ::= identifier;
 
+// =====================================================================================================================
+// priv type UninitializedArray[T] FixedArray[UnsafeMaybeUninit[T]]
+define-type ::= modifier* KW_TYPE type-expression type-expression {
+	pin = 2
+}
+type-hint ::= COLON type-expression;
+return-type ::= OP_TO type-expression;
 
+generic-call   ::= BRACKET_L (type-expression (COMMA type-expression)* COMMA?)? BRACKET_R;
+// resource type-name { method: func() };
+declare-trait  ::= modifier* KW_TRAIT identifier trait-body {
+	pin = 2
+//    mixin = "com.github.bytecodealliance.language.mixin.MixinResource"
+}
+trait-body ::= BRACE_L trait-element* BRACE_R;
+private trait-element ::=
+	declare-signature
+
+// pub trait Compare: Eq {
+//  compare(Self, Self) -> Int
+//}
+// to_bool(Self) -> Bool
+declare-signature ::= modifier? identifier declare-generic? signature-parameter return-type? {
+
+}
+signature-parameter ::= PARENTHESIS_L (identifier (COMMA identifier)* COMMA?)? PARENTHESIS_R
+
+// pub impl Hash for Bool with hash(self) { self.to_int() }
+// =====================================================================================================================
+declare-impl ::= modifier* KW_IMPLEMENT identifier-free KW_FOR identifier-free return-type? {
+	pin = 2
+}
+
+// =====================================================================================================================
 // world name { }
 let-statement ::= modifier? KW_LET KW_MUTABLE? identifier type-hint? OP_ASSIGN term-expression {
 	pin = 2
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinWorld"
 }
-// include wasi:keyvalue/imports@0.2.0-draft;
-include ::= KW_INCLUDE include-name {
-	pin = 1
-//    mixin = "com.github.bytecodealliance.language.mixin.MixinInclude"
-}
-include-name ::=
-    identifier (COLON identifier) (SLASH interface-name) package-version?
-  | interface-name
-// import imports;
-// import error-code: func(err: u32) -> option<u32>;
-// export imports;
-// export my:dep/a@0.2.0;
-import    ::= KW_IMPORT export-term {
-	pin = 1
-}
-export    ::= KW_EXPORT export-term {
-	pin = 1
-}
-export-term ::= function
-	| declare-test
-	| include-name
-//  use wasi:poll/poll.{pollable};
-//  use wasi:io/streams@0.2.0.{input-stream, output-stream};
-
 // interface name { }
 declare-function ::= modifier* KW_FN namepath declare-generic? declare-parameters return-type? (function-body | function-inline) {
 	pin = 2
@@ -142,8 +151,9 @@ parameter ::= identifier COLON type-expression {
 
 }
 control-statement ::=
-	KW_RETURN term-expression
+	KW_RETURN term-expression?
 	| KW_CONTINUE
+	| KW_BREAK term-expression?
 
 modifier ::= KW_PUBLIC | KW_PRIVATE;
 declare-generic ::= BRACKET_L (generic-item (COMMA generic-item)*)? BRACKET_R;
@@ -186,10 +196,6 @@ for-statement  ::= KW_FOR for-startup for-condition for-increment function-body;
 for-startup    ::= term-expression SEMICOLON;
 for-condition  ::= term-expression SEMICOLON;
 for-increment  ::= term-expression;
-// =====================================================================================================================
-
-
-control-break ::= KW_BREAK term-expression;
 // =====================================================================================================================
 term-expression ::= term-expression-item (term-infix term-expression-item)*;
 term-expression-item ::= term-prefix* term-expression-atom term-suffix*;
@@ -251,48 +257,6 @@ number-literal ::= INTEGER;
 
 
 
-
-
-
-constructor ::= KW_CONSTRUCTOR tuple return-type? {
-	pin = 1
-}
-function ::= identifier COLON declare-signature {
-//	mixin = "com.github.bytecodealliance.language.mixin.MixinFunction"
-}
-
-
-// priv type UninitializedArray[T] FixedArray[UnsafeMaybeUninit[T]]
-define-type ::= modifier* KW_TYPE type-expression type-expression {
-	pin = 2
-}
-type-hint ::= COLON type-expression;
-return-type ::= OP_TO type-expression;
-type-generic ::= identifier generic-call?;
-tuple ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R;
-
-generic-call   ::= BRACKET_L (type-expression (COMMA type-expression)* COMMA?)? BRACKET_R;
-// resource type-name { method: func() };
-declare-trait  ::= modifier* KW_TRAIT identifier trait-body {
-	pin = 2
-//    mixin = "com.github.bytecodealliance.language.mixin.MixinResource"
-}
-trait-body ::= BRACE_L trait-element* BRACE_R;
-private trait-element ::=
-	declare-signature
-
-// pub trait Compare: Eq {
-//  compare(Self, Self) -> Int
-//}
-// to_bool(Self) -> Bool
-declare-signature ::= modifier? identifier declare-generic? signature-parameter return-type? {
-
-}
-signature-parameter ::= PARENTHESIS_L (identifier (COMMA identifier)* COMMA?)? PARENTHESIS_R
-
-
-
-
 private resource-element ::=
     declare-method
   | constructor
@@ -301,6 +265,7 @@ private resource-element ::=
   | DOLLAR
   | ACCENT
   | OP_REF
+  | OP_PATTERN_TO
 
 
 

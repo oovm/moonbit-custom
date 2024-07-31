@@ -65,10 +65,6 @@ class MoonHighlightVisitor : MoonVisitor(), HighlightVisitor {
         highlight(o.namepath?.lastChild, SYMBOL_FUNCTION)
     }
 
-    override fun visitFunction(o: MoonFunction) {
-        highlight(o.identifier, SYMBOL_FUNCTION)
-    }
-
     override fun visitDeclareMethod(o: MoonDeclareMethod) {
         highlight(o.identifier, SYMBOL_FUNCTION)
     }

@@ -13,14 +13,13 @@ public interface MoonTypes {
     IElementType CALL_INDEX = new MoonElementType("CALL_INDEX");
     IElementType CALL_METHOD = new MoonElementType("CALL_METHOD");
     IElementType CALL_SLICE = new MoonElementType("CALL_SLICE");
-    IElementType CONSTRUCTOR = new MoonElementType("CONSTRUCTOR");
-    IElementType CONTROL_BREAK = new MoonElementType("CONTROL_BREAK");
     IElementType CONTROL_STATEMENT = new MoonElementType("CONTROL_STATEMENT");
     IElementType DECLARE_CLOSURE = new MoonElementType("DECLARE_CLOSURE");
     IElementType DECLARE_ENUM = new MoonElementType("DECLARE_ENUM");
     IElementType DECLARE_FIELD = new MoonElementType("DECLARE_FIELD");
     IElementType DECLARE_FUNCTION = new MoonElementType("DECLARE_FUNCTION");
     IElementType DECLARE_GENERIC = new MoonElementType("DECLARE_GENERIC");
+    IElementType DECLARE_IMPL = new MoonElementType("DECLARE_IMPL");
     IElementType DECLARE_METHOD = new MoonElementType("DECLARE_METHOD");
     IElementType DECLARE_PARAMETERS = new MoonElementType("DECLARE_PARAMETERS");
     IElementType DECLARE_SIGNATURE = new MoonElementType("DECLARE_SIGNATURE");
@@ -35,14 +34,11 @@ public interface MoonTypes {
     IElementType ELSE_STATEMENT = new MoonElementType("ELSE_STATEMENT");
     IElementType ENUM_BODY = new MoonElementType("ENUM_BODY");
     IElementType ERRORABLE = new MoonElementType("ERRORABLE");
-    IElementType EXPORT = new MoonElementType("EXPORT");
-    IElementType EXPORT_TERM = new MoonElementType("EXPORT_TERM");
     IElementType FLAGS = new MoonElementType("FLAGS");
     IElementType FOR_CONDITION = new MoonElementType("FOR_CONDITION");
     IElementType FOR_INCREMENT = new MoonElementType("FOR_INCREMENT");
     IElementType FOR_STARTUP = new MoonElementType("FOR_STARTUP");
     IElementType FOR_STATEMENT = new MoonElementType("FOR_STATEMENT");
-    IElementType FUNCTION = new MoonElementType("FUNCTION");
     IElementType FUNCTION_BODY = new MoonElementType("FUNCTION_BODY");
     IElementType FUNCTION_INLINE = new MoonElementType("FUNCTION_INLINE");
     IElementType GENERIC_CALL = new MoonElementType("GENERIC_CALL");
@@ -50,9 +46,6 @@ public interface MoonTypes {
     IElementType IDENTIFIER = new MoonElementType("IDENTIFIER");
     IElementType IDENTIFIER_FREE = new MoonElementType("IDENTIFIER_FREE");
     IElementType IF_STATEMENT = new MoonElementType("IF_STATEMENT");
-    IElementType IMPORT = new MoonElementType("IMPORT");
-    IElementType INCLUDE = new MoonElementType("INCLUDE");
-    IElementType INCLUDE_NAME = new MoonElementType("INCLUDE_NAME");
     IElementType LET_STATEMENT = new MoonElementType("LET_STATEMENT");
     IElementType LIST_LITERAL = new MoonElementType("LIST_LITERAL");
     IElementType LIST_TERM = new MoonElementType("LIST_TERM");
@@ -82,11 +75,9 @@ public interface MoonTypes {
     IElementType TERM_SUFFIX = new MoonElementType("TERM_SUFFIX");
     IElementType THEN_STATEMENT = new MoonElementType("THEN_STATEMENT");
     IElementType TRAIT_BODY = new MoonElementType("TRAIT_BODY");
-    IElementType TUPLE = new MoonElementType("TUPLE");
     IElementType TYPE_EXPRESSION = new MoonElementType("TYPE_EXPRESSION");
     IElementType TYPE_EXPRESSION_ATOM = new MoonElementType("TYPE_EXPRESSION_ATOM");
     IElementType TYPE_EXPRESSION_ITEM = new MoonElementType("TYPE_EXPRESSION_ITEM");
-    IElementType TYPE_GENERIC = new MoonElementType("TYPE_GENERIC");
     IElementType TYPE_HINT = new MoonElementType("TYPE_HINT");
     IElementType TYPE_INFIX = new MoonElementType("TYPE_INFIX");
     IElementType TYPE_PREFIX = new MoonElementType("TYPE_PREFIX");
@@ -106,6 +97,7 @@ public interface MoonTypes {
     IElementType COMMENT_BLOCK = new MoonTokenType("Comment Block");
     IElementType COMMENT_DOCUMENT = new MoonTokenType("Comment Document");
     IElementType COMMENT_LINE = new MoonTokenType("Comment Line");
+    IElementType CONSTRUCTOR = new MoonTokenType("constructor");
     IElementType DOLLAR = new MoonTokenType("DOLLAR");
     IElementType DOT = new MoonTokenType("DOT");
     IElementType DOUBLE_QUOTE_L = new MoonTokenType("DOUBLE_QUOTE_L");
@@ -113,20 +105,16 @@ public interface MoonTypes {
     IElementType ESCAPED = new MoonTokenType("ESCAPED");
     IElementType HYPHEN = new MoonTokenType("HYPHEN");
     IElementType INTEGER = new MoonTokenType("INTEGER");
-    IElementType INTERFACE_NAME = new MoonTokenType("interface-name");
     IElementType KW_BREAK = new MoonTokenType("KW_BREAK");
-    IElementType KW_CONSTRUCTOR = new MoonTokenType("KW_CONSTRUCTOR");
     IElementType KW_CONTINUE = new MoonTokenType("KW_CONTINUE");
     IElementType KW_DERIVE = new MoonTokenType("KW_DERIVE");
     IElementType KW_ELSE = new MoonTokenType("KW_ELSE");
     IElementType KW_ENUM = new MoonTokenType("KW_ENUM");
-    IElementType KW_EXPORT = new MoonTokenType("KW_EXPORT");
     IElementType KW_FLAGS = new MoonTokenType("KW_FLAGS");
     IElementType KW_FN = new MoonTokenType("KW_FN");
     IElementType KW_FOR = new MoonTokenType("KW_FOR");
     IElementType KW_IF = new MoonTokenType("KW_IF");
-    IElementType KW_IMPORT = new MoonTokenType("KW_IMPORT");
-    IElementType KW_INCLUDE = new MoonTokenType("KW_INCLUDE");
+    IElementType KW_IMPLEMENT = new MoonTokenType("KW_IMPLEMENT");
     IElementType KW_LET = new MoonTokenType("KW_LET");
     IElementType KW_MATCH = new MoonTokenType("KW_MATCH");
     IElementType KW_MUTABLE = new MoonTokenType("KW_MUTABLE");
@@ -157,6 +145,7 @@ public interface MoonTypes {
     IElementType OP_MUL = new MoonTokenType("OP_MUL");
     IElementType OP_NE = new MoonTokenType("OP_NE");
     IElementType OP_OR = new MoonTokenType("OP_OR");
+    IElementType OP_PATTERN_TO = new MoonTokenType("OP_PATTERN_TO");
     IElementType OP_REF = new MoonTokenType("OP_REF");
     IElementType OP_SUB = new MoonTokenType("OP_SUB");
     IElementType OP_THEN = new MoonTokenType("OP_THEN");
@@ -165,7 +154,6 @@ public interface MoonTypes {
     IElementType PARENTHESIS_L = new MoonTokenType("(");
     IElementType PARENTHESIS_R = new MoonTokenType(")");
     IElementType SEMICOLON = new MoonTokenType("SEMICOLON");
-    IElementType SLASH = new MoonTokenType("SLASH");
     IElementType STRING_LINE = new MoonTokenType("STRING_LINE");
     IElementType STRING_TEXT = new MoonTokenType("STRING_TEXT");
     IElementType SYMBOL = new MoonTokenType("SYMBOL");
@@ -184,10 +172,6 @@ public interface MoonTypes {
                 return new MoonCallMethodNode(node);
             } else if (type == CALL_SLICE) {
                 return new MoonCallSliceNode(node);
-            } else if (type == CONSTRUCTOR) {
-                return new MoonConstructorNode(node);
-            } else if (type == CONTROL_BREAK) {
-                return new MoonControlBreakNode(node);
             } else if (type == CONTROL_STATEMENT) {
                 return new MoonControlStatementNode(node);
             } else if (type == DECLARE_CLOSURE) {
@@ -200,6 +184,8 @@ public interface MoonTypes {
                 return new MoonDeclareFunctionNode(node);
             } else if (type == DECLARE_GENERIC) {
                 return new MoonDeclareGenericNode(node);
+            } else if (type == DECLARE_IMPL) {
+                return new MoonDeclareImplNode(node);
             } else if (type == DECLARE_METHOD) {
                 return new MoonDeclareMethodNode(node);
             } else if (type == DECLARE_PARAMETERS) {
@@ -228,10 +214,6 @@ public interface MoonTypes {
                 return new MoonEnumBodyNode(node);
             } else if (type == ERRORABLE) {
                 return new MoonErrorableNode(node);
-            } else if (type == EXPORT) {
-                return new MoonExportNode(node);
-            } else if (type == EXPORT_TERM) {
-                return new MoonExportTermNode(node);
             } else if (type == FLAGS) {
                 return new MoonFlagsNode(node);
             } else if (type == FOR_CONDITION) {
@@ -242,8 +224,6 @@ public interface MoonTypes {
                 return new MoonForStartupNode(node);
             } else if (type == FOR_STATEMENT) {
                 return new MoonForStatementNode(node);
-            } else if (type == FUNCTION) {
-                return new MoonFunctionNode(node);
             } else if (type == FUNCTION_BODY) {
                 return new MoonFunctionBodyNode(node);
             } else if (type == FUNCTION_INLINE) {
@@ -258,12 +238,6 @@ public interface MoonTypes {
                 return new MoonIdentifierFreeNode(node);
             } else if (type == IF_STATEMENT) {
                 return new MoonIfStatementNode(node);
-            } else if (type == IMPORT) {
-                return new MoonImportNode(node);
-            } else if (type == INCLUDE) {
-                return new MoonIncludeNode(node);
-            } else if (type == INCLUDE_NAME) {
-                return new MoonIncludeNameNode(node);
             } else if (type == LET_STATEMENT) {
                 return new MoonLetStatementNode(node);
             } else if (type == LIST_LITERAL) {
@@ -322,16 +296,12 @@ public interface MoonTypes {
                 return new MoonThenStatementNode(node);
             } else if (type == TRAIT_BODY) {
                 return new MoonTraitBodyNode(node);
-            } else if (type == TUPLE) {
-                return new MoonTupleNode(node);
             } else if (type == TYPE_EXPRESSION) {
                 return new MoonTypeExpressionNode(node);
             } else if (type == TYPE_EXPRESSION_ATOM) {
                 return new MoonTypeExpressionAtomNode(node);
             } else if (type == TYPE_EXPRESSION_ITEM) {
                 return new MoonTypeExpressionItemNode(node);
-            } else if (type == TYPE_GENERIC) {
-                return new MoonTypeGenericNode(node);
             } else if (type == TYPE_HINT) {
                 return new MoonTypeHintNode(node);
             } else if (type == TYPE_INFIX) {
