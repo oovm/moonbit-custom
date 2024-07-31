@@ -20,6 +20,7 @@ import static com.github.moonbit.psi.MoonTypes.*;
 WHITE_SPACE      = [\s\t]
 COMMENT_LINE     = [/]{2}[^\r\n]*
 COMMENT_BLOCK    = [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
+STRING_LINE      = #[|][^\r\n]*
 //SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
 VERSION = ([0-9]+)(\.[0-9]+)(\.[0-9]+)(-[a-zA-Z0-9\-]+)?
 ESCAPED = %[a-zA-Z0-9\-]+
@@ -73,6 +74,7 @@ KW_WHILE = "while"
     {WHITE_SPACE}+     { return WHITE_SPACE; }
 	{COMMENT_LINE}     { return COMMENT_LINE; }
 	{COMMENT_BLOCK}    { return COMMENT_BLOCK; }
+    {STRING_LINE}      { return COMMENT_BLOCK; }
 }
 
 <YYINITIAL> {
@@ -112,6 +114,7 @@ KW_WHILE = "while"
 	"!=" { return OP_NE; }
 	"==" { return OP_EQ; }
 	"=" { return OP_ASSIGN; }
+	"!" { return OP_ERROR; }
 
 	"~" { return OP_REF; }
 
