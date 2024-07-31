@@ -10,7 +10,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 
-class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
+class MoonTokenHighlighter : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer {
         return MoonParserDefinition().createLexer(null)
     }
@@ -24,14 +24,16 @@ class MoonSyntaxHighlighter : SyntaxHighlighterBase() {
             KW_PACKAGE,
             KW_TYPE, KW_PUBLIC, KW_PRIVATE,
             KW_STRUCT,
-            KW_TRAIT,
+            KW_TRAIT, KW_IMPLEMENT, KW_WITH,
             KW_VARIANT, KW_FLAGS, KW_ENUM,
             KW_FN, KW_TEST,
             KW_LET,
             KW_FOR, KW_WHILE,
             KW_IF, KW_ELSE,
-
+            KW_MATCH,
+            KW_RETURN, KW_CONTINUE, KW_BREAK,
                 -> MoonColor.KEYWORD
+
 
             PARENTHESIS_L, PARENTHESIS_R -> MoonColor.PARENTHESES
             BRACKET_L, BRACKET_R -> MoonColor.BRACKETS

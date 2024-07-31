@@ -134,8 +134,10 @@ KW_FN      = "fn"
 
 	if    { return KW_IF; }
 	else  { return KW_ELSE; }
-	while { return KW_WHILE; }
 
+    match { return KW_MATCH; }
+
+	while { return KW_WHILE; }
     for  { return KW_FOR; }
 
 	break { return KW_BREAK; }

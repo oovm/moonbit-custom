@@ -21,7 +21,6 @@ class MbtiSyntaxHighlighter : SyntaxHighlighterBase() {
     private fun getTokenColor(tokenType: IElementType): MoonColor? {
         return when (tokenType) {
             MoonTypes.KW_PACKAGE,
-            MoonTypes.KW_INCLUDE, MoonTypes.KW_IMPORT, MoonTypes.KW_EXPORT,
             MoonTypes.KW_TYPE, MoonTypes.KW_PUBLIC, MoonTypes.KW_PRIVATE,
             MoonTypes.KW_VARIANT, MoonTypes.KW_FLAGS, MoonTypes.KW_ENUM,
             MoonTypes.KW_FN, MoonTypes.KW_TEST,

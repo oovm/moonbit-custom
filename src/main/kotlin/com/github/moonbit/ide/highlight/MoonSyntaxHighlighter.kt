@@ -13,7 +13,7 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 
-class MoonHighlightVisitor : MoonVisitor(), HighlightVisitor {
+class MoonSyntaxHighlighter : MoonVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
 //
 //
@@ -164,7 +164,7 @@ class MoonHighlightVisitor : MoonVisitor(), HighlightVisitor {
         return true
     }
 
-    override fun clone(): HighlightVisitor = MoonHighlightVisitor()
+    override fun clone(): HighlightVisitor = MoonSyntaxHighlighter()
 
     override fun suitableForFile(file: PsiFile): Boolean = file is MoonFile
 
