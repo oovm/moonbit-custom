@@ -210,7 +210,7 @@ term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
 	| number-literal
 	| AT namepath-free
 	| namepath
-term-prefix ::= OP_ADD | OP_SUB | OP_REF | OP_SPREAD;
+term-prefix ::= OP_ADD | OP_SUB | OP_REF;
 term-infix  ::= OP_ASSIGN
 	| OP_ADD | OP_ADD_ASSIGN
 	| OP_SUB
@@ -249,7 +249,7 @@ dict-literal ::= BRACE_L (dict-term (COMMA dict-term)* COMMA?)? BRACE_R
 dict-term ::= identifier COLON term-expression;
 // =====================================================================================================================
 list-literal ::= BRACKET_L (list-term (COMMA list-term)* COMMA?)? BRACKET_R type-hint?
-list-term ::= term-expression;
+list-term ::= OP_SPREAD? term-expression;
 // =====================================================================================================================
 tuple-literal ::= PARENTHESIS_L PARENTHESIS_R
 	| PARENTHESIS_L (tuple-term (COMMA tuple-term)* COMMA?)? PARENTHESIS_R
@@ -260,7 +260,7 @@ tuple-term ::= term-expression;
 // =====================================================================================================================
 string-literal ::= DOUBLE_QUOTE_L STRING_TEXT+ DOUBLE_QUOTE_R;
 string-lines   ::= STRING_LINE+
-number-literal ::= INTEGER;
+number-literal ::= INTEGER | BYTES_HEX | BYTES_OCT | BYTES_BIN;
 
 
 
