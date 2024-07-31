@@ -210,15 +210,17 @@ public class MoonParser implements PsiParser, LightPsiParser {
 
     /* ********************************************************** */
     // KW_RETURN term-expression?
-    // 	| KW_CONTINUE
+    // 	| KW_CONTINUE term-expression?
     // 	| KW_BREAK term-expression?
+    // 	| KW_RAISE term-expression?
     public static boolean control_statement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "control_statement")) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, CONTROL_STATEMENT, "<control statement>");
         r = control_statement_0(b, l + 1);
-        if (!r) r = consumeToken(b, KW_CONTINUE);
+        if (!r) r = control_statement_1(b, l + 1);
         if (!r) r = control_statement_2(b, l + 1);
+        if (!r) r = control_statement_3(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
@@ -241,6 +243,24 @@ public class MoonParser implements PsiParser, LightPsiParser {
         return true;
     }
 
+    // KW_CONTINUE term-expression?
+    private static boolean control_statement_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "control_statement_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, KW_CONTINUE);
+        r = r && control_statement_1_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // term-expression?
+    private static boolean control_statement_1_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "control_statement_1_1")) return false;
+        term_expression(b, l + 1);
+        return true;
+    }
+
     // KW_BREAK term-expression?
     private static boolean control_statement_2(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "control_statement_2")) return false;
@@ -255,6 +275,24 @@ public class MoonParser implements PsiParser, LightPsiParser {
     // term-expression?
     private static boolean control_statement_2_1(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "control_statement_2_1")) return false;
+        term_expression(b, l + 1);
+        return true;
+    }
+
+    // KW_RAISE term-expression?
+    private static boolean control_statement_3(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "control_statement_3")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, KW_RAISE);
+        r = r && control_statement_3_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // term-expression?
+    private static boolean control_statement_3_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "control_statement_3_1")) return false;
         term_expression(b, l + 1);
         return true;
     }
@@ -1665,24 +1703,50 @@ public class MoonParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // identifier COLON type-expression {
+    // OP_REF? identifier COLON type-expression (OP_ASSIGN term-expression)? {
     // }
     public static boolean parameter(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "parameter")) return false;
-        if (!nextTokenIs(b, "<parameter>", ESCAPED, SYMBOL)) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, PARAMETER, "<parameter>");
-        r = identifier(b, l + 1);
+        r = parameter_0(b, l + 1);
+        r = r && identifier(b, l + 1);
         r = r && consumeToken(b, COLON);
         r = r && type_expression(b, l + 1);
-        r = r && parameter_3(b, l + 1);
+        r = r && parameter_4(b, l + 1);
+        r = r && parameter_5(b, l + 1);
         exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // OP_REF?
+    private static boolean parameter_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "parameter_0")) return false;
+        consumeToken(b, OP_REF);
+        return true;
+    }
+
+    // (OP_ASSIGN term-expression)?
+    private static boolean parameter_4(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "parameter_4")) return false;
+        parameter_4_0(b, l + 1);
+        return true;
+    }
+
+    // OP_ASSIGN term-expression
+    private static boolean parameter_4_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "parameter_4_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, OP_ASSIGN);
+        r = r && term_expression(b, l + 1);
+        exit_section_(b, m, null, r);
         return r;
     }
 
     // {
     // }
-    private static boolean parameter_3(PsiBuilder b, int l) {
+    private static boolean parameter_5(PsiBuilder b, int l) {
         return true;
     }
 
