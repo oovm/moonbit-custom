@@ -94,7 +94,7 @@ define-type ::= modifier* KW_TYPE type-expression type-expression {
 	pin = 2
 }
 type-hint ::= COLON type-expression;
-return-type ::= OP_TO type-expression;
+return-type ::= OP_TO type-expression (OP_ERROR type-expression)?;
 
 generic-call   ::= BRACKET_L (type-expression (COMMA type-expression)* COMMA?)? BRACKET_R;
 // resource type-name { method: func() };
@@ -224,6 +224,7 @@ term-infix  ::= OP_ASSIGN
 	| OP_GT | OP_GEQ
 	| OP_OR | OP_AND
 	| OP_THEN
+	| OP_SPREAD
 term-suffix   ::= OP_THROW
 	| call-function
 	| call-method
@@ -240,9 +241,8 @@ call-slice    ::= BRACKET_L term-expression (COMMA term-expression)* BRACKET_R;
 type-expression ::= type-expression-item (type-infix type-expression-item)*;
 type-expression-item ::= type-prefix* type-expression-atom type-suffix*;
 type-expression-atom ::= PARENTHESIS_L type-expression PARENTHESIS_R
-	| identifier
-//	| string-literal
-//	| number-literal
+	| AT namepath-free
+	| namepath
 type-prefix ::= OP_ADD;
 type-infix  ::= OP_ADD | OP_TO;
 type-suffix ::= generic-call | OP_THROW;
