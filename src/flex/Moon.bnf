@@ -276,7 +276,8 @@ call-static   ::= NAME_JOIN identifier-free call-function?
 call-method   ::= DOT identifier-free call-function
 call-field    ::= DOT identifier
 call-index    ::= DOT INTEGER
-call-slice    ::= BRACKET_L term-expression (COMMA term-expression)* BRACKET_R;
+call-slice    ::= BRACKET_L slice-term (COMMA slice-term)* BRACKET_R;
+slice-term    ::= term-expression? COLON? term-expression? COLON? term-expression?
 // =====================================================================================================================
 type-expression ::= type-expression-item (type-infix type-expression-item)*;
 type-expression-item ::= type-prefix* type-expression-atom type-suffix*;

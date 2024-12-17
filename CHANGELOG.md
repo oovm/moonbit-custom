@@ -6,6 +6,10 @@
 
 ### Added
 
+### Fixed
+
+- Fix `[:]` syntax
+
 ## [0.1.1]
 
 ### Added

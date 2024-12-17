@@ -2,12 +2,13 @@
 package com.github.moonbit.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface MoonSignatureArguments extends PsiElement {
+public interface MoonSliceTerm extends PsiElement {
 
     @NotNull
-    List<MoonIdentifierFree> getIdentifierFreeList();
+    List<MoonTermExpression> getTermExpressionList();
 
 }

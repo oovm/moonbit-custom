@@ -221,21 +221,21 @@ public class MoonParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // BRACKET_L term-expression (COMMA term-expression)* BRACKET_R
+  // BRACKET_L slice-term (COMMA slice-term)* BRACKET_R
   public static boolean call_slice(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "call_slice")) return false;
     if (!nextTokenIs(b, BRACKET_L)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, BRACKET_L);
-    r = r && term_expression(b, l + 1);
+    r = r && slice_term(b, l + 1);
     r = r && call_slice_2(b, l + 1);
     r = r && consumeToken(b, BRACKET_R);
     exit_section_(b, m, CALL_SLICE, r);
     return r;
   }
 
-  // (COMMA term-expression)*
+  // (COMMA slice-term)*
   private static boolean call_slice_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "call_slice_2")) return false;
     while (true) {
@@ -246,13 +246,13 @@ public class MoonParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // COMMA term-expression
+  // COMMA slice-term
   private static boolean call_slice_2_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "call_slice_2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, COMMA);
-    r = r && term_expression(b, l + 1);
+    r = r && slice_term(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2395,6 +2395,56 @@ public class MoonParser implements PsiParser, LightPsiParser {
   private static boolean signature_parameter_1_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "signature_parameter_1_0_2")) return false;
     consumeToken(b, COMMA);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // term-expression? COLON? term-expression? COLON? term-expression?
+  public static boolean slice_term(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "slice_term")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, SLICE_TERM, "<slice term>");
+    r = slice_term_0(b, l + 1);
+    r = r && slice_term_1(b, l + 1);
+    r = r && slice_term_2(b, l + 1);
+    r = r && slice_term_3(b, l + 1);
+    r = r && slice_term_4(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // term-expression?
+  private static boolean slice_term_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "slice_term_0")) return false;
+    term_expression(b, l + 1);
+    return true;
+  }
+
+  // COLON?
+  private static boolean slice_term_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "slice_term_1")) return false;
+    consumeToken(b, COLON);
+    return true;
+  }
+
+  // term-expression?
+  private static boolean slice_term_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "slice_term_2")) return false;
+    term_expression(b, l + 1);
+    return true;
+  }
+
+  // COLON?
+  private static boolean slice_term_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "slice_term_3")) return false;
+    consumeToken(b, COLON);
+    return true;
+  }
+
+  // term-expression?
+  private static boolean slice_term_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "slice_term_4")) return false;
+    term_expression(b, l + 1);
     return true;
   }
 
