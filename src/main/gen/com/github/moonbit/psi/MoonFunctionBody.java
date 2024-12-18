@@ -26,6 +26,9 @@ public interface MoonFunctionBody extends PsiElement {
     List<MoonTermExpression> getTermExpressionList();
 
     @NotNull
+    List<MoonTryStatement> getTryStatementList();
+
+    @NotNull
     List<MoonWhileStatement> getWhileStatementList();
 
 }

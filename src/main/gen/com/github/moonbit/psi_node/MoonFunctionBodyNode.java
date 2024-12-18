@@ -65,6 +65,12 @@ public class MoonFunctionBodyNode extends AnyMoonNode implements MoonFunctionBod
 
     @Override
     @NotNull
+    public List<MoonTryStatement> getTryStatementList() {
+        return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonTryStatement.class);
+    }
+
+    @Override
+    @NotNull
     public List<MoonWhileStatement> getWhileStatementList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, MoonWhileStatement.class);
     }

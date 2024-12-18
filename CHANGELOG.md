@@ -9,6 +9,7 @@
 ### Fixed
 
 - Fix `[:]` syntax
+- Fix `fn()` syntax
 
 ## [0.1.1]
 

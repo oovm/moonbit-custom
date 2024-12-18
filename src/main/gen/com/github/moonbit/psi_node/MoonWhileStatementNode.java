@@ -23,20 +23,20 @@ public class MoonWhileStatementNode extends AnyMoonNode implements MoonWhileStat
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof MoonVisitor) accept((MoonVisitor) visitor);
-    else super.accept(visitor);
+      if (visitor instanceof MoonVisitor) accept((MoonVisitor) visitor);
+      else super.accept(visitor);
   }
 
-  @Override
-  @Nullable
-  public MoonFunctionBody getFunctionBody() {
-    return findChildByClass(MoonFunctionBody.class);
-  }
+    @Override
+    @Nullable
+    public MoonFunctionBody getFunctionBody() {
+        return findChildByClass(MoonFunctionBody.class);
+    }
 
-  @Override
-  @Nullable
-  public MoonTermExpression getTermExpression() {
-    return findChildByClass(MoonTermExpression.class);
-  }
+    @Override
+    @Nullable
+    public MoonTermExpression getTermExpression() {
+        return findChildByClass(MoonTermExpression.class);
+    }
 
 }

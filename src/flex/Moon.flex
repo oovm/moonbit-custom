@@ -34,7 +34,7 @@ OCT = 0o[0-7_]*{INTEGER_TYPE}?
 BIN = 0b[01_]*{INTEGER_TYPE}?
 INTEGER=[0-9_]+{INTEGER_TYPE}?
 DECIMAL=([0-9]+\.[0-9]*([Ee][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)
-INTEGER_TYPE = UL|U|L
+INTEGER_TYPE = UL|U|L|N
 
 
 KW_PACKAGE     = "package"
@@ -170,6 +170,9 @@ KW_FN      = "fn"
 	continue { return KW_CONTINUE; }
 	break    { return KW_BREAK; }
 	raise    { return KW_RAISE; }
+
+	try      { return KW_TRY; }
+	catch    { return KW_CATCH; }
 }
 <YYINITIAL> {
 	{SYMBOL}  { return SYMBOL; }

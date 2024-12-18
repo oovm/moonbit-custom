@@ -42,12 +42,12 @@ private statements ::= SEMICOLON
 	| declare-impl
 	| let-statement
 	| declare-function
-	| declare-closure
 	| declare-test
 	| while-statement
 	| for-statement
 	| if-statement
 	| guard-statement
+	| try-statement
 	| match-statement
 
 // package wasi:blobstore@0.2.0-draft;
@@ -138,7 +138,7 @@ let-statement ::= modifier? KW_LET KW_MUTABLE? identifier type-hint? OP_ASSIGN t
 }
 // =====================================================================================================================
 declare-function ::= modifier* function-extern? KW_FN function-name declare-generic? declare-parameters return-type? (function-body | function-inline) {
-//	pin = 3
+	pin = 4
 //    mixin = "com.github.bytecodealliance.language.mixin.MixinInterface"
 }
 function-name   ::= (identifier-free NAME_JOIN)? identifier-free
@@ -154,6 +154,7 @@ private function-element ::= SEMICOLON
 	| declare-test
 	| while-statement
 	| for-statement
+	| try-statement
 	| control-statement
 	| term-expression
 // =====================================================================================================================
@@ -173,7 +174,7 @@ modifier ::=
 declare-generic ::= BRACKET_L (generic-item (COMMA generic-item)*)? BRACKET_R;
 generic-item ::= identifier (COLON type-expression)?;
 // =====================================================================================================================
-declare-closure  ::= KW_FN closure-parameters? function-body {
+lambda-function  ::= KW_FN closure-parameters? function-body {
 //	pin = 1
 }
 closure-parameters ::= PARENTHESIS_L (identifier (COMMA identifier)* COMMA?)? PARENTHESIS_R
@@ -210,17 +211,6 @@ guard-normal ::= KW_GUARD term-expression else-statement? {
 	pin = 1
 }
 // =====================================================================================================================
-
-
-
-
-match-statement ::= KW_MATCH term-expression match-body {
-	pin = 1
-}
-match-body ::= BRACE_L match-element* BRACE_R;
-private match-element ::= match-variant
-match-variant ::= identifier;
-// =====================================================================================================================
 while-statement ::= KW_WHILE term-expression function-body {
 	pin = 1
 }
@@ -230,9 +220,25 @@ for-startup    ::= term-expression SEMICOLON;
 for-condition  ::= term-expression SEMICOLON;
 for-increment  ::= term-expression;
 // =====================================================================================================================
+match-statement ::= KW_MATCH term-expression match-body {
+	pin = 1
+}
+match-body ::= BRACE_L match-element* BRACE_R;
+private match-element ::= match-variant
+match-variant ::= identifier;
+// =====================================================================================================================
+try-statement  ::= try-expression catch-expression*;
+try-expression   ::= KW_TRY function-body {
+	pin = 1
+}
+catch-expression ::= KW_CATCH match-body {
+	pin = 1
+}
+// =====================================================================================================================
 term-expression ::= term-expression-item (term-infix term-expression-item)*;
 term-expression-item ::= term-prefix* term-expression-atom term-suffix*;
 term-expression-atom ::= PARENTHESIS_L term-expression PARENTHESIS_R
+	| lambda-function
 	| if-statement
 	| guard-statement
 	| dict-literal
