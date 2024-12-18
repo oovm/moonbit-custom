@@ -8,6 +8,8 @@
 
 ### Fixed
 
+- Support big integer literal `0N`
+- Support `try`, `catch` statements
 - Fix `[:]` syntax
 - Fix `fn()` syntax
 
